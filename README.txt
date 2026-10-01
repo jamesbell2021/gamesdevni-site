@@ -15,8 +15,9 @@ wishlist widget appears in the Wishlist section. Until then the buttons read
 "Coming soon to Steam".
 
 Hosted on GitHub Pages (repo jamesbell2021/gamesdevni-site) at
-https://gamesdevni.site - the CNAME file holds the domain. Push to main and
-the site updates in a minute or two.
+https://jamesbell2021.github.io/gamesdevni-site/ - push to main and the site
+updates in a minute or two. gamesdevni.site redirects here with a Cloudflare
+Redirect Rule; the Raspberry Pi behind the domain is left as it was.
 
 Adding a screenshot: put the full-size image and a 960px-wide _thumb copy in
 screenshots/, then copy one of the <button class="shot"> lines in the
