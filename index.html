@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forged in Formation | 3BL - Wishlist on Steam</title>
+<meta name="description" content="Forged in Formation: lead the scattered rebels of 1798 across a hostile Caribbean island. One button, three formations, every life counts. A strategy game from 3BL, County Down. Coming to Steam Early Access, Halloween 2026.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Forged in Formation | 3BL">
+<meta property="og:description" content="Shape your people. Shape your nation. Column to march, Line to cross, Square to hold. Coming to Steam Early Access, Halloween 2026.">
+<meta property="og:url" content="https://gamesdevni.site/">
+<meta property="og:image" content="https://gamesdevni.site/screenshots/the_hundred_charge.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gamesdevni.site/screenshots/the_hundred_charge.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 11'%3E%3Cg fill='%23FF8C2B'%3E%3Crect x='1' y='2' width='3' height='2'/%3E%3Crect x='0' y='4' width='5' height='2'/%3E%3Crect x='1' y='6' width='3' height='2'/%3E%3Crect x='1' y='8' width='1' height='2'/%3E%3Crect x='3' y='8' width='1' height='2'/%3E%3Crect x='0' y='10' width='2' height='1'/%3E%3Crect x='3' y='10' width='2' height='1'/%3E%3Crect x='9' y='0' width='3' height='2'/%3E%3Crect x='7' y='2' width='7' height='4'/%3E%3Crect x='8' y='6' width='5' height='1'/%3E%3Crect x='8' y='7' width='2' height='3'/%3E%3Crect x='11' y='7' width='2' height='3'/%3E%3Crect x='7' y='10' width='3' height='1'/%3E%3Crect x='11' y='10' width='3' height='1'/%3E%3Crect x='17' y='2' width='3' height='2'/%3E%3Crect x='16' y='4' width='5' height='2'/%3E%3Crect x='17' y='6' width='3' height='2'/%3E%3Crect x='17' y='8' width='1' height='2'/%3E%3Crect x='19' y='8' width='1' height='2'/%3E%3Crect x='16' y='10' width='2' height='1'/%3E%3Crect x='19' y='10' width='2' height='1'/%3E%3C/g%3E%3C/svg%3E">
+
+<style>
+/* ============ PALETTE (taken from the 3BL logo) - change colours here ============ */
+:root{
+  --bg:        #0E1116;   /* logo background */
+  --bg-2:      #141922;   /* raised panels */
+  --line:      #2A303C;   /* logo border grey */
+  --muted:     #59606E;   /* logo muted text */
+  --text:      #F2EFE6;   /* logo cream */
+  --text-dim:  #B8B5AC;
+  --accent:    #FF8C2B;   /* logo orange */
+  --accent-2:  #1FC8DA;   /* logo cyan */
+  --danger:    #E8412F;   /* logo red */
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --cut: 14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--mono);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--text)}
+img{max-width:100%;display:block}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+section{padding:96px 0;position:relative}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+h1,h2,h3{line-height:1.15;margin:0}
+h2{font-size:clamp(26px,4vw,38px);letter-spacing:.01em}
+h2 .hl{color:var(--accent)}
+p{margin:0 0 1em;color:var(--text-dim)}
+strong{color:var(--text)}
+.lead{font-size:clamp(15px,1.6vw,18px);max-width:62ch}
+
+/* ---- Cut-corner panels, echoing the badge ---- */
+.cut{clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
+.panel{background:var(--bg-2);border:1px solid var(--line);padding:28px;position:relative}
+.panel.cut{border:0;box-shadow:inset 0 0 0 1px var(--line)}
+
+/* ---- Nav ---- */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(14,17,22,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--text);font-weight:700;letter-spacing:.06em}
+.brand svg{height:22px;width:auto}
+nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;align-items:center}
+nav ul a{color:var(--text-dim)}
+nav ul a:hover{color:var(--accent)}
+nav ul a.nav-cta{color:var(--bg);background:var(--accent);padding:8px 14px}
+nav ul a.nav-cta:hover{background:var(--text);color:var(--bg)}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--text);font:inherit;padding:6px 10px;cursor:pointer}
+@media(max-width:860px){
+  .nav-toggle{display:block}
+  nav ul{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);align-items:stretch}
+  nav ul.open{display:flex}
+  nav ul li a{display:block;padding:16px 20px;border-top:1px solid var(--line)}
+}
+
+/* ---- Buttons ---- */
+.btn{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:14px 26px;border:2px solid var(--accent);color:var(--accent);background:transparent;cursor:pointer;
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);transition:background .15s,color .15s}
+.btn:hover{background:var(--accent);color:var(--bg)}
+.btn.solid{background:var(--accent);color:var(--bg)}
+.btn.solid:hover{background:var(--text);border-color:var(--text)}
+.btn.soon{border-color:var(--line);color:var(--text-dim);background:transparent;cursor:default}
+.btn.soon:hover{background:transparent;color:var(--text-dim)}
+
+/* ---- Hero ---- */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden;
+  background:
+   linear-gradient(90deg,rgba(14,17,22,.97) 0%,rgba(14,17,22,.88) 42%,rgba(14,17,22,.55) 100%),
+   linear-gradient(0deg,var(--bg) 0%,transparent 30%),
+   url("screenshots/the_hundred_charge.jpg") center/cover no-repeat,
+   var(--bg)}
+.hero::before{content:"";position:absolute;inset:0;background-image:
+   linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+   background-size:48px 48px;opacity:.10;mask-image:radial-gradient(ellipse at 30% 40%,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 30% 40%,#000 20%,transparent 70%)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:40px}.hero{padding-top:110px}}
+.badge-soon{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--accent);color:var(--accent);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px;background:rgba(14,17,22,.6)}
+.badge-soon i{width:8px;height:8px;background:var(--accent);display:block;animation:blink 1.4s steps(2,jump-none) infinite}
+@keyframes blink{50%{opacity:.25}}
+.hero h1{font-size:clamp(40px,7vw,80px);letter-spacing:-.01em;text-transform:uppercase}
+.hero h1 span{display:block;color:var(--accent)}
+.hero .tag{margin:22px 0 14px;font-size:clamp(17px,2vw,22px);color:var(--text);font-weight:700}
+.hero .sub{margin:0 0 30px;font-size:clamp(14px,1.6vw,17px);max-width:52ch;color:var(--text-dim)}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ---- Wide lockup: framed figures on the left, 3BL letters on the right ---- */
+.lockup{justify-self:center;width:min(400px,100%);display:flex;align-items:center;gap:6%}
+.lockup .badge{flex:0 0 38%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:var(--bg);
+  clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);
+  box-shadow:inset 0 0 0 3px var(--accent);filter:drop-shadow(0 0 40px rgba(255,140,43,.22))}
+.lockup .badge svg{width:64%}
+.lockup .letters{flex:1 1 auto;min-width:0}
+.lockup .letters svg{width:100%;display:block}
+@media(max-width:900px){.lockup{display:none}}
+
+/* ---- Countdown ---- */
+.countdown{display:flex;gap:14px;margin:12px 0 0;flex-wrap:wrap}
+.cd{min-width:76px;padding:12px 14px;background:rgba(20,25,34,.85);border:1px solid var(--line);text-align:center}
+.cd b{display:block;font-size:26px;color:var(--text);font-variant-numeric:tabular-nums}
+.cd small{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.cd-label{margin-top:38px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+/* ---- Trailer ---- */
+.trailer{padding-top:40px}
+.video-frame{margin-top:28px;position:relative;background:#000;box-shadow:0 0 0 1px var(--line),0 30px 80px rgba(0,0,0,.5)}
+.video-frame video{width:100%;display:block;aspect-ratio:16/9;background:#000}
+.video-note{margin-top:14px;font-size:12px;color:var(--muted)}
+
+/* ---- Pitch / features ---- */
+.pitch{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+@media(max-width:900px){.pitch{grid-template-columns:1fr;gap:32px}}
+.quote{font-size:clamp(20px,2.6vw,28px);line-height:1.35;color:var(--text);border-left:3px solid var(--accent);padding-left:22px;margin:0 0 24px}
+.quote em{font-style:normal;color:var(--accent)}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.features.four{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1000px){.features.four{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){.features{grid-template-columns:1fr}}
+@media(max-width:620px){.features.four{grid-template-columns:1fr}}
+.feature .num{font-size:12px;color:var(--accent);letter-spacing:.2em}
+.feature .num .new{color:var(--bg);background:var(--accent-2);padding:2px 7px;margin-left:8px;letter-spacing:.14em}
+.feature h3{font-size:19px;margin:8px 0 10px}
+.feature p{font-size:14px;margin:0}
+
+/* ---- Formation diagram ---- */
+.formations{background:linear-gradient(180deg,transparent,rgba(255,140,43,.04),transparent)}
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+@media(max-width:900px){.form-grid{grid-template-columns:1fr}}
+.form-card svg{width:100%;height:120px;margin-bottom:18px}
+.form-card h3{font-size:17px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.form-card .use{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:6px 0 0}
+.form-card p{font-size:14px;margin:10px 0 0}
+
+/* ---- Threats ---- */
+.threats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+@media(max-width:900px){.threats{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.threats{grid-template-columns:1fr}}
+.threat{padding:22px}
+.threat h3{font-size:16px;margin:0 0 8px;color:var(--text)}
+.threat h3 i{font-style:normal;color:var(--danger);margin-right:8px}
+.threat p{font-size:13.5px;margin:0}
+
+/* ---- Feature row with an image ---- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:28px}}
+.split img{box-shadow:0 0 0 1px var(--line);clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
+ul.ticks{list-style:none;padding:0;margin:18px 0 0}
+ul.ticks li{padding-left:22px;position:relative;margin:0 0 10px;color:var(--text-dim);font-size:15px}
+ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;height:9px;background:var(--accent)}
+
+/* ---- Gallery ---- */
+.gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:40px}
+.shot{grid-column:span 2;aspect-ratio:16/9;background:var(--bg-2);border:1px solid var(--line);position:relative;overflow:hidden;cursor:zoom-in;padding:0;font:inherit;color:inherit}
+.shot.big{grid-column:span 3}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.shot:hover img{transform:scale(1.04)}
+.shot .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text);background:linear-gradient(transparent,rgba(14,17,22,.92));text-align:left}
+@media(max-width:900px){.shot,.shot.big{grid-column:span 3}}
+@media(max-width:620px){.shot,.shot.big{grid-column:span 6}}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(6,8,11,.95);display:none;align-items:center;justify-content:center;padding:24px;flex-direction:column;gap:14px}
+.lightbox.open{display:flex}
+.lightbox img{max-height:82vh;max-width:min(1600px,94vw);border:1px solid var(--line)}
+.lightbox .lb-cap{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim)}
+.lightbox .lb-btn{position:absolute;background:rgba(14,17,22,.8);border:1px solid var(--line);color:var(--text);font:inherit;padding:8px 14px;cursor:pointer}
+#lb-close{top:18px;right:22px}
+#lb-prev{left:22px;top:50%}
+#lb-next{right:22px;top:50%}
+
+/* ---- Story ---- */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+@media(max-width:900px){.story{grid-template-columns:1fr}}
+.story .panel h3{font-size:18px;margin-bottom:10px}
+.story .panel h3 span{color:var(--accent-2)}
+.crawl{font-size:clamp(18px,2.2vw,24px);color:var(--text);font-style:italic;margin:28px 0 0;max-width:40ch;border-left:3px solid var(--accent-2);padding-left:20px}
+.note{margin-top:20px;font-size:12px;color:var(--muted);max-width:90ch}
+
+/* ---- Wishlist band ---- */
+.wishlist{padding:72px 0;text-align:center;border-block:1px solid var(--line);
+  background:radial-gradient(700px 260px at 50% 50%,rgba(255,140,43,.12),transparent 70%),var(--bg-2)}
+.wishlist h2{margin-bottom:12px}
+.wishlist p{max-width:58ch;margin:0 auto 26px}
+.steam-widget{margin:28px auto 0;max-width:646px}
+.steam-widget iframe{width:100%;height:190px;border:0}
+
+/* ---- Course / about ---- */
+.course{background:var(--bg-2);border-block:1px solid var(--line)}
+.course-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start;margin-top:12px}
+@media(max-width:900px){.course-grid{grid-template-columns:1fr}}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.tags span{border:1px solid var(--line);padding:6px 12px;font-size:12px;letter-spacing:.08em;color:var(--text-dim)}
+.tags span.hot{border-color:var(--accent-2);color:var(--accent-2)}
+
+/* ---- Footer ---- */
+footer{padding:56px 0 40px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start}
+footer .links{display:flex;gap:22px;flex-wrap:wrap;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- Reusable logo parts (from the 3BL logo concepts artifact) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="figs">
+      <rect x="1" y="2" width="3" height="2"/><rect x="0" y="4" width="5" height="2"/><rect x="1" y="6" width="3" height="2"/>
+      <rect x="1" y="8" width="1" height="2"/><rect x="3" y="8" width="1" height="2"/><rect x="0" y="10" width="2" height="1"/><rect x="3" y="10" width="2" height="1"/>
+      <rect x="9" y="0" width="3" height="2"/><rect x="7" y="2" width="7" height="4"/><rect x="8" y="6" width="5" height="1"/>
+      <rect x="8" y="7" width="2" height="3"/><rect x="11" y="7" width="2" height="3"/><rect x="7" y="10" width="3" height="1"/><rect x="11" y="10" width="3" height="1"/>
+      <rect x="17" y="2" width="3" height="2"/><rect x="16" y="4" width="5" height="2"/><rect x="17" y="6" width="3" height="2"/>
+      <rect x="17" y="8" width="1" height="2"/><rect x="19" y="8" width="1" height="2"/><rect x="16" y="10" width="2" height="1"/><rect x="19" y="10" width="2" height="1"/>
+    </g>
+    <g id="letters">
+      <rect x="0" y="0" width="5" height="1"/><rect x="4" y="1" width="1" height="5"/><rect x="1" y="3" width="3" height="1"/><rect x="0" y="6" width="5" height="1"/>
+      <rect x="7" y="0" width="1" height="7"/><rect x="7" y="0" width="4" height="1"/><rect x="10" y="1" width="2" height="2"/><rect x="7" y="3" width="4" height="1"/>
+      <rect x="10" y="4" width="2" height="2"/><rect x="7" y="6" width="4" height="1"/><rect x="14" y="0" width="1" height="7"/><rect x="14" y="6" width="5" height="1"/>
+    </g>
+  </defs>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="3BL home">
+      <svg viewBox="0 0 21 11" fill="#FF8C2B" aria-hidden="true" style="height:24px"><use href="#figs"/></svg>
+      <svg viewBox="0 0 19 7" fill="#FF8C2B" aria-hidden="true" style="height:16px"><use href="#letters"/></svg>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">Menu</button>
+    <ul id="menu">
+      <li><a href="#trailer">Trailer</a></li>
+      <li><a href="#game">The Game</a></li>
+      <li><a href="#island">The Island</a></li>
+      <li><a href="#play">Ways to Play</a></li>
+      <li><a href="#screens">Screenshots</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a class="nav-cta" data-steam href="#wishlist">Wishlist</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="badge-soon"><i></i>Coming to Steam Early Access - Halloween 2026</div>
+      <h1>Forged in <span>Formation</span></h1>
+      <p class="tag">Shape your people. Shape your nation.</p>
+      <p class="sub">1798. The rising failed, and its leader fell at Ballynahinch. <strong>The grave did not hold him.</strong> Now he walks a Crown-held Caribbean island, gathering the scattered rebels of '98 into an army. One button. Three formations. Every life counts.</p>
+      <div class="hero-actions">
+        <a class="btn solid" data-steam href="#wishlist">Wishlist on Steam</a>
+        <a class="btn" href="#trailer">Watch the trailer</a>
+      </div>
+      <div class="cd-label">Early Access countdown - 31 October 2026</div>
+      <div class="countdown" id="countdown" aria-live="off">
+        <div class="cd"><b id="cd-d">--</b><small>Days</small></div>
+        <div class="cd"><b id="cd-h">--</b><small>Hours</small></div>
+        <div class="cd"><b id="cd-m">--</b><small>Mins</small></div>
+        <div class="cd"><b id="cd-s">--</b><small>Secs</small></div>
+      </div>
+    </div>
+
+    <div class="lockup" role="img" aria-label="3BL studio logo: three figures beside the letters 3BL">
+      <div class="badge"><svg viewBox="0 0 21 11" fill="#FF8C2B"><use href="#figs"/></svg></div>
+      <div class="letters"><svg viewBox="0 0 19 7" fill="#FF8C2B"><use href="#letters"/></svg></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRAILER ============ -->
+<section id="trailer" class="trailer">
+  <div class="wrap">
+    <p class="eyebrow">01 / Trailer</p>
+    <h2>Column to march. Line to cross. <span class="hl">Square to hold.</span></h2>
+    <div class="video-frame">
+      <video controls preload="none" poster="video/trailer_poster.jpg" playsinline>
+        <source src="video/forged_in_formation_trailer.mp4" type="video/mp4">
+        Your browser can't play this video. <a href="video/forged_in_formation_trailer.mp4">Download the trailer</a>.
+      </video>
+    </div>
+    <p class="video-note">Captured in engine from the current build.</p>
+  </div>
+</section>
+
+<!-- ============ THE GAME ============ -->
+<section id="game">
+  <div class="wrap">
+    <p class="eyebrow">02 / The Game</p>
+    <div class="pitch">
+      <div>
+        <h2>Lead the many. <span class="hl">Lose none.</span></h2>
+        <p class="quote" style="margin-top:28px">Think <em>Pikmin</em> meets <em>Holdfast</em>: a scattered crowd becomes a disciplined army, and every decision is about keeping them alive.</p>
+      </div>
+      <div>
+        <p class="lead">You are <strong>the Founder</strong>. Every rebel you find falls in behind you. Every one you lose is gone for good.</p>
+        <p class="lead">There's no attack button. <strong>The shape of your squad is your weapon:</strong> thread a breach in Column, cross a ford in Line, and stand in Square while the cavalry thunders down on you. Change too late and the stragglers pay for it.</p>
+        <p class="lead">Get your people out, bank them toward a nation of a hundred, and go back for more. The island will be waiting.</p>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="panel cut feature"><div class="num">01</div><h3>Recruit</h3><p>Rebels hide in villages, wander the cane and wait in the Crown's cells. Walk close and they fall in: a growing column of men and women at your back.</p></div>
+      <div class="panel cut feature"><div class="num">02</div><h3>Reform</h3><p>Column, Line, Square, on one button. The red lane on the ground shows where the volley will land. Read it, reform, and the danger walks past you.</p></div>
+      <div class="panel cut feature"><div class="num">03</div><h3>Rise</h3><p>Every man and woman you bring home counts toward a free nation. The bigger it grows, the more the Crown sends to stop you.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORMATIONS ============ -->
+<section id="formations" class="formations">
+  <div class="wrap">
+    <p class="eyebrow">03 / Core Mechanic</p>
+    <h2>Three shapes. <span class="hl">One right answer.</span></h2>
+    <p class="lead" style="margin-top:16px">Every formation saves your people from something and leaves them open to something else. Your men need time to move into the new shape, so a change made a heartbeat too late still costs you.</p>
+
+    <div class="form-grid">
+      <div class="panel cut form-card">
+        <svg viewBox="0 0 200 120" fill="#FF8C2B" aria-hidden="true">
+          <rect x="92" y="6" width="16" height="16"/><rect x="92" y="30" width="16" height="16"/><rect x="92" y="54" width="16" height="16"/><rect x="92" y="78" width="16" height="16"/><rect x="92" y="102" width="16" height="12"/>
+        </svg>
+        <h3>Column</h3>
+        <p class="use">Breaches, bridges, mountain ledges</p>
+        <p>Single file through the gap in the fort wall and along the cliff path. Long and thin: a volley down its length is a disaster.</p>
+      </div>
+      <div class="panel cut form-card">
+        <svg viewBox="0 0 200 120" fill="#1FC8DA" aria-hidden="true">
+          <rect x="14" y="52" width="16" height="16"/><rect x="48" y="52" width="16" height="16"/><rect x="82" y="52" width="16" height="16"/><rect x="116" y="52" width="16" height="16"/><rect x="150" y="52" width="16" height="16"/>
+        </svg>
+        <h3 style="color:var(--accent-2)">Line</h3>
+        <p class="use">Fords and open ground</p>
+        <p>A wide front, fast across the shallows and the open field. A volley from the side only catches its end. Caught head on, it loses everyone.</p>
+      </div>
+      <div class="panel cut form-card">
+        <svg viewBox="0 0 200 120" fill="#F2EFE6" aria-hidden="true">
+          <rect x="62" y="18" width="16" height="16"/><rect x="92" y="18" width="16" height="16"/><rect x="122" y="18" width="16" height="16"/>
+          <rect x="62" y="52" width="16" height="16"/><rect x="122" y="52" width="16" height="16"/>
+          <rect x="62" y="86" width="16" height="16"/><rect x="92" y="86" width="16" height="16"/><rect x="122" y="86" width="16" height="16"/>
+          <rect x="94" y="54" width="12" height="12" fill="#FF8C2B"/>
+        </svg>
+        <h3 style="color:var(--text)">Square</h3>
+        <p class="use">Cannon, cavalry, bayonets, the boar</p>
+        <p>A closed ring with you at its heart. It turns a bayonet charge, stops dragoons and a wild boar dead, and rides out the cannon. Slow, and too wide for narrow ground.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE ISLAND ============ -->
+<section id="island">
+  <div class="wrap">
+    <p class="eyebrow">04 / The Island</p>
+    <h2>An island that <span class="hl">fights back</span></h2>
+    <p class="lead" style="margin-top:16px">The redcoats hold the forts. The island holds everything else.</p>
+
+    <div class="threats">
+      <div class="panel cut threat"><h3><i>!</i>Redcoat lines</h3><p>"Make ready! Present!" Muskets level, a red lane falls across the ground, and you have a heartbeat to get out of it.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>Dragoons</h3><p>They sweep the open ground in threes. Nothing in your squad can touch them, except your dog.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>Cannon batteries</h3><p>Gunners present, the gun roars, and shells burst across the whole approach. Form Square and hold your nerve.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>Riflemen and grenadiers</h3><p>Green-jacketed marksmen who punish standing still. Grenades that sit in a red ring, fizzing, before they burst.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>The eagle</h3><p>It circles the mountain pass and stoops on the straggler. Men thrown from the ledge vanish into the fog below.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>Alligators</h3><p>They lie in the river fords: slow, patient, and impossible to kill. You'll hear the hiss before the jaws.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>The fer-de-lance</h3><p>It waits in the cane. Walk your people round it, or count the cost.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>Man traps</h3><p>Steel jaws set on the plantation paths for people escaping slavery. Watch where you walk.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>The wild boar</h3><p>It charges your squad on sight and scatters everyone it hits, unless it meets a Square.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE DOG ============ -->
+<section id="dog" style="padding-top:0">
+  <div class="wrap">
+    <div class="split">
+      <img src="screenshots/dog_and_dragoon.jpg" alt="The Founder's dog at a dragoon's horse as its rider is thrown" loading="lazy">
+      <div>
+        <p class="eyebrow">A loyal dog at your heel</p>
+        <h2>The only thing on the island <span class="hl">a dragoon fears</span></h2>
+        <ul class="ticks">
+          <li>He follows you everywhere and goes for any redcoat who comes near your people.</li>
+          <li>He runs down fleeing snipers and grenadiers, and he is the only thing that can bring down a dragoon.</li>
+          <li>He's terrified of alligators, snakes and traps. Listen for his warning growl.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WAYS TO PLAY ============ -->
+<section id="play" style="background:linear-gradient(180deg,transparent,rgba(255,140,43,.04),transparent)">
+  <div class="wrap">
+    <p class="eyebrow">05 / Ways to Play</p>
+    <h2>Four ways to <span class="hl">take the field</span></h2>
+    <p class="lead" style="margin-top:16px">Follow the Founder from the cove to Kingston, push your luck on an endless island, or settle it on the battlefield, against the computer or a friend on the same sofa.</p>
+
+    <div class="features four">
+      <div class="panel cut feature"><div class="num">MODE 01</div><h3>Campaign</h3><p>Ten levels across the island, from the Cove Landing to Kingston Harbour. Rain on the Cane Road, fog on the Mountain Pass, and an ending worth the march.</p></div>
+      <div class="panel cut feature"><div class="num">MODE 02</div><h3>Skirmish</h3><p>A freshly made island every trip. Go back inland for more men, again and again, harder every time, until one trip is too many. Your score is how far you got.</p></div>
+      <div class="panel cut feature"><div class="num">MODE 03<span class="new">NEW</span></div><h3>1 Player Battle</h3><p>Take on the computer at Easy, Normal or Hard. It plays by your rules: it forms Square against your horse, waits for your line to fire, and comes for your commander the moment you look away.</p></div>
+      <div class="panel cut feature"><div class="num">MODE 04</div><h3>2 Player Battle</h3><p>Couch versus on one screen, keyboard against gamepad, in the spirit of the classic 16-bit field battles. River, Chasm or Desert, drawn at random. Lose your commander and you lose the battle.</p></div>
+    </div>
+
+    <div style="margin-top:48px">
+      <p class="eyebrow">Your army on the battlefield</p>
+      <div class="tags">
+        <span class="hot">Commander</span><span>Line</span><span>Bayonets</span><span>Cavalry</span><span>Cannon</span><span>Sniper</span><span>Brawler</span><span>Grenadier</span>
+      </div>
+      <p style="margin-top:18px;font-size:14px;max-width:72ch">Steer one unit at a time, each with its own readiness bar. Hold fire and the cannon's marker walks out, then let go. Cross the bridge in Column, charge in Line, and nobody fires from the river.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCREENSHOTS ============ -->
+<section id="screens">
+  <div class="wrap">
+    <p class="eyebrow">06 / In Engine</p>
+    <h2>Screenshots</h2>
+    <p class="lead" style="margin-top:16px">Captured in engine from the current build. Click any image to enlarge.</p>
+
+    <!-- To add a screenshot: put the full image and a _thumb copy in /screenshots and add a matching button below. -->
+    <div class="gallery" id="gallery">
+      <button class="shot big" data-full="screenshots/redcoat_volley.jpg"><img src="screenshots/redcoat_volley_thumb.jpg" alt="A red danger lane falls across the squad as a redcoat line presents" loading="lazy"><span class="cap">Read the red lane before the volley lands</span></button>
+      <button class="shot big" data-full="screenshots/eagle_strike.jpg"><img src="screenshots/eagle_strike_thumb.jpg" alt="An eagle stoops on a man on the mountain pass" loading="lazy"><span class="cap">The eagle stoops on the mountain pass</span></button>
+      <button class="shot" data-full="screenshots/boar_meets_square.jpg"><img src="screenshots/boar_meets_square_thumb.jpg" alt="A wild boar knocked down by a Square" loading="lazy"><span class="cap">A Square stops the boar dead</span></button>
+      <button class="shot" data-full="screenshots/dragoons_charge.jpg"><img src="screenshots/dragoons_charge_thumb.jpg" alt="Three dragoons charge down their lanes" loading="lazy"><span class="cap">Dragoons ride in threes</span></button>
+      <button class="shot" data-full="screenshots/cane_road_rain.jpg"><img src="screenshots/cane_road_rain_thumb.jpg" alt="The Founder and his dog on the Cane Road in heavy rain" loading="lazy"><span class="cap">The Cane Road, in a tropical downpour</span></button>
+      <button class="shot" data-full="screenshots/grenade_in_the_square.jpg"><img src="screenshots/grenade_in_the_square_thumb.jpg" alt="A grenade bursts among the squad in a fort courtyard" loading="lazy"><span class="cap">A grenade lands among the men</span></button>
+      <button class="shot" data-full="screenshots/the_brawler.jpg"><img src="screenshots/the_brawler_thumb.jpg" alt="A redcoat brawler fighting the squad" loading="lazy"><span class="cap">Fists, bayonets and the dog</span></button>
+      <button class="shot" data-full="screenshots/column_line_square.jpg"><img src="screenshots/column_line_square_thumb.jpg" alt="The squad marching in column with the dog at heel" loading="lazy"><span class="cap">On the march, the dog at heel</span></button>
+      <button class="shot big" data-full="screenshots/two_player_battle.jpg"><img src="screenshots/two_player_battle_thumb.jpg" alt="A redcoat volley across the ford in the battle mode" loading="lazy"><span class="cap">Battle mode: a volley across the ford</span></button>
+      <button class="shot big" data-full="screenshots/man_the_gun.jpg"><img src="screenshots/man_the_gun_thumb.jpg" alt="A coastal village behind a line of sharpened stakes" loading="lazy"><span class="cap">A village on the coast, behind its stakes</span></button>
+      <button class="shot" data-full="screenshots/the_cove_landing.jpg"><img src="screenshots/the_cove_landing_thumb.jpg" alt="First-person view of a fort courtyard" loading="lazy"><span class="cap">Every level opens through his eyes</span></button>
+      <button class="shot" data-full="screenshots/skirmish_island.jpg"><img src="screenshots/skirmish_island_thumb.jpg" alt="A long column crossing open ground on the skirmish island" loading="lazy"><span class="cap">Skirmish: a new island every trip</span></button>
+      <button class="shot" data-full="screenshots/the_hundred_charge.jpg"><img src="screenshots/the_hundred_charge_thumb.jpg" alt="A hundred rebels charging a redcoat line" loading="lazy"><span class="cap">The hundred charge the line</span></button>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button type="button" class="lb-btn" id="lb-close">Close</button>
+  <button type="button" class="lb-btn" id="lb-prev" aria-label="Previous">&lt;</button>
+  <button type="button" class="lb-btn" id="lb-next" aria-label="Next">&gt;</button>
+  <img id="lb-img" alt="">
+  <div class="lb-cap" id="lb-cap"></div>
+</div>
+
+<!-- ============ STORY ============ -->
+<section id="story" style="background:linear-gradient(180deg,transparent,rgba(31,200,218,.04),transparent)">
+  <div class="wrap">
+    <p class="eyebrow">07 / Setting</p>
+    <h2>From County Down, <span class="hl">1798</span></h2>
+    <p class="crawl">"They buried the Founder with his sword and his colours. The grave did not hold him."</p>
+
+    <div class="story">
+      <div class="panel cut">
+        <h3>The <span>history</span></h3>
+        <p>In the summer of 1798 the United Irishmen rose against the Crown, and in County Down the rising ended at Ballynahinch. The rebels who survived were hanged, jailed, transported or scattered, and some of them ended up across the ocean, on the Crown's sugar islands. Forged in Formation begins there.</p>
+      </div>
+      <div class="panel cut">
+        <h3>The <span>voices</span></h3>
+        <p>The Founder, his followers and the redcoats who hunt them are voiced by a young Northern Irish cast. Every order, rallying cry and line of narration was recorded here at home for the game.</p>
+      </div>
+    </div>
+    <p class="note">Forged in Formation is a work of fiction inspired by the 1798 rebellion and the Irish rebels who ended up in the Caribbean after it. It depicts colonial warfare and the plantation system, including the man traps once used against people escaping slavery. Violence is stylised.</p>
+  </div>
+</section>
+
+<!-- ============ WISHLIST ============ -->
+<section id="wishlist" class="wishlist">
+  <div class="wrap">
+    <p class="eyebrow">Coming to Steam Early Access</p>
+    <h2>Wishlist <span class="hl">Forged in Formation</span></h2>
+    <p>Wishlisting is the single biggest thing you can do for a small studio. It tells Steam to show the game to more players, and we'll let you know the moment it's out.</p>
+    <a class="btn solid" data-steam href="#wishlist">Wishlist on Steam</a>
+    <div class="steam-widget" id="steam-widget" hidden></div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="course">
+  <div class="wrap">
+    <p class="eyebrow">08 / About 3BL</p>
+    <div class="course-grid">
+      <div>
+        <h2>Made in <span class="hl">the Ards</span></h2>
+        <p class="lead" style="margin-top:16px">3BL is a small independent studio on the Ards peninsula in County Down, the same county that rose in 1798. We make games with a Northern Irish voice, and Forged in Formation is our first.</p>
+      </div>
+      <div class="panel cut">
+        <p class="eyebrow">Built with</p>
+        <div class="tags">
+          <span class="hot">Unreal Engine 5</span><span>C++</span><span>Original voice cast</span><span>Linux and Windows</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top"><svg viewBox="0 0 21 11" fill="#FF8C2B" style="height:34px" aria-hidden="true"><use href="#figs"/></svg><svg viewBox="0 0 19 7" fill="#FF8C2B" style="height:22px" aria-hidden="true"><use href="#letters"/></svg></a>
+      <small>Forged in Formation - coming to Steam Early Access, Halloween 2026</small>
+      <small>&copy; 2026 3BL. County Down, Northern Ireland.</small>
+    </div>
+    <div class="links">
+      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a data-steam href="#wishlist">Wishlist</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ STEAM - fill these in once the store page is live ============
+   STEAM_URL:    the game's store page, e.g. "https://store.steampowered.com/app/1234560/Forged_in_Formation/"
+   STEAM_APP_ID: the number in that address, e.g. "1234560" - shows Steam's own wishlist widget
+   Until then every Wishlist button scrolls to the wishlist section and reads "Coming soon to Steam". */
+var STEAM_URL = "";
+var STEAM_APP_ID = "";
+
+(function(){
+  document.querySelectorAll('[data-steam]').forEach(function(a){
+    if (STEAM_URL) {
+      a.href = STEAM_URL; a.target = "_blank"; a.rel = "noopener";
+    } else if (a.classList.contains('btn')) {
+      a.textContent = "Coming soon to Steam";
+      if (a.closest('#wishlist')) { a.classList.remove('solid'); a.classList.add('soon'); a.removeAttribute('href'); }
+    }
+  });
+  if (STEAM_APP_ID) {
+    var w = document.getElementById('steam-widget');
+    w.innerHTML = '<iframe src="https://store.steampowered.com/widget/' + encodeURIComponent(STEAM_APP_ID) + '/" title="Forged in Formation on Steam" loading="lazy"></iframe>';
+    w.hidden = false;
+  }
+})();
+
+/* ---- Countdown to Halloween 2026 (31 Oct, 00:00 local time) ---- */
+(function(){
+  var target = new Date(2026, 9, 31, 0, 0, 0).getTime();
+  var d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+  function pad(n){return String(n).padStart(2,'0')}
+  function tick(){
+    var diff = target - Date.now();
+    if(diff <= 0){ document.getElementById('countdown').innerHTML='<div class="cd" style="min-width:auto"><b style="color:var(--accent)">Out now</b></div>'; return; }
+    d.textContent = Math.floor(diff/86400000);
+    h.textContent = pad(Math.floor(diff/3600000)%24);
+    m.textContent = pad(Math.floor(diff/60000)%60);
+    s.textContent = pad(Math.floor(diff/1000)%60);
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+/* ---- Gallery: thumbnails open full size in a lightbox, with arrows and Escape ---- */
+(function(){
+  var shots=[].slice.call(document.querySelectorAll('.shot'));
+  var lb=document.getElementById('lightbox'), lbImg=document.getElementById('lb-img'), lbCap=document.getElementById('lb-cap'), at=0;
+  function show(i){
+    at=(i+shots.length)%shots.length;
+    var b=shots[at]; lbImg.src=b.dataset.full; lbImg.alt=b.querySelector('img').alt;
+    lbCap.textContent=b.querySelector('.cap').textContent; lb.classList.add('open');
+  }
+  shots.forEach(function(btn,i){
+    var img=btn.querySelector('img');
+    img.addEventListener('error',function(){ btn.style.display='none'; });
+    btn.addEventListener('click',function(){ show(i); });
+  });
+  function close(){lb.classList.remove('open'); lbImg.src='';}
+  document.getElementById('lb-close').addEventListener('click',close);
+  document.getElementById('lb-prev').addEventListener('click',function(e){e.stopPropagation();show(at-1);});
+  document.getElementById('lb-next').addEventListener('click',function(e){e.stopPropagation();show(at+1);});
+  lb.addEventListener('click',function(e){if(e.target===lb) close();});
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowLeft') show(at-1);
+    if(e.key==='ArrowRight') show(at+1);
+  });
+})();
+
+/* close mobile menu after tapping a link */
+document.querySelectorAll('#menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('menu').classList.remove('open')})});
+</script>
+</body>
+</html>
