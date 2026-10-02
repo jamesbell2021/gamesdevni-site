@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Forged in Formation | 3BL - Wishlist on Steam</title>
-<meta name="description" content="Forged in Formation: lead the scattered rebels of 1798 across a hostile Caribbean island. One button, three formations, every life counts. A strategy game from 3BL, County Down. Coming to Steam Early Access, Halloween 2026.">
+<meta name="description" content="Forged in Formation: lead the scattered rebels of 1798 across a hostile Caribbean island. One button, three formations, every life counts. A strategy game from 3BL, County Down. Coming to Steam Early Access, 3 December 2026.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Forged in Formation | 3BL">
-<meta property="og:description" content="Shape your people. Shape your nation. Column to march, Line to cross, Square to hold. Coming to Steam Early Access, Halloween 2026.">
+<meta property="og:description" content="Shape your people. Shape your nation. Column to march, Line to cross, Square to hold. Coming to Steam Early Access, 3 December 2026.">
 <meta property="og:url" content="https://jamesbell2021.github.io/gamesdevni-site/">
 <meta property="og:image" content="https://jamesbell2021.github.io/gamesdevni-site/screenshots/the_hundred_charge.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -257,7 +257,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 <header class="hero" id="top">
   <div class="wrap">
     <div>
-      <div class="badge-soon"><i></i>Coming to Steam Early Access - Halloween 2026</div>
+      <div class="badge-soon"><i></i>Coming to Steam Early Access - 3 December 2026</div>
       <h1>Forged in <span>Formation</span></h1>
       <p class="tag">Shape your people. Shape your nation.</p>
       <p class="sub">1798. The rising failed, and its leader fell at Ballynahinch. <strong>The grave did not hold him.</strong> Now he walks a Crown-held Caribbean island, gathering the scattered rebels of '98 into an army. One button. Three formations. Every life counts.</p>
@@ -265,7 +265,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
         <a class="btn solid" data-steam href="#wishlist">Wishlist on Steam</a>
         <a class="btn" href="#trailer">Watch the trailer</a>
       </div>
-      <div class="cd-label">Early Access countdown - 31 October 2026</div>
+      <div class="cd-label">Early Access countdown - 3 December 2026</div>
       <div class="countdown" id="countdown" aria-live="off">
         <div class="cd"><b id="cd-d">--</b><small>Days</small></div>
         <div class="cd"><b id="cd-h">--</b><small>Hours</small></div>
@@ -512,7 +512,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
   <div class="wrap">
     <div>
       <a class="brand" href="#top"><svg viewBox="0 0 21 11" fill="#FF8C2B" style="height:34px" aria-hidden="true"><use href="#figs"/></svg><svg viewBox="0 0 19 7" fill="#FF8C2B" style="height:22px" aria-hidden="true"><use href="#letters"/></svg></a>
-      <small>Forged in Formation - coming to Steam Early Access, Halloween 2026</small>
+      <small>Forged in Formation - coming to Steam Early Access, 3 December 2026</small>
       <small>&copy; 2026 3BL. County Down, Northern Ireland.</small>
     </div>
     <div class="links">
@@ -545,9 +545,9 @@ var STEAM_APP_ID = "";
   }
 })();
 
-/* ---- Countdown to Halloween 2026 (31 Oct, 00:00 local time) ---- */
+/* ---- Countdown to 3 December 2026, 18:00 UTC (6pm UK / 10am Pacific), the same moment for every visitor. JS months start at 0, so 11 = December ---- */
 (function(){
-  var target = new Date(2026, 9, 31, 0, 0, 0).getTime();
+  var target = Date.UTC(2026, 11, 3, 18, 0, 0);
   var d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
   function pad(n){return String(n).padStart(2,'0')}
   function tick(){
