@@ -1,8 +1,9 @@
 3BL - Forged in Formation website (rebuilt 1 October 2026)
 
 Upload the whole folder as it is: index.html, screenshots/, video/.
-Total about 41 MB, of which the trailer is 34 MB (1080p, starts playing
-before it has fully downloaded) and the 2 Player Battle loop 4 MB.
+Total about 63 MB, of which the trailer is 28 MB (1080p, starts playing
+before it has fully downloaded), Defend the Drift's teaser 22 MB and the
+2 Player Battle loop 4 MB.
 
 When the Steam store page is live, open index.html, find this near the
 bottom and fill in the two lines:
@@ -29,9 +30,12 @@ saved every frame itself (-dumpmovie, a fixed 30 fps) from a computer battle
 and the staged shots Web_SniperRing and Web_KegBlast in the game repo's
 Tools/reel/reel_shots.json, then cut with ffmpeg.
 
-Sources: the screenshots are Tools/steam/screenshots in the game's repo, the
-trailer is Tools/trailer/Forged_in_Formation_Steam_Trailer.mp4 (re-encoded for
-the web), and the copy matches docs/STEAM_STORE_PAGE.md.
+Sources: the trailer is the October cut, Tools/trailer/Forged_in_Formation_Trailer.mp4
+in the game's repo (recorded in the game by Tools/trailer/record_trailer.sh,
+cut by assemble.py, re-encoded for the web at 2.4 Mbit/s); the poster and the
+fifteen screenshots added on 7 October 2026 are frames from its takes
+(Tools/trailer/gameplay); the older screenshots are Tools/steam/screenshots;
+and the copy matches docs/STEAM_STORE_PAGE.md.
 
 Defend the Drift's teaser (video/defend_the_drift_teaser.mp4 and its poster) is
 cut by Tools/film/cut.py --web in the DefendTheDrift repo, from the shots
