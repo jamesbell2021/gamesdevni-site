@@ -1,8 +1,8 @@
 3BL - Forged in Formation website (rebuilt 1 October 2026)
 
 Upload the whole folder as it is: index.html, screenshots/, video/.
-Total about 36 MB, of which the trailer is 34 MB (1080p, starts playing
-before it has fully downloaded).
+Total about 41 MB, of which the trailer is 34 MB (1080p, starts playing
+before it has fully downloaded) and the 2 Player Battle loop 4 MB.
 
 When the Steam store page is live, open index.html, find this near the
 bottom and fill in the two lines:
@@ -22,6 +22,12 @@ Redirect Rule; the Raspberry Pi behind the domain is left as it was.
 Adding a screenshot: put the full-size image and a 960px-wide _thumb copy in
 screenshots/, then copy one of the <button class="shot"> lines in the
 Screenshots section.
+
+The 2 Player Battle loop (video/two_player_battle.mp4, 23 s, muted) and the
+battle_*.jpg screenshots were captured in engine on 6 October 2026: the game
+saved every frame itself (-dumpmovie, a fixed 30 fps) from a computer battle
+and the staged shots Web_SniperRing and Web_KegBlast in the game repo's
+Tools/reel/reel_shots.json, then cut with ffmpeg.
 
 Sources: the screenshots are Tools/steam/screenshots in the game's repo, the
 trailer is Tools/trailer/Forged_in_Formation_Steam_Trailer.mp4 (re-encoded for
