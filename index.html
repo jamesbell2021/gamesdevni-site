@@ -215,6 +215,8 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .drift ul.ticks li{font-size:14px}
 .drift .memory{margin:36px 0 0;border-left:3px solid var(--drift);padding-left:20px;color:var(--text);font-style:italic;max-width:70ch}
 .drift .gallery{margin-top:44px}
+.drift .drift-video{margin-top:0}
+.drift .drift-pitch{margin-top:44px}
 
 /* ---- Footer ---- */
 footer{padding:56px 0 40px;border-top:1px solid var(--line)}
@@ -532,7 +534,14 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
     <h2>Defend <span class="hl">the Drift</span></h2>
     <p class="date">Rorke's Drift, 22-23 January 1879</p>
     <div class="when"><i></i>Planned for 2027</div>
-    <div class="pitch">
+    <div class="video-frame drift-video">
+      <video controls preload="none" poster="video/defend_the_drift_teaser_poster.jpg" playsinline>
+        <source src="video/defend_the_drift_teaser.mp4" type="video/mp4">
+        Your browser can't play this video. <a href="video/defend_the_drift_teaser.mp4">Download the teaser</a>.
+      </video>
+    </div>
+    <p class="video-note">Teaser, captured in engine from the current build, October 2026.</p>
+    <div class="pitch drift-pitch">
       <div>
         <p class="lead">Our second game is the serious one. <strong>Defend the Drift</strong> is a battle game of the Anglo-Zulu War for one or two players: one side commands the British garrison, the other the Zulu army.</p>
         <p class="lead">Three battles, fought on their real ground and following their day as it went: the eclipse over Isandlwana, the hospital burning through the night at Rorke's Drift, the mist lifting off the laager at Gingindlovu.</p>
@@ -544,6 +553,9 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
           <li>One player against the computer on either side, or two together against it.</li>
           <li>Lead from overhead or through your commander's eyes: fire the officer's revolver, fight with the induna's iklwa, or man a Gatling yourself.</li>
           <li>The Zulu army's horns of the buffalo, the British volley by ranks, and Gatlings, 9-pounders and rockets in the laager.</li>
+          <li>Hold the buildings: walk a commander into the hospital or the storehouse and his men take its windows and loopholes, until the thatch above them catches.</li>
+          <li>Every squad has its nerve. Losses and being outnumbered close up wear it down, and a broken squad falls back until its commander reaches it and rallies it, on either side.</li>
+          <li>Warriors climb the mealie-bag walls to get at the garrison.</li>
           <li>A campaign through all three battles, with records and difficulty settings.</li>
           <li>Each battle opens with a flight over the field and ends with a slow pan over the fallen of both sides.</li>
           <li>Music from the period: The Warwickshire Lads for the 24th, and The Campbells Are Coming on the pipes at Gingindlovu.</li>
@@ -557,6 +569,9 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <button class="shot" data-full="screenshots/drift_isandlwana.jpg"><img src="screenshots/drift_isandlwana_thumb.jpg" alt="Isandlwana: the camp's tents below the hill and the companies in their firing line" loading="lazy"><span class="cap">Isandlwana: the camp and the firing line</span></button>
       <button class="shot" data-full="screenshots/drift_gingindlovu.jpg"><img src="screenshots/drift_gingindlovu_thumb.jpg" alt="Gingindlovu: the square laager of wagons with a face manned on every side" loading="lazy"><span class="cap">Gingindlovu: the laager</span></button>
       <button class="shot" data-full="screenshots/drift_title.jpg"><img src="screenshots/drift_title_thumb.jpg" alt="The title screen of Defend the Drift over the mission station" loading="lazy"><span class="cap">The title screen</span></button>
+      <button class="shot" data-full="screenshots/drift_hospital_fire.jpg"><img src="screenshots/drift_hospital_fire_thumb.jpg" alt="The hospital at Rorke's Drift burning at night, its thatch alight and the garrison along the wall beyond" loading="lazy"><span class="cap">The hospital burns through the night</span></button>
+      <button class="shot" data-full="screenshots/drift_windows.jpg"><img src="screenshots/drift_windows_thumb.jpg" alt="Soldiers at the hospital's windows and loopholes, rifles levelled, its outer doors barricaded with mealie bags" loading="lazy"><span class="cap">The garrison at the hospital's windows</span></button>
+      <button class="shot" data-full="screenshots/drift_firing_line.jpg"><img src="screenshots/drift_firing_line_thumb.jpg" alt="A company's firing line at Isandlwana volleying at the Zulu army's chest on the slope beyond" loading="lazy"><span class="cap">Isandlwana: a company's volley</span></button>
     </div>
 
     <p class="memory">In memory of Private Richard Mussen of Belfast, whom his city remembers as one of the garrison.</p>

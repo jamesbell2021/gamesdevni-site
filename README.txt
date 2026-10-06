@@ -32,3 +32,8 @@ Tools/reel/reel_shots.json, then cut with ffmpeg.
 Sources: the screenshots are Tools/steam/screenshots in the game's repo, the
 trailer is Tools/trailer/Forged_in_Formation_Steam_Trailer.mp4 (re-encoded for
 the web), and the copy matches docs/STEAM_STORE_PAGE.md.
+
+Defend the Drift's teaser (video/defend_the_drift_teaser.mp4 and its poster) is
+cut by Tools/film/cut.py --web in the DefendTheDrift repo, from the shots
+Tools/film/film.sh films in the engine (see that repo's docs/HANDOVER.md,
+"Filming the trailer").
