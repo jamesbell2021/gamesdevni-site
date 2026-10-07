@@ -3,7 +3,7 @@
 Upload the whole folder as it is: index.html, screenshots/, video/.
 Total about 63 MB, of which the trailer is 28 MB (1080p, starts playing
 before it has fully downloaded), Defend the Drift's teaser 22 MB and the
-2 Player Battle loop 4 MB.
+2 Player Battle loop 2 MB.
 
 When the Steam store page is live, open index.html, find this near the
 bottom and fill in the two lines:
@@ -24,18 +24,22 @@ Adding a screenshot: put the full-size image and a 960px-wide _thumb copy in
 screenshots/, then copy one of the <button class="shot"> lines in the
 Screenshots section.
 
-The 2 Player Battle loop (video/two_player_battle.mp4, 23 s, muted) and the
-battle_*.jpg screenshots were captured in engine on 6 October 2026: the game
-saved every frame itself (-dumpmovie, a fixed 30 fps) from a computer battle
-and the staged shots Web_SniperRing and Web_KegBlast in the game repo's
-Tools/reel/reel_shots.json, then cut with ffmpeg.
+The 2 Player Battle loop (video/two_player_battle.mp4, 23.6 s, muted) and the
+battle_*.jpg screenshots were re-taken on 7 October 2026 with the faceted cast,
+from the game repo's takes: a computer battle on the River
+(Tools/trailer/takes/stills/battle_river.mp4, Tools/trailer/stills_shots.json),
+the commander's ring and fall (gameplay/commander_down.mp4) and the keg chain
+(renders/Keg_Chain.mp4), cut with ffmpeg.
 
 Sources: the trailer is the October cut, Tools/trailer/Forged_in_Formation_Trailer.mp4
 in the game's repo (recorded in the game by Tools/trailer/record_trailer.sh,
-cut by assemble.py, re-encoded for the web at 2.4 Mbit/s); the poster and the
-fifteen screenshots added on 7 October 2026 are frames from its takes
-(Tools/trailer/gameplay); the older screenshots are Tools/steam/screenshots;
-and the copy matches docs/STEAM_STORE_PAGE.md.
+cut by assemble.py, re-encoded for the web at 2.4 Mbit/s), re-shot on
+7 October 2026 with the faceted cast, the rounded world, the men's crouch and
+the ground's stone edges. Every Forged in Formation screenshot was re-taken the
+same day: frames from the trailer's takes (Tools/trailer/gameplay, renders,
+takes) and from Tools/trailer/stills_shots.json's own takes, and the level
+views from Tools/steam/photos (Tools/steam/photos.sh, Saved/Photos/level_shots.json).
+The poster is the recruits on the beach. The copy matches docs/STEAM_STORE_PAGE.md.
 
 Defend the Drift's teaser (video/defend_the_drift_teaser.mp4 and its poster) is
 cut by Tools/film/cut.py --web in the DefendTheDrift repo, from the shots
