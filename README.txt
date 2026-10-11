@@ -25,21 +25,23 @@ screenshots/, then copy one of the <button class="shot"> lines in the
 Screenshots section.
 
 The 2 Player Battle loop (video/two_player_battle.mp4, 23.6 s, muted) and the
-battle_*.jpg screenshots were re-taken on 7 October 2026 with the faceted cast,
-from the game repo's takes: a computer battle on the River
-(Tools/trailer/takes/stills/battle_river.mp4, Tools/trailer/stills_shots.json),
-the commander's ring and fall (gameplay/commander_down.mp4) and the keg chain
-(renders/Keg_Chain.mp4), cut with ffmpeg.
+battle_*.jpg screenshots were re-taken on 11 October 2026, from the game repo's
+takes: a computer battle on the River (Tools/trailer/takes/stills/battle_river.mp4,
+Tools/trailer/stills_shots.json), the commander's ring and fall
+(gameplay/commander_down.mp4) and the keg chain (renders/Keg_Chain.mp4), cut
+with ffmpeg.
 
-Sources: the trailer is the October cut, Tools/trailer/Forged_in_Formation_Trailer.mp4
-in the game's repo (recorded in the game by Tools/trailer/record_trailer.sh,
-cut by assemble.py, re-encoded for the web at 2.4 Mbit/s), re-shot on
-7 October 2026 with the faceted cast, the rounded world, the men's crouch and
-the ground's stone edges. Every Forged in Formation screenshot was re-taken the
-same day: frames from the trailer's takes (Tools/trailer/gameplay, renders,
-takes) and from Tools/trailer/stills_shots.json's own takes, and the level
-views from Tools/steam/photos (Tools/steam/photos.sh, Saved/Photos/level_shots.json).
-The poster is the recruits on the beach. The copy matches docs/STEAM_STORE_PAGE.md.
+Sources: the trailer is the cut of 11 October 2026,
+Tools/trailer/Forged_in_Formation_Trailer.mp4 in the game's repo (recorded in
+the game by Tools/trailer/record_trailer.sh, cut by assemble.py from edit.json,
+re-encoded for the web at 2.4 Mbit/s): quicker than the 7 October one - a cold
+open on a keg going up, the squad cheering the gun into battery, water
+splashing round wading feet, and a montage a beat a cut into the name. Every
+Forged in Formation screenshot was re-taken the same evening, same names, from
+the trailer's takes and Tools/trailer/stills_shots.json's own, and the level
+views from Tools/steam/photos (Tools/steam/photos.sh); one is new,
+the_squad_cheers. The poster is the squad cheering. The copy matches
+docs/STEAM_STORE_PAGE.md.
 
 Defend the Drift's teaser (video/defend_the_drift_teaser.mp4 and its poster) is
 cut by Tools/film/cut.py --web in the DefendTheDrift repo, from the shots
