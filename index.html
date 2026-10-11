@@ -218,6 +218,18 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .drift .drift-video{margin-top:0}
 .drift .drift-pitch{margin-top:44px}
 
+/* ---- Cyber Vikings: neon on black, like the game itself ---- */
+.cyber{--neon:#2EE6FF;--neon-2:#FF4FD8;--neon-3:#9A5CFF;background:radial-gradient(ellipse at 50% 0,rgba(154,92,255,.13),transparent 60%),#05030C;border-top:1px solid #2A1F5C}
+.cyber .eyebrow{color:var(--neon-3)}
+.cyber h2{color:var(--neon);text-shadow:0 0 14px rgba(46,230,255,.55)}
+.cyber h2 .hl{color:var(--neon-2);text-shadow:0 0 14px rgba(255,79,216,.55)}
+.cyber .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--neon-2);color:var(--neon-2);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(255,79,216,.35)}
+.cyber .when i{width:8px;height:8px;background:var(--neon-2);display:block;box-shadow:0 0 8px var(--neon-2)}
+.cyber .video-frame{box-shadow:0 0 0 1px #2A1F5C,0 0 40px rgba(154,92,255,.25)}
+.cyber ul.ticks li::before{background:var(--neon);box-shadow:0 0 6px var(--neon)}
+.cyber .cyber-pitch{margin-top:44px}
+.cyber .shot{border-color:#2A1F5C}
+
 /* ---- Footer ---- */
 footer{padding:56px 0 40px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start}
@@ -263,6 +275,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <li><a href="#screens">Screenshots</a></li>
       <li><a href="#story">Story</a></li>
       <li><a href="#drift">Defend the Drift</a></li>
+      <li><a href="#cyber">Cyber Vikings</a></li>
       <li><a class="nav-cta" data-steam href="#wishlist">Wishlist</a></li>
     </ul>
   </div>
@@ -589,10 +602,47 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
   </div>
 </section>
 
+<!-- ============ CYBER VIKINGS (free, coming to itch.io) ============ -->
+<!-- A small free game, made for fun: neon on black, like the game itself. -->
+<section id="cyber" class="cyber">
+  <div class="wrap">
+    <p class="eyebrow">09 / Also from 3BL - free</p>
+    <h2>Cyber <span class="hl">Vikings</span></h2>
+    <div class="when"><i></i>Coming soon to itch.io - free</div>
+    <div class="video-frame">
+      <video controls preload="none" poster="video/cyber_vikings_poster.jpg" playsinline>
+        <source src="video/cyber_vikings_gameplay.mp4" type="video/mp4">
+        Your browser can't play this video. <a href="video/cyber_vikings_gameplay.mp4">Download the gameplay video</a>.
+      </video>
+    </div>
+    <p class="video-note">Gameplay, captured in the game: the computer playing all four clans.</p>
+    <div class="pitch cyber-pitch">
+      <div>
+        <p class="lead">A small one, made for fun: a turn-based Viking strategy game drawn like an 80s vector arcade cabinet, where every longboat, catapult and castle is a line of glowing neon on black.</p>
+        <p class="lead">March your raiders over the hills, row them across the fjord and storm your rivals' castles before winter freezes the water. Inspired by Mark Lucas's <strong>Viking Raiders</strong> for the ZX Spectrum (Firebird, 1984).</p>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li>Play in your browser, or on Windows, Linux and Android.</li>
+          <li>Against the computer, hot-seat for up to four, or online: a quick match, or a four-letter code to give a friend.</li>
+          <li>Treasure to carry home, longboats to cross the fjord, catapults, drinking horns, and a fjord that freezes from round 8.</li>
+          <li>An 8-bit chiptune soundtrack and ZX Spectrum-style beeper effects.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gallery">
+      <button class="shot big" data-full="screenshots/cyber_battle.jpg"><img src="screenshots/cyber_battle_thumb.jpg" alt="Cyber Vikings mid-game: four neon clans on a glowing grid either side of a fjord, sparks flying from a battle" loading="lazy"><span class="cap">Raiders on the march</span></button>
+      <button class="shot big" data-full="screenshots/cyber_fjord.jpg"><img src="screenshots/cyber_fjord_thumb.jpg" alt="Close on the fjord: Viking armies with round shields lined up along the shore beside a catapult and a longboat" loading="lazy"><span class="cap">The fjord, close up</span></button>
+      <button class="shot big" data-full="screenshots/cyber_winter.jpg"><img src="screenshots/cyber_winter_thumb.jpg" alt="Winter: the top of the fjord frozen into a glowing grid of ice as snow falls across the board" loading="lazy"><span class="cap">Winter freezes the fjord</span></button>
+      <button class="shot big" data-full="screenshots/cyber_title.jpg"><img src="screenshots/cyber_title_thumb.jpg" alt="The Cyber Vikings title: a wireframe longboat beside the neon logo, above the menu" loading="lazy"><span class="cap">The title</span></button>
+    </div>
+  </div>
+</section>
+
 <!-- ============ ABOUT ============ -->
 <section id="about" class="course">
   <div class="wrap">
-    <p class="eyebrow">09 / About 3BL</p>
+    <p class="eyebrow">10 / About 3BL</p>
     <div class="course-grid">
       <div>
         <h2>Made in <span class="hl">the Ards</span></h2>
