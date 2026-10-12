@@ -287,7 +287,11 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .pz a.when:hover{color:#000;background:var(--pz-green);box-shadow:0 0 22px rgba(140,255,90,.6)}
 .pz a.when:hover i{background:#000;box-shadow:none}
 .pz ul.ticks li::before{background:var(--pz-pink);box-shadow:0 0 6px var(--pz-pink)}
-.pz .pz-pitch{margin-top:10px}
+.pz .video-frame{box-shadow:0 0 0 1px #2a2214,0 0 40px rgba(255,177,59,.2)}
+.pz .video-frame iframe{width:100%;display:block;aspect-ratio:16/9;border:0;background:#000}
+.pz .pz-pitch{margin-top:44px}
+.pz .gallery{margin-top:44px}
+.pz .shot{border-color:#2a2214}
 /* the itch.io buy widget is 552px wide; on phones a button stands in for it */
 .pz .pz-buy{margin-top:44px}
 .pz .pz-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(255,177,59,.18)}
@@ -815,13 +819,17 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 </section>
 
 <!-- ============ PULTZ (on itch.io, $1 or more: browser, Windows and Android) ============ -->
-<!-- The neon catapult game. No screenshots or trailer yet: add a .gallery like
-     Angry Old Men's (screenshots/pultz_*.jpg and _thumb copies) when there are some. -->
+<!-- The neon catapult game. The trailer is the one on its itch.io page (YouTube),
+     and the screenshots are that page's six, 12 October 2026. -->
 <section id="pultz" class="pz">
   <div class="wrap">
     <p class="eyebrow">12 / Also from 3BL - out now</p>
     <h2>Pul<span class="hl">tz</span></h2>
     <a class="when" href="https://gamesdevnisite.itch.io/pultz" target="_blank" rel="noopener"><i></i>Get it on itch.io - $1 or more, for your browser, Windows and Android</a>
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/I6zpyWmCe90" title="Pultz trailer" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    </div>
+    <p class="video-note">Trailer, from the game's itch.io page.</p>
     <div class="pitch pz-pitch">
       <div>
         <p class="lead">Pull back. Let fly. Smash the castle. Haul your catapult's arm back, watch the dotted arc, and let go: stones trail light across a neon night, and castles of wood, stone and glass teeter and crash down.</p>
@@ -841,6 +849,14 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
     <div class="pz-buy">
       <iframe src="https://itch.io/embed/5146935?linkback=true&amp;bg_color=000000&amp;fg_color=FFF2DC&amp;link_color=8CFF5A&amp;border_color=333333" width="552" height="167" title="Buy Pultz on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/pultz">Pultz by gamesdevnisite</a></iframe>
       <a class="pz-buy-link" href="https://gamesdevnisite.itch.io/pultz" target="_blank" rel="noopener">Get Pultz on itch.io</a>
+    </div>
+    <div class="gallery">
+      <button class="shot" data-full="screenshots/pultz_dundrum.jpg"><img src="screenshots/pultz_dundrum_thumb.jpg" alt="Pultz at Dundrum: a stone's glowing trail arcs from the catapult and a neon tower crashes down" loading="lazy"><span class="cap">Dundrum: let fly</span></button>
+      <button class="shot" data-full="screenshots/pultz_explosive.jpg"><img src="screenshots/pultz_explosive_thumb.jpg" alt="Carrickfergus: an explosive bursts against the castle's wooden tower" loading="lazy"><span class="cap">Carrickfergus: explosive</span></button>
+      <button class="shot" data-full="screenshots/pultz_plague.jpg"><img src="screenshots/pultz_plague_thumb.jpg" alt="Greencastle: the plague sheep's green cloud spreading over the soldiers on the hill" loading="lazy"><span class="cap">Greencastle: the plague sheep</span></button>
+      <button class="shot" data-full="screenshots/pultz_fire.jpg"><img src="screenshots/pultz_fire_thumb.jpg" alt="Dunluce: fire takes hold of the castle's tall tower" loading="lazy"><span class="cap">Dunluce: fire</span></button>
+      <button class="shot" data-full="screenshots/pultz_combo.jpg"><img src="screenshots/pultz_combo_thumb.jpg" alt="A low shot ploughs through a marching column: 5X COMBO!" loading="lazy"><span class="cap">5x combo through the column</span></button>
+      <button class="shot" data-full="screenshots/pultz_two_player.jpg"><img src="screenshots/pultz_two_player_thumb.jpg" alt="2 Player Mode: a catapult and a castle each, either side of a hill" loading="lazy"><span class="cap">2 Player Mode</span></button>
     </div>
   </div>
 </section>
