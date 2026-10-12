@@ -277,6 +277,24 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .aom .aom-buy-link:hover{color:#000;background:var(--aom-gold)}
 @media(max-width:600px){.aom .aom-buy iframe{display:none}.aom .aom-buy-link{display:flex}}
 
+/* ---- Pultz: amber stone-light and plague-green on the night sky ---- */
+.pz{--pz:#FFB13B;--pz-green:#8CFF5A;--pz-pink:#FF5AA8;background:radial-gradient(ellipse at 15% 0,rgba(255,177,59,.10),transparent 55%),radial-gradient(ellipse at 85% 10%,rgba(140,255,90,.07),transparent 50%),#03020a;border-top:1px solid #2a2214}
+.pz .eyebrow{color:#bfa77f}
+.pz h2{color:var(--pz);text-shadow:0 0 14px rgba(255,177,59,.55)}
+.pz h2 .hl{color:var(--pz-green);text-shadow:0 0 14px rgba(140,255,90,.55)}
+.pz .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--pz-green);color:var(--pz-green);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(140,255,90,.3)}
+.pz .when i{width:8px;height:8px;background:var(--pz-green);display:block;box-shadow:0 0 8px var(--pz-green)}
+.pz a.when:hover{color:#000;background:var(--pz-green);box-shadow:0 0 22px rgba(140,255,90,.6)}
+.pz a.when:hover i{background:#000;box-shadow:none}
+.pz ul.ticks li::before{background:var(--pz-pink);box-shadow:0 0 6px var(--pz-pink)}
+.pz .pz-pitch{margin-top:10px}
+/* the itch.io buy widget is 552px wide; on phones a button stands in for it */
+.pz .pz-buy{margin-top:44px}
+.pz .pz-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(255,177,59,.18)}
+.pz .pz-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--pz-green);color:var(--pz-green);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;box-shadow:0 0 18px rgba(140,255,90,.3)}
+.pz .pz-buy-link:hover{color:#000;background:var(--pz-green)}
+@media(max-width:600px){.pz .pz-buy iframe{display:none}.pz .pz-buy-link{display:flex}}
+
 /* ---- Footer ---- */
 footer{padding:56px 0 40px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start}
@@ -325,6 +343,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <li><a href="#cyber">Cyber Vikings</a></li>
       <li><a href="#vbn">Victory By None</a></li>
       <li><a href="#aom">Angry Old Men</a></li>
+      <li><a href="#pultz">Pultz</a></li>
       <li><a class="nav-cta" data-steam href="#wishlist">Wishlist</a></li>
     </ul>
   </div>
@@ -795,10 +814,41 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
   </div>
 </section>
 
+<!-- ============ PULTZ (on itch.io, $1 or more: browser, Windows and Android) ============ -->
+<!-- The neon catapult game. No screenshots or trailer yet: add a .gallery like
+     Angry Old Men's (screenshots/pultz_*.jpg and _thumb copies) when there are some. -->
+<section id="pultz" class="pz">
+  <div class="wrap">
+    <p class="eyebrow">12 / Also from 3BL - out now</p>
+    <h2>Pul<span class="hl">tz</span></h2>
+    <a class="when" href="https://gamesdevnisite.itch.io/pultz" target="_blank" rel="noopener"><i></i>Get it on itch.io - $1 or more, for your browser, Windows and Android</a>
+    <div class="pitch pz-pitch">
+      <div>
+        <p class="lead">Pull back. Let fly. Smash the castle. Haul your catapult's arm back, watch the dotted arc, and let go: stones trail light across a neon night, and castles of wood, stone and glass teeter and crash down.</p>
+        <p class="lead"><strong>Castle Crusher</strong>: fell the castle's guards before its soldiers march over the hill and reach your catapult, across five castles named for the castles of Ulster (Dundrum, Carrickfergus, Dunluce, Greencastle and Killyleagh), then round again, faster. <strong>2 Player Mode</strong>: a catapult and a castle each, turn about on one phone or computer, with the wind shifting every turn.</p>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li>Stone, as many as you like.</li>
+          <li>Fire, which sets wood and roofs burning.</li>
+          <li>Explosive: a powder keg that throws the whole castle about.</li>
+          <li>The plague sheep. It bounces, it baas, and its green cloud fells soldiers and guards.</li>
+          <li>Towers that teeter, beams that snap, glass that shatters.</li>
+          <li>Neon vector graphics and an 8-bit chiptune soundtrack. Touch, or mouse and keyboard.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pz-buy">
+      <iframe src="https://itch.io/embed/5146935?linkback=true&amp;bg_color=000000&amp;fg_color=FFF2DC&amp;link_color=8CFF5A&amp;border_color=333333" width="552" height="167" title="Buy Pultz on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/pultz">Pultz by gamesdevnisite</a></iframe>
+      <a class="pz-buy-link" href="https://gamesdevnisite.itch.io/pultz" target="_blank" rel="noopener">Get Pultz on itch.io</a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ ABOUT ============ -->
 <section id="about" class="course">
   <div class="wrap">
-    <p class="eyebrow">12 / About 3BL</p>
+    <p class="eyebrow">13 / About 3BL</p>
     <div class="course-grid">
       <div>
         <h2>Made in <span class="hl">the Ards</span></h2>
