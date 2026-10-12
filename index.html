@@ -244,6 +244,14 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .vbn .vbn-pitch{margin-top:44px}
 .vbn .gallery{margin-top:44px}
 .vbn .shot{border-color:#12331F}
+.vbn a.when:hover{color:#000;background:var(--vbn-civ);box-shadow:0 0 22px rgba(255,201,74,.6)}
+.vbn a.when:hover i{background:#000;box-shadow:none}
+/* the itch.io buy widget is 552px wide; on phones a button stands in for it */
+.vbn .vbn-buy{margin-top:44px}
+.vbn .vbn-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(70,255,134,.16)}
+.vbn .vbn-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--vbn-red);color:var(--vbn-red);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;box-shadow:0 0 18px rgba(255,59,59,.35)}
+.vbn .vbn-buy-link:hover{color:#000;background:var(--vbn-red)}
+@media(max-width:600px){.vbn .vbn-buy iframe{display:none}.vbn .vbn-buy-link{display:flex}}
 
 /* ---- Footer ---- */
 footer{padding:56px 0 40px;border-top:1px solid var(--line)}
@@ -669,13 +677,13 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
   </div>
 </section>
 
-<!-- ============ VICTORY BY NONE (coming soon to itch.io) ============ -->
+<!-- ============ VICTORY BY NONE (on itch.io, Windows and Android) ============ -->
 <!-- A small game with a hard point. The dead are counted, never shown: keep the words plain. -->
 <section id="vbn" class="vbn">
   <div class="wrap">
-    <p class="eyebrow">10 / Also from 3BL - coming soon</p>
+    <p class="eyebrow">10 / Also from 3BL - out now</p>
     <h2>Victory <span class="hl">By None</span></h2>
-    <div class="when"><i></i>Coming soon to itch.io - Windows and Android</div>
+    <a class="when" href="https://gamesdevnisite.itch.io/victory-by-none" target="_blank" rel="noopener"><i></i>Get it on itch.io - for Windows and Android</a>
     <div class="video-frame">
       <video controls preload="none" poster="video/victory_by_none_poster.jpg" playsinline>
         <source src="video/victory_by_none_trailer.mp4" type="video/mp4">
@@ -698,6 +706,10 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
           <li>Neon vector graphics, a calculator-voiced computer and an 80s arcade soundtrack that builds as the war goes on.</li>
         </ul>
       </div>
+    </div>
+    <div class="vbn-buy">
+      <iframe src="https://itch.io/embed/5144407?border_width=1&amp;bg_color=020403&amp;fg_color=d9ffe6&amp;link_color=ff3b3b&amp;border_color=12331f" width="552" height="167" title="Buy Victory By None on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/victory-by-none">Victory By None by gamesdevnisite</a></iframe>
+      <a class="vbn-buy-link" href="https://gamesdevnisite.itch.io/victory-by-none" target="_blank" rel="noopener">Get Victory By None on itch.io</a>
     </div>
     <div class="gallery">
       <button class="shot big" data-full="screenshots/vbn_exchange.jpg"><img src="screenshots/vbn_exchange_thumb.jpg" alt="Victory By None: two neon territories, warheads arcing between them and interceptors bursting in their path" loading="lazy"><span class="cap">Both salvos in the air</span></button>
@@ -735,7 +747,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <a class="brand" href="#top"><svg viewBox="0 0 21 11" fill="#FF8C2B" style="height:34px" aria-hidden="true"><use href="#figs"/></svg><svg viewBox="0 0 19 7" fill="#FF8C2B" style="height:22px" aria-hidden="true"><use href="#letters"/></svg></a>
       <small>Forged in Formation - coming to Steam Early Access, 3 December 2026</small>
       <small>Defend the Drift - in development, planned for 2027</small>
-      <small>Victory By None - coming soon to itch.io</small>
+      <small>Victory By None - out now on itch.io</small>
       <small>&copy; 2026 3BL. County Down, Northern Ireland.</small>
     </div>
     <div class="links">
