@@ -61,7 +61,7 @@ nav ul a:hover{color:var(--accent)}
 nav ul a.nav-cta{color:var(--bg);background:var(--accent);padding:8px 14px}
 nav ul a.nav-cta:hover{background:var(--text);color:var(--bg)}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--text);font:inherit;padding:6px 10px;cursor:pointer}
-@media(max-width:860px){
+@media(max-width:1100px){
   .nav-toggle{display:block}
   nav ul{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);align-items:stretch}
   nav ul.open{display:flex}
@@ -253,6 +253,27 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .vbn .vbn-buy-link:hover{color:#000;background:var(--vbn-red)}
 @media(max-width:600px){.vbn .vbn-buy iframe{display:none}.vbn .vbn-buy-link{display:flex}}
 
+/* ---- Angry Old Men: four neon old men, rainbow missiles, a cup of tea ---- */
+.aom{--aom:#45E0FF;--aom-pink:#FF4FD8;--aom-gold:#FFD84A;--aom-fire:#FF8A2A;background:radial-gradient(ellipse at 20% 0,rgba(69,224,255,.10),transparent 55%),radial-gradient(ellipse at 85% 10%,rgba(255,79,216,.08),transparent 50%),#01020a;border-top:1px solid #142a3a}
+.aom .eyebrow{color:#7f9fbf}
+.aom h2{color:var(--aom);text-shadow:0 0 14px rgba(69,224,255,.55)}
+.aom h2 .hl{color:var(--aom-pink);text-shadow:0 0 14px rgba(255,79,216,.55)}
+.aom .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--aom-gold);color:var(--aom-gold);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(255,216,74,.3)}
+.aom .when i{width:8px;height:8px;background:var(--aom-gold);display:block;box-shadow:0 0 8px var(--aom-gold)}
+.aom a.when:hover{color:#000;background:var(--aom-gold);box-shadow:0 0 22px rgba(255,216,74,.6)}
+.aom a.when:hover i{background:#000;box-shadow:none}
+.aom .video-frame{box-shadow:0 0 0 1px #142a3a,0 0 40px rgba(69,224,255,.2)}
+.aom ul.ticks li::before{background:var(--aom-pink);box-shadow:0 0 6px var(--aom-pink)}
+.aom .aom-pitch{margin-top:44px}
+.aom .gallery{margin-top:44px}
+.aom .shot{border-color:#142a3a}
+/* the itch.io buy widget is 552px wide; on phones a button stands in for it */
+.aom .aom-buy{margin-top:44px}
+.aom .aom-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(69,224,255,.18)}
+.aom .aom-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--aom-gold);color:var(--aom-gold);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;box-shadow:0 0 18px rgba(255,216,74,.3)}
+.aom .aom-buy-link:hover{color:#000;background:var(--aom-gold)}
+@media(max-width:600px){.aom .aom-buy iframe{display:none}.aom .aom-buy-link{display:flex}}
+
 /* ---- Footer ---- */
 footer{padding:56px 0 40px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start}
@@ -300,6 +321,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <li><a href="#drift">Defend the Drift</a></li>
       <li><a href="#cyber">Cyber Vikings</a></li>
       <li><a href="#vbn">Victory By None</a></li>
+      <li><a href="#aom">Angry Old Men</a></li>
       <li><a class="nav-cta" data-steam href="#wishlist">Wishlist</a></li>
     </ul>
   </div>
@@ -721,10 +743,54 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
   </div>
 </section>
 
+<!-- ============ ANGRY OLD MEN (on itch.io, Windows and Android) ============ -->
+<!-- Daft and cheerful: four grumpy old wizards, pass and play. -->
+<section id="aom" class="aom">
+  <div class="wrap">
+    <p class="eyebrow">11 / Also from 3BL - out now</p>
+    <h2>Angry <span class="hl">Old Men</span></h2>
+    <a class="when" href="https://gamesdevnisite.itch.io/angry-old-men" target="_blank" rel="noopener"><i></i>Get it on itch.io - for Windows and Android</a>
+    <div class="video-frame">
+      <video controls preload="none" poster="video/angry_old_men_poster.jpg" playsinline>
+        <source src="video/angry_old_men_trailer.mp4" type="video/mp4">
+        Your browser can't play this video. <a href="video/angry_old_men_trailer.mp4">Download the trailer</a>.
+      </video>
+    </div>
+    <p class="video-note">Trailer, captured in the game, October 2026.</p>
+    <div class="pitch aom-pitch">
+      <div>
+        <p class="lead">Four grumpy old wizards, one screen. Pass it round, take your turn, and be the last old man standing. The computer plays any seat nobody takes, so you can play alone or with three friends.</p>
+        <p class="lead">Each turn your old man does one thing: walk, cast a spell, or whack someone with his walking stick. Magic missiles curve round the rocks, fireballs set the trees alight, and when it all gets too much there's a nice cup of tea. Inspired by Julian Gollop's <strong>Lords of Chaos</strong> (1990).</p>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li>Pass and play for up to four on one phone, tablet or PC.</li>
+          <li>Magic missiles, lightning, fireballs, teleport and a cup of tea.</li>
+          <li>Summon imps, dwarves and wraiths, and hit their weak spots: imps love fire, lightning fries a dwarf's helmet, and sticks go straight through a wraith.</li>
+          <li>Fire spreads from tree to tree and burns your cover to ash.</li>
+          <li>A new random map every game, mirrored so nobody gets a better corner.</li>
+          <li>Neon vector graphics, a fantasy soundtrack, and four old men shouting their spells in a silly calculator voice.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="aom-buy">
+      <iframe src="https://itch.io/embed/5145474?linkback=true&amp;bg_color=000000&amp;fg_color=E8F6FF&amp;link_color=45E0FF&amp;border_color=333333" width="552" height="167" title="Buy Angry Old Men on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/angry-old-men">Angry Old Men by gamesdevnisite</a></iframe>
+      <a class="aom-buy-link" href="https://gamesdevnisite.itch.io/angry-old-men" target="_blank" rel="noopener">Get Angry Old Men on itch.io</a>
+    </div>
+    <div class="gallery">
+      <button class="shot big" data-full="screenshots/aom_missiles.jpg"><img src="screenshots/aom_missiles_thumb.jpg" alt="Angry Old Men: a cyan old man aims magic missiles across the neon board, a crosshair on his target" loading="lazy"><span class="cap">Aim, then cast</span></button>
+      <button class="shot big" data-full="screenshots/aom_lightning.jpg"><img src="screenshots/aom_lightning_thumb.jpg" alt="A pink old man shouts LIGHTNING! as a jagged bolt strikes an orange old man across the board" loading="lazy"><span class="cap">Lightning!</span></button>
+      <button class="shot big" data-full="screenshots/aom_fire.jpg"><img src="screenshots/aom_fire_thumb.jpg" alt="A fireball explodes among the trees, flames dancing on the squares around it" loading="lazy"><span class="cap">Set the trees on fire</span></button>
+      <button class="shot big" data-full="screenshots/aom_winner.jpg"><img src="screenshots/aom_winner_thumb.jpg" alt="The winner's screen: the last old man standing and the final places of all four" loading="lazy"><span class="cap">Last old man standing</span></button>
+    </div>
+    <p class="note">Angry Old Men is inspired by Lords of Chaos (Julian Gollop, 1990). Not an official release.</p>
+  </div>
+</section>
+
 <!-- ============ ABOUT ============ -->
 <section id="about" class="course">
   <div class="wrap">
-    <p class="eyebrow">11 / About 3BL</p>
+    <p class="eyebrow">12 / About 3BL</p>
     <div class="course-grid">
       <div>
         <h2>Made in <span class="hl">the Ards</span></h2>
@@ -748,10 +814,11 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <small>Forged in Formation - coming to Steam Early Access, 3 December 2026</small>
       <small>Defend the Drift - in development, planned for 2027</small>
       <small>Victory By None - out now on itch.io</small>
+      <small>Angry Old Men - out now on itch.io</small>
       <small>&copy; 2026 3BL. County Down, Northern Ireland.</small>
     </div>
     <div class="links">
-      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a href="#vbn">Victory By None</a><a data-steam href="#wishlist">Wishlist</a>
+      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a href="#vbn">Victory By None</a><a href="#aom">Angry Old Men</a><a data-steam href="#wishlist">Wishlist</a>
     </div>
   </div>
 </footer>

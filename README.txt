@@ -59,3 +59,12 @@ The section links to the itch.io page and embeds itch.io's buy widget
 (Distribute tab on itch.io, project 5144407, coloured to match the section).
 The widget is 552px wide, so on screens under 600px a plain "Get Victory By
 None on itch.io" button shows in its place.
+
+Angry Old Men (on itch.io since 12 October 2026, Windows and Android,
+https://gamesdevnisite.itch.io/angry-old-men) has its own section, #aom, after
+Victory By None. Its trailer (video/angry_old_men_trailer.mp4, poster
+video/angry_old_men_poster.jpg) and the four aom_*.jpg screenshots come from the
+game itself: tools_shots/trailer.gd films a scripted game with Movie Maker and
+tools_shots/assemble.py cuts it. The section embeds itch.io's buy widget
+(project 5145474); on screens under 600px a "Get Angry Old Men on itch.io"
+button shows in its place.
