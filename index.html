@@ -231,6 +231,20 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .cyber .cyber-pitch{margin-top:44px}
 .cyber .shot{border-color:#2A1F5C}
 
+/* ---- Victory By None: neon vector on black, radar green and warning red ---- */
+.vbn{--vbn:#46FF86;--vbn-red:#FF3B3B;--vbn-civ:#FFC94A;background:radial-gradient(ellipse at 50% 0,rgba(255,59,59,.10),transparent 60%),#020403;border-top:1px solid #12331F}
+.vbn .eyebrow{color:#6F9C82}
+.vbn h2{color:var(--vbn);text-shadow:0 0 14px rgba(70,255,134,.5)}
+.vbn h2 .hl{color:var(--vbn-red);text-shadow:0 0 14px rgba(255,59,59,.55)}
+.vbn .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--vbn-civ);color:var(--vbn-civ);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(255,201,74,.3)}
+.vbn .when i{width:8px;height:8px;background:var(--vbn-civ);display:block;box-shadow:0 0 8px var(--vbn-civ);animation:vbn-blink 1.2s steps(2,start) infinite}
+@keyframes vbn-blink{to{visibility:hidden}}
+.vbn .video-frame{box-shadow:0 0 0 1px #12331F,0 0 40px rgba(70,255,134,.18)}
+.vbn ul.ticks li::before{background:var(--vbn);box-shadow:0 0 6px var(--vbn)}
+.vbn .vbn-pitch{margin-top:44px}
+.vbn .gallery{margin-top:44px}
+.vbn .shot{border-color:#12331F}
+
 /* ---- Footer ---- */
 footer{padding:56px 0 40px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start}
@@ -277,6 +291,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <li><a href="#story">Story</a></li>
       <li><a href="#drift">Defend the Drift</a></li>
       <li><a href="#cyber">Cyber Vikings</a></li>
+      <li><a href="#vbn">Victory By None</a></li>
       <li><a class="nav-cta" data-steam href="#wishlist">Wishlist</a></li>
     </ul>
   </div>
@@ -652,10 +667,50 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
   </div>
 </section>
 
+<!-- ============ VICTORY BY NONE (coming soon to itch.io) ============ -->
+<!-- A small game with a hard point. The dead are counted, never shown: keep the words plain. -->
+<section id="vbn" class="vbn">
+  <div class="wrap">
+    <p class="eyebrow">10 / Also from 3BL - coming soon</p>
+    <h2>Victory <span class="hl">By None</span></h2>
+    <div class="when"><i></i>Coming soon to itch.io - Windows and Android</div>
+    <div class="video-frame">
+      <video controls preload="none" poster="video/victory_by_none_poster.jpg" playsinline>
+        <source src="video/victory_by_none_trailer.mp4" type="video/mp4">
+        Your browser can't play this video. <a href="video/victory_by_none_trailer.mp4">Download the trailer</a>.
+      </video>
+    </div>
+    <p class="video-note">Trailer, captured in the game, October 2026.</p>
+    <div class="pitch vbn-pitch">
+      <div>
+        <p class="lead">Two nations, one phone. Each player hides three missile silos and a command bunker. Then you take turns to choose your targets in secret and pass the phone across. When you've both given your orders, the phone goes down between you and you watch both salvos cross the screen together.</p>
+        <p class="lead">You can win: destroy every silo, then hunt down the enemy's command, even after it moves into a city. But every warhead has a death toll, the blast spills into the towns beside it, and when the war is over the final count runs into the billions. <strong>If both sides hold fire in the same round, the war ends.</strong></p>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li>Pass and play for two on one phone, or play against the computer.</li>
+          <li>Your silos and command are secret. Your cities are on the map for both sides to see. You can move and rename them, or keep Londinium, Lower Wobbleton and Crumpetonia.</li>
+          <li>Both salvos fly at once: tap your own half of the screen to burst interceptors in the path of what's coming at you.</li>
+          <li>Every strike reports the military sites around it, so you can hunt the silos down.</li>
+          <li>Lose your command and you lose a turn, and command moves into one of your cities.</li>
+          <li>Neon vector graphics, a calculator-voiced computer and an 80s arcade soundtrack that builds as the war goes on.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gallery">
+      <button class="shot big" data-full="screenshots/vbn_exchange.jpg"><img src="screenshots/vbn_exchange_thumb.jpg" alt="Victory By None: two neon territories, warheads arcing between them and interceptors bursting in their path" loading="lazy"><span class="cap">Both salvos in the air</span></button>
+      <button class="shot big" data-full="screenshots/vbn_targets.jpg"><img src="screenshots/vbn_targets_thumb.jpg" alt="Choosing targets on the enemy's territory, a red blast footprint around each target and a warning that a city is inside it" loading="lazy"><span class="cap">Every target has a blast radius</span></button>
+      <button class="shot big" data-full="screenshots/vbn_title.jpg"><img src="screenshots/vbn_title_thumb.jpg" alt="The Victory By None title screen in green and red neon over the two territories" loading="lazy"><span class="cap">The title</span></button>
+      <button class="shot big" data-full="screenshots/vbn_end.jpg"><img src="screenshots/vbn_end_thumb.jpg" alt="The red ending screen: a skull over crossed spanners, Victory achieved by none, and the final civilian count in the billions" loading="lazy"><span class="cap">Victory achieved... by none</span></button>
+    </div>
+    <p class="note">Victory By None is a game about nuclear war. The dead are counted, never shown.</p>
+  </div>
+</section>
+
 <!-- ============ ABOUT ============ -->
 <section id="about" class="course">
   <div class="wrap">
-    <p class="eyebrow">10 / About 3BL</p>
+    <p class="eyebrow">11 / About 3BL</p>
     <div class="course-grid">
       <div>
         <h2>Made in <span class="hl">the Ards</span></h2>
@@ -678,10 +733,11 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <a class="brand" href="#top"><svg viewBox="0 0 21 11" fill="#FF8C2B" style="height:34px" aria-hidden="true"><use href="#figs"/></svg><svg viewBox="0 0 19 7" fill="#FF8C2B" style="height:22px" aria-hidden="true"><use href="#letters"/></svg></a>
       <small>Forged in Formation - coming to Steam Early Access, 3 December 2026</small>
       <small>Defend the Drift - in development, planned for 2027</small>
+      <small>Victory By None - coming soon to itch.io</small>
       <small>&copy; 2026 3BL. County Down, Northern Ireland.</small>
     </div>
     <div class="links">
-      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a data-steam href="#wishlist">Wishlist</a>
+      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a href="#vbn">Victory By None</a><a data-steam href="#wishlist">Wishlist</a>
     </div>
   </div>
 </footer>

@@ -47,3 +47,12 @@ Defend the Drift's teaser (video/defend_the_drift_teaser.mp4 and its poster) is
 cut by Tools/film/cut.py --web in the DefendTheDrift repo, from the shots
 Tools/film/film.sh films in the engine (see that repo's docs/HANDOVER.md,
 "Filming the trailer").
+
+Victory By None (coming soon to itch.io, Windows and Android) has its own
+section, #vbn, after Cyber Vikings. Its trailer (video/victory_by_none_trailer.mp4,
+poster video/victory_by_none_poster.jpg) and the four vbn_*.jpg screenshots were
+made on 12 October 2026 from the game itself: the Godot project films a scripted
+pass and play war with Movie Maker (tools_trailer/trailer.gd) and
+tools_trailer/assemble.py cuts it with the title cards and the game's music.
+When the itch.io page is live, change the section's "Coming soon" line into a
+link, the same way Cyber Vikings' links to its page.
