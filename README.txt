@@ -68,3 +68,13 @@ game itself: tools_shots/trailer.gd films a scripted game with Movie Maker and
 tools_shots/assemble.py cuts it. The section embeds itch.io's buy widget
 (project 5145474); on screens under 600px a "Get Angry Old Men on itch.io"
 button shows in its place.
+
+Neon Mega Tank (coming soon, Android) has its own section, #nmt, after Pultz.
+Its trailer (video/neon_mega_tank_trailer.mp4, poster
+video/neon_mega_tank_poster.jpg) and the nmt_*.jpg screenshots were filmed in
+the game on 13 October 2026: the Godot project's tools/trailer/record.sh films
+each shot with Movie Maker (tools/trailer/director.gd) and
+tools/trailer/assemble.py cuts them with neon title cards and the game's own
+chiptune (repo jamesbell2021/Animation-, folder neon-mega-tank). When it goes
+on sale, swap the section's "Coming soon" pill for a link like the other
+games' and add the store's widget.

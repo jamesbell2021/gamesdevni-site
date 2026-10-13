@@ -299,6 +299,20 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .pz .pz-buy-link:hover{color:#000;background:var(--pz-green)}
 @media(max-width:600px){.pz .pz-buy iframe{display:none}.pz .pz-buy-link{display:flex}}
 
+/* ---- Neon Mega Tank: cyan wireframe tank, pink and yellow neon on a night-blue grid ---- */
+.nmt{--nmt:#33D6FF;--nmt-pink:#FF4FD8;--nmt-gold:#FFE03A;background:linear-gradient(rgba(51,214,255,.05) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(51,214,255,.05) 1px,transparent 1px) 0 0/48px 48px,radial-gradient(ellipse at 50% 0,rgba(255,79,216,.10),transparent 60%),#02040c;border-top:1px solid #16304a}
+.nmt .eyebrow{color:#7fa8c8}
+.nmt h2{color:var(--nmt);text-shadow:0 0 14px rgba(51,214,255,.6)}
+.nmt h2 .hl{color:var(--nmt-pink);text-shadow:0 0 14px rgba(255,79,216,.6)}
+.nmt .kana{margin:6px 0 0;font-size:15px;letter-spacing:.3em;color:var(--nmt);opacity:.8}
+.nmt .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--nmt-gold);color:var(--nmt-gold);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(255,224,58,.3)}
+.nmt .when i{width:8px;height:8px;background:var(--nmt-gold);display:block;box-shadow:0 0 8px var(--nmt-gold);animation:blink 1.4s steps(2,jump-none) infinite}
+.nmt .video-frame{box-shadow:0 0 0 1px #16304a,0 0 40px rgba(51,214,255,.22)}
+.nmt ul.ticks li::before{background:var(--nmt-pink);box-shadow:0 0 6px var(--nmt-pink)}
+.nmt .nmt-pitch{margin-top:44px}
+.nmt .gallery{margin-top:44px}
+.nmt .shot{border-color:#16304a}
+
 /* ---- Footer ---- */
 footer{padding:56px 0 40px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start}
@@ -348,6 +362,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <li><a href="#vbn">Victory By None</a></li>
       <li><a href="#aom">Angry Old Men</a></li>
       <li><a href="#pultz">Pultz</a></li>
+      <li><a href="#nmt">Neon Mega Tank</a></li>
       <li><a class="nav-cta" data-steam href="#wishlist">Wishlist</a></li>
     </ul>
   </div>
@@ -861,10 +876,57 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
   </div>
 </section>
 
+<!-- ============ NEON MEGA TANK (coming soon, Android) ============ -->
+<!-- Co-op neon tank battle, made in Godot. The trailer and screenshots were filmed in the game
+     with Movie Maker (tools/trailer in the Animation- repo's neon-mega-tank folder), 13 October 2026. -->
+<section id="nmt" class="nmt">
+  <div class="wrap">
+    <p class="eyebrow">13 / Also from 3BL - coming soon</p>
+    <h2>Neon <span class="hl">Mega Tank</span></h2>
+    <p class="kana" lang="ja">ネオン・メガ・タンク</p>
+    <div class="when"><i></i>Coming soon - Android, play together on your phones</div>
+    <div class="video-frame">
+      <video controls preload="none" poster="video/neon_mega_tank_poster.jpg" playsinline>
+        <source src="video/neon_mega_tank_trailer.mp4" type="video/mp4">
+        Your browser can't play this video. <a href="video/neon_mega_tank_trailer.mp4">Download the trailer</a>.
+      </video>
+    </div>
+    <p class="video-note">Trailer, filmed in the game, October 2026.</p>
+    <div class="pitch nmt-pitch">
+      <div>
+        <p class="lead">One tank. Four crew. <strong>Neon Mega Tank</strong> is a co-op tank battle for one to four players, drawn in glowing neon like an 80s arcade cabinet.</p>
+        <p class="lead">Everyone crews the same giant tank and runs about its deck between the stations: one drives, one works the twin cannon, one the machine gun, one the repair bay. Hits punch burning holes in the deck that jam the stations beside them, so somebody has to drop what they're doing and patch them. Inspired by <strong>Lovers in a Dangerous Spacetime</strong>.</p>
+        <p class="lead">Play together on your own phones over Wi-Fi: one phone hosts, the others join, and every player watches the battle on their own screen. Short of friends? The AI crew takes the empty seats, and hands one over the moment somebody joins.</p>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li>One to four players, each on their own phone over Wi-Fi, or together on one screen with keyboards and gamepads.</li>
+          <li>An AI crew that drives, aims, patches the holes and repairs the hull.</li>
+          <li>A neon city where everything comes down: knock out a tower's ground floor and the whole column falls.</li>
+          <li>Riflemen, RPG troopers whose rockets you can shoot out of the sky, drones, kamikaze buggies, tanks and heavy tanks.</li>
+          <li>鬼戦車 Oni Sensha, the demon tank, every fifth wave.</li>
+          <li>Endless waves that keep getting harder. How long can you survive?</li>
+          <li>An anime-style chiptune soundtrack, and enemies who shout their last words in electronic Japanese.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gallery">
+      <button class="shot big" data-full="screenshots/nmt_battle.jpg"><img src="screenshots/nmt_battle_thumb.jpg" alt="Neon Mega Tank in battle: the four-player HUD over the neon city as the AI crew fights off wave 6" loading="lazy"><span class="cap">Wave 6: the crew hold the crossroads</span></button>
+      <button class="shot big" data-full="screenshots/nmt_oni_sensha.jpg"><img src="screenshots/nmt_oni_sensha_thumb.jpg" alt="鬼戦車 Oni Sensha, the red demon tank with glowing horns, rolling down a neon street with a drone overhead" loading="lazy"><span class="cap">鬼戦車 Oni Sensha, the demon tank</span></button>
+      <button class="shot" data-full="screenshots/nmt_crew.jpg"><img src="screenshots/nmt_crew_thumb.jpg" alt="Close on the mega tank's deck: four crew members at the drive, cannon, machine gun and repair stations" loading="lazy"><span class="cap">Four crew, one tank</span></button>
+      <button class="shot" data-full="screenshots/nmt_tower_falls.jpg"><img src="screenshots/nmt_tower_falls_thumb.jpg" alt="The twin cannon brings a green tower block down column by column" loading="lazy"><span class="cap">Flatten the city</span></button>
+      <button class="shot" data-full="screenshots/nmt_rockets.jpg"><img src="screenshots/nmt_rockets_thumb.jpg" alt="An RPG trooper paints the tank with a red laser while the machine gun answers" loading="lazy"><span class="cap">RPG lasers and the machine gun's answer</span></button>
+      <button class="shot" data-full="screenshots/nmt_last_words.jpg"><img src="screenshots/nmt_last_words_thumb.jpg" alt="Soldiers caught by the cannon cry out, their last words floating up in Japanese: yarareta and tasukete" loading="lazy"><span class="cap">Last words: やられた！ たすけて！</span></button>
+      <button class="shot" data-full="screenshots/nmt_phones.jpg"><img src="screenshots/nmt_phones_thumb.jpg" alt="The phone version: a joystick and ACTION and BOARD buttons on screen over the battle" loading="lazy"><span class="cap">On your own phone: touch controls</span></button>
+      <button class="shot" data-full="screenshots/nmt_city.jpg"><img src="screenshots/nmt_city_thumb.jpg" alt="The mega tank in the lobby of the neon city, the pink DEPLOY gate beyond" loading="lazy"><span class="cap">The neon city and the DEPLOY gate</span></button>
+    </div>
+  </div>
+</section>
+
 <!-- ============ ABOUT ============ -->
 <section id="about" class="course">
   <div class="wrap">
-    <p class="eyebrow">13 / About 3BL</p>
+    <p class="eyebrow">14 / About 3BL</p>
     <div class="course-grid">
       <div>
         <h2>Made in <span class="hl">the Ards</span></h2>
@@ -889,10 +951,11 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <small>Defend the Drift - in development, planned for 2027</small>
       <small>Victory By None - out now on itch.io</small>
       <small>Angry Old Men - out now on itch.io</small>
+      <small>Neon Mega Tank - coming soon to Android</small>
       <small>&copy; 2026 3BL. County Down, Northern Ireland.</small>
     </div>
     <div class="links">
-      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a href="#vbn">Victory By None</a><a href="#aom">Angry Old Men</a><a data-steam href="#wishlist">Wishlist</a>
+      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a href="#vbn">Victory By None</a><a href="#aom">Angry Old Men</a><a href="#nmt">Neon Mega Tank</a><a data-steam href="#wishlist">Wishlist</a>
     </div>
   </div>
 </footer>
