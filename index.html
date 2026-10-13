@@ -219,6 +219,9 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .drift .began p{margin:0;color:var(--text);font-size:15px;line-height:1.6}
 .drift .gallery{margin-top:44px}
 .drift .drift-video{margin-top:0}
+.drift .drift-videos{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.drift .drift-videos .video-note{margin-top:12px}
+@media (max-width:860px){.drift .drift-videos{grid-template-columns:1fr}}
 .drift .drift-pitch{margin-top:44px}
 
 /* ---- Cyber Vikings: neon on black, like the game itself ---- */
@@ -647,15 +650,29 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
   <div class="wrap">
     <p class="eyebrow">08 / Also from 3BL - in development</p>
     <h2>Defend <span class="hl">the Drift</span></h2>
-    <p class="date">Rorke's Drift, 22-23 January 1879</p>
+    <p class="date">The Anglo-Zulu War, 1879</p>
     <div class="when"><i></i>Planned for 2027</div>
-    <div class="video-frame drift-video">
-      <video controls preload="none" poster="video/defend_the_drift_teaser_poster.jpg" playsinline>
-        <source src="video/defend_the_drift_teaser.mp4" type="video/mp4">
-        Your browser can't play this video. <a href="video/defend_the_drift_teaser.mp4">Download the teaser</a>.
-      </video>
+    <!-- Two clips side by side: the first teaser, and the rest of the war (James, 12 October). -->
+    <div class="drift-videos">
+      <div>
+        <div class="video-frame drift-video">
+          <video controls preload="none" poster="video/defend_the_drift_teaser_poster.jpg" playsinline>
+            <source src="video/defend_the_drift_teaser.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="video/defend_the_drift_teaser.mp4">Download the teaser</a>.
+          </video>
+        </div>
+        <p class="video-note">Teaser: Isandlwana, Rorke's Drift and Gingindlovu. Captured in engine from the current build, October 2026.</p>
+      </div>
+      <div>
+        <div class="video-frame drift-video">
+          <video controls preload="none" poster="video/defend_the_drift_war_poster.jpg" playsinline>
+            <source src="video/defend_the_drift_war.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="video/defend_the_drift_war.mp4">Download the clip</a>.
+          </video>
+        </div>
+        <p class="video-note">The rest of the war: Hlobane, Kambula and Ulundi. Captured in engine from the current build, October 2026.</p>
+      </div>
     </div>
-    <p class="video-note">Teaser, captured in engine from the current build, October 2026.</p>
     <div class="pitch drift-pitch">
       <div>
         <p class="lead">Our second game is the serious one. <strong>Defend the Drift</strong> is a battle game of the Anglo-Zulu War for one or two players: one side commands the British garrison, the other the Zulu army.</p>
