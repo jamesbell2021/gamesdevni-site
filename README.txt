@@ -78,3 +78,9 @@ tools/trailer/assemble.py cuts them with neon title cards and the game's own
 chiptune (repo jamesbell2021/Animation-, folder neon-mega-tank). When it goes
 on sale, swap the section's "Coming soon" pill for a link like the other
 games' and add the store's widget.
+
+The game can be played in Japanese (a LANGUAGE button on its title menu), so
+the Neon Mega Tank section ends with a "日本語でも遊べる / Also in Japanese"
+sub-gallery of four nmt_ja_*.jpg screenshots (title menu, a wave banner, the
+boss fight and game over), taken on 13 October 2026 with the game switched to
+Japanese and its phone controls on.
