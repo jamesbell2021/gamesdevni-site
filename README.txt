@@ -84,3 +84,10 @@ the Neon Mega Tank section ends with a "日本語でも遊べる / Also in Japan
 sub-gallery of four nmt_ja_*.jpg screenshots (title menu, a wave banner, the
 boss fight and game over), taken on 13 October 2026 with the game switched to
 Japanese and its phone controls on.
+
+Branch nmt-launch holds the launch version of the Neon Mega Tank section (buy link,
+$4.99, "out now" eyebrow) and a new #bundle section for the five-game Neon Arcade
+Collection ($5.99, cover screenshots/neon_arcade_collection.jpg, made by the game
+repository's launch/make_art.py). The itch.io links are the placeholders GAME_URL
+and BUNDLE_URL: replace them and merge the branch into main when the itch.io pages
+are up.
