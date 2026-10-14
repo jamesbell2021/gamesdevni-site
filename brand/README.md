@@ -1,0 +1,11 @@
+# Signal Grid
+
+A movement of small lights on a dark field. Everything is built from one unit, the square, placed on a grid that is never shown but always felt. Forms are made the way a signal is made: by switching a cell on or off, by repetition, by patience. A figure is eleven cells tall. A letter is seven. Nothing is drawn freehand; everything is set, cell by cell, with the care of a watchmaker, so that the finished work looks like it was laid out over many hours by someone who has done nothing else for years.
+
+Space is the material. The field is near-black, warm rather than cold, and most of it stays empty. What is lit is lit decisively: one colour, the orange of a filament, carrying the whole weight of the composition. A second colour is permitted only as a whisper, a thin line of cream, a dim grey that marks where the grid runs. Restraint is the discipline. The eye should rest on the field and find the form, not be shown it.
+
+Scale and rhythm come from the grid's own arithmetic. A mark is one cell; a figure is a cluster of cells; a row of figures is a rhythm. Large forms and small forms share the same unit, so they belong to one another at any size, from a thumbnail to a banner. Corners are cut on the diagonal of one cell, so even the frame admits it was made of squares. This consistency is the craftsmanship: every edge lands on the grid, every gap is a whole number of cells, every alignment has been checked and checked again.
+
+Composition balances a single bright mass against a long quiet field. Weight sits to one side; the other side breathes. Secondary elements, a row of small lit cells, a hairline, a few words in a machine face, are placed low and small, like the markings on an instrument. Text is a label, never a sentence: a name, a place, an address, in a monospaced hand that could have come off a terminal. The words confirm what the form has already said.
+
+Hierarchy is luminance. The brightest thing is the subject. Everything else steps down in deliberate increments of light, so the viewer reads the work in order without being told the order. The whole must feel inevitable, as if no cell could be moved without loosening the rest, and it must look like what it is: master-level work, painstakingly set, the product of deep expertise and countless small decisions made well.
