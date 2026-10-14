@@ -310,6 +310,12 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .nmt .kana{margin:6px 0 0;font-size:15px;letter-spacing:.3em;color:var(--nmt);opacity:.8}
 .nmt .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--nmt-gold);color:var(--nmt-gold);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(255,224,58,.3)}
 .nmt .when i{width:8px;height:8px;background:var(--nmt-gold);display:block;box-shadow:0 0 8px var(--nmt-gold);animation:blink 1.4s steps(2,jump-none) infinite}
+.nmt .when:hover{color:#000;background:var(--nmt-gold)}
+.nmt .nmt-buy{margin-top:44px}
+.nmt .nmt-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(51,214,255,.18)}
+.nmt .nmt-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--nmt-gold);color:var(--nmt-gold);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.nmt .nmt-buy-link:hover{color:#000;background:var(--nmt-gold)}
+@media(max-width:600px){.nmt .nmt-buy iframe{display:none}.nmt .nmt-buy-link{display:flex}}
 .nmt .video-frame{box-shadow:0 0 0 1px #16304a,0 0 40px rgba(51,214,255,.22)}
 .nmt ul.ticks li::before{background:var(--nmt-pink);box-shadow:0 0 6px var(--nmt-pink)}
 .nmt .nmt-pitch{margin-top:44px}
@@ -904,10 +910,10 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
      with Movie Maker (tools/trailer in the Animation- repo's neon-mega-tank folder), 13 October 2026. -->
 <section id="nmt" class="nmt">
   <div class="wrap">
-    <p class="eyebrow">13 / Also from 3BL - coming soon</p>
+    <p class="eyebrow">13 / Also from 3BL - out now on itch.io</p>
     <h2>Neon <span class="hl">Mega Tank</span></h2>
     <p class="kana" lang="ja">ネオン・メガ・タンク</p>
-    <div class="when"><i></i>Coming soon - Android, play together on your phones, in English or <span lang="ja">日本語</span></div>
+    <a class="when" href="https://gamesdevnisite.itch.io/neon-mega-tank" target="_blank" rel="noopener"><i></i>Get it on itch.io - Windows, Linux and Android, in English or <span lang="ja">日本語</span></a>
     <div class="video-frame">
       <video controls preload="none" poster="video/neon_mega_tank_poster.jpg" playsinline>
         <source src="video/neon_mega_tank_trailer.mp4" type="video/mp4">
@@ -933,6 +939,10 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
           <li>Play in English or <span lang="ja">日本語</span>: one button on the title menu switches every menu, gauge and banner, and each phone in a Wi-Fi game picks its own language.</li>
         </ul>
       </div>
+    </div>
+    <div class="nmt-buy">
+      <iframe src="https://itch.io/embed/5152348?linkback=true&amp;bg_color=02040c&amp;fg_color=E8F6FF&amp;link_color=33D6FF&amp;border_color=16304a" width="552" height="167" title="Buy Neon Mega Tank on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/neon-mega-tank">Neon Mega Tank by gamesdevnisite</a></iframe>
+      <a class="nmt-buy-link" href="https://gamesdevnisite.itch.io/neon-mega-tank" target="_blank" rel="noopener">Get Neon Mega Tank on itch.io</a>
     </div>
     <div class="gallery">
       <button class="shot big" data-full="screenshots/nmt_battle.jpg"><img src="screenshots/nmt_battle_thumb.jpg" alt="Neon Mega Tank in battle: the four-player HUD over the neon city as the AI crew fights off wave 6" loading="lazy"><span class="cap">Wave 6: the crew hold the crossroads</span></button>
@@ -985,7 +995,8 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <small>Defend the Drift - in development, planned for 2027</small>
       <small>Victory By None - out now on itch.io</small>
       <small>Angry Old Men - out now on itch.io</small>
-      <small>Neon Mega Tank - coming soon to Android</small>
+      <small>Neon Mega Tank - out now on itch.io</small>
+      <small>Cyber Vikings and Pultz - out now on itch.io</small>
       <small>&copy; 2026 3BL. County Down, Northern Ireland.</small>
     </div>
     <div class="links">
