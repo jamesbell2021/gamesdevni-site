@@ -60,12 +60,21 @@ nav ul a{color:var(--text-dim)}
 nav ul a:hover{color:var(--accent)}
 nav ul a.nav-cta{color:var(--bg);background:var(--accent);padding:8px 14px}
 nav ul a.nav-cta:hover{background:var(--text);color:var(--bg)}
+nav li.more{position:relative}
+nav li.more>a{white-space:nowrap}
+nav li.more>a::after{content:" \25BE"}
+nav ul.more-list{display:none;position:absolute;top:100%;left:-16px;flex-direction:column;align-items:stretch;gap:0;min-width:230px;padding:8px 0;background:rgba(14,17,22,.97);border:1px solid var(--line)}
+nav ul.more-list a{display:block;padding:9px 16px;white-space:nowrap}
+nav li.more:hover ul.more-list,nav li.more:focus-within ul.more-list{display:flex}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--text);font:inherit;padding:6px 10px;cursor:pointer}
 @media(max-width:1100px){
   .nav-toggle{display:block}
   nav ul{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);align-items:stretch}
   nav ul.open{display:flex}
   nav ul li a{display:block;padding:16px 20px;border-top:1px solid var(--line)}
+  nav ul.more-list{display:flex;position:static;min-width:0;padding:0;border:0;background:none}
+  nav ul.more-list a{padding:12px 20px 12px 36px}
+  nav li.more>a::after{content:""}
 }
 
 /* ---- Buttons ---- */
@@ -326,6 +335,81 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .nmt .nmt-ja h3 span{display:block;margin-top:8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#7fa8c8;text-shadow:none}
 .nmt .nmt-ja p{max-width:760px;margin:14px 0 0;color:#9fb3c8;line-height:1.6}
 .nmt .nmt-ja .gallery{margin-top:26px}
+/* ============ VECTOR VOLLEY ============ */
+.vv{--vv:#FF5A5A;--vv-blue:#4DCCFF;--vv-gold:#FFE14D;background:radial-gradient(ellipse at 15% 0,rgba(255,90,90,.10),transparent 55%),radial-gradient(ellipse at 85% 10%,rgba(77,204,255,.10),transparent 50%),#020208;border-top:1px solid #2a1a24}
+.vv .eyebrow{color:#b8939f}
+.vv h2{color:var(--vv);text-shadow:0 0 14px rgba(255,90,90,.55)}
+.vv h2 .hl{color:var(--vv-blue);text-shadow:0 0 14px rgba(77,204,255,.55)}
+.vv .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--vv-gold);color:var(--vv-gold);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(255,225,77,.3)}
+.vv .when i{width:8px;height:8px;background:var(--vv-gold);display:block;box-shadow:0 0 8px var(--vv-gold)}
+.vv a.when:hover{color:#000;background:var(--vv-gold)}
+.vv a.when:hover i{background:#000;box-shadow:none}
+.vv ul.ticks li::before{background:var(--vv-blue);box-shadow:0 0 6px var(--vv-blue)}
+.vv .video-frame{box-shadow:0 0 0 1px #2a1a24,0 0 40px rgba(255,90,90,.18)}
+.vv .video-frame iframe,.vc .video-frame iframe,.pv .video-frame iframe,.bw .video-frame iframe{width:100%;display:block;aspect-ratio:16/9;border:0;background:#000}
+.vv .vv-pitch,.vv .gallery,.vv .vv-buy{margin-top:44px}
+.vv .shot{border-color:#2a1a24}
+.vv .vv-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(77,204,255,.18)}
+.vv .vv-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--vv-gold);color:var(--vv-gold);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center}
+.vv .vv-buy-link:hover{color:#000;background:var(--vv-gold)}
+@media(max-width:600px){.vv .vv-buy iframe{display:none}.vv .vv-buy-link{display:flex}}
+
+/* ============ VECTOR CASCADES ============ */
+.vc{--vc:#3FE7FF;--vc-pink:#FF3FD8;--vc-gold:#FFD23A;--vc-green:#5CFF8A;background:radial-gradient(ellipse at 20% 0,rgba(255,63,216,.10),transparent 55%),radial-gradient(ellipse at 80% 15%,rgba(255,210,58,.08),transparent 50%),#03010a;border-top:1px solid #2a1438}
+.vc .eyebrow{color:#a88fbf}
+.vc h2{color:var(--vc);text-shadow:0 0 14px rgba(63,231,255,.55)}
+.vc h2 .hl{color:var(--vc-pink);text-shadow:0 0 14px rgba(255,63,216,.6)}
+.vc .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--vc-gold);color:var(--vc-gold);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(255,210,58,.3)}
+.vc .when i{width:8px;height:8px;background:var(--vc-gold);display:block;box-shadow:0 0 8px var(--vc-gold)}
+.vc a.when:hover{color:#000;background:var(--vc-gold)}
+.vc a.when:hover i{background:#000;box-shadow:none}
+.vc ul.ticks li::before{background:var(--vc-green);box-shadow:0 0 6px var(--vc-green)}
+.vc .video-frame{box-shadow:0 0 0 1px #2a1438,0 0 40px rgba(255,63,216,.2)}
+.vc .vc-pitch,.vc .gallery,.vc .vc-buy{margin-top:44px}
+.vc .shot{border-color:#2a1438;grid-column:span 1;aspect-ratio:9/16}
+@media(max-width:900px){.vc .shot{grid-column:span 2}}
+@media(max-width:620px){.vc .shot{grid-column:span 3}}
+.vc .vc-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(255,63,216,.18)}
+.vc .vc-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--vc-gold);color:var(--vc-gold);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center}
+.vc .vc-buy-link:hover{color:#000;background:var(--vc-gold)}
+@media(max-width:600px){.vc .vc-buy iframe{display:none}.vc .vc-buy-link{display:flex}}
+
+/* ============ PERISCOPE VECTORS ============ */
+.pv{--pv:#38F2C8;--pv-pink:#FF4FB4;--pv-amber:#FFC23A;background:repeating-radial-gradient(circle at 50% 0,rgba(56,242,200,.035) 0 1px,transparent 1px 64px),radial-gradient(ellipse at 50% 0,rgba(56,242,200,.10),transparent 60%),#010810;border-top:1px solid #10303a}
+.pv .eyebrow{color:#7fb3b0}
+.pv h2{color:var(--pv);text-shadow:0 0 14px rgba(56,242,200,.55)}
+.pv h2 .hl{color:var(--pv-pink);text-shadow:0 0 14px rgba(255,79,180,.55)}
+.pv .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--pv-amber);color:var(--pv-amber);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(255,194,58,.3)}
+.pv .when i{width:8px;height:8px;background:var(--pv-amber);display:block;box-shadow:0 0 8px var(--pv-amber)}
+.pv a.when:hover{color:#000;background:var(--pv-amber)}
+.pv a.when:hover i{background:#000;box-shadow:none}
+.pv ul.ticks li::before{background:var(--pv);box-shadow:0 0 6px var(--pv)}
+.pv .video-frame{box-shadow:0 0 0 1px #10303a,0 0 40px rgba(56,242,200,.2)}
+.pv .pv-pitch,.pv .gallery,.pv .pv-buy{margin-top:44px}
+.pv .shot{border-color:#10303a}
+.pv .pv-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(56,242,200,.18)}
+.pv .pv-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--pv-amber);color:var(--pv-amber);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center}
+.pv .pv-buy-link:hover{color:#000;background:var(--pv-amber)}
+@media(max-width:600px){.pv .pv-buy iframe{display:none}.pv .pv-buy-link{display:flex}}
+
+/* ============ BLOCK WAR BELFAST 2098 ============ */
+.bw{--bw:#2EF2FF;--bw-pink:#FF2EC8;--bw-gold:#FFCC33;--bw-lime:#A8FF2E;background:radial-gradient(ellipse at 25% 0,rgba(255,204,51,.08),transparent 55%),radial-gradient(ellipse at 80% 10%,rgba(46,242,255,.09),transparent 50%),#02020a;border-top:1px solid #1a2a3a}
+.bw .eyebrow{color:#8fa6bf}
+.bw h2{color:var(--bw);text-shadow:0 0 14px rgba(46,242,255,.55)}
+.bw h2 .hl{color:var(--bw-gold);text-shadow:0 0 14px rgba(255,204,51,.55)}
+.bw .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--bw-pink);color:var(--bw-pink);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(255,46,200,.3)}
+.bw .when i{width:8px;height:8px;background:var(--bw-pink);display:block;box-shadow:0 0 8px var(--bw-pink)}
+.bw a.when:hover{color:#000;background:var(--bw-pink)}
+.bw a.when:hover i{background:#000;box-shadow:none}
+.bw ul.ticks li::before{background:var(--bw-lime);box-shadow:0 0 6px var(--bw-lime)}
+.bw .video-frame{box-shadow:0 0 0 1px #1a2a3a,0 0 40px rgba(46,242,255,.18)}
+.bw .bw-pitch,.bw .gallery,.bw .bw-buy{margin-top:44px}
+.bw .shot{border-color:#1a2a3a}
+.bw .bw-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(255,204,51,.16)}
+.bw .bw-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--bw-pink);color:var(--bw-pink);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center}
+.bw .bw-buy-link:hover{color:#000;background:var(--bw-pink)}
+@media(max-width:600px){.bw .bw-buy iframe{display:none}.bw .bw-buy-link{display:flex}}
+
 
 /* ---- Footer ---- */
 footer{padding:56px 0 40px;border-top:1px solid var(--line)}
@@ -372,11 +456,19 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <li><a href="#screens">Screenshots</a></li>
       <li><a href="#story">Story</a></li>
       <li><a href="#drift">Defend the Drift</a></li>
-      <li><a href="#cyber">Cyber Vikings</a></li>
-      <li><a href="#vbn">Victory By None</a></li>
-      <li><a href="#aom">Angry Old Men</a></li>
-      <li><a href="#pultz">Pultz</a></li>
-      <li><a href="#nmt">Neon Mega Tank</a></li>
+      <li class="more"><a href="#cyber" aria-haspopup="true">More Games</a>
+        <ul class="more-list">
+          <li><a href="#cyber">Cyber Vikings</a></li>
+          <li><a href="#vbn">Victory By None</a></li>
+          <li><a href="#aom">Angry Old Men</a></li>
+          <li><a href="#pultz">Pultz</a></li>
+          <li><a href="#nmt">Neon Mega Tank</a></li>
+          <li><a href="#vv">Vector Volley</a></li>
+          <li><a href="#vc">Vector Cascades</a></li>
+          <li><a href="#pv">Periscope Vectors</a></li>
+          <li><a href="#bw">Block War Belfast 2098</a></li>
+        </ul>
+      </li>
       <li><a class="nav-cta" data-steam href="#wishlist">Wishlist</a></li>
     </ul>
   </div>
@@ -968,18 +1060,183 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 </section>
 
 <!-- ============ ABOUT ============ -->
+<!-- ============ VECTOR VOLLEY ============ -->
+<section id="vv" class="vv">
+  <div class="wrap">
+    <p class="eyebrow">14 / Also from 3BL - out now on itch.io</p>
+    <h2>Vector <span class="hl">Volley</span></h2>
+    <a class="when" href="https://gamesdevnisite.itch.io/vector-volley" target="_blank" rel="noopener"><i></i>Get it on itch.io - name your own price, for Windows and Android</a>
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/imJkEdDsakE" title="Vector Volley trailer" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    </div>
+    <p class="video-note">Trailer, from the game's itch.io page.</p>
+    <div class="pitch vv-pitch">
+      <div>
+        <p class="lead">Two neon armies. One screen. Lose your commander and you lose. <strong>Vector Volley</strong> is the 2 Player Battle from Forged in Formation, remade as an over-the-top arcade game in glowing vector lines: Red against Blue on one screen, for two players or one against the computer.</p>
+        <p class="lead">Eight units a side, and they never turn, so where you stand is where you aim. Column is fast and fits the bridges, Line fires a full volley, Square stops a cavalry charge dead. Change formation late and you pay for it. Then the dead come, in <strong>Graveyard Shift</strong>: the two armies back to back, and waves of shamblers, chargers and bloaters that never end.</p>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li>A commander in a big plumed hat, a line of muskets, bayonets, cavalry, a cannon, a sniper, a grenadier and a brawler.</li>
+          <li>Hold fire to aim the cannon and the grenadier: a cannon ball wipes out everyone in its ring.</li>
+          <li>Powder kegs that blow up everyone near them, friend or foe, and set each other off.</li>
+          <li>Three fields drawn at random: The Ford, The Chasm and The Sand.</li>
+          <li>The computer on Easy, Normal or Hard, or two players, keyboard halves or pads.</li>
+          <li>Shell-shock slow motion, screen shake and a pounding rave soundtrack.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="vv-buy">
+      <iframe src="https://itch.io/embed/5157839?linkback=true&amp;bg_color=020208&amp;fg_color=F4F8FF&amp;link_color=4DCCFF&amp;border_color=2a1a24" width="552" height="167" title="Get Vector Volley on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/vector-volley">Vector Volley by gamesdevnisite</a></iframe>
+      <a class="vv-buy-link" href="https://gamesdevnisite.itch.io/vector-volley" target="_blank" rel="noopener">Get Vector Volley on itch.io</a>
+    </div>
+    <div class="gallery">
+      <button class="shot" data-full="screenshots/vv_ford.jpg"><img src="screenshots/vv_ford_thumb.jpg" alt="The Ford: Red and Blue lines either side of the river, with powder kegs on the banks" loading="lazy"><span class="cap">The Ford</span></button>
+      <button class="shot" data-full="screenshots/vv_red_wins.jpg"><img src="screenshots/vv_red_wins_thumb.jpg" alt="The Chasm: RED WINS, Blue's commander fell at 1:32" loading="lazy"><span class="cap">Red wins on The Chasm</span></button>
+      <button class="shot" data-full="screenshots/vv_sand.jpg"><img src="screenshots/vv_sand_thumb.jpg" alt="The Sand: a volley crosses the field between the two stake squares" loading="lazy"><span class="cap">The Sand: the volleys cross</span></button>
+      <button class="shot" data-full="screenshots/vv_graveyard.jpg"><img src="screenshots/vv_graveyard_thumb.jpg" alt="Graveyard Shift: the two armies back to back among the gravestones as the dead close in" loading="lazy"><span class="cap">Graveyard Shift</span></button>
+      <button class="shot" data-full="screenshots/vv_cannon.jpg"><img src="screenshots/vv_cannon_thumb.jpg" alt="The cannon's ring closing on Blue's line" loading="lazy"><span class="cap">The cannon's ring</span></button>
+      <button class="shot" data-full="screenshots/vv_title.jpg"><img src="screenshots/vv_title_thumb.jpg" alt="The Vector Volley title: 1 Player Battle, 2 Player Battle, Graveyard Shift" loading="lazy"><span class="cap">A neon battle of 1798</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VECTOR CASCADES ============ -->
+<section id="vc" class="vc">
+  <div class="wrap">
+    <p class="eyebrow">15 / Also from 3BL - out now on itch.io</p>
+    <h2>Vector <span class="hl">Cascades</span></h2>
+    <a class="when" href="https://gamesdevnisite.itch.io/vector-cascades" target="_blank" rel="noopener"><i></i>Get it on itch.io - name your own price, for Windows and Android</a>
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/mSaf_9-Jn0I" title="Vector Cascades trailer" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    </div>
+    <p class="video-note">Trailer, from the game's itch.io page.</p>
+    <div class="pitch vc-pitch">
+      <div>
+        <p class="lead"><strong>Vector Cascades: Lucky 9</strong> is pinball, pachinko and a coin pusher in one, made for your phone. Launch glowing steel balls into the table, then watch the coins they win tumble onto the pusher. Everything it shoves over the edge is yours.</p>
+        <p class="lead">Fill the card meter and a Lucky card drops onto the bed. Push cards over the ledge: a 9 on its own, or cards that add up to exactly 9, sets off a <strong>x10 coin cascade</strong>, with fireworks, a rain of coins, and ten seconds where every coin is worth ten. Go over 9 and you bust.</p>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li>Each ball costs a coin: hold LAUNCH, let go, and keep it alive with the flippers.</li>
+          <li>Bumpers, slingshots, pachinko pegs, drop targets and coin pockets, with combos up to x20.</li>
+          <li>Up to four balls on the table at once.</li>
+          <li>A silly calculator voice shouting "LUCKY NINE!"</li>
+          <li>A pumping arcade soundtrack that builds as you play.</li>
+          <li>Tap either side of the screen to flip; keyboard and mouse on PC.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="vc-buy">
+      <iframe src="https://itch.io/embed/5156102?linkback=true&amp;bg_color=03010a&amp;fg_color=F4F0FF&amp;link_color=FF3FD8&amp;border_color=2a1438" width="552" height="167" title="Get Vector Cascades on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/vector-cascades">Vector Cascades by gamesdevnisite</a></iframe>
+      <a class="vc-buy-link" href="https://gamesdevnisite.itch.io/vector-cascades" target="_blank" rel="noopener">Get Vector Cascades on itch.io</a>
+    </div>
+    <div class="gallery">
+      <button class="shot" data-full="screenshots/vc_title.jpg"><img src="screenshots/vc_title_thumb.jpg" alt="The Vector Cascades: Lucky 9 title over the neon table: Play, How to Play, Options" loading="lazy"><span class="cap">Lucky 9</span></button>
+      <button class="shot" data-full="screenshots/vc_table.jpg"><img src="screenshots/vc_table_thumb.jpg" alt="A ball in play above the pachinko pegs, the coin pusher heaped with coins below" loading="lazy"><span class="cap">The table and the pusher</span></button>
+      <button class="shot" data-full="screenshots/vc_lucky_999.jpg"><img src="screenshots/vc_lucky_999_thumb.jpg" alt="Three Lucky 9 cards over the pusher: x10 bonus coins" loading="lazy"><span class="cap">Lucky 9, 9, 9</span></button>
+      <button class="shot" data-full="screenshots/vc_cascade.jpg"><img src="screenshots/vc_cascade_thumb.jpg" alt="The x10 coin cascade: every coin off the ledge pays ten" loading="lazy"><span class="cap">x10 coin cascade</span></button>
+      <button class="shot" data-full="screenshots/vc_how_to_play.jpg"><img src="screenshots/vc_how_to_play_thumb.jpg" alt="The How to Play page: launch, flip, the table, the pusher, cards and Lucky 9" loading="lazy"><span class="cap">How to play</span></button>
+      <button class="shot" data-full="screenshots/vc_game_over.jpg"><img src="screenshots/vc_game_over_thumb.jpg" alt="Game over: score 39,399, high score 127,710" loading="lazy"><span class="cap">Game over</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PERISCOPE VECTORS ============ -->
+<section id="pv" class="pv">
+  <div class="wrap">
+    <p class="eyebrow">16 / Also from 3BL - out now on itch.io</p>
+    <h2>Periscope <span class="hl">Vectors</span></h2>
+    <a class="when" href="https://gamesdevnisite.itch.io/periscope-vectors" target="_blank" rel="noopener"><i></i>Get it on itch.io - $1 or more, for Windows and Android</a>
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/tmkhAw5ibpc" title="Periscope Vectors trailer" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    </div>
+    <p class="video-note">Trailer, from the game's itch.io page.</p>
+    <div class="pitch pv-pitch">
+      <div>
+        <p class="lead">Sink the convoys. Count the tonnage. Survive the depth charges. <strong>Periscope Vectors</strong> is a neon vector submarine game for your phone or PC: plot a patrol across the North Atlantic, hunt down the convoys, and make your attack through the periscope.</p>
+        <p class="lead">The torpedoes take time to run, so you have to lead your target. Then the escorts come looking for you: dive, change depth after every ping, hide under the thermal layer, and don't go below crush depth. Your score is the tonnage you sink in one patrol.</p>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li>The patrol chart: convoys on the shipping lanes, lone merchants, and air cover near the land.</li>
+          <li>Freighters, tankers, coasters and their escorts, each worth its tonnage.</li>
+          <li>The deck gun: surface and shell lone ships to save your torpedoes.</li>
+          <li>The AA gun against patrol bombers, or crash dive and get deep.</li>
+          <li>Sail home to rearm, refuel and repair.</li>
+          <li>A tense synth soundtrack, sonar pings and klaxons. Generic ships, with no real navies or flags.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pv-buy">
+      <iframe src="https://itch.io/embed/5157303?linkback=true&amp;bg_color=010810&amp;fg_color=E8FFF8&amp;link_color=38F2C8&amp;border_color=10303a" width="552" height="167" title="Get Periscope Vectors on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/periscope-vectors">Periscope Vectors by gamesdevnisite</a></iframe>
+      <a class="pv-buy-link" href="https://gamesdevnisite.itch.io/periscope-vectors" target="_blank" rel="noopener">Get Periscope Vectors on itch.io</a>
+    </div>
+    <div class="gallery">
+      <button class="shot" data-full="screenshots/pv_direct_hit.jpg"><img src="screenshots/pv_direct_hit_thumb.jpg" alt="Through the periscope: DIRECT HIT and 11,200 tons sunk, the convoy strung along the horizon" loading="lazy"><span class="cap">Direct hit: 11,200 t</span></button>
+      <button class="shot" data-full="screenshots/pv_chart.jpg"><img src="screenshots/pv_chart_thumb.jpg" alt="The patrol chart of the North Atlantic: convoys, air cover and the route from home port" loading="lazy"><span class="cap">The patrol chart</span></button>
+      <button class="shot" data-full="screenshots/pv_evade.jpg"><img src="screenshots/pv_evade_thumb.jpg" alt="Dived under the thermal layer as depth charges fall: EVADE! Contact lost in 19 s" loading="lazy"><span class="cap">Evade!</span></button>
+      <button class="shot" data-full="screenshots/pv_ping_deflected.jpg"><img src="screenshots/pv_ping_deflected_thumb.jpg" alt="PING DEFLECTED: the submarine hides under the thermal layer" loading="lazy"><span class="cap">Ping deflected</span></button>
+      <button class="shot" data-full="screenshots/pv_periscope.jpg"><img src="screenshots/pv_periscope_thumb.jpg" alt="Lining up the next torpedo on a tanker in the convoy" loading="lazy"><span class="cap">The next target</span></button>
+      <button class="shot" data-full="screenshots/pv_title.jpg"><img src="screenshots/pv_title_thumb.jpg" alt="The Periscope Vectors title: New Patrol, How to Play, Options" loading="lazy"><span class="cap">Periscope Vectors</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOCK WAR BELFAST 2098 ============ -->
+<section id="bw" class="bw">
+  <div class="wrap">
+    <p class="eyebrow">17 / Also from 3BL - out now on itch.io</p>
+    <h2>Block War <span class="hl">Belfast 2098</span></h2>
+    <a class="when" href="https://gamesdevnisite.itch.io/block-war-belfast-2098" target="_blank" rel="noopener"><i></i>Play it on itch.io - name your own price, in your browser, Windows and Linux</a>
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/5SuNXvYGlSg" title="Block War Belfast 2098 trailer" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    </div>
+    <p class="video-note">Trailer, filmed in the game, October 2026.</p>
+    <div class="pitch bw-pitch">
+      <div>
+        <p class="lead">Belfast, 2098. Four tower blocks stand in a row by the Lough, Samson and Goliath glowing across the water, and the blocks have had enough of each other. <strong>Knock the other blocks down. Keep yours up.</strong></p>
+        <p class="lead">A turn-based block war for one to four players: take turns at one screen, play over your local network, or take on the computer. Roll for command points, then move your residents up the stairs, down the bin chute, across the skybridge, or swinging across the gap on a grapple, and let fly. Every hit cracks a room; anything left with nothing holding it up falls for real and smashes whatever it lands on.</p>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li>Stone throwers, petrol bombers, snipers and RPG men.</li>
+          <li>Scooter bombers: a time bomb on a mobility scooter, and no stairs.</li>
+          <li>Local hoods, lobbing fridges and tellys out of the upstairs windows.</li>
+          <li>Hen parties, the hardest in a fight.</li>
+          <li>Fires that spread until the sprinklers win, unless someone takes out the power room.</li>
+          <li>Mania cards (Chip Pan Fire, Karaoke Night, Belfast Rain), then the enforcers arrive to end it.</li>
+          <li>A pumping chiptune soundtrack where a tin whistle and a flute band play the same tune.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bw-buy">
+      <iframe src="https://itch.io/embed/5157965?linkback=true&amp;bg_color=02020a&amp;fg_color=F4F8FF&amp;link_color=2EF2FF&amp;border_color=1a2a3a" width="552" height="167" title="Get Block War Belfast 2098 on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/block-war-belfast-2098">Block War Belfast 2098 by gamesdevnisite</a></iframe>
+      <a class="bw-buy-link" href="https://gamesdevnisite.itch.io/block-war-belfast-2098" target="_blank" rel="noopener">Get Block War Belfast 2098 on itch.io</a>
+    </div>
+    <div class="gallery">
+      <button class="shot" data-full="screenshots/bw_the_top_comes_down.jpg"><img src="screenshots/bw_the_top_comes_down_thumb.jpg" alt="A time bomb blows out Ulster Fry's first floor and the top of the block topples into the gap" loading="lazy"><span class="cap">The top comes down</span></button>
+      <button class="shot" data-full="screenshots/bw_a_block_comes_down.jpg"><img src="screenshots/bw_a_block_comes_down_thumb.jpg" alt="Pastie Supper block coming down in pieces under the H&amp;W cranes" loading="lazy"><span class="cap">A whole block comes down</span></button>
+      <button class="shot" data-full="screenshots/bw_ulster_says_yo.jpg"><img src="screenshots/bw_ulster_says_yo_thumb.jpg" alt="A helicopter towing an ULSTER SAYS YO! banner over the cranes" loading="lazy"><span class="cap">Ulster says yo!</span></button>
+      <button class="shot" data-full="screenshots/bw_the_fight.jpg"><img src="screenshots/bw_the_fight_thumb.jpg" alt="A petrol bomber at the window, with the odds shown on each target across the gap" loading="lazy"><span class="cap">Pick your target</span></button>
+      <button class="shot" data-full="screenshots/bw_fridge.jpg"><img src="screenshots/bw_fridge_thumb.jpg" alt="A local hood's fridge shattering on the plaza as an upper storey falls" loading="lazy"><span class="cap">Fridges out the window</span></button>
+      <button class="shot" data-full="screenshots/bw_residents.jpg"><img src="screenshots/bw_residents_thumb.jpg" alt="The residents: stone thrower, petrol bomber, sniper and scooter bomber" loading="lazy"><span class="cap">The residents</span></button>
+    </div>
+  </div>
+</section>
+
 <section id="about" class="course">
   <div class="wrap">
-    <p class="eyebrow">14 / About 3BL</p>
+    <p class="eyebrow">18 / About 3BL</p>
     <div class="course-grid">
       <div>
         <h2>Made in <span class="hl">the Ards</span></h2>
-        <p class="lead" style="margin-top:16px">3BL is a small independent studio on the Ards peninsula in County Down, the same county that rose in 1798. We make games with a Northern Irish voice. Forged in Formation is our first, and Defend the Drift is next.</p>
+        <p class="lead" style="margin-top:16px">3BL is a small independent studio on the Ards peninsula in County Down, the same county that rose in 1798. We make games with a Northern Irish voice. Forged in Formation is our first, Defend the Drift is next, and in between there's a run of neon arcade games on itch.io, from Belfast's tower blocks to the 1798 battlefield.</p>
       </div>
       <div class="panel cut">
         <p class="eyebrow">Built with</p>
         <div class="tags">
-          <span class="hot">Unreal Engine 5</span><span>C++</span><span>Original voice cast</span><span>Linux and Windows</span>
+          <span class="hot">Unreal Engine 5</span><span>Godot 4</span><span>C++</span><span>Original voice cast</span><span>Linux, Windows, Android and the web</span>
         </div>
       </div>
     </div>
@@ -993,14 +1250,11 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <a class="brand" href="#top"><svg viewBox="0 0 21 11" fill="#FF8C2B" style="height:34px" aria-hidden="true"><use href="#figs"/></svg><svg viewBox="0 0 19 7" fill="#FF8C2B" style="height:22px" aria-hidden="true"><use href="#letters"/></svg></a>
       <small>Forged in Formation - coming to Steam Early Access, 3 December 2026</small>
       <small>Defend the Drift - in development, planned for 2027</small>
-      <small>Victory By None - out now on itch.io</small>
-      <small>Angry Old Men - out now on itch.io</small>
-      <small>Neon Mega Tank - out now on itch.io</small>
-      <small>Cyber Vikings and Pultz - out now on itch.io</small>
+      <small>Out now on itch.io: Cyber Vikings, Victory By None, Angry Old Men, Pultz, Neon Mega Tank, Vector Volley, Vector Cascades, Periscope Vectors and Block War Belfast 2098</small>
       <small>&copy; 2026 3BL. County Down, Northern Ireland.</small>
     </div>
     <div class="links">
-      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a href="#vbn">Victory By None</a><a href="#aom">Angry Old Men</a><a href="#nmt">Neon Mega Tank</a><a data-steam href="#wishlist">Wishlist</a>
+      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a href="#vbn">Victory By None</a><a href="#aom">Angry Old Men</a><a href="#nmt">Neon Mega Tank</a><a href="#bw">Block War</a><a data-steam href="#wishlist">Wishlist</a>
     </div>
   </div>
 </footer>
