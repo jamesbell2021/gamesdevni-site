@@ -20,6 +20,8 @@ the file. James posts between 6 and 9 pm UK time.
 - Cyber Vikings: https://gamesdevnisite.itch.io/cybervikings
 - Pultz: https://gamesdevnisite.itch.io/pultz
 - Victory By None: https://gamesdevnisite.itch.io/victory-by-none
+- Neon Mega Tank: https://gamesdevnisite.itch.io/neon-mega-tank
+- All five: https://gamesdevnisite.itch.io
 
 Files are in this repo: `video/` and `screenshots/`. "To make" means the
 session makes it before sending.
@@ -108,7 +110,7 @@ Pin it after posting.
 ## Thu 5 Nov: Neon Mega Tank
 
 **File:** `video/neon_mega_tank_trailer.mp4`
-**Reply:** https://gamesdevni.site/#nmt
+**Reply:** Play it on itch.io: https://gamesdevnisite.itch.io/neon-mega-tank
 
 > One tank. Four crew. Everyone runs about the deck of the same giant tank: one drives, one works the twin cannon, one the machine gun, one the repair bay. Hits punch burning holes that jam the stations beside them. Play on your own phones over Wi-Fi. #indiegame #indiedev #coop
 
@@ -119,12 +121,12 @@ Pin it after posting.
 
 > A wireframe longboat on a black sea. Cyber Vikings, on itch.io. #ScreenshotSaturday #indiegame #indiedev
 
-## Sun 8 Nov: all four on itch.io (card to make)
+## Sun 8 Nov: all five on itch.io (card to make)
 
-**File:** a card (to make): the four itch.io games' titles in their own colours on the 3BL ground
-**Reply:** All four: https://gamesdevnisite.itch.io
+**File:** a card (to make): the five itch.io games' titles in their own colours on the 3BL ground
+**Reply:** All five: https://gamesdevnisite.itch.io
 
-> Four small games, made for fun, all on itch.io: Angry Old Men, Cyber Vikings, Pultz and Victory By None. From the Ards Peninsula. #indiegame #indiedev #itchio
+> Five games, all on itch.io: Neon Mega Tank, Angry Old Men, Cyber Vikings, Pultz and Victory By None. Four of them a dollar each. From the Ards Peninsula. #indiegame #indiedev #itchio
 
 Then round again from the top with new clips and pictures, and the Steam week
 whenever the page goes live: the full Forged in Formation trailer pinned with
