@@ -37,7 +37,7 @@ session makes it before sending.
 
 Pin it after posting.
 
-## Thu 15 Oct: Angry Old Men
+## Thu 15 Oct: Angry Old Men (prepared 15 Oct)
 
 **File:** `video/angry_old_men_trailer.mp4`
 **Reply:** Play it on itch.io: https://gamesdevnisite.itch.io/angry-old-men
