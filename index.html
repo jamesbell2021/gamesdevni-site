@@ -411,9 +411,10 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .hi .shot{border-color:#a9e4ec;border-radius:12px;overflow:hidden;background:var(--hi-cream)}
 .hi .shot .cap{color:var(--hi-ink);background:rgba(255,250,234,.92)}
 .hi .hi-buy{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hi .hi-buy iframe{display:block;border:0;border-radius:12px;box-shadow:0 10px 30px rgba(31,79,74,.25);max-width:100%}
 .hi .hi-buy-link{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:var(--hi-teal);color:#fff;padding:16px 22px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;box-shadow:0 4px 0 #3f8a7e}
 .hi .hi-buy-link:hover{background:#c9552f;box-shadow:0 4px 0 #8f3a1f}
-.hi .hi-buy small{color:#1f4f4a;font-size:13px}
+@media(max-width:600px){.hi .hi-buy iframe{display:none}}
 .bw{--bw:#2EF2FF;--bw-pink:#FF2EC8;--bw-gold:#FFCC33;--bw-lime:#A8FF2E;background:radial-gradient(ellipse at 25% 0,rgba(255,204,51,.08),transparent 55%),radial-gradient(ellipse at 80% 10%,rgba(46,242,255,.09),transparent 50%),#02020a;border-top:1px solid #1a2a3a}
 .bw .eyebrow{color:#8fa6bf}
 .bw h2{color:var(--bw);text-shadow:0 0 14px rgba(46,242,255,.55)}
@@ -1208,9 +1209,9 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 <!-- ============ HIPPO ISLAND ============ -->
 <section id="hi" class="hi">
   <div class="wrap">
-    <p class="eyebrow">17 / Also from 3BL - coming to itch.io</p>
+    <p class="eyebrow">17 / Also from 3BL - out now on itch.io</p>
     <h2>Hippo <span class="hl">Island</span></h2>
-    <a class="when" href="https://gamesdevnisite.itch.io" target="_blank" rel="noopener"><i></i>Windows, Linux and Android - on itch.io soon</a>
+    <a class="when" href="https://gamesdevnisite.itch.io/hippo-island" target="_blank" rel="noopener"><i></i>Get it on itch.io - Windows, Linux and Android</a>
     <div class="video-frame">
       <video controls preload="none" poster="video/hippo_island_poster.jpg" playsinline>
         <source src="video/hippo_island_gameplay.mp4" type="video/mp4">
@@ -1235,8 +1236,8 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       </div>
     </div>
     <div class="hi-buy">
-      <a class="hi-buy-link" href="https://gamesdevnisite.itch.io" target="_blank" rel="noopener">3BL on itch.io</a>
-      <small>The Hippo Island page is going up this week: Windows, Linux and Android, name your own price.</small>
+      <iframe src="https://itch.io/embed/5162390?linkback=true&amp;bg_color=fffaea&amp;fg_color=3f3326&amp;link_color=2e6e66&amp;border_color=a9e4ec" width="552" height="167" title="Get Hippo Island on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/hippo-island">Hippo Island by gamesdevnisite</a></iframe>
+      <a class="hi-buy-link" href="https://gamesdevnisite.itch.io/hippo-island" target="_blank" rel="noopener">Get Hippo Island on itch.io</a>
     </div>
     <div class="gallery">
       <button class="shot" data-full="screenshots/hi_the_camp.jpg"><img src="screenshots/hi_the_camp_thumb.jpg" alt="The camp built up with a lookout, a dock, a signal fire and a HELP sign, Hugh fishing from the beach" loading="lazy"><span class="cap">The camp, built up</span></button>
@@ -1316,7 +1317,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <a class="brand" href="#top"><svg viewBox="0 0 21 11" fill="#FF8C2B" style="height:34px" aria-hidden="true"><use href="#figs"/></svg><svg viewBox="0 0 19 7" fill="#FF8C2B" style="height:22px" aria-hidden="true"><use href="#letters"/></svg></a>
       <small>Forged in Formation - coming to Steam Early Access, 3 December 2026</small>
       <small>Defend the Drift - in development, planned for 2027</small>
-      <small>Out now on itch.io: Cyber Vikings, Victory By None, Angry Old Men, Pultz, Neon Mega Tank, Vector Volley, Vector Cascades, Periscope Vectors and Block War Belfast 2098. Next up: Hippo Island</small>
+      <small>Out now on itch.io: Cyber Vikings, Victory By None, Angry Old Men, Pultz, Neon Mega Tank, Vector Volley, Vector Cascades, Periscope Vectors, Block War Belfast 2098 and Hippo Island</small>
       <small>&copy; 2026 3BL. County Down, Northern Ireland.</small>
     </div>
     <div class="links">
