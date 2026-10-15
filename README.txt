@@ -1,6 +1,24 @@
 3BL - Forged in Formation website (rebuilt 1 October 2026)
 
-Upload the whole folder as it is: index.html, screenshots/, video/.
+Upload the whole folder as it is: index.html, games.html, site.css,
+screenshots/, video/.
+
+TWO PAGES (since 15 October 2026):
+  index.html  Forged in Formation (the Steam wishlist page) and Defend the
+              Drift, then one "More from 3BL" strip (#itch): a grid of ten
+              small cards, one per itch.io game, newest first. No trailers or
+              buy widgets there, so the front page stays quick.
+  games.html  The ten itch.io games in full, newest first: each one's trailer,
+              buy widget and screenshots, under the same card grid.
+  site.css    Every style for both pages (the palette is at the top).
+
+Adding a new itch.io game: put its full section at the top of games.html's
+list (copy one, renumber the eyebrows 01, 02...), and add a card to BOTH card
+grids - the one in index.html's #itch strip and the one in games.html's header
+(copy a <div class="game-card"> block: its colour, thumbnail, one line and
+platforms). Add it to the "More Games" menu on both pages too.
+
+The itch.io sections described further down this file now live on games.html.
 Total about 63 MB, of which the trailer is 28 MB (1080p, starts playing
 before it has fully downloaded), Defend the Drift's teaser 22 MB and the
 2 Player Battle loop 2 MB.
