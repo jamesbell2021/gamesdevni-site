@@ -393,6 +393,27 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 @media(max-width:600px){.pv .pv-buy iframe{display:none}.pv .pv-buy-link{display:flex}}
 
 /* ============ BLOCK WAR BELFAST 2098 ============ */
+/* ---- Hippo Island: the one sunny section ---- */
+.hi{--hi-sea:#56c4d8;--hi-deep:#2e6e66;--hi-sand:#f0d58f;--hi-cream:#fffaea;--hi-ink:#3f3326;--hi-teal:#5cada0;background:radial-gradient(ellipse at 20% 0,rgba(255,250,234,.35),transparent 55%),linear-gradient(180deg,#8fdbe8 0,#56c4d8 60%,#3f9fb4 100%);color:var(--hi-ink);border-top:1px solid #a9e4ec}
+.hi .eyebrow{color:#1f4f4a}
+.hi h2{color:var(--hi-deep);text-shadow:0 2px 0 rgba(255,250,234,.9)}
+.hi h2 .hl{color:#c9552f;text-shadow:0 2px 0 rgba(255,250,234,.9)}
+.hi .lead{color:var(--hi-ink)}
+.hi .lead strong{color:var(--hi-deep)}
+.hi .when{display:inline-flex;align-items:center;gap:10px;border:2px solid var(--hi-deep);color:var(--hi-deep);background:var(--hi-cream);border-radius:12px;padding:8px 16px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px}
+.hi .when i{width:8px;height:8px;border-radius:50%;background:#c9552f;display:block}
+.hi a.when:hover{color:#fff;background:var(--hi-deep)}
+.hi ul.ticks li{color:var(--hi-ink)}
+.hi ul.ticks li::before{background:#c9552f;box-shadow:none;border-radius:50%}
+.hi .video-frame{border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(31,79,74,.35)}
+.hi .video-note{color:#1f4f4a}
+.hi .hi-pitch,.hi .gallery,.hi .hi-buy{margin-top:44px}
+.hi .shot{border-color:#a9e4ec;border-radius:12px;overflow:hidden;background:var(--hi-cream)}
+.hi .shot .cap{color:var(--hi-ink);background:rgba(255,250,234,.92)}
+.hi .hi-buy{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hi .hi-buy-link{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:var(--hi-teal);color:#fff;padding:16px 22px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;box-shadow:0 4px 0 #3f8a7e}
+.hi .hi-buy-link:hover{background:#c9552f;box-shadow:0 4px 0 #8f3a1f}
+.hi .hi-buy small{color:#1f4f4a;font-size:13px}
 .bw{--bw:#2EF2FF;--bw-pink:#FF2EC8;--bw-gold:#FFCC33;--bw-lime:#A8FF2E;background:radial-gradient(ellipse at 25% 0,rgba(255,204,51,.08),transparent 55%),radial-gradient(ellipse at 80% 10%,rgba(46,242,255,.09),transparent 50%),#02020a;border-top:1px solid #1a2a3a}
 .bw .eyebrow{color:#8fa6bf}
 .bw h2{color:var(--bw);text-shadow:0 0 14px rgba(46,242,255,.55)}
@@ -466,6 +487,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
           <li><a href="#vv">Vector Volley</a></li>
           <li><a href="#vc">Vector Cascades</a></li>
           <li><a href="#pv">Periscope Vectors</a></li>
+          <li><a href="#hi">Hippo Island</a></li>
           <li><a href="#bw">Block War Belfast 2098</a></li>
         </ul>
       </li>
@@ -1183,10 +1205,54 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
   </div>
 </section>
 
+<!-- ============ HIPPO ISLAND ============ -->
+<section id="hi" class="hi">
+  <div class="wrap">
+    <p class="eyebrow">17 / Also from 3BL - coming to itch.io</p>
+    <h2>Hippo <span class="hl">Island</span></h2>
+    <a class="when" href="https://gamesdevnisite.itch.io" target="_blank" rel="noopener"><i></i>Windows, Linux and Android - on itch.io soon</a>
+    <div class="video-frame">
+      <video controls preload="none" poster="video/hippo_island_poster.jpg" playsinline>
+        <source src="video/hippo_island_gameplay.mp4" type="video/mp4">
+        Your browser can't play this video. <a href="video/hippo_island_gameplay.mp4">Download it</a>.
+      </video>
+    </div>
+    <p class="video-note">A minute of play, filmed in the game, October 2026.</p>
+    <div class="pitch hi-pitch">
+      <div>
+        <p class="lead">A family out of Portaferry, bound for the New World, goes down with their ship in a storm and swims for the shore of a small, lovely island. Palms, bananas, a spring of sweet water. It would be paradise, <strong>except that somebody else lives here. A hippo.</strong></p>
+        <p class="lead">Hippo Island is a cute, harsh, one-screen survival game. Keep Hugh, Martha, wee Tam, Nell and Bonnie the dog fed, watered, warm and well through season after season, and keep every one of them out of Humphrey's way. He sleeps in his wallow, then he wanders, and he cannot be killed. Nobody is coming for you unless you make them see you. The island wears out. The game remembers your longest stay.</p>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li>Gather, chop, quarry, fish and farm; craft at the bench: clothes, a lookout, a boat, a signal fire, a HELP sign.</li>
+          <li>Storms with lightning, hurricane winds and rogue waves. High tides. Days when a shark works the shallows.</li>
+          <li>The signal fire may bring a ship. It may bring pirates.</li>
+          <li>Lose someone and the colour drains out of the island. Only a pat for Bonnie brings it back, for a while.</li>
+          <li>Craft crosses for the lost, or they walk at night.</li>
+          <li>Built from the Forged in Formation cast and island kit; every sound and tune made in code.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hi-buy">
+      <a class="hi-buy-link" href="https://gamesdevnisite.itch.io" target="_blank" rel="noopener">3BL on itch.io</a>
+      <small>The Hippo Island page is going up this week: Windows, Linux and Android, name your own price.</small>
+    </div>
+    <div class="gallery">
+      <button class="shot" data-full="screenshots/hi_the_camp.jpg"><img src="screenshots/hi_the_camp_thumb.jpg" alt="The camp built up with a lookout, a dock, a signal fire and a HELP sign, Hugh fishing from the beach" loading="lazy"><span class="cap">The camp, built up</span></button>
+      <button class="shot" data-full="screenshots/hi_humphrey_is_up.jpg"><img src="screenshots/hi_humphrey_is_up_thumb.jpg" alt="Humphrey the hippo up and wandering while Martha runs for the hut" loading="lazy"><span class="cap">Humphrey is up</span></button>
+      <button class="shot" data-full="screenshots/hi_the_storm.jpg"><img src="screenshots/hi_the_storm_thumb.jpg" alt="A storm over the island, the palms bent, rain driving across" loading="lazy"><span class="cap">The storm</span></button>
+      <button class="shot" data-full="screenshots/hi_the_shark.jpg"><img src="screenshots/hi_the_shark_thumb.jpg" alt="Hugh in the rowing boat with a shark's fin closing in" loading="lazy"><span class="cap">A fin. Row for the dock</span></button>
+      <button class="shot" data-full="screenshots/hi_a_ghost_at_night.jpg"><img src="screenshots/hi_a_ghost_at_night_thumb.jpg" alt="Night on the island with two of the family lost, the colour half gone" loading="lazy"><span class="cap">A ghost at night</span></button>
+      <button class="shot" data-full="screenshots/hi_pirates.jpg"><img src="screenshots/hi_pirates_thumb.jpg" alt="Pirates coming up the beach with one survivor left, the island nearly grey" loading="lazy"><span class="cap">Pirates, and the last of them</span></button>
+    </div>
+  </div>
+</section>
+
 <!-- ============ BLOCK WAR BELFAST 2098 ============ -->
 <section id="bw" class="bw">
   <div class="wrap">
-    <p class="eyebrow">17 / Also from 3BL - out now on itch.io</p>
+    <p class="eyebrow">18 / Also from 3BL - out now on itch.io</p>
     <h2>Block War <span class="hl">Belfast 2098</span></h2>
     <a class="when" href="https://gamesdevnisite.itch.io/block-war-belfast-2098" target="_blank" rel="noopener"><i></i>Play it on itch.io - name your own price, in your browser, Windows and Linux</a>
     <div class="video-frame">
@@ -1227,7 +1293,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 
 <section id="about" class="course">
   <div class="wrap">
-    <p class="eyebrow">18 / About 3BL</p>
+    <p class="eyebrow">19 / About 3BL</p>
     <div class="course-grid">
       <div>
         <h2>Made in <span class="hl">the Ards</span></h2>
@@ -1250,11 +1316,11 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
       <a class="brand" href="#top"><svg viewBox="0 0 21 11" fill="#FF8C2B" style="height:34px" aria-hidden="true"><use href="#figs"/></svg><svg viewBox="0 0 19 7" fill="#FF8C2B" style="height:22px" aria-hidden="true"><use href="#letters"/></svg></a>
       <small>Forged in Formation - coming to Steam Early Access, 3 December 2026</small>
       <small>Defend the Drift - in development, planned for 2027</small>
-      <small>Out now on itch.io: Cyber Vikings, Victory By None, Angry Old Men, Pultz, Neon Mega Tank, Vector Volley, Vector Cascades, Periscope Vectors and Block War Belfast 2098</small>
+      <small>Out now on itch.io: Cyber Vikings, Victory By None, Angry Old Men, Pultz, Neon Mega Tank, Vector Volley, Vector Cascades, Periscope Vectors and Block War Belfast 2098. Next up: Hippo Island</small>
       <small>&copy; 2026 3BL. County Down, Northern Ireland.</small>
     </div>
     <div class="links">
-      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a href="#vbn">Victory By None</a><a href="#aom">Angry Old Men</a><a href="#nmt">Neon Mega Tank</a><a href="#bw">Block War</a><a data-steam href="#wishlist">Wishlist</a>
+      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a href="#vbn">Victory By None</a><a href="#aom">Angry Old Men</a><a href="#nmt">Neon Mega Tank</a><a href="#hi">Hippo Island</a><a href="#bw">Block War</a><a data-steam href="#wishlist">Wishlist</a>
     </div>
   </div>
 </footer>
