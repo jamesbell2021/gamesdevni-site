@@ -44,7 +44,7 @@ Pin it after posting.
 
 > Four grumpy old wizards, one screen. Pass it round, take your turn, and be the last old man standing. Magic missiles curve round the rocks, fireballs set the trees alight, and when it all gets too much there's a nice cup of tea. #indiegame #indiedev #strategygame
 
-## Sat 17 Oct: #ScreenshotSaturday, Defend the Drift
+## Sat 17 Oct: #ScreenshotSaturday, Defend the Drift (the reminder reached the session a day late; prepared for Sun 18 Oct with #strategygame in place of #ScreenshotSaturday)
 
 **File:** `screenshots/drift_hospital_fire.jpg`
 **Reply:** https://gamesdevni.site/#drift
