@@ -2,8 +2,9 @@
 
 James, 14 October 2026: "remind me and help me do all this". A Routine fires
 into the Claude session at 16:57 UK time on Tuesdays, Thursdays, Saturdays and
-Sundays, finds the day's entry here, prepares it and sends James the text and
-the file. James posts between 6 and 9 pm UK time.
+Sundays, finds the day's entry here, prepares it and sends James the text, the
+Instagram caption and the file. James posts both himself, between 6 and 9 pm
+UK time (18 October: "Just tell me what to post and I will do it manually").
 
 **The rules every post keeps**
 - Upload the video or picture itself; never a link to it.
@@ -13,6 +14,18 @@ the file. James posts between 6 and 9 pm UK time.
 - Under 280 characters.
 - Steam is not live yet: no date, no wishlist ask, until its page is up.
 - Every game's post is written the way the website describes it.
+
+**Instagram, the same day as X**
+- The same picture or video. A widescreen clip is fine as a Reel; Instagram
+  shows it with dark bars above and below.
+- The same words, without the X hashtags, then a line's gap, then this set:
+  `#indiegame #indiedev #indiegames #gamedev #strategygame #pixelart
+  #madeinnorthernireland #itchio #retrogaming #indiegamedev` (swap
+  `#strategygame` for `#historygame` on the Defend the Drift posts, and
+  `#itchio` for `#comingsoon` on Forged in Formation).
+- No link in the caption: Instagram does not make it clickable. The bio
+  carries one link, https://gamesdevni.site, which has every game on it.
+- Post it straight after the X one; one notification covers both.
 
 **Links for the replies**
 - Website: https://gamesdevni.site
