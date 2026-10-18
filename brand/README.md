@@ -9,3 +9,24 @@ Scale and rhythm come from the grid's own arithmetic. A mark is one cell; a figu
 Composition balances a single bright mass against a long quiet field. Weight sits to one side; the other side breathes. Secondary elements, a row of small lit cells, a hairline, a few words in a machine face, are placed low and small, like the markings on an instrument. Text is a label, never a sentence: a name, a place, an address, in a monospaced hand that could have come off a terminal. The words confirm what the form has already said.
 
 Hierarchy is luminance. The brightest thing is the subject. Everything else steps down in deliberate increments of light, so the viewer reads the work in order without being told the order. The whole must feel inevitable, as if no cell could be moved without loosening the rest, and it must look like what it is: master-level work, painstakingly set, the product of deep expertise and countless small decisions made well.
+
+---
+
+## 3BL_Indie (from 18 October 2026)
+
+The studio is **3BL_Indie** now, to match the X account: a different company
+is called 3BL. The three-figure badge is unchanged; the wordmark reads
+3BL_INDIE, with 3BL in the filament orange (#FF8C2B) and _INDIE in the logo's
+cyan (#1FC8DA), set in the same seven-cell letters.
+
+| File | Use |
+|---|---|
+| `3BL_Indie_logo.svg` / `.png` | the badge and wordmark side by side, transparent ground |
+| `3BL_Indie_logo_dark.png` | the same on the near-black field |
+| `3BL_Indie_wordmark.svg` / `.png` | the wordmark alone |
+| `3BL_Indie_X_banner_1500x500.png` (`.svg`) | the X header, replacing `3BL_X_banner_1500x500.png` |
+| `3BL_profile_*.png` | the X profile picture: still right, it is the badge alone |
+
+The pixel rectangles for every letter are in the website's `<g id="letters">`
+and in the splash script of Periscope Vectors and Vector Cascades
+(`scripts/splash.gd`), so any new game can copy them.

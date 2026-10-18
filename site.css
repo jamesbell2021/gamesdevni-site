@@ -1,5 +1,5 @@
-/* 3BL website styles, shared by index.html and games.html. */
-/* ============ PALETTE (taken from the 3BL logo) - change colours here ============ */
+/* 3BL_Indie website styles, shared by index.html and games.html. */
+/* ============ PALETTE (taken from the 3BL_Indie logo) - change colours here ============ */
 :root{
   --bg:        #0E1116;   /* logo background */
   --bg-2:      #141922;   /* raised panels */
@@ -39,7 +39,9 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(14,17,22,.86);bac
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
 .brand{display:flex;align-items:center;gap:12px;color:var(--text);font-weight:700;letter-spacing:.06em}
 .brand svg{height:22px;width:auto}
-nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;align-items:center}
+nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;font-size:12px;letter-spacing:.1em;text-transform:uppercase;align-items:center}
+nav ul a{white-space:nowrap}
+nav .wrap{width:min(1240px,100% - 40px)}
 nav ul a{color:var(--text-dim)}
 nav ul a:hover{color:var(--accent)}
 nav ul a.nav-cta{color:var(--bg);background:var(--accent);padding:8px 14px}
@@ -51,7 +53,7 @@ nav ul.more-list{display:none;position:absolute;top:100%;left:-16px;flex-directi
 nav ul.more-list a{display:block;padding:9px 16px;white-space:nowrap}
 nav li.more:hover ul.more-list,nav li.more:focus-within ul.more-list{display:flex}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--text);font:inherit;padding:6px 10px;cursor:pointer}
-@media(max-width:1100px){
+@media(max-width:1240px){
   .nav-toggle{display:block}
   nav ul{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);align-items:stretch}
   nav ul.open{display:flex}
@@ -91,13 +93,13 @@ nav li.more:hover ul.more-list,nav li.more:focus-within ul.more-list{display:fle
 .hero .sub{margin:0 0 30px;font-size:clamp(14px,1.6vw,17px);max-width:52ch;color:var(--text-dim)}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
 
-/* ---- Wide lockup: framed figures on the left, 3BL letters on the right ---- */
-.lockup{justify-self:center;width:min(400px,100%);display:flex;align-items:center;gap:6%}
-.lockup .badge{flex:0 0 38%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:var(--bg);
+/* ---- Stacked lockup: the framed figures, with the 3BL_INDIE wordmark under them ---- */
+.lockup{justify-self:center;width:min(440px,100%);display:flex;flex-direction:column;align-items:center;gap:28px}
+.lockup .badge{width:46%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:var(--bg);
   clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);
   box-shadow:inset 0 0 0 3px var(--accent);filter:drop-shadow(0 0 40px rgba(255,140,43,.22))}
 .lockup .badge svg{width:64%}
-.lockup .letters{flex:1 1 auto;min-width:0}
+.lockup .letters{width:100%;min-width:0}
 .lockup .letters svg{width:100%;display:block}
 @media(max-width:900px){.lockup{display:none}}
 

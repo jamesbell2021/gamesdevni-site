@@ -1,4 +1,4 @@
-3BL - Forged in Formation website (rebuilt 1 October 2026)
+3BL_Indie - Forged in Formation website (rebuilt 1 October 2026; the studio is 3BL_Indie from 18 October 2026)
 
 Upload the whole folder as it is: index.html, games.html, site.css,
 screenshots/, video/.
