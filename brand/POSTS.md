@@ -34,6 +34,7 @@ UK time (18 October: "Just tell me what to post and I will do it manually").
 - Pultz: https://gamesdevnisite.itch.io/pultz
 - Victory By None: https://gamesdevnisite.itch.io/victory-by-none
 - Neon Mega Tank: https://gamesdevnisite.itch.io/neon-mega-tank
+- Tripod Attack!: https://gamesdevnisite.itch.io/tripod-attack
 - All five: https://gamesdevnisite.itch.io
 
 Files are in this repo: `video/` and `screenshots/`. "To make" means the
@@ -154,4 +155,13 @@ page pointing to it.
 > You are the ghost. A terraced house in Belfast, three families from 1980 to 1987, and one job: get them out without laying a hand on anyone. Make the room stink and they'll blame Granny. The House Is Haunted, coming soon. #indiegame #indiedev #pixelart
 
 Instagram: the same words without the X hashtags, then the usual set with `#horrorgame` in place of `#strategygame` and `#comingsoon` in place of `#itchio`.
+
+## Ready now: Tripod Attack! is out (added 19 Oct, the day it went live on itch.io)
+
+**File:** the Tripod Attack! reel (`tripod-attack-reel.mp4`, 1080x1920, made by `tools/make_reel.py` in the Animation- repo, branch `claude/tripod-attack-arcade-pp311n`; not in git, sent in chat) for both. Picture instead: `tripod-attack/launch/out/x_card_1200x675.jpg` on X, `instagram_1080x1080.jpg` on Instagram.
+**Reply:** Play it on itch.io: https://gamesdevnisite.itch.io/tripod-attack
+
+> TRIPOD ATTACK! is out. Shoot the legs, duck the Heat-Ray, take Europe back: a vector arcade game after H. G. Wells, with fighting-machines that come down under real physics. Ten sectors from Belfast to Athens. Windows, Linux and Android. #indiegame #indiedev #retrogaming
+
+Instagram: the full caption in `tripod-attack/launch/reel-caption.md` (it ends "Link in bio"; the bio link is https://gamesdevni.site, which now has Tripod Attack! at the top of the games page).
 

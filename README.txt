@@ -7,10 +7,10 @@ TWO PAGES (since 15 October 2026):
   index.html  Forged in Formation (the Steam wishlist page), Defend the
               Drift, The House Is Haunted (#haunted, coming soon: its
               vertical reel and screenshots hih_*), then one "More from
-              3BL" strip (#itch): a grid of ten
+              3BL" strip (#itch): a grid of eleven
               small cards, one per itch.io game, newest first. No trailers or
               buy widgets there, so the front page stays quick.
-  games.html  The ten itch.io games in full, newest first: each one's trailer,
+  games.html  The eleven itch.io games in full, newest first: each one's trailer,
               buy widget and screenshots, under the same card grid.
   site.css    Every style for both pages (the palette is at the top).
 

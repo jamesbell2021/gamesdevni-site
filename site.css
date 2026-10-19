@@ -394,6 +394,24 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .pv .pv-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--pv-amber);color:var(--pv-amber);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center}
 .pv .pv-buy-link:hover{color:#000;background:var(--pv-amber)}
 @media(max-width:600px){.pv .pv-buy iframe{display:none}.pv .pv-buy-link{display:flex}}
+/* Tripod Attack!: green vector lines on a black phosphor tube, the Heat-Ray in red. */
+.ta{--ta:#4DFF7A;--ta-red:#FF3B3B;background:repeating-linear-gradient(0deg,rgba(77,255,122,.03) 0 1px,transparent 1px 4px),radial-gradient(ellipse at 50% 0,rgba(77,255,122,.10),transparent 60%),#000;border-top:1px solid #0f3a1a}
+.ta .eyebrow{color:#6fae7e}
+.ta h2{color:var(--ta);text-shadow:0 0 14px rgba(77,255,122,.6)}
+.ta h2 .hl{color:var(--ta-red);text-shadow:0 0 14px rgba(255,59,59,.6)}
+.ta .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--ta);color:var(--ta);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(77,255,122,.3)}
+.ta .when i{width:8px;height:8px;background:var(--ta);display:block;box-shadow:0 0 8px var(--ta)}
+.ta a.when:hover{color:#000;background:var(--ta)}
+.ta a.when:hover i{background:#000;box-shadow:none}
+.ta ul.ticks li::before{background:var(--ta);box-shadow:0 0 6px var(--ta)}
+.ta .video-frame{box-shadow:0 0 0 1px #0f3a1a,0 0 40px rgba(77,255,122,.2)}
+.ta .video-frame iframe{width:100%;display:block;aspect-ratio:16/9;border:0;background:#000}
+.ta .ta-pitch,.ta .gallery,.ta .ta-buy{margin-top:44px}
+.ta .shot{border-color:#0f3a1a}
+.ta .ta-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(77,255,122,.18)}
+.ta .ta-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--ta);color:var(--ta);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center}
+.ta .ta-buy-link:hover{color:#000;background:var(--ta)}
+@media(max-width:600px){.ta .ta-buy iframe{display:none}.ta .ta-buy-link{display:flex}}
 
 /* ============ BLOCK WAR BELFAST 2098 ============ */
 /* ---- Hippo Island: the one sunny section ---- */
