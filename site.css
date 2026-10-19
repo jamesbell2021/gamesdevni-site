@@ -217,6 +217,23 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .drift .drift-videos{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .drift .drift-videos .video-note{margin-top:12px}
 @media (max-width:860px){.drift .drift-videos{grid-template-columns:1fr}}
+/* The House Is Haunted: ghost-green on the night, one warning red. */
+.haunted{--ghost:#8FE6CF;--ghost-dim:#5FA898;--warn:#FF5A3C;background:linear-gradient(180deg,rgba(143,230,207,.06),transparent 55%),var(--bg);border-top:1px solid var(--line)}
+.haunted .eyebrow{color:var(--ghost-dim)}
+.haunted h2 .hl{color:var(--ghost)}
+.haunted .date{font-style:italic;color:var(--text);margin:6px 0 0;font-size:clamp(15px,1.8vw,19px)}
+.haunted .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--warn);color:var(--warn);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px}
+.haunted .when i{width:8px;height:8px;background:var(--warn);display:block}
+.haunted-grid{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:44px;align-items:start}
+.haunted .reel{margin-top:0;max-width:360px}
+.haunted .reel video{aspect-ratio:9/16}
+.haunted .video-note{margin-top:12px}
+.haunted ul.ticks{margin-top:22px}
+.haunted ul.ticks li::before{background:var(--ghost)}
+.haunted ul.ticks li{font-size:14px}
+.haunted .gallery{margin-top:44px}
+@media (max-width:860px){.haunted-grid{grid-template-columns:1fr}.haunted .reel{margin:0 auto}}
+
 .drift .drift-pitch{margin-top:44px}
 
 /* ---- Cyber Vikings: neon on black, like the game itself ---- */

@@ -4,8 +4,10 @@ Upload the whole folder as it is: index.html, games.html, site.css,
 screenshots/, video/.
 
 TWO PAGES (since 15 October 2026):
-  index.html  Forged in Formation (the Steam wishlist page) and Defend the
-              Drift, then one "More from 3BL" strip (#itch): a grid of ten
+  index.html  Forged in Formation (the Steam wishlist page), Defend the
+              Drift, The House Is Haunted (#haunted, coming soon: its
+              vertical reel and screenshots hih_*), then one "More from
+              3BL" strip (#itch): a grid of ten
               small cards, one per itch.io game, newest first. No trailers or
               buy widgets there, so the front page stays quick.
   games.html  The ten itch.io games in full, newest first: each one's trailer,
@@ -20,8 +22,10 @@ platforms). Add it to the "More Games" menu on both pages too.
 
 The itch.io sections described further down this file now live on games.html.
 Total about 63 MB, of which the trailer is 28 MB (1080p, starts playing
-before it has fully downloaded), Defend the Drift's teaser 22 MB and the
-2 Player Battle loop 2 MB.
+before it has fully downloaded), Defend the Drift's teaser 22 MB, The House
+Is Haunted's reel about 9 MB and the 2 Player Battle loop 2 MB. The House Is
+Haunted's reel is made in its own repo (Belfast-Haunting: ./make_reel.sh);
+the copy here is re-encoded smaller for the web.
 
 When the Steam store page is live, open index.html, find this near the
 bottom and fill in the two lines:

@@ -145,3 +145,13 @@ Then round again from the top with new clips and pictures, and the Steam week
 whenever the page goes live: the full Forged in Formation trailer pinned with
 "Wishlist now", #WishlistWednesday, r/IndieGaming, and a line on every itch
 page pointing to it.
+
+## Ready whenever James wants it: The House Is Haunted, coming soon (added 19 Oct)
+
+**File:** `video/the_house_is_haunted_reel.mp4` for Instagram (it is already vertical, 1080x1920, so it fills the Reel), and the same file on X. The full-quality original is in the Belfast-Haunting repo (`./make_reel.sh`).
+**Reply:** https://gamesdevni.site/#haunted
+
+> You are the ghost. A terraced house in Belfast, three families from 1980 to 1987, and one job: get them out without laying a hand on anyone. Make the room stink and they'll blame Granny. The House Is Haunted, coming soon. #indiegame #indiedev #pixelart
+
+Instagram: the same words without the X hashtags, then the usual set with `#horrorgame` in place of `#strategygame` and `#comingsoon` in place of `#itchio`.
+
