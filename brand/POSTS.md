@@ -65,9 +65,9 @@ Pin it after posting.
 
 > Rorke's Drift, the night of 22 January 1879. The hospital's thatch is alight and the garrison holds the wall beyond it. Captured in engine. #ScreenshotSaturday #indiegame #indiedev
 
-## Tue 20 Oct: Forged in Formation, 30 seconds (to make)
+## Tue 20 Oct: Forged in Formation, 30 seconds (prepared 20 Oct)
 
-**File:** a 30-second cut of `video/forged_in_formation_trailer.mp4` (to make: pick the best 30 s from a contact sheet, fade out, keep the title card)
+**File:** `video/forged_in_formation_30s.mp4` (made 20 Oct: the trailer's 8 s to 35 s, "His people are scattered" to "Red, run", then a card of its own, "Coming to Steam" with no date; the trailer's own end card names 3 December and a wishlist, so it is not used)
 **Reply:** https://gamesdevni.site
 
 > Round up the rebels of '98 and lead them out past redcoat volleys, charging boars and one very angry gaoler. One button snaps your crowd into column, line or square. Pick the right shape in time. Forged in Formation, coming to Steam. #indiegame #indiedev #TrailerTuesday
