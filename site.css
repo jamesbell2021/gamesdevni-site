@@ -224,6 +224,15 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .haunted .date{font-style:italic;color:var(--text);margin:6px 0 0;font-size:clamp(15px,1.8vw,19px)}
 .haunted .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--warn);color:var(--warn);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px}
 .haunted .when i{width:8px;height:8px;background:var(--warn);display:block}
+.haunted a.when{border-color:var(--ghost);color:var(--ghost);box-shadow:0 0 14px rgba(143,230,207,.25)}
+.haunted a.when i{background:var(--ghost)}
+.haunted a.when:hover{color:#000;background:var(--ghost)}
+.haunted a.when:hover i{background:#000}
+.haunted .haunted-buy{margin-top:44px}
+.haunted .haunted-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(143,230,207,.16)}
+.haunted .haunted-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--ghost);color:var(--ghost);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;box-shadow:0 0 18px rgba(143,230,207,.25)}
+.haunted .haunted-buy-link:hover{color:#000;background:var(--ghost)}
+@media(max-width:600px){.haunted .haunted-buy iframe{display:none}.haunted .haunted-buy-link{display:flex}}
 .haunted-grid{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:44px;align-items:start}
 .haunted .reel{margin-top:0;max-width:360px}
 .haunted .reel video{aspect-ratio:9/16}

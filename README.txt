@@ -5,8 +5,9 @@ screenshots/, video/.
 
 TWO PAGES (since 15 October 2026):
   index.html  Forged in Formation (the Steam wishlist page), Defend the
-              Drift, The House Is Haunted (#haunted, coming soon: its
-              vertical reel and screenshots hih_*), then one "More from
+              Drift, The House Is Haunted (#haunted, out now in early
+              access on itch.io since 21 October 2026: its vertical reel,
+              itch.io buy widget (project 5197583) and screenshots hih_*), then one "More from
               3BL" strip (#itch): a grid of eleven
               small cards, one per itch.io game, newest first. No trailers or
               buy widgets there, so the front page stays quick.
