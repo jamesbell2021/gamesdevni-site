@@ -404,6 +404,24 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .pv .pv-buy-link:hover{color:#000;background:var(--pv-amber)}
 @media(max-width:600px){.pv .pv-buy iframe{display:none}.pv .pv-buy-link{display:flex}}
 /* Tripod Attack!: green vector lines on a black phosphor tube, the Heat-Ray in red. */
+.geode{--geo:#8A6BFF;--geo-cyan:#3FD8FF;background:radial-gradient(ellipse at 50% 0,rgba(138,107,255,.12),transparent 60%),#07060f;border-top:1px solid #2a2148}
+.geode .eyebrow{color:#8f86b8}
+.geode h2{color:var(--geo);text-shadow:0 0 14px rgba(138,107,255,.55)}
+.geode h2 .hl{color:var(--geo-cyan);text-shadow:0 0 14px rgba(63,216,255,.55)}
+.geode .date{font-style:italic;color:var(--text);margin:6px 0 0;font-size:clamp(15px,1.8vw,19px)}
+.geode .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--geo-cyan);color:var(--geo-cyan);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(63,216,255,.3)}
+.geode .when i{width:8px;height:8px;background:var(--geo-cyan);display:block;box-shadow:0 0 8px var(--geo-cyan)}
+.geode a.when:hover{color:#000;background:var(--geo-cyan)}
+.geode a.when:hover i{background:#000;box-shadow:none}
+.geode ul.ticks li::before{background:var(--geo);box-shadow:0 0 6px var(--geo)}
+.geode .video-frame{box-shadow:0 0 0 1px #2a2148,0 0 40px rgba(138,107,255,.2)}
+.geode .video-frame iframe{width:100%;display:block;aspect-ratio:16/9;border:0;background:#000}
+.geode .geode-pitch,.geode .gallery,.geode .geode-buy{margin-top:44px}
+.geode .shot{border-color:#2a2148}
+.geode .geode-buy iframe{display:block;border:0;box-shadow:0 0 30px rgba(138,107,255,.18)}
+.geode .geode-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--geo-cyan);color:var(--geo-cyan);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center}
+.geode .geode-buy-link:hover{color:#000;background:var(--geo-cyan)}
+@media(max-width:600px){.geode .geode-buy iframe{display:none}.geode .geode-buy-link{display:flex}}
 .ta{--ta:#4DFF7A;--ta-red:#FF3B3B;background:repeating-linear-gradient(0deg,rgba(77,255,122,.03) 0 1px,transparent 1px 4px),radial-gradient(ellipse at 50% 0,rgba(77,255,122,.10),transparent 60%),#000;border-top:1px solid #0f3a1a}
 .ta .eyebrow{color:#6fae7e}
 .ta h2{color:var(--ta);text-shadow:0 0 14px rgba(77,255,122,.6)}

@@ -8,10 +8,10 @@ TWO PAGES (since 15 October 2026):
               Drift, The House Is Haunted (#haunted, out now in early
               access on itch.io since 21 October 2026: its vertical reel,
               itch.io buy widget (project 5197583) and screenshots hih_*), then one "More from
-              3BL" strip (#itch): a grid of eleven
+              3BL" strip (#itch): a grid of twelve
               small cards, one per itch.io game, newest first. No trailers or
               buy widgets there, so the front page stays quick.
-  games.html  The eleven itch.io games in full, newest first: each one's trailer,
+  games.html  The twelve itch.io games in full, newest first: each one's trailer,
               buy widget and screenshots, under the same card grid.
   site.css    Every style for both pages (the palette is at the top).
 
@@ -107,3 +107,10 @@ the Neon Mega Tank section ends with a "日本語でも遊べる / Also in Japan
 sub-gallery of four nmt_ja_*.jpg screenshots (title menu, a wave banner, the
 boss fight and game over), taken on 13 October 2026 with the game switched to
 Japanese and its phone controls on.
+
+Geode (on itch.io since 20 October 2026, Windows and Linux, $5.99 or more,
+https://gamesdevnisite.itch.io/geode) has its own section, #geode, at the top
+of games.html, and a card in both grids. Its trailer is the YouTube video from
+its itch.io page (SSZp-fdo7CY); the six geode_*.jpg screenshots are the
+itch.io page's own. The section embeds itch.io's buy widget (project 5197472);
+on screens under 600px a "Get Geode on itch.io" button shows in its place.
