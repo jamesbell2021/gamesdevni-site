@@ -72,7 +72,7 @@ Pin it after posting.
 
 > Round up the rebels of '98 and lead them out past redcoat volleys, charging boars and one very angry gaoler. One button snaps your crowd into column, line or square. Pick the right shape in time. Forged in Formation, coming to Steam. #indiegame #indiedev #TrailerTuesday
 
-## Thu 22 Oct: Cyber Vikings
+## Thu 22 Oct: Cyber Vikings (prepared 22 Oct)
 
 **File:** `video/cyber_vikings_gameplay.mp4`
 **Reply:** Play it on itch.io: https://gamesdevnisite.itch.io/cybervikings
