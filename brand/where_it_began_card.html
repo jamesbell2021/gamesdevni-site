@@ -1,0 +1,68 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Caslon";src:url(/home/user/defendthedrift/Art/Fonts/LibreCaslonText-Regular.ttf)}
+@font-face{font-family:"Caslon";font-weight:700;src:url(/home/user/defendthedrift/Art/Fonts/LibreCaslonText-Bold.ttf)}
+@font-face{font-family:"Caslon";font-style:italic;src:url(/home/user/defendthedrift/Art/Fonts/LibreCaslonText-Italic.ttf)}
+@font-face{font-family:"JBM";src:url(JetBrainsMono-Regular.ttf)}
+:root{--bg:#0E1116;--line:#2A303C;--muted:#59606E;--cream:#F2EFE6;--dim:#B8B5AC;--orange:#FF8C2B;--gold:#D9B36C;--gold-dim:#9C8458}
+body{margin:0;background:#333;padding:24px}
+svg{display:block;shape-rendering:crispEdges}
+#card{width:1080px;height:1080px;background:var(--bg);position:relative;overflow:hidden;font-family:"Caslon",serif;color:var(--cream)}
+#card .grid{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(242,239,230,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(242,239,230,.04) 1px,transparent 1px);
+  background-size:20px 20px;background-position:10px 10px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 45%,#000 10%,transparent 100%);mask-image:radial-gradient(ellipse 70% 70% at 50% 45%,#000 10%,transparent 100%)}
+#card .glow{position:absolute;left:190px;top:150px;width:700px;height:480px;border-radius:50%;background:radial-gradient(ellipse,rgba(217,179,108,.10),transparent 65%)}
+#card .eyebrow{position:absolute;left:0;right:0;top:118px;text-align:center;font-family:"JBM",monospace;font-size:19px;letter-spacing:.42em;color:var(--gold-dim);text-transform:uppercase}
+#card .eyebrow b{font-weight:400;color:var(--line);padding:0 10px}
+/* the two marks, as they are struck: capitals, letter by letter */
+#card .mark{position:absolute;left:0;right:0;text-align:center;font-weight:700;color:var(--gold);letter-spacing:.3em;line-height:1;white-space:nowrap;text-shadow:0 2px 0 rgba(0,0,0,.6),0 0 60px rgba(217,179,108,.25)}
+#card .jb{top:240px;font-size:140px}
+#card .bw{top:438px;font-size:100px;letter-spacing:.26em}
+#card .mark span{display:inline-block}
+#card .mark .w{transform:rotate(-7deg) translateY(7px);display:inline-block}
+#card .rule{position:absolute;left:300px;right:300px;top:612px;height:1px;background:var(--line)}
+#card .rule i{position:absolute;left:50%;top:-4px;width:9px;height:9px;margin-left:-5px;background:var(--gold-dim);transform:rotate(45deg)}
+#card .line{position:absolute;left:90px;right:90px;top:652px;text-align:center;font-style:italic;font-size:30px;line-height:1.5;color:var(--dim)}
+#card .foot{position:absolute;left:0;right:0;bottom:92px;text-align:center;font-family:"JBM",monospace;font-size:17px;letter-spacing:.36em;color:var(--muted);text-transform:uppercase}
+#card .foot b{font-weight:400;color:var(--orange)}
+#card .lockup{position:absolute;left:50%;bottom:150px;margin-left:-57px;display:flex;align-items:center;gap:14px}
+#card .lockup .badge{position:relative;width:46px;height:46px;background:var(--orange);
+  clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px)}
+#card .lockup .badge i{position:absolute;inset:3px;background:var(--bg);
+  clip-path:polygon(3px 0,100% 0,100% calc(100% - 3px),calc(100% - 3px) 100%,0 100%,0 3px)}
+#card .lockup .badge svg{position:absolute;left:8px;top:12px;width:30px;height:16px}
+#card .lockup .letters svg{width:54px;height:20px}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="figs">
+    <rect x="1" y="2" width="3" height="2"/><rect x="0" y="4" width="5" height="2"/><rect x="1" y="6" width="3" height="2"/>
+    <rect x="1" y="8" width="1" height="2"/><rect x="3" y="8" width="1" height="2"/><rect x="0" y="10" width="2" height="1"/><rect x="3" y="10" width="2" height="1"/>
+    <rect x="9" y="0" width="3" height="2"/><rect x="7" y="2" width="7" height="4"/><rect x="8" y="6" width="5" height="1"/>
+    <rect x="8" y="7" width="2" height="3"/><rect x="11" y="7" width="2" height="3"/><rect x="7" y="10" width="3" height="1"/><rect x="11" y="10" width="3" height="1"/>
+    <rect x="17" y="2" width="3" height="2"/><rect x="16" y="4" width="5" height="2"/><rect x="17" y="6" width="3" height="2"/>
+    <rect x="17" y="8" width="1" height="2"/><rect x="19" y="8" width="1" height="2"/><rect x="16" y="10" width="2" height="1"/><rect x="19" y="10" width="2" height="1"/>
+  </g>
+  <g id="letters">
+    <rect x="0" y="0" width="5" height="1"/><rect x="4" y="1" width="1" height="5"/><rect x="1" y="3" width="3" height="1"/><rect x="0" y="6" width="5" height="1"/>
+    <rect x="7" y="0" width="1" height="7"/><rect x="7" y="0" width="4" height="1"/><rect x="10" y="1" width="2" height="2"/><rect x="7" y="3" width="4" height="1"/>
+    <rect x="10" y="4" width="2" height="2"/><rect x="7" y="6" width="4" height="1"/><rect x="14" y="0" width="1" height="7"/><rect x="14" y="6" width="5" height="1"/>
+  </g>
+</defs></svg>
+
+<div id="card">
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="eyebrow">Where it began <b>·</b> Defend the Drift</div>
+  <div class="mark jb"><span>J</span> <span>B</span></div>
+  <div class="mark bw"><span>B</span><span>O</span><span>R</span><span>E</span>&nbsp;&nbsp;<span class="w">W</span><span>A</span><span>R</span></div>
+  <div class="rule"><i></i></div>
+  <div class="line">Cut by hand into a Victorian sword bayonet<br>that came down through our mother's family, the Bouchers.<br>It is why this game tells both sides with care.</div>
+  <div class="lockup">
+    <div class="badge"><i></i><svg viewBox="0 0 21 11" fill="#FF8C2B"><use href="#figs"/></svg></div>
+    <div class="letters"><svg viewBox="0 0 19 7" fill="#FF8C2B"><use href="#letters"/></svg></div>
+  </div>
+  <div class="foot">gamesdevni.site</div>
+</div>
+</body></html>

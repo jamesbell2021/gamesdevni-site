@@ -86,9 +86,9 @@ Pin it after posting.
 
 > The square holds. A charging boar breaks on the bayonets of a crowd that got into shape in time. Forged in Formation, coming to Steam. #ScreenshotSaturday #indiegame #indiedev
 
-## Sun 25 Oct: where it began
+## Sun 25 Oct: where it began (prepared 25 Oct; James to post it tonight or Mon 26 Oct, since Saturday's picture was moved to the 25th)
 
-**File:** a card (to make): the bayonet's words on the dark ground in the 3BL style, "J B" and "BORE WAR" as struck, no photo unless James sends one he wants used
+**File:** `brand/where_it_began_1080.png` (made 25 Oct from `brand/where_it_began_card.html`: the two marks in gold on the dark ground, the W tilted as the punch slipped, three lines under them, the 3BL mark; no photo)
 **Reply:** The story: https://gamesdevni.site/#drift
 
 > Defend the Drift began with a family heirloom: a Victorian sword bayonet that came down through our mother's family, the Bouchers. On one side someone cut J B; on the other, letter by letter, BORE WAR. It's why the game tells both sides with care. #indiedev #history
