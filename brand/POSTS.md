@@ -79,7 +79,7 @@ Pin it after posting.
 
 > A turn-based Viking strategy game drawn like an 80s vector arcade cabinet: every longboat, catapult and castle a line of glowing neon on black. March over the hills, row across the fjord, storm the castles before winter freezes the water. #indiegame #indiedev #strategygame
 
-## Sat 24 Oct: #ScreenshotSaturday, Forged in Formation
+## Sat 24 Oct: #ScreenshotSaturday, Forged in Formation (the reminder reached the session a day late; prepared for Sun 25 Oct with #strategygame in place of #ScreenshotSaturday)
 
 **File:** `screenshots/boar_breaks_on_square.jpg`
 **Reply:** https://gamesdevni.site
