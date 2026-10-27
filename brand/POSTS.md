@@ -94,7 +94,7 @@ Pin it after posting.
 
 > Defend the Drift began with a family heirloom: a Victorian sword bayonet that came down through our mother's family, the Bouchers. On one side someone cut J B; on the other, letter by letter, BORE WAR. It's why the game tells both sides with care. #indiedev #history
 
-## Tue 27 Oct: the rest of the war
+## Tue 27 Oct: the rest of the war (prepared 27 Oct)
 
 **File:** `video/defend_the_drift_war.mp4`
 **Reply:** https://gamesdevni.site/#drift
