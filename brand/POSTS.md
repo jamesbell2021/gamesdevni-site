@@ -35,6 +35,7 @@ UK time (18 October: "Just tell me what to post and I will do it manually").
 - Victory By None: https://gamesdevnisite.itch.io/victory-by-none
 - Neon Mega Tank: https://gamesdevnisite.itch.io/neon-mega-tank
 - Tripod Attack!: https://gamesdevnisite.itch.io/tripod-attack
+- Rust & Iron: https://gamesdevnisite.itch.io/rust-and-iron
 - All five: https://gamesdevnisite.itch.io
 
 Files are in this repo: `video/` and `screenshots/`. "To make" means the
@@ -165,3 +166,11 @@ Instagram: the same words without the X hashtags, then the usual set with `#horr
 
 Instagram: the full caption in `tripod-attack/launch/reel-caption.md` (it ends "Link in bio"; the bio link is https://gamesdevni.site, which now has Tripod Attack! at the top of the games page).
 
+## Ready now: Rust & Iron is out (added 27 Oct)
+
+**File:** the release advert, `rust_and_iron_out_now_16x9.mp4` on X and `rust_and_iron_out_now_9x16.mp4` (1080x1920, fills the Reel) on Instagram, both 32 s, made by `promo/make_advert.sh` in the rust-and-iron repo (not in git, sent in chat). The web copy of the 16:9 one is `video/rust_and_iron_trailer.mp4`.
+**Reply:** Play it on itch.io: https://gamesdevnisite.itch.io/rust-and-iron
+
+> Rust & Iron: Vertical Decay is out. Build a neon city on a rock in the sea, stack it high, bring in ships and planes, and keep it standing while the salt spray eats the steel. Push it too far and it goes in the sea. Windows, Linux and Android. #indiegame #indiedev #citybuilder
+
+Instagram: the same words then "Link in bio.", without the X hashtags, then the usual set with `#citybuilder` in place of `#pixelart` (it's vector art, not pixel art). The bio link, https://gamesdevni.site, has Rust & Iron at the top of the games page.

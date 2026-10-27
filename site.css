@@ -403,6 +403,23 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .pv .pv-buy-link{display:none;align-items:center;justify-content:center;width:100%;border:1px solid var(--pv-amber);color:var(--pv-amber);padding:16px 18px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center}
 .pv .pv-buy-link:hover{color:#000;background:var(--pv-amber)}
 @media(max-width:600px){.pv .pv-buy iframe{display:none}.pv .pv-buy-link{display:flex}}
+/* Rust & Iron: neon cyan and magenta on a black vector sea, rust orange for the warnings. */
+.ri{--ri:#19E6FF;--ri-mag:#FF2BD6;--ri-rust:#FF8A1F;background:repeating-linear-gradient(90deg,rgba(25,230,255,.035) 0 1px,transparent 1px 48px),repeating-linear-gradient(0deg,rgba(25,230,255,.035) 0 1px,transparent 1px 48px),radial-gradient(ellipse at 50% 0,rgba(255,43,214,.10),transparent 60%),#04070f;border-top:1px solid #12324a}
+.ri .eyebrow{color:#7fa6b8}
+.ri h2{color:var(--ri);text-shadow:0 0 14px rgba(25,230,255,.6)}
+.ri h2 .hl{color:var(--ri-mag);text-shadow:0 0 14px rgba(255,43,214,.6)}
+.ri .date{font-style:italic;color:var(--text);margin:6px 0 0;font-size:clamp(15px,1.8vw,19px)}
+.ri .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--ri);color:var(--ri);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(25,230,255,.3)}
+.ri .when i{width:8px;height:8px;background:var(--ri);display:block;box-shadow:0 0 8px var(--ri)}
+.ri a.when:hover{color:#000;background:var(--ri)}
+.ri a.when:hover i{background:#000;box-shadow:none}
+.ri ul.ticks li::before{background:var(--ri-mag);box-shadow:0 0 6px var(--ri-mag)}
+.ri .video-frame{box-shadow:0 0 0 1px #12324a,0 0 40px rgba(25,230,255,.2)}
+.ri .ri-pitch,.ri .gallery,.ri .ri-buy{margin-top:44px}
+.ri .shot{border-color:#12324a}
+.ri .ri-buy-link{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;border:1px solid var(--ri);color:var(--ri);padding:18px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;text-align:center;box-shadow:0 0 24px rgba(25,230,255,.18)}
+.ri .ri-buy-link i{width:8px;height:8px;background:var(--ri-mag);display:block;box-shadow:0 0 8px var(--ri-mag)}
+.ri .ri-buy-link:hover{color:#000;background:var(--ri)}
 /* Tripod Attack!: green vector lines on a black phosphor tube, the Heat-Ray in red. */
 .geode{--geo:#8A6BFF;--geo-cyan:#3FD8FF;background:radial-gradient(ellipse at 50% 0,rgba(138,107,255,.12),transparent 60%),#07060f;border-top:1px solid #2a2148}
 .geode .eyebrow{color:#8f86b8}
