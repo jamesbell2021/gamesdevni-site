@@ -101,7 +101,7 @@ Pin it after posting.
 
 > Hlobane, Kambula and Ulundi: the rest of the Anglo-Zulu War in Defend the Drift. Horsemen off the mountain by the Devil's Pass, the uNgobamakhosi stung into charging alone, and the 17th Lancers riding out of the square. Captured in engine. #indiegame #indiedev #TrailerTuesday
 
-## Thu 29 Oct: Pultz
+## Thu 29 Oct: Pultz (prepared 29 Oct)
 
 **File:** `screenshots/pultz_explosive.jpg` and `screenshots/pultz_dundrum.jpg` (two pictures; no trailer yet)
 **Reply:** Play it on itch.io: https://gamesdevnisite.itch.io/pultz
