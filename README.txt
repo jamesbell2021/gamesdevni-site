@@ -8,10 +8,10 @@ TWO PAGES (since 15 October 2026):
               Drift, The House Is Haunted (#haunted, out now in early
               access on itch.io since 21 October 2026: its vertical reel,
               itch.io buy widget (project 5197583) and screenshots hih_*), then one "More from
-              3BL" strip (#itch): a grid of fourteen
+              3BL" strip (#itch): a grid of fifteen
               small cards, one per itch.io game, newest first. No trailers or
               buy widgets there, so the front page stays quick.
-  games.html  The fourteen itch.io games in full, newest first: each one's trailer,
+  games.html  The fifteen itch.io games in full, newest first: each one's trailer,
               buy widget and screenshots, under the same card grid.
   site.css    Every style for both pages (the palette is at the top).
 
@@ -138,3 +138,15 @@ the site yet: the video slot is a muted 15-second loop (video/rig_down_loop.mp4,
 poster video/rig_down_loop_poster.jpg) cut with ffmpeg from the four GIFs in
 itch/gifs/. When the trailer is on YouTube, swap the <video> for an iframe like
 Geode's. There's only a "Get Rig-Down on itch.io" button, no buy widget.
+
+Kaiju Coast (on itch.io as of November 2026, Windows and Linux,
+https://gamesdevnisite.itch.io/kaiju-coast) has its own section, #kc, at the
+top of games.html, and a card in both grids (it and Rig-Down carry the "New"
+tag). Its words, trailer, poster and the eight kc_*.jpg screenshots come from
+the game's own launch kit (repo jamesbell2021/Animation-, branch
+claude/vector-tower-defence-kaiju-jdvjur, folder kaiju-coast/launch:
+itch-page.md and out/). The trailer (video/kaiju_coast_trailer.mp4, 75 s) is
+out/kaiju_coast_trailer.mp4 re-encoded for the web at about 3 Mbit/s; the
+screenshots are out/screenshots/ 01, 03, 04, 06, 07, 09, 10 and 11, cut down to
+1280x720 with 960px thumbs. There's only a "Get Kaiju Coast on itch.io" button,
+no buy widget.
