@@ -8,10 +8,10 @@ TWO PAGES (since 15 October 2026):
               Drift, The House Is Haunted (#haunted, out now in early
               access on itch.io since 21 October 2026: its vertical reel,
               itch.io buy widget (project 5197583) and screenshots hih_*), then one "More from
-              3BL" strip (#itch): a grid of thirteen
+              3BL" strip (#itch): a grid of fourteen
               small cards, one per itch.io game, newest first. No trailers or
               buy widgets there, so the front page stays quick.
-  games.html  The thirteen itch.io games in full, newest first: each one's trailer,
+  games.html  The fourteen itch.io games in full, newest first: each one's trailer,
               buy widget and screenshots, under the same card grid.
   site.css    Every style for both pages (the palette is at the top).
 
@@ -128,3 +128,13 @@ widget yet, only a "Get Rust & Iron on itch.io" button: when you want the
 widget, take the project number from itch.io (Edit game > Distribute > Embed
 game) and copy Geode's <div class="geode-buy"> block into the section (as
 ri-buy, with the colours bg 04070f, fg e6f8ff, link 19E6FF, border 12324a).
+
+Rig-Down (on itch.io as of November 2026, Windows, Linux and Android,
+https://gamesdevnisite.itch.io/rig-down) has its own section, #rd, at the top
+of games.html, and a card in both grids. Its words and the eight rd_*.jpg
+screenshots come from the game's own itch.io kit (repo jamesbell2021/rig_down,
+folder itch/: text/page-description.md and screenshots/). There's no trailer on
+the site yet: the video slot is a muted 15-second loop (video/rig_down_loop.mp4,
+poster video/rig_down_loop_poster.jpg) cut with ffmpeg from the four GIFs in
+itch/gifs/. When the trailer is on YouTube, swap the <video> for an iframe like
+Geode's. There's only a "Get Rig-Down on itch.io" button, no buy widget.

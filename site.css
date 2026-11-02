@@ -404,6 +404,24 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .pv .pv-buy-link:hover{color:#000;background:var(--pv-amber)}
 @media(max-width:600px){.pv .pv-buy iframe{display:none}.pv .pv-buy-link{display:flex}}
 /* Rust & Iron: neon cyan and magenta on a black vector sea, rust orange for the warnings. */
+/* Rig-Down: terminal green and Chip's Crew orange, like its itch.io page */
+.rd{--rd:#39FF14;--rd-orange:#FF8A00;background:repeating-linear-gradient(0deg,rgba(57,255,20,.022) 0 1px,transparent 1px 4px),radial-gradient(ellipse at 50% 0,rgba(255,138,0,.10),transparent 60%),#05080D;border-top:1px solid #1c2a20}
+.rd .eyebrow{color:#7f9a86}
+.rd h2{color:var(--rd);text-shadow:0 0 14px rgba(57,255,20,.5)}
+.rd h2 .hl{color:var(--rd-orange);text-shadow:0 0 14px rgba(255,138,0,.55)}
+.rd .date{font-style:italic;color:var(--text);margin:6px 0 0;font-size:clamp(15px,1.8vw,19px)}
+.rd .when{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--rd-orange);color:var(--rd-orange);padding:7px 14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:22px 0 34px;box-shadow:0 0 14px rgba(255,138,0,.3)}
+.rd .when i{width:8px;height:8px;background:var(--rd-orange);display:block;box-shadow:0 0 8px var(--rd-orange)}
+.rd a.when:hover{color:#000;background:var(--rd-orange)}
+.rd a.when:hover i{background:#000;box-shadow:none}
+.rd ul.ticks li::before{background:var(--rd);box-shadow:0 0 6px var(--rd)}
+.rd .video-frame{box-shadow:0 0 0 1px #1c2a20,0 0 40px rgba(57,255,20,.16)}
+.rd .rd-pitch,.rd .gallery,.rd .rd-buy{margin-top:44px}
+.rd .shot{border-color:#1c2a20}
+.rd .rd-buy-link{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;border:1px solid var(--rd);color:var(--rd);padding:18px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;text-align:center;box-shadow:0 0 24px rgba(57,255,20,.15)}
+.rd .rd-buy-link i{width:8px;height:8px;background:var(--rd-orange);display:block;box-shadow:0 0 8px var(--rd-orange)}
+.rd .rd-buy-link:hover{color:#000;background:var(--rd)}
+
 .ri{--ri:#19E6FF;--ri-mag:#FF2BD6;--ri-rust:#FF8A1F;background:repeating-linear-gradient(90deg,rgba(25,230,255,.035) 0 1px,transparent 1px 48px),repeating-linear-gradient(0deg,rgba(25,230,255,.035) 0 1px,transparent 1px 48px),radial-gradient(ellipse at 50% 0,rgba(255,43,214,.10),transparent 60%),#04070f;border-top:1px solid #12324a}
 .ri .eyebrow{color:#7fa6b8}
 .ri h2{color:var(--ri);text-shadow:0 0 14px rgba(25,230,255,.6)}
