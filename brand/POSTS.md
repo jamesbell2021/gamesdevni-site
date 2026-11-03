@@ -115,7 +115,7 @@ Pin it after posting.
 
 > A fireball in the woods and four old wizards who should know better. Angry Old Men, on itch.io. #ScreenshotSaturday #indiegame #indiedev
 
-## Tue 3 Nov: Victory By None
+## Tue 3 Nov: Victory By None (prepared 3 Nov)
 
 **File:** `video/victory_by_none_trailer.mp4`
 **Reply:** Play it on itch.io: https://gamesdevnisite.itch.io/victory-by-none
