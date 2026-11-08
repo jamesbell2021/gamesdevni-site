@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Forged in Formation | 3BL_Indie - Wishlist on Steam</title>
-<meta name="description" content="Forged in Formation: round up the scattered rebels of '98 and lead them out across a Caribbean island full of redcoats, charging boars, alligators and one very angry gaoler. One button snaps your crowd into Column, Line or Square. From 3BL_Indie, County Down. Coming to Steam Early Access, 3 December 2026.">
+<meta name="description" content="Forged in Formation: round up the scattered rebels of '98 and lead them out across a Caribbean island full of redcoats, charging boars, alligators and one very angry gaoler. One button snaps your crowd into Column, Line or Square. From 3BL_Indie, County Down. Coming to Steam Early Access: release delayed, new date to be announced.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Forged in Formation | 3BL_Indie">
-<meta property="og:description" content="Shape your people. Shape your nation. Round up a crowd of rebels, snap them into Column, Line or Square, and get every one of them out. Coming to Steam Early Access, 3 December 2026.">
+<meta property="og:description" content="Shape your people. Shape your nation. Round up a crowd of rebels, snap them into Column, Line or Square, and get every one of them out. Coming to Steam Early Access: release delayed, new date to be announced.">
 <meta property="og:url" content="https://jamesbell2021.github.io/gamesdevni-site/">
 <meta property="og:image" content="https://jamesbell2021.github.io/gamesdevni-site/screenshots/the_hundred_charge.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -89,7 +89,7 @@
 <header class="hero" id="top">
   <div class="wrap">
     <div>
-      <div class="badge-soon"><i></i>Coming to Steam Early Access - 3 December 2026</div>
+      <div class="badge-soon"><i></i>Coming to Steam Early Access - release delayed, new date to be announced</div>
       <h1>Forged in <span>Formation</span></h1>
       <p class="tag">Shape your people. Shape your nation.</p>
       <p class="sub">Round up the scattered rebels of '98 on a Crown-held Caribbean island and lead them out past redcoat volleys, charging boars, alligators and one very angry gaoler. <strong>One button snaps your crowd into Column, Line or Square.</strong> Pick the right shape in time and the danger walks straight past you.</p>
@@ -97,13 +97,7 @@
         <a class="btn solid" data-steam href="#wishlist">Wishlist on Steam</a>
         <a class="btn" href="#trailer">Watch the trailer</a>
       </div>
-      <div class="cd-label">Early Access countdown - 3 December 2026</div>
-      <div class="countdown" id="countdown" aria-live="off">
-        <div class="cd"><b id="cd-d">--</b><small>Days</small></div>
-        <div class="cd"><b id="cd-h">--</b><small>Hours</small></div>
-        <div class="cd"><b id="cd-m">--</b><small>Mins</small></div>
-        <div class="cd"><b id="cd-s">--</b><small>Secs</small></div>
-      </div>
+      <div class="cd-label">The 3 December release is delayed. Wishlist and we'll tell you the moment there's a new date.</div>
     </div>
 
     <div class="lockup" role="img" aria-label="3BL_Indie studio logo: three figures above the letters 3BL_INDIE">
@@ -119,6 +113,12 @@
     <p class="eyebrow">Latest news from 3BL_Indie</p>
     <h2>Fresh from <span class="hl">the studio</span></h2>
     <div class="news-grid">
+      <article class="panel cut news-item">
+        <p class="news-date">8 November 2026</p>
+        <h3>Forged in Formation is delayed</h3>
+        <p>We won't be releasing Forged in Formation on 3 December after all. Steam hasn't yet accepted our publishing paperwork, so we can't put the game on sale. We're sorting it out and will announce a new date as soon as we have one. Wishlisting still helps, and you'll hear the moment it's out.</p>
+        <div class="news-links"><a class="btn solid" data-steam href="#wishlist">Wishlist on Steam</a></div>
+      </article>
       <article class="panel cut news-item">
         <p class="news-date">8 November 2026</p>
         <h3>Bolts &amp; Boulders is now on the Microsoft Store</h3>
@@ -697,7 +697,7 @@
   <div class="wrap">
     <div>
       <a class="brand" href="#top"><svg viewBox="0 0 21 11" fill="#FF8C2B" style="height:34px" aria-hidden="true"><use href="#figs"/></svg><svg viewBox="0 0 56 7" fill="#FF8C2B" style="height:22px" aria-hidden="true"><use href="#letters"/></svg></a>
-      <small>Forged in Formation - coming to Steam Early Access, 3 December 2026</small>
+      <small>Forged in Formation - coming to Steam Early Access, release delayed, new date to be announced</small>
       <small>Defend the Drift - in development, planned for 2027</small>
       <small>The House Is Haunted - out now on itch.io, early access</small>
       <small>Out now on itch.io: Kaiju Coast, Rig-Down, Rust &amp; Iron, Geode, Tripod Attack!, Hippo Island, Block War Belfast 2098, Periscope Vectors, Vector Cascades, Vector Volley, Neon Mega Tank, Pultz, Cyber Vikings, Angry Old Men and Victory By None</small>
@@ -733,21 +733,6 @@ var STEAM_APP_ID = "";
   }
 })();
 
-/* ---- Countdown to 3 December 2026, 18:00 UTC (6pm UK / 10am Pacific), the same moment for every visitor. JS months start at 0, so 11 = December ---- */
-(function(){
-  var target = Date.UTC(2026, 11, 3, 18, 0, 0);
-  var d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
-  function pad(n){return String(n).padStart(2,'0')}
-  function tick(){
-    var diff = target - Date.now();
-    if(diff <= 0){ document.getElementById('countdown').innerHTML='<div class="cd" style="min-width:auto"><b style="color:var(--accent)">Out now</b></div>'; return; }
-    d.textContent = Math.floor(diff/86400000);
-    h.textContent = pad(Math.floor(diff/3600000)%24);
-    m.textContent = pad(Math.floor(diff/60000)%60);
-    s.textContent = pad(Math.floor(diff/1000)%60);
-  }
-  tick(); setInterval(tick,1000);
-})();
 
 /* ---- Gallery: thumbnails open full size in a lightbox, with arrows and Escape ---- */
 (function(){
