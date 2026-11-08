@@ -36,7 +36,7 @@ UK time (18 October: "Just tell me what to post and I will do it manually").
 - Neon Mega Tank: https://gamesdevnisite.itch.io/neon-mega-tank
 - Tripod Attack!: https://gamesdevnisite.itch.io/tripod-attack
 - Rust & Iron: https://gamesdevnisite.itch.io/rust-and-iron
-- All five: https://gamesdevnisite.itch.io
+- All of them (28 by 8 November): https://gamesdevnisite.itch.io
 
 Files are in this repo: `video/` and `screenshots/`. "To make" means the
 session makes it before sending.
@@ -122,7 +122,7 @@ Pin it after posting.
 
 > Two nations, one phone. Hide your silos, choose your targets in secret, pass the phone across, and watch both salvos cross. You can win. But every warhead has a death toll, and when it's over the count runs into the billions. Victory By None. #indiegame #indiedev #TrailerTuesday
 
-## Thu 5 Nov: Neon Mega Tank
+## Thu 5 Nov: Neon Mega Tank (prepared 5 Nov, with Saturday's sent in the same reply)
 
 **File:** `video/neon_mega_tank_trailer.mp4`
 **Reply:** Play it on itch.io: https://gamesdevnisite.itch.io/neon-mega-tank
@@ -136,12 +136,15 @@ Pin it after posting.
 
 > A wireframe longboat on a black sea. Cyber Vikings, on itch.io. #ScreenshotSaturday #indiegame #indiedev
 
-## Sun 8 Nov: all five on itch.io (card to make)
+## Sun 8 Nov: twenty-eight games on itch.io (prepared 8 Nov)
 
-**File:** a card (to make): the five itch.io games' titles in their own colours on the 3BL ground
-**Reply:** All five: https://gamesdevnisite.itch.io
+The plan said five; by 8 November the itch.io page had twenty-eight, so the
+card and the post count them all.
 
-> Five games, all on itch.io: Neon Mega Tank, Angry Old Men, Cyber Vikings, Pultz and Victory By None. Four of them a dollar each. From the Ards Peninsula. #indiegame #indiedev #itchio
+**File:** `brand/itch_28_games_1080.png` (made 8 Nov from `brand/itch_card.html`: the 3BL mark, "Twenty-eight games", every title on its own cut-cornered tile in the site's seven colours)
+**Reply:** All of them: https://gamesdevnisite.itch.io
+
+> Twenty-eight games on itch.io, all made on the Ards Peninsula: strategy, tower defence, vector arcade, a haunted Belfast terrace, an oil rig in a storm and a hippo island. Free demos on most, the rest a few dollars. #indiegame #indiedev #itchio
 
 Then round again from the top with new clips and pictures, and the Steam week
 whenever the page goes live: the full Forged in Formation trailer pinned with

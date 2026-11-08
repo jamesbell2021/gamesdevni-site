@@ -1,0 +1,96 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Caslon";src:url(/home/user/defendthedrift/Art/Fonts/LibreCaslonText-Regular.ttf)}
+@font-face{font-family:"Caslon";font-weight:700;src:url(/home/user/defendthedrift/Art/Fonts/LibreCaslonText-Bold.ttf)}
+@font-face{font-family:"JBM";src:url(JetBrainsMono-Regular.ttf)}
+:root{--bg:#0E1116;--line:#2A303C;--muted:#59606E;--cream:#F2EFE6;--dim:#B8B5AC;--orange:#FF8C2B}
+body{margin:0;background:#333;padding:24px}
+svg{display:block;shape-rendering:crispEdges}
+#card{width:1080px;height:1080px;background:var(--bg);position:relative;overflow:hidden;font-family:"Caslon",serif;color:var(--cream)}
+#card .grid{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(242,239,230,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(242,239,230,.04) 1px,transparent 1px);
+  background-size:20px 20px;background-position:10px 10px;
+  -webkit-mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,#000 10%,transparent 100%);mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,#000 10%,transparent 100%)}
+#card .head{position:absolute;left:0;right:0;top:72px;text-align:center}
+#card .head .lockup{display:inline-flex;align-items:center;gap:14px;vertical-align:middle}
+#card .lockup .badge{position:relative;width:46px;height:46px;background:var(--orange);
+  clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px)}
+#card .lockup .badge i{position:absolute;inset:3px;background:var(--bg);
+  clip-path:polygon(3px 0,100% 0,100% calc(100% - 3px),calc(100% - 3px) 100%,0 100%,0 3px)}
+#card .lockup .badge svg{position:absolute;left:8px;top:12px;width:30px;height:16px}
+#card .lockup .letters svg{width:54px;height:20px}
+#card .eyebrow{margin-top:26px;font-family:"JBM",monospace;font-size:19px;letter-spacing:.42em;color:var(--dim);text-transform:uppercase}
+#card .eyebrow b{font-weight:400;color:var(--orange)}
+#card .big{position:absolute;left:0;right:0;top:196px;text-align:center;font-weight:700;font-size:58px;line-height:1;color:var(--cream);letter-spacing:.02em}
+#card .big span{color:var(--orange)}
+#card .tiles{position:absolute;left:72px;right:72px;top:296px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+#card .tile{position:relative;height:72px;background:#13171E;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 12px;box-sizing:border-box;
+  font-size:19px;line-height:1.15;color:var(--cream);
+  clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px)}
+#card .tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+#card .tile.s{font-size:16px}
+#card .foot{position:absolute;left:0;right:0;bottom:66px;text-align:center;font-family:"JBM",monospace;font-size:17px;letter-spacing:.36em;color:var(--muted);text-transform:uppercase}
+#card .foot b{font-weight:400;color:var(--orange)}
+#card .sub{position:absolute;left:0;right:0;bottom:104px;text-align:center;font-style:italic;font-size:24px;color:var(--dim)}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="figs">
+    <rect x="1" y="2" width="3" height="2"/><rect x="0" y="4" width="5" height="2"/><rect x="1" y="6" width="3" height="2"/>
+    <rect x="1" y="8" width="1" height="2"/><rect x="3" y="8" width="1" height="2"/><rect x="0" y="10" width="2" height="1"/><rect x="3" y="10" width="2" height="1"/>
+    <rect x="9" y="0" width="3" height="2"/><rect x="7" y="2" width="7" height="4"/><rect x="8" y="6" width="5" height="1"/>
+    <rect x="8" y="7" width="2" height="3"/><rect x="11" y="7" width="2" height="3"/><rect x="7" y="10" width="3" height="1"/><rect x="11" y="10" width="3" height="1"/>
+    <rect x="17" y="2" width="3" height="2"/><rect x="16" y="4" width="5" height="2"/><rect x="17" y="6" width="3" height="2"/>
+    <rect x="17" y="8" width="1" height="2"/><rect x="19" y="8" width="1" height="2"/><rect x="16" y="10" width="2" height="1"/><rect x="19" y="10" width="2" height="1"/>
+  </g>
+  <g id="letters">
+    <rect x="0" y="0" width="5" height="1"/><rect x="4" y="1" width="1" height="5"/><rect x="1" y="3" width="3" height="1"/><rect x="0" y="6" width="5" height="1"/>
+    <rect x="7" y="0" width="1" height="7"/><rect x="7" y="0" width="4" height="1"/><rect x="10" y="1" width="2" height="2"/><rect x="7" y="3" width="4" height="1"/>
+    <rect x="10" y="4" width="2" height="2"/><rect x="7" y="6" width="4" height="1"/><rect x="14" y="0" width="1" height="7"/><rect x="14" y="6" width="5" height="1"/>
+  </g>
+</defs></svg>
+
+<div id="card">
+  <div class="grid"></div>
+  <div class="head">
+    <div class="lockup">
+      <div class="badge"><i></i><svg viewBox="0 0 21 11" fill="#FF8C2B"><use href="#figs"/></svg></div>
+      <div class="letters"><svg viewBox="0 0 19 7" fill="#FF8C2B"><use href="#letters"/></svg></div>
+    </div>
+    <div class="eyebrow">on itch.io <b>·</b> from the Ards Peninsula</div>
+  </div>
+  <div class="big"><span>Twenty-eight</span> games</div>
+  <div class="tiles">
+    <div class="tile" style="--c:#FF8C2B">Angry Old Men</div>
+    <div class="tile" style="--c:#2EE6FF">Cyber Vikings</div>
+    <div class="tile" style="--c:#FFB13B">Pultz</div>
+    <div class="tile" style="--c:#46FF86">Victory By None</div>
+    <div class="tile" style="--c:#33D6FF">Neon Mega Tank</div>
+    <div class="tile" style="--c:#FF4FD8">Kaiju Coast</div>
+    <div class="tile" style="--c:#D9B36C">Rig Down</div>
+    <div class="tile" style="--c:#FF8C2B">Rust and Iron</div>
+    <div class="tile" style="--c:#2EE6FF">Tripod Attack!</div>
+    <div class="tile" style="--c:#FFB13B">Hippo Island</div>
+    <div class="tile s" style="--c:#46FF86">The House Is Haunted</div>
+    <div class="tile" style="--c:#33D6FF">Feck Off</div>
+    <div class="tile" style="--c:#FF4FD8">Drawn Deep</div>
+    <div class="tile" style="--c:#D9B36C">Geode</div>
+    <div class="tile" style="--c:#FF8C2B">Geode 2</div>
+    <div class="tile" style="--c:#2EE6FF">Wee Man</div>
+    <div class="tile s" style="--c:#FFB13B">Bolts and Boulders</div>
+    <div class="tile s" style="--c:#46FF86">Trenches and Tunnels</div>
+    <div class="tile" style="--c:#33D6FF">Fire and Fealty</div>
+    <div class="tile" style="--c:#FF4FD8">City Golf</div>
+    <div class="tile" style="--c:#D9B36C">Newtown FC</div>
+    <div class="tile s" style="--c:#FF8C2B">Car Carnage: Belfast Edition</div>
+    <div class="tile s" style="--c:#2EE6FF">Connor's Carnival Chaos</div>
+    <div class="tile s" style="--c:#FFB13B">Block War Belfast 2098</div>
+    <div class="tile" style="--c:#46FF86">Vector Volley</div>
+    <div class="tile s" style="--c:#33D6FF">Vector Skiff Assault</div>
+    <div class="tile" style="--c:#FF4FD8">Periscope Vectors</div>
+    <div class="tile" style="--c:#D9B36C">Vector Cascades</div>
+  </div>
+  <div class="sub">Free demos on most. The rest a few dollars.</div>
+  <div class="foot">gamesdevnisite<b>.</b>itch<b>.</b>io</div>
+</div>
+</body></html>
