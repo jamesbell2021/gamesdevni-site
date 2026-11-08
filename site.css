@@ -576,3 +576,9 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 .news-item p{margin:0 0 12px}
 .news-date{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 .news-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+
+/* Text-only game cards and collapsible news */
+.game-card .gc-art{display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;padding:12px;text-align:center;background:linear-gradient(135deg,#0E1116,color-mix(in srgb,var(--c) 35%,#0E1116));color:var(--c);font-weight:700;letter-spacing:.06em;font-size:17px;line-height:1.25}
+.news-more{margin-top:20px}
+.news-more summary{cursor:pointer;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim)}
+.news-more summary:hover{color:var(--accent)}
