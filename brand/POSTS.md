@@ -169,7 +169,7 @@ Instagram: the same words without the X hashtags, then the usual set with `#horr
 
 Instagram: the full caption in `tripod-attack/launch/reel-caption.md` (it ends "Link in bio"; the bio link is https://gamesdevni.site, which now has Tripod Attack! at the top of the games page).
 
-## Ready now: Rust & Iron is out (added 27 Oct)
+## Tue 10 Nov: Rust & Iron is out (the home Claude's entry of 27 Oct; prepared 10 Nov with #TrailerTuesday in place of #citybuilder on X, and the web trailer as the file)
 
 **File:** the release advert, `rust_and_iron_out_now_16x9.mp4` on X and `rust_and_iron_out_now_9x16.mp4` (1080x1920, fills the Reel) on Instagram, both 32 s, made by `promo/make_advert.sh` in the rust-and-iron repo (not in git, sent in chat). The web copy of the 16:9 one is `video/rust_and_iron_trailer.mp4`.
 **Reply:** Play it on itch.io: https://gamesdevnisite.itch.io/rust-and-iron
