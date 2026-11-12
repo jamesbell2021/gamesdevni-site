@@ -542,7 +542,7 @@ function intro(s) {
 function startRun(kind, s) {
   initAudio(); showOv(null);
   const run = buildRun(kind, s); S.run = run; S.lead = -1;
-  S.st = { score: 0, combo: 0, best: 0, perfect: 0, good: 0, miss: 0, total: run.notes.length, dts: [] };
+  S.st = { score: 0, combo: 0, best: 0, perfect: 0, good: 0, miss: 0, stray: 0, total: run.notes.length, dts: [] };
   if (run.mode === 'play') { $('score').textContent = '0'; fx.length = 0; }
   $('combo').textContent = '';
   setStageUI(s);
@@ -567,23 +567,23 @@ function endRun() {
   showResult(run);
 }
 function showResult(run) {
-  const st = S.st, tot = Math.max(1, st.total), hits = st.perfect + st.good, acc = hits / tot, q = (st.perfect + 0.7 * st.good) / tot, fin = run.kind === 'fin-play', s = run.s;
-  let n = acc < 0.5 ? 0 : q >= 0.82 ? 3 : q >= 0.6 ? 2 : 1;
-  if (fin && n === 0) n = 1;
+  const st = S.st, tot = Math.max(1, st.total), hits = st.perfect + st.good, acc = hits / tot, q = (st.perfect + 0.7 * st.good - 0.5 * st.stray) / tot, fin = run.kind === 'fin-play', s = run.s;
+  let n = (acc < 0.5 || q < 0.3) ? 0 : q >= 0.82 ? 3 : q >= 0.6 ? 2 : 1;
+  if (fin && n === 0 && q >= 0.3) n = 1;
   const avg = st.dts.length ? st.dts.reduce((a, b) => a + b, 0) / st.dts.length : 0;
   const pass = n > 0;
   if (pass) { P().stars[s] = Math.max(P().stars[s] || 0, n); P().unlocked = Math.max(P().unlocked, Math.min(5, s + 1)); SAVE.cur = SONGI; persist(); }
   const card = $('resultCard');
-  const nums = '<div class="stats"><span>' + Math.round(acc * 100) + '% hit</span><span>Perfect ' + st.perfect + '</span><span>Good ' + st.good + '</span><span>Missed ' + st.miss + '</span><span>Best streak ' + st.best + '</span></div>';
+  const nums = '<div class="stats"><span>' + Math.round(acc * 100) + '% hit</span><span>Perfect ' + st.perfect + '</span><span>Good ' + st.good + '</span><span>Missed ' + st.miss + '</span>' + (st.stray ? '<span>Stray taps ' + st.stray + ' (-' + (st.stray * 50) + ')</span>' : '') + '<span>Best streak ' + st.best + '</span></div>';
   let adj = '';
-  if (hits >= 8 && Math.abs(avg) > 0.045) {
+  if (hits >= 8 && st.stray < tot * 0.3 && Math.abs(avg) > 0.045) {
     const ms = Math.round(avg * 1000);
     adj = '<p class="hint">You were about ' + Math.abs(ms) + ' ms ' + (ms > 0 ? 'late' : 'early') + ' on average. <button class="lnk" id="fixT">Adjust the timing for me</button></p>';
   }
   if (!fin) {
     const next = s < 4 ? 'Next: Bob Piper swaps to the ' + INSTR[s + 1].name.toLowerCase() : 'Next: the Full Session';
     card.innerHTML = '<h2>' + (pass ? ['', 'Grand!', 'Deadly!', 'Class!'][n] : 'So close!') + '</h2>' + stars(n) + nums + adj +
-      '<p>' + (pass ? 'That sounded the part. The ' + INSTR[s].name.toLowerCase() + ' joins the band.' : 'Hit at least half the notes to move on. Have another go.') + '</p>' +
+      '<p>' + (pass ? 'That sounded the part. The ' + INSTR[s].name.toLowerCase() + ' joins the band.' : 'Hit at least half the notes, without button-mashing, to move on. Have another go.') + '</p>' +
       '<div class="btns">' + (pass ? '<button class="btn green" data-primary id="rNext">' + next + '</button><button class="btn alt" id="rAgain">Try again</button>' : '<button class="btn green" data-primary id="rAgain">Try again</button><button class="btn alt" id="rListen">Listen again</button>') + '</div>';
     if (pass) $('rNext').onclick = () => intro(s + 1);
     $('rAgain').onclick = () => startRun('play', s);
@@ -614,7 +614,7 @@ function press(lane, tIn) {
   let best = null, bd = 9;
   for (const n of run.notes) { if (n.state !== 'p' || n.lane !== lane) continue; const d = Math.abs(j - n.time); if (d < bd) { bd = d; best = n; } }
   if (best && bd <= WIN) hit(best, j - best.time);
-  else { S.st.combo = 0; updateCombo(); thud(AC.currentTime + 0.003); }
+  else { const st = S.st; st.combo = 0; st.stray++; st.score = Math.max(0, st.score - 50); $('score').textContent = st.score; updateCombo(); thud(AC.currentTime + 0.003); addFx('-50', lane, '#ff6a5e'); }
 }
 function hit(n, dt) {
   const st = S.st, perfect = Math.abs(dt) <= PERF;
