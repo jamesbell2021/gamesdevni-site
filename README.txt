@@ -19,6 +19,20 @@ poster) is the first card in Latest news; Kaiju Coast moved into "More
 news" to keep four cards on show. Pressing Play on the Christmas game
 pauses the song.
 
+CARPET GRAND PRIX (added 12 November 2026): a second Christmas present, a
+free download until Christmas Day. Its page is carpet-grand-prix/index.html
+(gamesdevni.site/carpet-grand-prix/, early-80s styling, its own fonts in
+carpet-grand-prix/fonts/) with the Windows zip and Linux tar.gz in
+carpet-grand-prix/downloads/ (about 61 MB together). The front page's
+Christmas section has a card linking to it (#xmas-gift). From 26 December
+2026 the page swaps its download buttons for a thank-you and the front-page
+card removes itself (END in the page's script; the date in the Christmas
+script on index.html). The files are still reachable by direct link until
+deleted, so after Christmas delete carpet-grand-prix/downloads/ (or the
+whole folder and the card). To update the game, replace the two downloads
+with new builds from the cars repo (export presets "Windows Desktop" and
+"Linux", packaged with READ_ME.txt and the font licences).
+
 TWO PAGES (since 15 October 2026):
   index.html  Forged in Formation (the Steam wishlist page), Defend the
               Drift, The House Is Haunted (#haunted, out now in early

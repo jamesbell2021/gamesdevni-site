@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carpet Grand Prix · a Christmas present from 3BL</title>
+<meta name="description" content="Free slot-car racing on the living-room floor, Christmas morning 1986. Up to four players, phones as the hand controllers. A Christmas present from 3BL, free to download until Christmas Day.">
+<meta property="og:title" content="Carpet Grand Prix · a Christmas present from 3BL">
+<meta property="og:description" content="Slot-car racing on the living-room floor, Christmas morning 1986. Phones are the hand controllers. Free until Christmas Day.">
+<meta property="og:image" content="https://gamesdevni.site/carpet-grand-prix/img/race.jpg">
+<style>
+/* Carpet Grand Prix download page: early-1980s home-computer and toy-box styling.
+   Fonts (SIL Open Font Licence): Racing Sans One, Press Start 2P, VT323. */
+@font-face{font-family:Racing;src:url(fonts/RacingSansOne.woff) format('woff');font-display:swap}
+@font-face{font-family:Pixel;src:url(fonts/PressStart2P.woff) format('woff');font-display:swap}
+@font-face{font-family:Term;src:url(fonts/VT323.woff) format('woff');font-display:swap}
+:root{
+  --ink:#120b07; --panel:#1c120c; --cream:#f4ead2; --dim:#cfc3a6;
+  --red:#d8281e; --orange:#f08a1e; --yellow:#f6cb2a; --green:#2e9e4a;
+}
+*{box-sizing:border-box}
+html{background:var(--ink)}
+body{margin:0;background:var(--ink);color:var(--cream);font-family:Term,ui-monospace,monospace;font-size:23px;line-height:1.35;
+  background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1px);background-size:6px 6px}
+a{color:var(--yellow)}
+img{max-width:100%;height:auto;display:block}
+.wrap{width:min(1080px,100% - 32px);margin-inline:auto}
+.stripes{height:24px;background:linear-gradient(var(--red) 0 25%,var(--orange) 25% 50%,var(--yellow) 50% 75%,var(--green) 75%)}
+.pixel{font-family:Pixel,monospace;text-transform:uppercase;letter-spacing:.04em}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;font-size:20px}
+nav a{text-decoration:none;color:var(--dim)}
+nav a:hover{color:var(--yellow)}
+
+/* ---- The box lid ---- */
+.lid{position:relative;margin:18px 0 40px;padding:40px 36px 34px;background:var(--panel);border:5px solid var(--cream);
+  box-shadow:12px 12px 0 #000;overflow:hidden}
+.lid::after{content:"";position:absolute;top:-10px;right:-40px;width:260px;height:170px;pointer-events:none;
+  background:linear-gradient(115deg,transparent 0 30%,var(--red) 30% 40%,transparent 40% 44%,var(--orange) 44% 54%,transparent 54% 58%,var(--yellow) 58% 68%,transparent 68% 72%,var(--green) 72% 82%,transparent 82%)}
+.gift{font-size:13px;color:#ef5b50;margin:0 0 18px}
+h1{font-family:Racing,Impact,sans-serif;font-weight:normal;font-size:clamp(58px,11vw,120px);line-height:.9;margin:0;color:var(--yellow);
+  text-shadow:6px 6px 0 var(--red),12px 12px 0 #000}
+.strap{font-size:clamp(24px,3vw,30px);line-height:1.2;color:var(--cream);margin:22px 0 0;max-width:34ch}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.facts li{font-family:Pixel,monospace;font-size:11px;text-transform:uppercase;padding:9px 11px;border:3px solid var(--cream);background:#000}
+
+/* ---- The gift tag with the downloads ---- */
+.tag{position:relative;background:var(--cream);color:var(--ink);padding:30px 30px 28px 60px;margin:0 0 50px;box-shadow:10px 10px 0 #000;
+  clip-path:polygon(34px 0,100% 0,100% 100%,34px 100%,0 50%)}
+.tag::before{content:"";position:absolute;left:22px;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;background:var(--ink)}
+.tag h2{font-family:Racing,Impact,sans-serif;font-weight:normal;font-size:clamp(34px,5vw,48px);margin:0;color:var(--red);line-height:1}
+.tag p{margin:10px 0 0;color:#3a2a1e}
+.countdown{font-family:Pixel,monospace;font-size:13px;text-transform:uppercase;color:var(--green);margin-top:14px}
+.dl{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px}
+.btn{display:inline-flex;flex-direction:column;gap:6px;padding:16px 20px;font-family:Pixel,monospace;font-size:14px;text-transform:uppercase;
+  text-decoration:none;color:var(--cream);background:var(--green);border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.btn small{font-family:Term,monospace;font-size:20px;text-transform:none;color:#dff3e3}
+.btn.linux{background:var(--orange);color:var(--ink)}
+.btn.linux small{color:#3a2a1e}
+.btn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--ink)}
+.btn:active{transform:translate(5px,5px);box-shadow:1px 1px 0 var(--ink)}
+.closed{display:none}
+.tag.over .open{display:none}
+.tag.over .closed{display:block}
+
+/* ---- Sections ---- */
+section{margin:0 0 54px}
+h3{font-family:Pixel,monospace;font-size:16px;text-transform:uppercase;color:var(--yellow);margin:0 0 20px;line-height:1.5}
+.shot{border:5px solid var(--cream);box-shadow:10px 10px 0 #000;background:#000}
+.cap{margin:12px 0 0;color:var(--dim);font-size:20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.steps li{counter-increment:s;position:relative;padding:14px 16px 14px 66px;background:var(--panel);border:3px solid #4a3a2c}
+.steps li::before{content:counter(s);position:absolute;left:12px;top:12px;width:38px;height:38px;display:grid;place-items:center;
+  font-family:Pixel,monospace;font-size:14px;color:var(--ink);background:var(--yellow)}
+.steps b{color:var(--yellow);font-weight:normal}
+.keys{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0}
+.keys dt{font-family:Pixel,monospace;font-size:12px;color:var(--orange);padding-top:6px}
+.keys dd{margin:0}
+.note{background:#000;border-left:6px solid var(--orange);padding:14px 18px;margin:18px 0 0;color:var(--dim)}
+footer{border-top:4px solid #4a3a2c;padding:26px 0 40px;color:var(--dim);font-size:19px}
+footer p{margin:0 0 8px}
+@media (max-width:760px){
+  body{font-size:21px}
+  .lid{padding:30px 20px 26px}
+  h1{text-shadow:4px 4px 0 var(--red)}
+  .gift{max-width:70%}
+  nav .pixel{display:none}
+  .lid::after{width:160px;height:110px;right:-46px}
+  .grid{grid-template-columns:1fr}
+  .tag{padding:24px 18px 22px 50px}
+  .btn{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="stripes" aria-hidden="true"></div>
+<div class="wrap">
+  <nav>
+    <a href="../">&lt;&lt; gamesdevni.site</a>
+    <span class="pixel" style="font-size:11px;color:var(--dim)">3BL · Christmas 2026</span>
+  </nav>
+
+  <header class="lid">
+    <p class="gift pixel">A Christmas present from 3BL</p>
+    <h1>Carpet<br>Grand Prix</h1>
+    <p class="strap">Slot-car racing on the living-room floor, Christmas morning 1986. Your phones are the hand controllers.</p>
+    <ul class="facts">
+      <li>1-4 players</li><li>Phones as controllers</li><li>Windows · Linux</li><li>Free</li>
+    </ul>
+  </header>
+
+  <div class="tag" id="tag">
+    <div class="open">
+      <h2>Happy Christmas! Here's your present.</h2>
+      <p>Free to download until Christmas Day. Unwrap it, plug in the telly, and get the family round.</p>
+      <p class="countdown" id="countdown"></p>
+      <div class="dl">
+        <a class="btn" href="downloads/CarpetGrandPrix_Windows.zip" download>Download for Windows<small>Windows 10 or 11 · 34 MB zip</small></a>
+        <a class="btn linux" href="downloads/CarpetGrandPrix_Linux.tar.gz" download>Download for Linux<small>64-bit · 27 MB tar.gz</small></a>
+      </div>
+    </div>
+    <div class="closed">
+      <h2>The present's been unwrapped!</h2>
+      <p>Carpet Grand Prix was free to download until Christmas Day 2026. Thanks to everyone who raced. Keep an eye on <a href="../" style="color:var(--red)">gamesdevni.site</a> for what 3BL makes next.</p>
+    </div>
+  </div>
+
+  <section>
+    <img class="shot" src="img/race.jpg" alt="Four little rally cars racing round a figure-of-eight slot-car track with a flyover, on a patterned carpet in front of a lit fire, with presents and a Christmas tree nearby" width="1600" height="900" loading="eager">
+    <p class="cap">Four lanes, a figure-of-eight and a flyover. Every lane is inside on one loop and outside on the other, so the race is fair.</p>
+  </section>
+
+  <section class="grid">
+    <div>
+      <h3>The big red button</h3>
+      <p>It's a proper Scalextric-style hand controller: hold <b style="color:var(--red)">POWER</b> to go, let go to lift off. That's it.</p>
+      <p>Go into a bend too fast and your car flies off the track and tumbles across the carpet. Listen for the tyres squealing: that's your cue to lift off. Cars slow going up the flyover and run away with you coming down.</p>
+      <p>The <b style="color:var(--orange)">&lt;&lt; &gt;&gt;</b> buttons hop you into the next lane to get past. Empty cars are driven by the family: Uncle Sammy, Big Cousin, Granda and Wee Sister.</p>
+    </div>
+    <div>
+      <img class="shot" src="img/phone.jpg" alt="The phone controller: join screen with a name box and an extra-grip tick box, and the controller with a big red POWER button and two lane buttons" width="1100" height="550" loading="lazy">
+      <p class="cap">No app needed: scan the code on the screen and your phone becomes the controller.</p>
+    </div>
+  </section>
+
+  <section>
+    <h3>How to play</h3>
+    <ol class="steps">
+      <li><b>Download and unzip</b> on a Windows or Linux computer, ideally one plugged into the telly. On Windows, run <code>CarpetGrandPrix.exe</code>. If Windows says it protected your PC, click <i>More info</i> then <i>Run anyway</i>.</li>
+      <li><b>Allow it on your network.</b> The first time, Windows asks about the firewall: tick <i>Private networks</i> and click <i>Allow</i>. Without that, the phones can't connect.</li>
+      <li><b>Grab a controller.</b> Everyone joins the home Wi-Fi (not the guest network) and scans the QR code on the screen. Type a name and tap <i>Join the race</i>. Younger drivers can tick <i>Extra grip</i> for a stronger magnet.</li>
+      <li><b>Race!</b> Have a practice, choose the number of laps, then anyone taps <i>Start the race</i>. Wait for the five red lights to go out.</li>
+    </ol>
+    <p class="note">Phone won't connect? Make sure it's on the same Wi-Fi and not on mobile data or a VPN. If the computer has extra network adapters (VirtualBox, Hyper-V, a VPN), press <b>A</b> on the lobby screen to try its other addresses.</p>
+  </section>
+
+  <section class="grid">
+    <div>
+      <h3>No phone handy?</h3>
+      <dl class="keys">
+        <dt>UP</dt><dd>Power for the red car</dd>
+        <dt>&lt; &gt;</dt><dd>Hop lanes</dd>
+        <dt>SPACE</dt><dd>Start the race</dd>
+        <dt>L</dt><dd>Number of laps</dd>
+        <dt>G</dt><dd>Extra grip</dd>
+        <dt>M</dt><dd>Carols on or off</dd>
+        <dt>F11</dt><dd>Full screen</dd>
+      </dl>
+    </div>
+    <div>
+      <img class="shot" src="img/lobby.jpg" alt="The lobby screen: a QR code to join, the four cars and who's driving them, beside the track" width="1600" height="900" loading="lazy">
+      <p class="cap">Music-box carols play quietly while you race. Everything (the room, the cars, the carols) is made in code.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Happy Christmas from 3BL! Made in Northern Ireland with Godot Engine.</p>
+    <p>Typefaces: Racing Sans One, Press Start 2P and VT323, under the SIL Open Font Licence. Carol melodies are traditional and long out of copyright; the arrangements are our own.</p>
+    <p><a href="../">&lt;&lt; Back to gamesdevni.site</a></p>
+  </footer>
+</div>
+<div class="stripes" aria-hidden="true"></div>
+<script>
+(function () {
+  // The present is free until the end of Christmas Day (in the visitor's own
+  // time zone). After that the download buttons are replaced by a thank-you.
+  // To change the date, edit END. The files themselves stay in downloads/
+  // until they're deleted from the repo (see README.txt).
+  var END = new Date(2026, 11, 26, 0, 0, 0);
+  var tag = document.getElementById('tag');
+  var out = document.getElementById('countdown');
+  function tick() {
+    var left = END - new Date();
+    if (left <= 0) { tag.classList.add('over'); return; }
+    var days = Math.floor(left / 86400000);
+    var hours = Math.floor(left / 3600000) % 24;
+    out.textContent = days > 0
+      ? days + (days === 1 ? ' day' : ' days') + ' left to unwrap it'
+      : hours + (hours === 1 ? ' hour' : ' hours') + ' left to unwrap it';
+  }
+  tick();
+  setInterval(tick, 60000);
+})();
+</script>
+</body>
+</html>

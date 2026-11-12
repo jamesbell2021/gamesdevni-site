@@ -101,6 +101,17 @@
       <a class="btn gold" href="christmas/index.html" target="_blank" rel="noopener">Play full screen</a>
     </div>
     <p class="video-note">Every picture, carol and crackle is made in code. Best on a computer or tablet; on a phone, turn it sideways. Your trees are saved in your browser.</p>
+
+    <!-- Second present: Carpet Grand Prix, free download until Christmas Day (its own page: carpet-grand-prix/) -->
+    <a class="xmas-gift" id="xmas-gift" href="carpet-grand-prix/">
+      <img src="carpet-grand-prix/img/race.jpg" alt="Slot cars racing on a figure-of-eight track on a patterned living-room carpet" width="1600" height="900" loading="lazy">
+      <div>
+        <p class="xmas-gift-tag">A second present under the tree</p>
+        <h3>Carpet Grand Prix</h3>
+        <p>Slot-car racing on the living-room floor, Christmas morning 1986. Up to four players, and your phones are the hand controllers. Free to download for Windows and Linux until Christmas Day.</p>
+        <span class="btn gold">Unwrap it</span>
+      </div>
+    </a>
   </div>
 </section>
 <script>
@@ -110,6 +121,9 @@
   var END = new Date(2027, 0, 7);
   var s = document.getElementById('christmas');
   if (!s) return;
+  // Carpet Grand Prix's download closes at the end of Christmas Day.
+  var gift = document.getElementById('xmas-gift');
+  if (gift && new Date() >= new Date(2026, 11, 26)) gift.parentNode.removeChild(gift);
   if (new Date() >= END) { s.parentNode.removeChild(s); return; }
   document.getElementById('xmas-play').addEventListener('click', function () {
     var song = document.getElementById('xmas-song');
