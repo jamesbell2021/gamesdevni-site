@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>The Silly Session: an Irish music session rhythm game</title>
+<meta name="description" content="An Irish music session, but a silly one. Copy the wee man on the bodhran, tin whistle, fiddle, banjo and accordion until the whole band plays one tune. Made for fun by 3BL.">
+<meta name="theme-color" content="#2a1a12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%237a4a24'/%3E%3Ccircle cx='32' cy='32' r='23' fill='%23ecd9a8'/%3E%3C/svg%3E">
+<!--
+  THE SILLY SESSION: a rhythm game made for fun for the kids. One file, no libraries.
+  Every sound is made in code (Web Audio), every picture is drawn in code except session.jpg.
+  How it works:
+    * One wee man (Seamus) swaps instruments each round: bodhran, tin whistle, fiddle, banjo, accordion.
+      The Seamus from the round before stays put and keeps playing his part.
+    * Every instrument has a chart of 8 bars (CHART below). A chart note is a step in the bar
+      (a jig: 6 eighth-notes a bar) and one of three lanes. The lane picks a note from the chord of
+      that bar (CHORDS), so any three-lane chart sounds like music.
+    * Round = listen to him, then copy him. The finale: the whole band plays, and you take each
+      instrument in turn.
+  To change the tune: edit CHART and CHORDS. To change the speed: edit BPM.
+  Test helpers: add ?auto=1 to the address and the game plays itself; ?stage=2 starts at round 3.
+-->
+<style>
+:root{--ink:#2a1a12;--cream:#fff4dc;--gold:#ffc83d;--green:#2f9e63;--red:#ef4b3e;--wood:#3a2314}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:#120a05;color:var(--cream);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;overflow:hidden;overscroll-behavior:none;-webkit-user-select:none;user-select:none}
+button{font:inherit;color:inherit;cursor:pointer}
+[hidden]{display:none!important}
+
+/* ---------- layout ---------- */
+#app{position:fixed;inset:0;margin:0 auto;max-width:1100px;display:grid;grid-template-rows:44px minmax(0,31%) minmax(0,1fr);background:#1a0f08}
+@media (min-aspect-ratio:6/5){#app{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:44px minmax(0,1fr)}#hud{grid-column:1/-1}}
+#hud{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 10px;padding-top:env(safe-area-inset-top);background:#2a1a12;border-bottom:3px solid #120a05;z-index:3}
+#menuBtn{background:#3d2616;border:2px solid #120a05;border-radius:10px;width:36px;height:32px;font-size:18px;line-height:1}
+#stageName{font-weight:bold;font-size:clamp(12px,3.4vw,17px);letter-spacing:.04em;text-align:center;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#scoreBox{min-width:70px;text-align:right;font-weight:bold;font-size:18px;color:var(--gold);font-variant-numeric:tabular-nums}
+#prog{position:absolute;left:0;right:0;bottom:-3px;height:3px;background:transparent}
+#progBar{display:block;height:100%;width:0;background:var(--gold)}
+
+/* ---------- the pub scene ---------- */
+#scene{position:relative;overflow:hidden;background:
+  linear-gradient(180deg,rgba(0,0,0,.3),transparent 35%),
+  repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0 2px,transparent 2px 36px),
+  repeating-linear-gradient(90deg,rgba(0,0,0,.16) 0 2px,transparent 2px 60px),#6e4c31}
+#scene::after{content:"";position:absolute;left:0;right:0;bottom:0;height:30%;background:repeating-linear-gradient(90deg,#8d5c2f 0 46px,#7b4f27 46px 48px);border-top:4px solid var(--ink);z-index:0}
+.banner{position:absolute;top:7%;left:50%;transform:translateX(-50%) rotate(-1deg);background:#f3e4bb;border:3px solid var(--ink);padding:2px 14px;font-weight:bold;letter-spacing:.08em;color:#7a2a1a;font-size:clamp(11px,2.4vw,17px);box-shadow:3px 3px 0 var(--ink);white-space:nowrap;z-index:1}
+#bubble{position:absolute;top:26%;left:50%;transform:translate(-50%,0) scale(.8);background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:16px;padding:3px 12px;font-weight:bold;font-size:clamp(12px,3vw,17px);opacity:0;transition:opacity .15s,transform .15s;z-index:4;white-space:nowrap;pointer-events:none}
+#bubble.on{opacity:1;transform:translate(-50%,0) scale(1)}
+#row{position:absolute;left:0;right:0;bottom:5%;display:flex;justify-content:center;align-items:flex-end;padding:0 1%;z-index:1}
+.mus{position:relative;flex:0 0 21.5%;margin:0 -1.2%;transform-origin:50% 100%}
+.mus .sv{transform-origin:50% 100%}
+.mus svg{display:block;width:100%;height:auto;overflow:visible}
+.mus svg .o{stroke:var(--ink);stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
+.mus .mo{opacity:0}
+.mus.hit .mo{opacity:1}.mus.hit .mc{opacity:0}
+.mus .nm{position:absolute;left:50%;bottom:-9%;transform:translateX(-50%);background:var(--ink);color:var(--cream);font-size:clamp(8px,1.9vw,12px);padding:1px 7px;border-radius:8px;white-space:nowrap;font-weight:bold}
+.mus.locked .sv{filter:brightness(0) opacity(.32)}
+.mus.locked .nm{visibility:hidden}
+.mus.lead .sv{filter:drop-shadow(0 0 7px #ffd23d) drop-shadow(0 0 2px #ffd23d)}
+.mus.lead .nm{background:var(--gold);color:var(--ink)}
+@keyframes bop{0%{transform:translateY(0) scale(1,1)}35%{transform:translateY(-5%) scale(1.03,.97)}100%{transform:none}}
+@keyframes bop2{0%{transform:translateY(0) scale(1,1)}30%{transform:translateY(-9%) scale(1.07,.94)}100%{transform:none}}
+.mus.beat .sv{animation:bop .16s ease-out}
+.mus.hit .sv{animation:bop2 .2s ease-out}
+
+/* ---------- the highway ---------- */
+#pit{position:relative;min-height:0;background:#140a05}
+#hw{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#phase{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(42,26,18,.9);border:2px solid var(--gold);border-radius:999px;padding:2px 14px;font-weight:bold;font-size:clamp(11px,2.8vw,15px);letter-spacing:.1em;white-space:nowrap;pointer-events:none;color:var(--gold)}
+#phase:empty{display:none}
+#combo{position:absolute;top:38px;left:0;right:0;text-align:center;font-weight:bold;font-size:clamp(14px,3.6vw,20px);color:var(--cream);text-shadow:2px 2px 0 var(--ink);pointer-events:none;min-height:1.2em}
+
+/* ---------- overlays ---------- */
+.ov{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(18,10,5,.88);z-index:10;padding:14px;overflow:auto}
+.ov.on{display:flex}
+#pause{z-index:20}
+.card{background:#f6e7c3;color:var(--ink);border:4px solid var(--ink);border-radius:20px;box-shadow:6px 6px 0 var(--gold);max-width:520px;width:100%;padding:16px 18px 18px;text-align:center;margin:auto}
+.card h2{margin:4px 0 6px;font-size:clamp(20px,5vw,28px);color:#a3281c}
+.card p{margin:0 0 12px;line-height:1.4;font-size:clamp(14px,3.6vw,17px)}
+.card .portrait{width:min(46%,190px);margin:0 auto 4px}
+.card .portrait svg{display:block;width:100%;height:auto}
+.card .portrait svg .o,.mini svg .o{stroke:var(--ink);stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
+.card .portrait .mo,.mini .mo{opacity:0}
+.card .minis{display:flex;justify-content:center;margin:0 auto 6px}
+.card .mini{flex:0 0 19%;margin:0 -1%}.card .mini svg{display:block;width:100%;height:auto}
+.btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.btn{background:var(--red);color:#fff;border:3px solid var(--ink);border-radius:999px;padding:9px 24px;font-size:clamp(16px,4vw,19px);font-weight:bold;box-shadow:3px 3px 0 var(--ink)}
+.btn.green{background:var(--green)}.btn.alt{background:var(--cream);color:var(--ink)}.btn.small{padding:5px 14px;font-size:15px}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.stars{font-size:clamp(34px,10vw,52px);letter-spacing:.08em;color:#d98a00;text-shadow:2px 2px 0 var(--ink);line-height:1.1}
+.stars .off{color:#c9b98e}
+.stats{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:6px 0 12px;font-weight:bold;font-size:clamp(13px,3.4vw,16px)}
+.stats span{background:#ecd9a8;border:2px solid var(--ink);border-radius:10px;padding:2px 10px}
+.hint{font-size:14px;color:#6b4a30;margin:0 0 10px}
+.lnk{background:none;border:0;color:inherit;text-decoration:underline;padding:0;font-size:inherit}
+.timing{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 14px;font-weight:bold}
+.timing b{min-width:84px;display:inline-block}
+
+/* title */
+#title{background:radial-gradient(ellipse at 50% 0%,#4a2d18,#1a0f08 70%)}
+.hero{width:min(780px,100%);text-align:center;margin:auto}
+.hero img{width:100%;height:auto;border:4px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--gold);display:block}
+.hero .tag{margin:14px 0 6px;font-size:clamp(18px,4.6vw,28px);font-weight:bold;color:var(--gold);text-shadow:2px 2px 0 var(--ink)}
+.hero .how{margin:0 auto 14px;max-width:56ch;line-height:1.4;font-size:clamp(13px,3.4vw,16px);color:#e9dcc0}
+.hero .foot{margin:16px 0 0;font-size:14px;color:#cdbb98}
+.hero .foot a{color:var(--cream)}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <header id="hud">
+    <button id="menuBtn" aria-label="Pause and settings">&#9776;</button>
+    <div id="stageName">The Silly Session</div>
+    <div id="scoreBox"><span id="score">0</span></div>
+    <div id="prog"><i id="progBar"></i></div>
+  </header>
+  <section id="scene" aria-label="The session">
+    <div class="banner">THE SILLY SESSION</div>
+    <div id="bubble"></div>
+    <div id="row"></div>
+  </section>
+  <section id="pit">
+    <canvas id="hw" aria-label="Note highway: tap the three lanes, or use the A S D keys"></canvas>
+    <div id="phase"></div>
+    <div id="combo"></div>
+  </section>
+</div>
+
+<div id="title" class="ov on">
+  <div class="hero">
+    <img src="session.jpg" alt="The Silly Session: two wee men in Aran jumpers playing the bodhran in a cosy pub, a Guinness on a barrel" width="1024" height="559">
+    <p class="tag">An Irish music session. A silly one.</p>
+    <p class="how">Watch the wee man, then copy him: tap the three lanes (or keys A S D) as the circles land. Each round he swaps to a new instrument and the last one stays behind to keep playing, until the whole session is one tune. Turn your sound up!</p>
+    <div class="btns"><button class="btn green" id="playBtn" data-primary>Play</button><button class="btn alt" id="contBtn" hidden>Continue</button></div>
+    <p class="foot"><span id="starsTot"></span><a href="../../index.html#silly">Back to gamesdevni.site</a> &middot; <button class="lnk" id="setBtn">Sound timing</button></p>
+  </div>
+</div>
+
+<div id="intro" class="ov"><div class="card" id="introCard"></div></div>
+<div id="result" class="ov"><div class="card" id="resultCard"></div></div>
+<div id="pause" class="ov"><div class="card">
+  <h2>Paused</h2>
+  <p>If the circles feel early or late, nudge the timing. Notes landing late? Press +.</p>
+  <div class="timing"><button class="btn small alt" id="offDn">&minus;</button><b id="offVal">0 ms</b><button class="btn small alt" id="offUp">+</button></div>
+  <div class="btns"><button class="btn green" id="resumeBtn" data-primary>Back to the session</button><button class="btn alt" id="quitBtn">Start again</button></div>
+</div></div>
+
+<noscript><p style="position:fixed;inset:0;background:#120a05;padding:20px;z-index:99">This game needs JavaScript switched on.</p></noscript>
+
+<script>
+(function () {
+'use strict';
+const $ = id => document.getElementById(id);
+const Q = new URLSearchParams(location.search);
+const AUTO = Q.has('auto');
+
+/* ================= the tune ================= */
+const BPM = 108;                       // dotted-quarter beats a minute (a lively jig)
+const STEP = 60 / BPM / 3;             // one eighth note, in seconds
+const BAR = STEP * 6;
+const APPROACH = 1.55;                 // seconds a note takes to fall to the line
+const WIN = 0.15, PERF = 0.07;         // hit windows (seconds)
+const CHORDS = ['D', 'D', 'G', 'A', 'D', 'Bm', 'G', 'A'];
+const CH = { D: { r: 2, m: 0 }, G: { r: 7, m: 0 }, A: { r: 9, m: 0 }, Bm: { r: 11, m: 1 } };
+// 8 bars per instrument, 6 steps a bar. '.' = rest, '0' '1' '2' = lane.
+const CHART = [
+  ['0.20.2', '0.20.2', '0.20.2', '0.2022', '0.21.2', '0.21.2', '0.20.2', '0.2122'],   // bodhran
+  ['0.12.1', '2.10..', '0.12.1', '2.101.', '0.12.1', '2.10..', '0.12.1', '2.1..0'],   // tin whistle
+  ['0..1..', '2..1..', '0..2..', '1..2.1', '0..1..', '2..1..', '0..2..', '1..0.2'],   // fiddle
+  ['01.12.', '01.12.', '01.12.', '01.121', '01.12.', '01.12.', '01.12.', '0.1212'],   // banjo
+  ['0..1..', '0..1..', '0..1.1', '0.21..', '0..1..', '0..1..', '0..1.1', '0.21.2']    // accordion
+];
+const INSTR = [
+  { name: 'Bodhrán', color: '#e0903f', says: "Right so. I'm Seamus, and this is the bodhrán. Watch me hands, then copy me. Bash the drum as the circles land on the line!" },
+  { name: 'Tin whistle', color: '#9fd8ff', says: "Lovely drumming! I've swapped to the tin whistle. That's me still on the drum over there, don't ask. Copy the whistle!" },
+  { name: 'Fiddle', color: '#e8574a', says: "Fiddle next. Yes, another Seamus. Same wee man, different stool. Mind your ears." },
+  { name: 'Banjo', color: '#8ef06c', says: "Banjo time! Fast and loud, a wee bit of punk in the folk. Hold onto your hats." },
+  { name: 'Accordion', color: '#d98cff', says: "Last swap: the squeezebox! Once this is in, the whole session is going." }
+];
+const LANE_COL = ['#ff5a4e', '#ffd23d', '#4fd37a'];
+const KEYS = ['A', 'S', 'D'];
+const KEYMAP = { KeyA: 0, KeyS: 1, KeyD: 2, KeyJ: 0, KeyK: 1, KeyL: 2, ArrowLeft: 0, ArrowDown: 1, ArrowRight: 2 };
+const CHEERS = ['Grand!', 'Deadly!', "Yer man's on fire!", 'Ah, stop it!', 'Absolute legend!', 'Class!'];
+
+/* ================= the wee man (drawn in code) ================= */
+const OUT = '#2a1a12';
+function face(ey, my) {
+  return `<circle class="o" style="stroke-width:2.5" cx="84" cy="${ey}" r="7" fill="#fff"/><circle class="o" style="stroke-width:2.5" cx="116" cy="${ey}" r="7" fill="#fff"/>` +
+    `<circle cx="85" cy="${ey + 1}" r="3.2" fill="${OUT}"/><circle cx="115" cy="${ey + 1}" r="3.2" fill="${OUT}"/>` +
+    `<path class="mc" d="M86 ${my} Q100 ${my + 11} 114 ${my}" fill="none" stroke="${OUT}" stroke-width="4" stroke-linecap="round"/>` +
+    `<ellipse class="mo o" cx="100" cy="${my + 5}" rx="11" ry="9" fill="#8a2020"/>`;
+}
+const SKIN = '#f0cda0';
+function body() {
+  return `<path class="o" d="M26 240 C26 168 58 140 100 140 C142 140 174 168 174 240Z" fill="#efe3c4"/>` +
+    `<path d="M62 158 q8 22 0 46 M82 150 q8 28 0 56 M118 150 q-8 28 0 56 M138 158 q-8 22 0 46" fill="none" stroke="#c4b186" stroke-width="3"/>` +
+    `<circle class="o" cx="60" cy="94" r="9" fill="${SKIN}"/><circle class="o" cx="140" cy="94" r="9" fill="${SKIN}"/>` +
+    `<ellipse class="o" cx="100" cy="88" rx="41" ry="45" fill="${SKIN}"/>` +
+    `<path class="o" d="M62 68 Q42 58 50 38 Q68 42 72 58Z" fill="#fff"/><path class="o" d="M138 68 Q158 58 150 38 Q132 42 128 58Z" fill="#fff"/>` +
+    face(90, 116) +
+    `<ellipse class="o" cx="84" cy="74" rx="13" ry="4.5" fill="#fff"/><ellipse class="o" cx="116" cy="74" rx="13" ry="4.5" fill="#fff"/>` +
+    `<circle class="o" cx="84" cy="90" r="15" fill="#fff" fill-opacity=".3"/><circle class="o" cx="116" cy="90" r="15" fill="#fff" fill-opacity=".3"/>` +
+    `<circle class="o" cx="100" cy="103" r="8.5" fill="#e8534a"/>`;
+}
+const hand = (x, y) => `<circle class="o" cx="${x}" cy="${y}" r="10.5" fill="${SKIN}"/>`;
+const GEAR = [
+  // bodhran
+  `<circle class="o" cx="100" cy="198" r="52" fill="#7a4a24"/><circle class="o" style="stroke-width:3" cx="100" cy="198" r="42" fill="#ecd9a8"/>` +
+  `<path d="M70 184 q10 -16 30 -18" fill="none" stroke="#fff" stroke-opacity=".65" stroke-width="5" stroke-linecap="round"/>` +
+  `<path d="M150 158 L112 200" stroke="${OUT}" stroke-width="11" stroke-linecap="round"/><path d="M150 158 L112 200" stroke="#a8743c" stroke-width="6" stroke-linecap="round"/>` + hand(148, 160) + hand(50, 210),
+  // tin whistle
+  `<path d="M96 118 L168 180" stroke="${OUT}" stroke-width="13" stroke-linecap="round"/><path d="M96 118 L168 180" stroke="#dde0e4" stroke-width="7" stroke-linecap="round"/>` +
+  `<circle cx="124" cy="142" r="2.4" fill="${OUT}"/><circle cx="136" cy="152" r="2.4" fill="${OUT}"/><circle cx="148" cy="163" r="2.4" fill="${OUT}"/>` + hand(128, 146) + hand(152, 166),
+  // fiddle
+  `<g transform="rotate(-30 70 170)"><rect class="o" x="63" y="64" width="13" height="76" rx="3" fill="#4a2a12"/><ellipse class="o" cx="69" cy="168" rx="30" ry="38" fill="#b0601f"/>` +
+  `<path d="M58 160 q-4 12 0 22 M80 160 q4 12 0 22" fill="none" stroke="${OUT}" stroke-width="3"/><rect x="58" y="190" width="22" height="5" fill="${OUT}"/></g>` +
+  `<path d="M152 130 L56 208" stroke="${OUT}" stroke-width="6" stroke-linecap="round"/><path d="M152 130 L56 208" stroke="#f4f0e4" stroke-width="2.5"/>` + hand(152, 130) + hand(50, 152),
+  // banjo
+  `<path d="M112 180 L186 120" stroke="${OUT}" stroke-width="15" stroke-linecap="round"/><path d="M112 180 L186 120" stroke="#8a5a2a" stroke-width="9" stroke-linecap="round"/>` +
+  `<circle class="o" cx="98" cy="196" r="38" fill="#3a2a1a"/><circle class="o" style="stroke-width:3" cx="98" cy="196" r="31" fill="#efe2bd"/><rect x="88" y="198" width="22" height="5" fill="${OUT}"/>` +
+  `<path d="M104 192 L184 124 M104 198 L186 130" stroke="#e8e8e8" stroke-width="1.5"/>` + hand(102, 208) + hand(162, 140),
+  // accordion
+  `<rect class="o" x="22" y="164" width="40" height="66" rx="8" fill="#c0302b"/><rect class="o" x="138" y="164" width="40" height="66" rx="8" fill="#c0302b"/>` +
+  `<rect class="o" x="62" y="172" width="76" height="50" fill="#f1e6d0"/><path d="M74 172 v50 M86 172 v50 M98 172 v50 M110 172 v50 M122 172 v50" stroke="#c9b98e" stroke-width="3"/>` +
+  `<circle cx="150" cy="182" r="4" fill="#f4f0e4"/><circle cx="164" cy="182" r="4" fill="#f4f0e4"/><circle cx="150" cy="196" r="4" fill="#f4f0e4"/><circle cx="164" cy="196" r="4" fill="#f4f0e4"/><circle cx="150" cy="210" r="4" fill="#f4f0e4"/><circle cx="164" cy="210" r="4" fill="#f4f0e4"/>` +
+  hand(42, 172) + hand(158, 172)
+];
+const WEE = i => `<svg viewBox="0 0 200 240" aria-hidden="true">${body()}${GEAR[i]}</svg>`;
+
+/* ================= save ================= */
+const SKEY = 'sillySession.v1';
+let SAVE = { unlocked: 0, stars: [0, 0, 0, 0, 0, 0], off: 0 };
+try { const j = JSON.parse(localStorage.getItem(SKEY)); if (j && typeof j === 'object') SAVE = Object.assign(SAVE, j); } catch (e) {}
+function persist() { try { localStorage.setItem(SKEY, JSON.stringify(SAVE)); } catch (e) {} }
+const OFFSET = () => (SAVE.off || 0) / 1000;
+
+/* ================= audio ================= */
+let AC = null, bus = null, analyser = null, noiseBuf = null, silentEl = null;
+const mf = m => 440 * Math.pow(2, (m - 69) / 12);
+
+function makeIR() {
+  const len = Math.floor(AC.sampleRate * 1.3), b = AC.createBuffer(2, len, AC.sampleRate);
+  for (let c = 0; c < 2; c++) { const d = b.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6); }
+  return b;
+}
+function silentUrl() {
+  const n = 4410, b = new ArrayBuffer(44 + n * 2), v = new DataView(b);
+  const w = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+  w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVE'); w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+  v.setUint32(24, 22050, true); v.setUint32(28, 44100, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
+  return URL.createObjectURL(new Blob([b], { type: 'audio/wav' }));
+}
+function initAudio() {
+  if (AC) { if (AC.state !== 'running') AC.resume(); return; }
+  // iPhones: play as "media" so the silent switch doesn't mute the game.
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+  const Ctor = window.AudioContext || window.webkitAudioContext;
+  AC = new Ctor({ latencyHint: 'interactive' });
+  const comp = AC.createDynamicsCompressor();
+  comp.threshold.value = -16; comp.knee.value = 12; comp.ratio.value = 4; comp.attack.value = 0.003; comp.release.value = 0.2;
+  const master = AC.createGain(); master.gain.value = 0.9;
+  analyser = AC.createAnalyser(); analyser.fftSize = 2048;
+  bus = AC.createGain();
+  const dry = AC.createGain(); dry.gain.value = 0.85;
+  const send = AC.createGain(); send.gain.value = 0.2;
+  const conv = AC.createConvolver(); conv.buffer = makeIR();
+  bus.connect(dry); dry.connect(comp); bus.connect(send); send.connect(conv); conv.connect(comp);
+  comp.connect(master); master.connect(analyser); analyser.connect(AC.destination);
+  noiseBuf = AC.createBuffer(1, AC.sampleRate, AC.sampleRate);
+  const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  if (!navigator.audioSession && !silentEl) {
+    try { silentEl = new Audio(silentUrl()); silentEl.loop = true; silentEl.setAttribute('playsinline', ''); const p = silentEl.play(); if (p && p.catch) p.catch(() => { silentEl = null; }); } catch (e) { silentEl = null; }
+  }
+  AC.resume();
+}
+const latency = () => { const l = AC.outputLatency || AC.baseLatency || 0; return isFinite(l) ? Math.max(0, Math.min(0.3, l)) : 0; };
+
+function noise(t, dur, type, freq, q, gain) {
+  const s = AC.createBufferSource(); s.buffer = noiseBuf;
+  const f = AC.createBiquadFilter(); f.type = type; f.frequency.value = freq; f.Q.value = q;
+  const g = AC.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(gain, t + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  s.connect(f); f.connect(g); g.connect(bus); s.start(t, Math.random() * 0.5, dur + 0.02);
+}
+function env(g, t, peak, a, hold, rel) {   // attack, sustain until t+hold, release
+  g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(peak, t + a);
+  g.gain.setValueAtTime(peak, t + Math.max(a, hold)); g.gain.exponentialRampToValueAtTime(0.0001, t + Math.max(a, hold) + rel);
+}
+function vBodhran(t, lane, vel) {
+  const c = [{ f0: 150, f1: 58, len: 0.34, g: 1.0, n: 0.3, nf: 800 }, { f0: 190, f1: 88, len: 0.24, g: 0.8, n: 0.3, nf: 1100 }, { f0: 320, f1: 170, len: 0.13, g: 0.5, n: 0.6, nf: 2600 }][lane];
+  const o = AC.createOscillator(); o.type = 'sine';
+  o.frequency.setValueAtTime(c.f0, t); o.frequency.exponentialRampToValueAtTime(c.f1, t + 0.09);
+  const g = AC.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(c.g * vel * 0.9, t + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, t + c.len);
+  o.connect(g); g.connect(bus); o.start(t); o.stop(t + c.len + 0.05);
+  noise(t, 0.08, 'bandpass', c.nf, 0.9, c.n * vel * 0.5);
+}
+function vWhistle(t, f, dur, vel, cut) {
+  const o = AC.createOscillator(), o2 = AC.createOscillator(), g = AC.createGain(), g2 = AC.createGain();
+  o.type = 'sine'; o2.type = 'sine'; o.frequency.setValueAtTime(f, t); o2.frequency.setValueAtTime(f * 2, t); g2.gain.value = 0.14;
+  if (cut) { o.frequency.setValueAtTime(f * 1.1225, t); o.frequency.setValueAtTime(f, t + 0.03); o2.frequency.setValueAtTime(f * 2.245, t); o2.frequency.setValueAtTime(f * 2, t + 0.03); }
+  const lfo = AC.createOscillator(), lg = AC.createGain(); lfo.frequency.value = 5.2; lg.gain.setValueAtTime(0, t); lg.gain.linearRampToValueAtTime(f * 0.006, t + 0.25);
+  lfo.connect(lg); lg.connect(o.frequency); lfo.start(t); lfo.stop(t + dur + 0.2);
+  env(g, t, vel * 0.3, 0.04, dur - 0.05, 0.07);
+  o.connect(g); o2.connect(g2); g2.connect(g); g.connect(bus);
+  o.start(t); o2.start(t); o.stop(t + dur + 0.2); o2.stop(t + dur + 0.2);
+  noise(t, Math.min(dur, 0.25), 'bandpass', f, 8, vel * 0.05);
+}
+function vFiddle(t, f, dur, vel) {
+  const flt = AC.createBiquadFilter(); flt.type = 'lowpass'; flt.Q.value = 1.1;
+  flt.frequency.setValueAtTime(900, t); flt.frequency.linearRampToValueAtTime(2300, t + 0.12);
+  const g = AC.createGain(); env(g, t, vel * 0.14, 0.07, dur - 0.05, 0.12);
+  const lfo = AC.createOscillator(), lg = AC.createGain(); lfo.frequency.value = 5.6; lg.gain.setValueAtTime(0, t); lg.gain.linearRampToValueAtTime(f * 0.007, t + 0.3); lfo.connect(lg); lfo.start(t); lfo.stop(t + dur + 0.3);
+  [-7, 7].forEach(dt => { const o = AC.createOscillator(); o.type = 'sawtooth'; o.frequency.value = f; o.detune.value = dt; lg.connect(o.frequency); o.connect(flt); o.start(t); o.stop(t + dur + 0.3); });
+  flt.connect(g); g.connect(bus);
+  noise(t, Math.min(dur, 0.3), 'bandpass', 2800, 1, vel * 0.015);
+}
+function vBanjo(t, freqs, vel) {
+  freqs.forEach((f, i) => {
+    const tt = t + i * 0.014, o = AC.createOscillator(); o.type = 'sawtooth';
+    o.frequency.setValueAtTime(f * 1.012, tt); o.frequency.exponentialRampToValueAtTime(f, tt + 0.025);
+    const bp = AC.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = Math.min(3200, f * 3); bp.Q.value = 0.7;
+    const g = AC.createGain(), len = f < 120 ? 0.6 : 0.4;
+    g.gain.setValueAtTime(0.0001, tt); g.gain.exponentialRampToValueAtTime(vel * (freqs.length > 1 ? 0.2 : 0.32), tt + 0.003); g.gain.exponentialRampToValueAtTime(0.0001, tt + len);
+    o.connect(bp); bp.connect(g); g.connect(bus); o.start(tt); o.stop(tt + len + 0.05);
+  });
+  noise(t, 0.015, 'highpass', 4000, 0.7, vel * 0.08);
+}
+function vAccordion(t, freqs, dur, vel) {
+  const flt = AC.createBiquadFilter(); flt.type = 'lowpass'; flt.frequency.value = 1500; flt.Q.value = 0.6;
+  const g = AC.createGain(); env(g, t, vel * (freqs.length > 1 ? 0.075 : 0.12), 0.04, dur - 0.04, 0.09);
+  const trem = AC.createOscillator(), tg = AC.createGain(); trem.frequency.value = 6.5; tg.gain.value = 0.18; trem.connect(tg);
+  const amp = AC.createGain(); amp.gain.value = 0.85; tg.connect(amp.gain); trem.start(t); trem.stop(t + dur + 0.2);
+  freqs.forEach(f => {
+    [[-6, 'sawtooth'], [6, 'sawtooth'], [0, 'square']].forEach(([dt, ty]) => {
+      const o = AC.createOscillator(), og = AC.createGain(); o.type = ty; o.frequency.value = f; o.detune.value = dt; og.gain.value = ty === 'square' ? 0.35 : 0.5;
+      o.connect(og); og.connect(flt); o.start(t); o.stop(t + dur + 0.2);
+    });
+  });
+  flt.connect(amp); amp.connect(g); g.connect(bus);
+}
+function tick(t, accent) {
+  noise(t, 0.05, 'bandpass', accent ? 2600 : 1800, 3, accent ? 0.5 : 0.28);
+  const o = AC.createOscillator(), g = AC.createGain(); o.type = 'triangle'; o.frequency.value = accent ? 1100 : 800;
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(accent ? 0.16 : 0.09, t + 0.002); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+  o.connect(g); g.connect(bus); o.start(t); o.stop(t + 0.08);
+}
+function thud(t) {
+  const o = AC.createOscillator(), g = AC.createGain(); o.frequency.value = 85;
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.1, t + 0.005); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
+  o.connect(g); g.connect(bus); o.start(t); o.stop(t + 0.12);
+}
+function applause(t, dur, n) {
+  for (let i = 0; i < n; i++) noise(t + Math.random() * dur, 0.04 + Math.random() * 0.05, 'bandpass', 1200 + Math.random() * 2500, 0.8, 0.04 + Math.random() * 0.05);
+}
+function finalChord(t) {   // everyone lands on D together
+  vBodhran(t, 0, 1); vBodhran(t + 0.01, 2, 0.7);
+  vBanjo(t, [mf(50)], 1); vBanjo(t + 0.02, [mf(62), mf(66), mf(69)], 1); vBanjo(t + 0.06, [mf(69), mf(74), mf(78)], 0.9);
+  vAccordion(t, [mf(50), mf(57)], 1.6, 1); vAccordion(t, [mf(62), mf(66), mf(69)], 1.6, 1);
+  vFiddle(t, mf(62), 1.6, 1); vWhistle(t, mf(86), 1.5, 1, false);
+}
+
+/* ================= music data -> events ================= */
+function voicing(i, lane, chord) {
+  const c = CH[chord], r4 = 60 + c.r, third = c.m ? 3 : 4;
+  const tri = [0, third, 7];
+  switch (i) {
+    case 1: return [mf(r4 + 12 + tri[lane])];
+    case 2: return [mf(r4 + tri[lane])];
+    case 3: return lane === 0 ? [mf(r4 - 12)] : lane === 1 ? [mf(r4), mf(r4 + third), mf(r4 + 7)] : [mf(r4 + 7), mf(r4 + 12), mf(r4 + 12 + third)];
+    case 4: return lane === 0 ? [mf(r4 - 12), mf(r4 - 5)] : lane === 1 ? [mf(r4), mf(r4 + third), mf(r4 + 7)] : [mf(r4 + 7), mf(r4 + 12), mf(r4 + 12 + third)];
+    default: return [];
+  }
+}
+function playEv(e, t, vel) {
+  switch (e.instr) {
+    case 0: vBodhran(t, e.lane, vel); break;
+    case 1: vWhistle(t, e.freqs[0], e.dur, vel, e.step % 3 === 0); break;
+    case 2: vFiddle(t, e.freqs[0], e.dur, vel); break;
+    case 3: vBanjo(t, e.freqs, vel); break;
+    case 4: vAccordion(t, e.freqs, e.dur, vel); break;
+  }
+}
+function roleFor(kind, s, i, bar) {
+  switch (kind) {
+    case 'listen': return i <= s ? 'auto' : null;
+    case 'play': return i < s ? 'auto' : (i === s ? 'player' : null);
+    case 'fin-listen': return 'auto';
+    case 'fin-play': return i === Math.floor(bar / 4) ? 'player' : 'auto';
+  }
+  return null;
+}
+function buildRun(kind, s) {
+  const bars = kind === 'fin-play' ? 20 : 8;
+  const run = { kind, s, bars, events: [], mode: (kind === 'play' || kind === 'fin-play') ? 'play' : 'listen', si: 0, ai: 0 };
+  run.start = AC.currentTime + 0.45; run.t0 = run.start + BAR; run.tEnd = run.t0 + bars * BAR;
+  run.tDone = run.tEnd + (run.mode === 'play' ? 1.1 : 0.6);
+  for (let k = 0; k < 6; k++) run.events.push({ type: 'tick', time: run.start + k * STEP, accent: k % 3 === 0, role: 'click' });
+  const per = [[], [], [], [], []];
+  for (let bar = 0; bar < bars; bar++) {
+    const chord = CHORDS[bar % 8];
+    for (let i = 0; i < 5; i++) {
+      const role = roleFor(kind, s, i, bar); if (!role) continue;
+      const str = CHART[i][bar % 8];
+      for (let st = 0; st < 6; st++) {
+        const c = str[st]; if (c === '.') continue;
+        const e = { type: 'note', instr: i, lane: +c, bar, step: st, time: run.t0 + (bar * 6 + st) * STEP, role, chord, state: 'p' };
+        e.freqs = voicing(i, e.lane, chord); per[i].push(e); run.events.push(e);
+      }
+    }
+  }
+  const CAP = [0, 2.6, 4, 0, 3];
+  per.forEach((a, i) => a.forEach((e, k) => { const nx = a[k + 1], cap = CAP[i] * STEP; let d = nx ? (nx.time - e.time) * 0.94 : cap; if (cap) d = Math.min(d, cap); e.dur = Math.max(0.1, d); }));
+  run.events.sort((a, b) => a.time - b.time);
+  run.notes = run.events.filter(e => e.type === 'note' && e.role === 'player');
+  run.shown = kind === 'listen' ? run.events.filter(e => e.type === 'note' && e.instr === s) : (run.mode === 'play' ? run.notes : []);
+  run.ghost = kind === 'listen';
+  return run;
+}
+
+/* ================= state + scene ================= */
+const S = { run: null, stage: 0, st: null, lead: -1, pausedByUs: false };
+const MUS = [];
+(function buildRow() {
+  const row = $('row');
+  for (let i = 0; i < 5; i++) {
+    const d = document.createElement('div'); d.className = 'mus locked';
+    d.innerHTML = '<div class="sv">' + WEE(i) + '</div><div class="nm">' + INSTR[i].name + '</div>';
+    row.appendChild(d); MUS.push(d);
+  }
+})();
+function pulse(i, cls) {
+  const el = MUS[i]; if (!el) return;
+  el.classList.remove('beat', 'hit'); void el.offsetWidth; el.classList.add(cls);
+  if (cls === 'hit') { clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('hit'), 220); }
+}
+let bubbleT = 0;
+function say(txt) { const b = $('bubble'); b.textContent = txt; b.classList.add('on'); clearTimeout(bubbleT); bubbleT = setTimeout(() => b.classList.remove('on'), 1400); }
+function setPhase(t) { $('phase').textContent = t; }
+function setStageUI(s) {
+  MUS.forEach((m, i) => { m.classList.toggle('locked', s < 5 && i > s); m.classList.remove('lead'); });
+  $('stageName').textContent = s < 5 ? 'Round ' + (s + 1) + ' of 5 · ' + INSTR[s].name : 'The Full Session';
+}
+function showOv(id) {
+  document.querySelectorAll('.ov').forEach(o => { if (o.id !== 'pause') o.classList.remove('on'); });
+  if (id) { const o = $(id); o.classList.add('on'); const b = o.querySelector('[data-primary]'); if (b) b.focus({ preventScroll: true }); }
+}
+const stars = n => '<div class="stars">' + [0, 1, 2].map(i => i < n ? '★' : '<span class="off">★</span>').join('') + '</div>';
+
+/* ================= screens ================= */
+function updateTitle() {
+  const tot = SAVE.stars.reduce((a, b) => a + b, 0);
+  $('starsTot').textContent = tot ? '★ ' + tot + ' of 18 · ' : '';
+  const c = $('contBtn');
+  if (SAVE.unlocked > 0) { c.hidden = false; c.textContent = SAVE.unlocked >= 5 ? 'Continue: the finale' : 'Continue: round ' + (SAVE.unlocked + 1); } else c.hidden = true;
+}
+function intro(s) {
+  S.stage = s; setStageUI(s); setPhase(''); $('score').textContent = '0'; $('combo').textContent = '';
+  const card = $('introCard');
+  if (s < 5) {
+    card.innerHTML = '<div class="portrait">' + WEE(s) + '</div><h2>' + (s === 0 ? 'Seamus on the bodhrán' : 'Seamus swaps to the ' + INSTR[s].name.toLowerCase()) + '</h2>' +
+      '<p>' + INSTR[s].says + '</p><p class="hint">Tap the lanes (or keys A S D) when the circles reach the line.</p>' +
+      '<div class="btns"><button class="btn green" data-primary id="goListen">Listen</button><button class="btn alt" id="goPlay">Skip to my turn</button></div>';
+    $('goListen').onclick = () => startRun('listen', s);
+    $('goPlay').onclick = () => startRun('play', s);
+  } else {
+    card.innerHTML = '<div class="minis">' + [0, 1, 2, 3, 4].map(i => '<div class="mini">' + WEE(i) + '</div>').join('') + '</div><h2>The Full Session</h2>' +
+      "<p>That's the whole band, all five of me. Don't ask. Now YOU are the band: when one of us lights up, you play his part. Keep the tune going!</p>" +
+      '<div class="btns"><button class="btn green" data-primary id="goListen">Hear the whole band</button><button class="btn alt" id="goPlay">Skip to my turn</button></div>';
+    $('goListen').onclick = () => startRun('fin-listen', 5);
+    $('goPlay').onclick = () => startRun('fin-play', 5);
+  }
+  showOv('intro');
+}
+function startRun(kind, s) {
+  initAudio(); showOv(null);
+  const run = buildRun(kind, s); S.run = run; S.lead = -1;
+  S.st = { score: 0, combo: 0, best: 0, perfect: 0, good: 0, miss: 0, total: run.notes.length, dts: [] };
+  if (run.mode === 'play') { $('score').textContent = '0'; fx.length = 0; }
+  $('combo').textContent = '';
+  setStageUI(s);
+  setPhase({ listen: 'LISTEN', play: 'YOUR TURN', 'fin-listen': 'THE WHOLE SESSION', 'fin-play': 'YOU ARE THE BAND' }[kind]);
+  if (run.mode === 'play') say('Your turn!');
+  clearInterval(S.timer); S.timer = setInterval(schedule, 25); schedule();
+}
+function schedule() {
+  const run = S.run; if (!run || !AC) return;
+  const now = AC.currentTime, hor = now + 0.14;
+  while (run.si < run.events.length && run.events[run.si].time < hor) {
+    const e = run.events[run.si++], t = Math.max(e.time, now + 0.003);
+    if (e.type === 'tick') tick(t, e.accent);
+    else if (e.role === 'auto') playEv(e, t, run.kind === 'listen' && e.instr === run.s ? 1 : 0.8);
+  }
+}
+function endRun() {
+  const run = S.run; S.run = null; clearInterval(S.timer); S.lead = -1;
+  MUS.forEach(m => m.classList.remove('lead')); setPhase(''); $('progBar').style.width = '0';
+  if (run.kind === 'listen') { setTimeout(() => startRun('play', run.s), 500); return; }
+  if (run.kind === 'fin-listen') { setTimeout(() => startRun('fin-play', 5), 500); return; }
+  showResult(run);
+}
+function showResult(run) {
+  const st = S.st, tot = Math.max(1, st.total), hits = st.perfect + st.good, acc = hits / tot, q = (st.perfect + 0.7 * st.good) / tot, fin = run.kind === 'fin-play', s = run.s;
+  let n = acc < 0.5 ? 0 : q >= 0.82 ? 3 : q >= 0.6 ? 2 : 1;
+  if (fin && n === 0) n = 1;
+  const avg = st.dts.length ? st.dts.reduce((a, b) => a + b, 0) / st.dts.length : 0;
+  const pass = n > 0;
+  if (pass) { SAVE.stars[s] = Math.max(SAVE.stars[s] || 0, n); SAVE.unlocked = Math.max(SAVE.unlocked, Math.min(5, s + 1)); persist(); }
+  const card = $('resultCard');
+  const nums = '<div class="stats"><span>' + Math.round(acc * 100) + '% hit</span><span>Perfect ' + st.perfect + '</span><span>Good ' + st.good + '</span><span>Missed ' + st.miss + '</span><span>Best streak ' + st.best + '</span></div>';
+  let adj = '';
+  if (hits >= 8 && Math.abs(avg) > 0.045) {
+    const ms = Math.round(avg * 1000);
+    adj = '<p class="hint">You were about ' + Math.abs(ms) + ' ms ' + (ms > 0 ? 'late' : 'early') + ' on average. <button class="lnk" id="fixT">Adjust the timing for me</button></p>';
+  }
+  if (!fin) {
+    const next = s < 4 ? 'Next: Seamus swaps to the ' + INSTR[s + 1].name.toLowerCase() : 'Next: the Full Session';
+    card.innerHTML = '<h2>' + (pass ? ['', 'Grand!', 'Deadly!', 'Class!'][n] : 'So close!') + '</h2>' + stars(n) + nums + adj +
+      '<p>' + (pass ? 'That sounded the part. The ' + INSTR[s].name.toLowerCase() + ' joins the band.' : 'Hit at least half the notes to move on. Have another go.') + '</p>' +
+      '<div class="btns">' + (pass ? '<button class="btn green" data-primary id="rNext">' + next + '</button><button class="btn alt" id="rAgain">Try again</button>' : '<button class="btn green" data-primary id="rAgain">Try again</button><button class="btn alt" id="rListen">Listen again</button>') + '</div>';
+    if (pass) $('rNext').onclick = () => intro(s + 1);
+    $('rAgain').onclick = () => startRun('play', s);
+    if ($('rListen')) $('rListen').onclick = () => startRun('listen', s);
+    if (AC && pass) applause(AC.currentTime + 0.05, 0.9, 14);
+  } else {
+    const tot18 = SAVE.stars.reduce((a, b) => a + b, 0);
+    const title = tot18 >= 15 ? 'Legends of the snug!' : tot18 >= 10 ? 'What a session!' : 'Grand session, lads!';
+    card.innerHTML = '<div class="minis">' + [0, 1, 2, 3, 4].map(i => '<div class="mini">' + WEE(i) + '</div>').join('') + '</div><h2>' + title + '</h2>' + stars(n) + nums + adj +
+      '<p>' + tot18 + ' of 18 stars across the whole session. The wee man is delighted with himself. All five of him.</p>' +
+      '<div class="btns"><button class="btn green" data-primary id="rAgain">Play the finale again</button><button class="btn alt" id="rHome">Start from the top</button></div>' +
+      '<p class="hint" style="margin-top:12px"><a href="../../index.html#silly" style="color:inherit">Back to gamesdevni.site</a></p>';
+    $('rAgain').onclick = () => startRun('fin-play', 5);
+    $('rHome').onclick = () => intro(0);
+    if (AC) { finalChord(AC.currentTime + 0.1); applause(AC.currentTime + 0.5, 2.6, 60); }
+  }
+  if ($('fixT')) $('fixT').onclick = () => { SAVE.off = Math.max(-200, Math.min(200, Math.round((SAVE.off || 0) + avg * 1000))); persist(); $('fixT').parentNode.textContent = 'Timing adjusted. Try again!'; };
+  showOv('result'); updateTitle();
+}
+
+/* ================= playing ================= */
+function inputTime(e) { const el = Math.max(0, Math.min(0.25, (performance.now() - e.timeStamp) / 1000)); return AC.currentTime - el; }
+function press(lane, tIn) {
+  const run = S.run; if (!run || run.mode !== 'play' || !AC) return;
+  pressedAt[lane] = AC.currentTime;
+  const j = tIn - latency() - OFFSET();
+  let best = null, bd = 9;
+  for (const n of run.notes) { if (n.state !== 'p' || n.lane !== lane) continue; const d = Math.abs(j - n.time); if (d < bd) { bd = d; best = n; } }
+  if (best && bd <= WIN) hit(best, j - best.time);
+  else { S.st.combo = 0; updateCombo(); thud(AC.currentTime + 0.003); }
+}
+function hit(n, dt) {
+  const st = S.st, perfect = Math.abs(dt) <= PERF;
+  n.state = 'h'; n.grade = perfect ? 'perfect' : 'good'; st[n.grade]++; st.combo++; st.best = Math.max(st.best, st.combo); st.dts.push(dt);
+  st.score += (perfect ? 100 : 60) * Math.min(4, 1 + Math.floor(st.combo / 8));
+  playEv(n, AC.currentTime + 0.004, perfect ? 1 : 0.85);
+  pulse(n.instr, 'hit'); flash(n.lane, n.grade); addFx(perfect ? 'PERFECT' : 'Good', n.lane, perfect ? '#fff4dc' : '#ffd23d'); sparks(n.lane, LANE_COL[n.lane]);
+  $('score').textContent = st.score; updateCombo();
+  if (st.combo % 8 === 0) say(CHEERS[(st.combo / 8 - 1) % CHEERS.length]);
+}
+function miss(n) { n.state = 'm'; S.st.miss++; S.st.combo = 0; updateCombo(); addFx('miss', n.lane, '#c9b98e'); }
+function updateCombo() { const c = S.st ? S.st.combo : 0; $('combo').textContent = c >= 3 ? c + ' in a row' : ''; }
+function updateLead(vNow) {
+  const run = S.run; let lead = -1;
+  if (run.kind === 'listen' || run.kind === 'play') lead = run.s;
+  else if (run.kind === 'fin-play') { const bar = Math.floor((vNow - run.t0) / BAR); lead = bar < 0 ? 0 : Math.min(4, Math.floor(bar / 4)); }
+  if (lead !== S.lead) {
+    S.lead = lead; MUS.forEach((m, i) => m.classList.toggle('lead', i === lead));
+    if (run.kind === 'fin-play' && lead >= 0) { say(INSTR[lead].name + '! Your turn!'); setPhase('YOU: ' + INSTR[lead].name.toUpperCase()); }
+  }
+}
+
+/* ================= drawing ================= */
+const cv = $('hw'), gx = cv.getContext('2d');
+let W = 300, H = 400, dpr = 1, LY = { lw: 100, hitY: 320, R: 28 };
+const pressedAt = [-9, -9, -9], flashes = [null, null, null], fx = [], sp = [];
+const TOUCH = !matchMedia('(pointer:fine)').matches;
+function resize() { const r = cv.getBoundingClientRect(); dpr = Math.min(2, window.devicePixelRatio || 1); W = Math.max(1, r.width); H = Math.max(1, r.height); cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+new ResizeObserver(resize).observe($('pit')); window.addEventListener('resize', resize); resize();
+const hexA = (h, a) => { const n = parseInt(h.slice(1), 16); return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')'; };
+function flash(l, kind) { flashes[l] = { t: AC.currentTime, kind }; }
+function addFx(text, lane, col) { fx.push({ text, x: LY.lw * lane + LY.lw / 2, y: LY.hitY - LY.R - 10, t0: AC.currentTime, col }); if (fx.length > 14) fx.shift(); }
+function sparks(lane, col) { for (let i = 0; i < 9; i++) sp.push({ x: LY.lw * lane + LY.lw / 2, y: LY.hitY, vx: (Math.random() - 0.5) * 220, vy: -60 - Math.random() * 180, t0: AC.currentTime, col }); if (sp.length > 80) sp.splice(0, sp.length - 80); }
+function circle(x, y, r) { gx.beginPath(); gx.arc(x, y, r, 0, 6.2832); }
+
+function draw(vNow, now) {
+  const g = gx, run = S.run; g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
+  const lw = W / 3, hitY = Math.round(H * 0.8), R = Math.max(14, Math.min(lw * 0.3, 32)); LY = { lw, hitY, R };
+  const bg = g.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#26170d'); bg.addColorStop(1, '#140a05'); g.fillStyle = bg; g.fillRect(0, 0, W, H);
+  for (let l = 0; l < 3; l++) { g.fillStyle = hexA(LANE_COL[l], now - pressedAt[l] < 0.12 ? 0.2 : 0.06); g.fillRect(l * lw + 2, 0, lw - 4, H); }
+  g.strokeStyle = 'rgba(255,244,220,.12)'; g.lineWidth = 2;
+  for (let i = 1; i < 3; i++) { g.beginPath(); g.moveTo(i * lw, 0); g.lineTo(i * lw, H); g.stroke(); }
+  const pxs = (hitY + R) / APPROACH, yOf = t => hitY - (t - vNow) * pxs;
+  if (run) {
+    const k0 = Math.max(-6, Math.floor((vNow - run.t0) / STEP) - 4), k1 = Math.min(run.bars * 6, Math.ceil((vNow + APPROACH - run.t0) / STEP) + 1);
+    for (let k = k0; k <= k1; k++) {
+      if (k % 3) continue; const y = yOf(run.t0 + k * STEP); if (y < -4 || y > H + 4) continue;
+      g.strokeStyle = k % 6 === 0 ? 'rgba(255,244,220,.26)' : 'rgba(255,244,220,.09)'; g.lineWidth = k % 6 === 0 ? 3 : 1.5; g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke();
+    }
+    for (const n of run.shown) {
+      const y = yOf(n.time); if (y < -R * 2 || y > H + R * 2 || n.state === 'h') continue;
+      const cx = n.lane * lw + lw / 2, past = run.ghost && n.time < vNow;
+      g.globalAlpha = n.state === 'm' ? 0.3 : run.ghost ? (past ? 0.15 : 0.6) : 1;
+      g.fillStyle = LANE_COL[n.lane]; g.strokeStyle = OUT; g.lineWidth = 4; circle(cx, y, R); g.fill(); g.stroke();
+      g.fillStyle = 'rgba(255,255,255,.45)'; circle(cx - R * 0.25, y - R * 0.28, R * 0.28); g.fill();
+      g.strokeStyle = INSTR[n.instr].color; g.lineWidth = 3; circle(cx, y, R + 4); g.stroke();
+      g.globalAlpha = 1;
+    }
+  }
+  for (let l = 0; l < 3; l++) {   // pads
+    const cx = l * lw + lw / 2, down = now - pressedAt[l] < 0.1;
+    g.fillStyle = hexA(LANE_COL[l], down ? 0.55 : 0.16); g.strokeStyle = LANE_COL[l]; g.lineWidth = 4; circle(cx, hitY, R + 1); g.fill(); g.stroke();
+    if (!TOUCH) { g.fillStyle = 'rgba(255,244,220,.75)'; g.font = 'bold ' + Math.round(R * 0.7) + 'px Trebuchet MS,sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(KEYS[l], cx, hitY + 1); }
+    const f = flashes[l];
+    if (f) { const p = (now - f.t) / 0.3; if (p < 1) { g.strokeStyle = hexA(f.kind === 'auto' ? '#ffffff' : LANE_COL[l], 1 - p); g.lineWidth = 5 * (1 - p) + 1; circle(cx, hitY, R + 4 + p * 24); g.stroke(); } }
+  }
+  for (let i = sp.length - 1; i >= 0; i--) {
+    const s = sp[i], p = now - s.t0; if (p > 0.5) { sp.splice(i, 1); continue; }
+    g.fillStyle = hexA(s.col, 1 - p * 2); circle(s.x + s.vx * p, s.y + s.vy * p + 500 * p * p, 3.5 * (1 - p)); g.fill();
+  }
+  g.textAlign = 'center'; g.textBaseline = 'middle';
+  for (let i = fx.length - 1; i >= 0; i--) {
+    const f = fx[i], p = (now - f.t0) / 0.6; if (p > 1) { fx.splice(i, 1); continue; }
+    g.globalAlpha = 1 - p; g.font = 'bold ' + Math.round(R * 0.62) + 'px Trebuchet MS,sans-serif'; g.fillStyle = f.col; g.strokeStyle = OUT; g.lineWidth = 3;
+    g.strokeText(f.text, f.x, f.y - p * 26); g.fillText(f.text, f.x, f.y - p * 26); g.globalAlpha = 1;
+  }
+  if (run && vNow < run.t0) {
+    g.globalAlpha = 0.9; g.fillStyle = '#fff4dc'; g.strokeStyle = OUT; g.lineWidth = 5; g.font = 'bold ' + Math.round(Math.min(W * 0.1, 40)) + 'px Trebuchet MS,sans-serif';
+    const msg = run.mode === 'play' ? 'Get ready...' : 'Listen...'; g.strokeText(msg, W / 2, H * 0.4); g.fillText(msg, W / 2, H * 0.4); g.globalAlpha = 1;
+  }
+}
+function frame() {
+  requestAnimationFrame(frame);
+  if (!AC) { draw(0, 0); return; }
+  const now = AC.currentTime, lat = latency(), vNow = now - lat, run = S.run;
+  if (run) {
+    while (run.ai < run.events.length && run.events[run.ai].time <= vNow) {
+      const e = run.events[run.ai++];
+      if (e.type === 'note' && e.role === 'auto') { pulse(e.instr, 'beat'); if (run.ghost && e.instr === run.s) flash(e.lane, 'auto'); }
+    }
+    const j = now - lat - OFFSET();
+    for (const n of run.notes) { if (n.state !== 'p') continue; if (AUTO && j >= n.time) { hit(n, 0); continue; } if (j - n.time > WIN) miss(n); }
+    updateLead(vNow);
+    $('progBar').style.width = Math.max(0, Math.min(100, (vNow - run.t0) / (run.tEnd - run.t0) * 100)) + '%';
+    if (now >= run.tDone) endRun();
+  }
+  draw(vNow, now);
+}
+
+/* ================= input + buttons ================= */
+cv.addEventListener('pointerdown', e => {
+  e.preventDefault(); if (!S.run || S.run.mode !== 'play' || !AC) return;
+  const r = cv.getBoundingClientRect(); press(Math.max(0, Math.min(2, Math.floor((e.clientX - r.left) / (r.width / 3)))), inputTime(e));
+});
+window.addEventListener('keydown', e => {
+  if (e.repeat || $('pause').classList.contains('on')) return;
+  const l = KEYMAP[e.code]; if (l === undefined || !S.run || S.run.mode !== 'play' || !AC) return;
+  e.preventDefault(); press(l, inputTime(e));
+});
+const START = Math.max(0, Math.min(5, parseInt(Q.get('stage') || '0', 10) || 0));
+$('playBtn').onclick = () => { initAudio(); intro(START); };
+$('contBtn').onclick = () => { initAudio(); intro(Math.min(5, SAVE.unlocked)); };
+function offLabel() { $('offVal').textContent = (SAVE.off > 0 ? '+' : '') + (SAVE.off || 0) + ' ms'; }
+function openPause() { offLabel(); if (AC && S.run && AC.state === 'running') { AC.suspend(); S.pausedByUs = true; } $('pause').classList.add('on'); $('resumeBtn').focus({ preventScroll: true }); }
+function closePause() { $('pause').classList.remove('on'); if (AC && S.pausedByUs) { AC.resume(); S.pausedByUs = false; } }
+$('menuBtn').onclick = openPause; $('setBtn').onclick = openPause; $('resumeBtn').onclick = closePause;
+$('quitBtn').onclick = () => { location.href = location.pathname; };
+$('offDn').onclick = () => { SAVE.off = Math.max(-200, (SAVE.off || 0) - 10); persist(); offLabel(); };
+$('offUp').onclick = () => { SAVE.off = Math.min(200, (SAVE.off || 0) + 10); persist(); offLabel(); };
+document.addEventListener('visibilitychange', () => { if (document.hidden && S.run) openPause(); });
+window.__ss = { S, level: () => { if (!analyser) return 0; const a = new Float32Array(analyser.fftSize); analyser.getFloatTimeDomainData(a); let m = 0; for (let i = 0; i < a.length; i++) m = Math.max(m, Math.abs(a[i])); return m; }, CHART, STEP };
+
+updateTitle(); setStageUI(0); MUS.forEach(m => m.classList.add('locked')); frame();
+})();
+</script>
+</body>
+</html>

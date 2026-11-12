@@ -195,3 +195,6 @@ out/kaiju_coast_trailer.mp4 re-encoded for the web at about 3 Mbit/s; the
 screenshots are out/screenshots/ 01, 03, 04, 06, 07, 09, 10 and 11, cut down to
 1280x720 with 960px thumbs. There's only a "Get Kaiju Coast on itch.io" button,
 no buy widget.
+
+THE SILLY SESSION (silly/silly-session/)
+One-file rhythm game, no libraries; all sound is synthesised in code. Seamus swaps instruments each round (bodhran, whistle, fiddle, banjo, accordion). Tune lives in CHART/CHORDS/BPM at the top of the script. Test with ?auto=1 (plays itself) and ?stage=N (0-5).

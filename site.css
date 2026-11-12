@@ -651,3 +651,7 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 .silly-card p strong{color:#2a1a12}
 .silly-btn{align-self:flex-start;margin-top:6px;border-color:#2a1a12;color:#2a1a12;border-radius:999px}
 .silly-card:hover .silly-btn{background:#e8412f;border-color:#e8412f;color:#fff}
+
+.silly-pics.one{grid-template-columns:1fr}
+.silly-pics.one img{aspect-ratio:640/349}
+.silly-grid{align-items:start}
