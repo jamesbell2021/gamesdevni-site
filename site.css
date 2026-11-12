@@ -73,7 +73,7 @@ nav li.more:hover ul.more-list,nav li.more:focus-within ul.more-list{display:fle
 .btn.soon:hover{background:transparent;color:var(--text-dim)}
 
 /* ---- Hero ---- */
-.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden;
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden;
   background:
    linear-gradient(90deg,rgba(14,17,22,.97) 0%,rgba(14,17,22,.88) 42%,rgba(14,17,22,.55) 100%),
    linear-gradient(0deg,var(--bg) 0%,transparent 30%),
@@ -582,3 +582,36 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 .news-more{margin-top:20px}
 .news-more summary{cursor:pointer;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim)}
 .news-more summary:hover{color:var(--accent)}
+
+/* ============ CHRISTMAS: A Timeless Christmas Tree (front page, until Twelfth Night) ============ */
+.xmas{padding:110px 0 64px;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 0%,rgba(170,30,45,.24),transparent 62%),
+             radial-gradient(ellipse at 12% 100%,rgba(30,110,64,.2),transparent 55%),
+             radial-gradient(ellipse at 90% 90%,rgba(232,196,104,.08),transparent 50%)}
+.xmas::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:radial-gradient(2px 2px at 20px 30px,rgba(255,255,255,.7),transparent),
+                   radial-gradient(1.5px 1.5px at 130px 80px,rgba(255,255,255,.55),transparent),
+                   radial-gradient(2.5px 2.5px at 70px 150px,rgba(255,255,255,.45),transparent),
+                   radial-gradient(1.5px 1.5px at 170px 190px,rgba(255,255,255,.6),transparent);
+  background-size:200px 220px;animation:xmas-snow 22s linear infinite}
+@keyframes xmas-snow{from{background-position:0 0}to{background-position:60px 440px}}
+@media (prefers-reduced-motion:reduce){.xmas::before{animation:none}}
+.xmas .wrap{position:relative}
+.xmas .eyebrow{color:#C9A14A}
+.xmas h2 .hl{color:#E8C468}
+.xmas .lead{margin-top:14px}
+.xmas-frame{position:relative;margin-top:26px;aspect-ratio:16/9;background:#000 center/cover no-repeat;
+  box-shadow:0 0 0 1px #5a4a22,0 0 60px rgba(232,196,104,.18),0 30px 80px rgba(0,0,0,.5)}
+.xmas-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+.xmas-play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  border:0;cursor:pointer;color:var(--text);font-family:var(--mono);
+  background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.6))}
+.xmas-play .ring{width:96px;height:96px;border-radius:50%;border:3px solid #E8C468;display:grid;place-items:center;
+  background:rgba(14,17,22,.6);box-shadow:0 0 30px rgba(232,196,104,.35);transition:transform .2s}
+.xmas-play .ring::after{content:"";margin-left:8px;border-left:30px solid #E8C468;border-top:18px solid transparent;border-bottom:18px solid transparent}
+.xmas-play:hover .ring,.xmas-play:focus-visible .ring{transform:scale(1.08)}
+.xmas-play span{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-shadow:0 2px 10px #000}
+.xmas-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px}
+.xmas .btn.gold{border-color:#E8C468;color:#E8C468}
+.xmas .btn.gold:hover{background:#E8C468;color:var(--bg)}
+@media(max-width:700px){.xmas{padding-top:96px}.xmas-play .ring{width:72px;height:72px}.xmas-play span{font-size:11px}}

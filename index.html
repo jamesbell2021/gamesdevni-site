@@ -85,6 +85,52 @@
   </div>
 </nav>
 
+<!-- ============ CHRISTMAS (takes itself down after Twelfth Night: see the script below) ============ -->
+<section id="christmas" class="xmas" aria-label="Happy Christmas from 3BL">
+  <div class="wrap">
+    <p class="eyebrow">A Christmas gift from the studio</p>
+    <h2>Happy Christmas <span class="hl">from 3BL</span></h2>
+    <p class="lead">We made you something for the season: <strong>A Timeless Christmas Tree</strong>. Watch a little pine grow up in a wood beneath the Mournes, then dress it in a candlelit Edwardian parlour on Christmas Eve, 1901. No timers, no scores, just baubles, candles and carols. It plays right here in your browser.</p>
+    <div class="xmas-frame cut" id="xmas-frame" style="background-image:url('christmas/poster.jpg')">
+      <button type="button" class="xmas-play" id="xmas-play" aria-label="Play A Timeless Christmas Tree">
+        <i class="ring" aria-hidden="true"></i>
+        <span>Play A Timeless Christmas Tree</span>
+      </button>
+    </div>
+    <div class="xmas-actions">
+      <a class="btn gold" href="christmas/index.html" target="_blank" rel="noopener">Play full screen</a>
+      <a class="btn soon" href="https://github.com/jamesbell2021/timeless-christmas-tree-" target="_blank" rel="noopener">The code on GitHub</a>
+    </div>
+    <p class="video-note">Every picture, carol and crackle is made in code. Best on a computer or tablet; on a phone, turn it sideways. Your trees are saved in your browser.</p>
+  </div>
+</section>
+<script>
+(function () {
+  // Christmas ends on Twelfth Night: from 7 January 2027 the section removes
+  // itself. To keep it up longer (or bring it back next year) change END.
+  var END = new Date(2027, 0, 7);
+  var s = document.getElementById('christmas');
+  if (!s) return;
+  if (new Date() >= END) { s.parentNode.removeChild(s); return; }
+  document.getElementById('xmas-play').addEventListener('click', function () {
+    // Phones get the game full screen; bigger screens play it in place.
+    if (window.matchMedia('(max-width: 700px)').matches) {
+      window.location.href = 'christmas/index.html';
+      return;
+    }
+    var frame = document.getElementById('xmas-frame');
+    var f = document.createElement('iframe');
+    f.src = 'christmas/index.html';
+    f.title = 'A Timeless Christmas Tree';
+    f.allow = 'autoplay; fullscreen; gamepad';
+    f.setAttribute('allowfullscreen', '');
+    frame.innerHTML = '';
+    frame.appendChild(f);
+    f.focus();
+  });
+})();
+</script>
+
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
   <div class="wrap">

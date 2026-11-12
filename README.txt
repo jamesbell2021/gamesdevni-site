@@ -3,6 +3,18 @@
 Upload the whole folder as it is: index.html, games.html, site.css,
 screenshots/, video/.
 
+CHRISTMAS 2026 (added 12 November 2026): the front page opens with
+"Happy Christmas from 3BL" (#christmas, just under the menu) and our
+browser game A Timeless Christmas Tree. The game's web build lives in
+christmas/ (copied from the docs/ folder of the timeless-christmas-tree-
+repo, about 38 MB) and only loads when someone presses Play; phones go
+straight to christmas/index.html full screen. The section takes itself down
+on Twelfth Night: a script right after it removes it from 7 January 2027.
+To change the date, edit END in that script; to update the game, copy the
+new docs/ files over christmas/. After Christmas you can delete the
+section, its script, the CHRISTMAS block at the end of site.css and the
+christmas/ folder.
+
 TWO PAGES (since 15 October 2026):
   index.html  Forged in Formation (the Steam wishlist page), Defend the
               Drift, The House Is Haunted (#haunted, out now in early
