@@ -33,6 +33,21 @@ whole folder and the card). To update the game, replace the two downloads
 with new builds from the cars repo (export presets "Windows Desktop" and
 "Linux", packaged with READ_ME.txt and the font licences).
 
+SILLY STUFF (added 12 November 2026): daft things made for fun for the
+kids. The front page has a "Silly stuff" section (#silly, just before "More
+from 3BL"), linked from the top of the More Games menu on both pages, with
+its styles in the SILLY STUFF block at the end of site.css. Each silly thing
+lives in its own folder under silly/; to add one, copy the .silly-card in
+the section and point it at the new folder.
+  silly/costa-chaos/  Costa Chaos!: Lookee Lookee Tycoon and Zero Star Hotel
+              (both from the Animation- repo) on one page with an intro
+              screen to pick between them. Both are Godot 4.3 web exports and
+              share one copy of the engine (engine.wasm/.js/.audio.worklet.js,
+              about 35 MB); each game is just its data pack, lookee.pck and
+              hotel.pck. To update a game, export it for Web in Godot 4.3 and
+              copy its index.pck over the matching .pck (notes at the top of
+              silly/costa-chaos/index.html). Direct links: #lookee or #hotel.
+
 TWO PAGES (since 15 October 2026):
   index.html  Forged in Formation (the Steam wishlist page), Defend the
               Drift, The House Is Haunted (#haunted, out now in early

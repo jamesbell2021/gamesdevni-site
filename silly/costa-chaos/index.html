@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, viewport-fit=cover">
+<title>Costa Chaos: two daft games from the Spanish Costa</title>
+<meta name="description" content="Lookee Lookee Tycoon and Zero Star Hotel together in one browser game. Made for fun by 3BL.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#7fd0f5">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<!--
+  COSTA CHAOS: Lookee Lookee Tycoon + Zero Star Hotel on one page.
+  Both games are Godot 4.3 web exports. They use the exact same engine, so it's
+  stored once (engine.wasm / engine.js / engine.audio.worklet.js) and each game
+  is just its data pack (lookee.pck / hotel.pck). Picking a game on the intro
+  screen starts the engine with that pack. "Menu" reloads the page.
+  To update a game: export it for Web from Godot 4.3, then copy its index.pck
+  over lookee.pck or hotel.pck (and fix the size in PACKS below).
+  If you ever export with a different Godot version, replace the engine files too
+  (and the other game must be re-exported with that version as well).
+  Links straight into a game: costa-chaos/#lookee or costa-chaos/#hotel
+-->
+<style>
+:root{--sky:#7fd0f5;--sea:#1d8fcf;--sand:#f3d58e;--ink:#2a1a12;--sun:#ffd83d;--red:#e8412f;--cream:#fff7e3}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--sky);color:var(--ink);font-family:"Arial Rounded MT Bold","Trebuchet MS","Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.playing{background:#000;overflow:hidden;touch-action:none;overscroll-behavior:none}
+
+/* ---------- intro screen ---------- */
+#intro{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:28px 18px 24px;position:relative;
+  background:linear-gradient(180deg,var(--sky) 0 46%,var(--sea) 46% 60%,var(--sand) 60% 100%)}
+#intro::before{content:"";position:absolute;top:22px;right:8%;width:110px;height:110px;border-radius:50%;background:var(--sun);
+  box-shadow:0 0 0 14px rgba(255,216,61,.35);animation:sun 6s ease-in-out infinite alternate;z-index:0}
+@keyframes sun{to{transform:translateY(10px) scale(1.06)}}
+#intro > *{position:relative;z-index:1}
+.logo{font-size:clamp(46px,9vw,96px);line-height:.95;margin:6px 0 4px;text-align:center;color:var(--sun);letter-spacing:.02em;
+  -webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:5px 5px 0 var(--ink);transform:rotate(-3deg);animation:wobble 2.4s ease-in-out infinite}
+@keyframes wobble{50%{transform:rotate(2deg) scale(1.03)}}
+.shout{margin:10px 0 22px;font-size:clamp(16px,2.6vw,22px);text-align:center;background:var(--cream);border:3px solid var(--ink);border-radius:18px;
+  padding:8px 16px;box-shadow:4px 4px 0 var(--ink);transform:rotate(1.5deg);max-width:34ch}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;width:min(920px,100%)}
+.card{appearance:none;font:inherit;color:inherit;text-align:left;cursor:pointer;background:var(--cream);border:4px solid var(--ink);border-radius:22px;
+  box-shadow:6px 6px 0 var(--ink);padding:0;overflow:hidden;display:flex;flex-direction:column;transition:transform .12s,box-shadow .12s}
+.card:hover,.card:focus-visible{transform:translate(-2px,-4px) rotate(-1deg);box-shadow:8px 10px 0 var(--ink);outline:none}
+.card:active{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
+.card img{width:100%;height:auto;aspect-ratio:630/500;object-fit:cover;border-bottom:4px solid var(--ink);display:block}
+.card .txt{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h2{margin:0;font-size:clamp(20px,2.6vw,26px)}
+.card p{margin:0;font-size:15px;line-height:1.4;font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;flex:1}
+.go{align-self:flex-start;margin-top:4px;background:var(--red);color:#fff;border:3px solid var(--ink);border-radius:999px;padding:8px 20px;font-size:18px;box-shadow:3px 3px 0 var(--ink)}
+#hotel-card .go{background:#8a63b8}
+.small{margin:22px 0 0;font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;font-size:14px;text-align:center;max-width:60ch;line-height:1.45}
+.small a{color:var(--ink);font-weight:bold}
+@media (max-width:620px){.games{grid-template-columns:1fr}#intro::before{width:70px;height:70px;right:6%}}
+
+/* ---------- loading + game ---------- */
+#canvas{display:none;position:fixed;inset:0;width:100%;height:100%}
+#canvas:focus{outline:none}
+body.playing #canvas{display:block}
+#loading{display:none;position:fixed;inset:0;z-index:5;background:var(--sky);flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:20px;text-align:center}
+#loading.on{display:flex}
+#loading img{width:min(360px,80vw);border:4px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--ink)}
+#loading .bar{width:min(360px,80vw);height:22px;border:3px solid var(--ink);border-radius:999px;background:var(--cream);overflow:hidden}
+#loading .bar i{display:block;height:100%;width:0;background:var(--red);transition:width .2s}
+#loading .msg{font-size:18px;white-space:pre-line;max-width:40ch}
+#menu-btn{display:none;position:fixed;left:max(8px,env(safe-area-inset-left));top:max(8px,env(safe-area-inset-top));z-index:10;font:inherit;font-size:14px;
+  background:rgba(255,247,227,.8);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:4px 12px;cursor:pointer;opacity:.6}
+#menu-btn:hover{opacity:1}
+#menu-btn.sure{background:var(--red);color:#fff;opacity:1}
+body.playing #menu-btn{display:block}
+#turn{display:none;position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:10;background:var(--cream);border:2px solid var(--ink);border-radius:14px;
+  padding:6px 12px;font-size:14px;box-shadow:3px 3px 0 var(--ink)}
+@media (orientation:portrait) and (max-width:700px){body.playing #turn{display:block}}
+</style>
+<script>
+/* iPhone and iPad sound fix. iOS mutes web audio when the ring/silent switch is on, and only lets a page start sound from inside a real tap. */
+(function () {
+  try { if (navigator.audioSession) { navigator.audioSession.type = 'playback'; } } catch (e) {}
+  var Orig = window.AudioContext || window.webkitAudioContext;
+  var ctxs = [];
+  window.__tctAudio = { ctxs: ctxs, starts: 0, errors: [] };
+  if (Orig) {
+    var Tracked = function (opts) { var c = opts ? new Orig(opts) : new Orig(); ctxs.push(c); return c; };
+    Tracked.prototype = Orig.prototype;
+    window.AudioContext = Tracked;
+    if (window.webkitAudioContext) { window.webkitAudioContext = Tracked; }
+  }
+  if (window.AudioBufferSourceNode) {
+    var st = AudioBufferSourceNode.prototype.start;
+    AudioBufferSourceNode.prototype.start = function () { window.__tctAudio.starts++; return st.apply(this, arguments); };
+  }
+  window.addEventListener('error', function (e) { window.__tctAudio.errors.push(String(e.message || e)); });
+  var silent = null;
+  function silentUrl() {
+    var n = 4410, b = new ArrayBuffer(44 + n * 2), v = new DataView(b);
+    function w(o, s) { for (var i = 0; i < s.length; i++) { v.setUint8(o + i, s.charCodeAt(i)); } }
+    w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVE'); w(12, 'fmt ');
+    v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, 22050, true); v.setUint32(28, 44100, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true);
+    w(36, 'data'); v.setUint32(40, n * 2, true);
+    return URL.createObjectURL(new Blob([b], { type: 'audio/wav' }));
+  }
+  function unlock() {
+    for (var i = 0; i < ctxs.length; i++) {
+      var c = ctxs[i];
+      if (c.state !== 'running' && c.state !== 'closed') { try { c.resume(); } catch (e) {} }
+    }
+    if (!navigator.audioSession && !silent) {
+      try {
+        silent = new Audio(silentUrl());
+        silent.loop = true;
+        silent.setAttribute('playsinline', '');
+        var p = silent.play();
+        if (p && p.catch) { p.catch(function () { silent = null; }); }
+      } catch (e) { silent = null; }
+    }
+  }
+  ['touchstart', 'touchend', 'pointerdown', 'pointerup', 'mousedown', 'click', 'keydown'].forEach(function (ev) {
+    window.addEventListener(ev, unlock, { capture: true, passive: true });
+  });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) { unlock(); } });
+})();
+</script>
+</head>
+<body>
+
+<main id="intro">
+  <h1 class="logo">COSTA<br>CHAOS!</h1>
+  <p class="shout">Hello chicken nugget! Two daft games from the Spanish Costa. Pick one!</p>
+
+  <div class="games">
+    <button class="card" id="lookee-card" type="button" data-game="lookee">
+      <img src="lookee.jpg" alt="Lookee Lookee Tycoon: a beach seller in a red cap waving on the sand" width="630" height="500">
+      <span class="txt">
+        <h2>Lookee Lookee Tycoon</h2>
+        <p>Sell the cheapest plastic tat on the beach to sunburnt tourists. Very good, very nice! Pack up the blanket before the Policía turn up, hire a crew and take over six resorts.</p>
+        <span class="go">Play!</span>
+      </span>
+    </button>
+    <button class="card" id="hotel-card" type="button" data-game="hotel">
+      <img src="hotel.jpg" alt="Zero Star Hotel: the hotel manager in a red cap waving at sunset" width="630" height="500">
+      <span class="txt">
+        <h2>Zero Star Hotel</h2>
+        <p>You've bought the worst hotel on the Costa. Squash the cockroaches, break up the punch-ups, win the sunlounger towel wars and drag it all the way up to three stars.</p>
+        <span class="go">Play!</span>
+      </span>
+    </button>
+  </div>
+
+  <p class="small">Tap, click or use the keyboard. Best on a computer or tablet; on a phone, turn it sideways. Your progress is saved in this browser. Every picture, voice and tune is made in code.<br><br>
+  Silly stuff made for fun by <a href="../../index.html#silly">3BL</a>. <a href="../../index.html#silly">Back to gamesdevni.site</a></p>
+</main>
+
+<div id="loading" role="status" aria-live="polite">
+  <img id="loading-img" src="lookee.jpg" alt="">
+  <div class="bar"><i id="loading-bar"></i></div>
+  <div class="msg" id="loading-msg">Loading... (the first time takes a wee while)</div>
+</div>
+
+<canvas id="canvas" tabindex="0">Your browser can't show this game.</canvas>
+<button id="menu-btn" type="button">&#9664; Menu</button>
+<div id="turn">Turn your phone sideways</div>
+
+<noscript><p style="padding:20px">These games need JavaScript switched on.</p></noscript>
+
+<script src="engine.js"></script>
+<script>
+(function () {
+  // Each game's data pack and its size in bytes (the size only drives the loading bar).
+  var PACKS = {
+    lookee: { pck: 'lookee.pck', size: 360992, title: 'Lookee Lookee Tycoon', img: 'lookee.jpg' },
+    hotel:  { pck: 'hotel.pck',  size: 346992, title: 'Zero Star Hotel',      img: 'hotel.jpg' }
+  };
+  var ENGINE_SIZE = 35376909; // engine.wasm
+
+  var loading = document.getElementById('loading');
+  var bar = document.getElementById('loading-bar');
+  var msg = document.getElementById('loading-msg');
+  var started = false;
+
+  function fail(text) {
+    msg.textContent = text + '\n\nTap "Menu" to go back.';
+    bar.parentNode.style.display = 'none';
+    document.getElementById('menu-btn').style.display = 'block';
+  }
+
+  function start(id) {
+    var g = PACKS[id];
+    if (!g || started) return;
+    started = true;
+    if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+    document.title = g.title + ' - Costa Chaos';
+    document.getElementById('loading-img').src = g.img;
+    document.getElementById('intro').style.display = 'none';
+    loading.classList.add('on');
+
+    var missing = Engine.getMissingFeatures({ threads: false });
+    if (missing.length) {
+      fail('Sorry, this browser is missing something the games need:\n' + missing.join('\n'));
+      return;
+    }
+    var sizes = { 'engine.wasm': ENGINE_SIZE };
+    sizes[g.pck] = g.size;
+    var engine = new Engine({
+      executable: 'engine',
+      mainPack: g.pck,
+      fileSizes: sizes,
+      canvasResizePolicy: 2,
+      focusCanvas: true,
+      args: []
+    });
+    document.body.classList.add('playing');
+    engine.startGame({
+      onProgress: function (cur, total) {
+        if (cur > 0 && total > 0) bar.style.width = Math.round(cur / total * 100) + '%';
+      }
+    }).then(function () {
+      loading.classList.remove('on');
+      document.getElementById('canvas').focus();
+    }, function (err) {
+      console.error(err);
+      fail('Sorry, the game wouldn\'t start.\n' + (err && err.message ? err.message : err));
+    });
+  }
+
+  // Menu button: tap twice so a stray tap doesn't throw you out of the game.
+  var menuBtn = document.getElementById('menu-btn');
+  var armed = null;
+  menuBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (armed || !document.body.classList.contains('playing') || loading.classList.contains('on')) {
+      history.replaceState(null, '', location.pathname);
+      location.reload();
+      return;
+    }
+    menuBtn.classList.add('sure');
+    menuBtn.textContent = 'Tap again to quit';
+    armed = setTimeout(function () {
+      armed = null;
+      menuBtn.classList.remove('sure');
+      menuBtn.innerHTML = '&#9664; Menu';
+    }, 3000);
+  });
+
+  document.getElementById('turn').addEventListener('click', function () { this.style.visibility = 'hidden'; });
+
+  var cards = document.querySelectorAll('.card');
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].addEventListener('click', function () { start(this.getAttribute('data-game')); });
+  }
+
+  // costa-chaos/#lookee or #hotel goes straight into that game.
+  var h = location.hash.replace('#', '');
+  if (PACKS[h]) start(h);
+})();
+</script>
+</body>
+</html>
