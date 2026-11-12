@@ -205,5 +205,8 @@ screenshots are out/screenshots/ 01, 03, 04, 06, 07, 09, 10 and 11, cut down to
 1280x720 with 960px thumbs. There's only a "Get Kaiju Coast on itch.io" button,
 no buy widget.
 
+ESCAPE FROM EAST BELFAST (silly/escape-from-east-belfast/, added 12 November 2026)
+ZX Spectrum style 4-player co-op brawler (Renegade / Streets of Rage): fight from Dundonald to the city centre in 5 levels (Dundonald, The Moat, Comber Greenway, Connswater, City Centre), each with a boss. One file, no libraries; all pictures and sound are drawn and synthesised in code, thumb.jpg is the card picture. Up to four players on keyboards (arrows + Z X C V B; WASD + F G H T Y), gamepads (a pad joins by pressing a button) or touch; unused mates are CPU. Add ?level=N (1-5) to start on a later level, ?demo=1 to watch four CPU mates play. Tunes: THEMES in the script.
+
 THE SILLY SESSION (silly/silly-session/)
 One-file rhythm game, no libraries; all sound is synthesised in code. Bob Piper (the wee man) swaps instruments each round (bodhran, whistle, fiddle, banjo, accordion). Three tunes, easy to tough (SONGS array at the top of the script): The Mountains of Mourne (3/4), She'll Be Coming Round the Mountain (4/4), then Bob Piper's Jig (fast, dense). Melodies charted from sheet music supplied by James (Mourne 6/8 in G on a 16th grid; Mountain 2/4 in G). Add a tune by adding a SONGS entry. ?song=N (0-2) starts on that tune. Test with ?auto=1 (plays itself) and ?stage=N (0-5).
