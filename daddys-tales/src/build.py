@@ -7,6 +7,6 @@ for k,f in [('ART','art.js'),('SCENES','scenes.js'),('BOOK','book.js')]:
     t=t.replace('{{%s}}'%k,open(f).read())
 import sys
 site=len(sys.argv)>1 and sys.argv[1]=='site'
-extra='<link rel="apple-touch-icon" href="icon.png">\n<meta property="og:title" content="Daddy\'s Tales">\n<meta property="og:description" content="Twenty-four spooky and silly bedtime stories, as a pop-up book.">\n<meta property="og:image" content="https://gamesdevni.site/daddys-tales/share.jpg">' if site else ''
+extra='<link rel="apple-touch-icon" href="icon.png">\n<meta property="og:title" content="Daddy\'s Tales">\n<meta property="og:description" content="Twenty-four spooky and silly bedtime stories, as a pop-up book.">\n<meta property="og:image" content="https://jamesbell2021.github.io/gamesdevni-site/daddys-tales/share.jpg">' if site else ''
 t=t.replace('{{HEADEXTRA}}',extra)
 open('index.html','w').write(t); print(len(t))
