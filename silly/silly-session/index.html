@@ -11,8 +11,8 @@
   THE SILLY SESSION: a rhythm game made for fun for the kids. One file, no libraries.
   Every sound is made in code (Web Audio), every picture is drawn in code except session.jpg.
   How it works:
-    * One wee man (Seamus) swaps instruments each round: bodhran, tin whistle, fiddle, banjo, accordion.
-      The Seamus from the round before stays put and keeps playing his part.
+    * One wee man (Bob Piper) swaps instruments each round: bodhran, tin whistle, fiddle, banjo, accordion.
+      The Bob Piper from the round before stays put and keeps playing his part.
     * Every instrument has a chart of 8 bars (CHART below). A chart note is a step in the bar
       (a jig: 6 eighth-notes a bar) and one of three lanes. The lane picks a note from the chord of
       that bar (CHORDS), so any three-lane chart sounds like music.
@@ -132,8 +132,8 @@ button{font:inherit;color:inherit;cursor:pointer}
   <div class="hero">
     <img src="session.jpg" alt="The Silly Session: five wee men playing bodhr&aacute;n, tin whistle, fiddle, banjo and accordion" width="1024" height="559">
     <p class="tag">An Irish music session. A silly one.</p>
-    <p class="how">Watch the wee man, then copy him: tap the three lanes (or keys A S D) as the circles land. Each round he swaps to a new instrument and the last one stays behind to keep playing, until the whole session is one tune. Turn your sound up!</p>
-    <div class="btns"><button class="btn green" id="playBtn" data-primary>Play</button><button class="btn alt" id="contBtn" hidden>Continue</button></div>
+    <p class="how">Start with the Mountains of Mourne, then Bob Piper's own jig. Watch the wee man, then copy him: tap the three lanes (or keys A S D) as the circles land. Each round he swaps to a new instrument and the last one stays behind to keep playing, until the whole session is one tune. Turn your sound up!</p>
+    <div class="btns"><button class="btn green" id="playBtn" data-primary>Play</button><button class="btn alt" id="contBtn" hidden>Continue</button><button class="btn" id="tune2Btn" hidden>Tune 2: Bob Piper's Jig</button></div>
     <p class="foot"><span id="starsTot"></span><a href="../../index.html#silly">Back to gamesdevni.site</a> &middot; <button class="lnk" id="setBtn">Sound timing</button></p>
   </div>
 </div>
@@ -157,25 +157,52 @@ const Q = new URLSearchParams(location.search);
 const AUTO = Q.has('auto');
 
 /* ================= the tune ================= */
-const BPM = 108;                       // dotted-quarter beats a minute (a lively jig)
-const STEP = 60 / BPM / 3;             // one eighth note, in seconds
-const BAR = STEP * 6;
 const APPROACH = 1.55;                 // seconds a note takes to fall to the line
 const WIN = 0.15, PERF = 0.07;         // hit windows (seconds)
-const CHORDS = ['D', 'D', 'G', 'A', 'D', 'Bm', 'G', 'A'];
-const CH = { D: { r: 2, m: 0 }, G: { r: 7, m: 0 }, A: { r: 9, m: 0 }, Bm: { r: 11, m: 1 } };
-// 8 bars per instrument, 6 steps a bar. '.' = rest, '0' '1' '2' = lane.
-const CHART = [
-  ['0.20.2', '0.20.2', '0.20.2', '0.2022', '0.21.2', '0.21.2', '0.20.2', '0.2122'],   // bodhran
-  ['0.12.1', '2.10..', '0.12.1', '2.101.', '0.12.1', '2.10..', '0.12.1', '2.1..0'],   // tin whistle
-  ['0..1..', '2..1..', '0..2..', '1..2.1', '0..1..', '2..1..', '0..2..', '1..0.2'],   // fiddle
-  ['01.12.', '01.12.', '01.12.', '01.121', '01.12.', '01.12.', '01.12.', '0.1212'],   // banjo
-  ['0..1..', '0..1..', '0..1.1', '0.21..', '0..1..', '0..1..', '0..1.1', '0.21.2']    // accordion
+/* SONGS: add a new tune by adding an entry here.
+   bpm  = dotted-quarter beats a minute for a jig; step = one eighth note, 6 steps to a bar.
+   beat = steps between clicks (3 for a jig in 6/8, 2 for a waltz in 3/4).
+   chart[instrument][bar] is either a string of lanes ('0' '1' '2', '.' = rest) that play chord notes,
+   or an array of 6 tokens: '.' or a note like 'F#5' (lane picked from the pitch) or 'D4:1' (lane forced). */
+const bars6 = s => s.split(' ');
+const SONGS = [
+  { name: 'The Mountains of Mourne', short: 'Mourne', bpm: 68, beat: 2,
+    chords: ['D', 'D', 'G', 'A', 'D', 'D', 'A', 'D'],
+    first: "Right so. I'm Bob Piper. We'll start easy with the Mountains of Mourne, nice and slow, and I'm on the bodhrán. Watch me hands, then copy me. Bash the drum as the circles land on the line!",
+    chart: [
+      ['0.1.1.', '0.1.1.', '0.1.1.', '0.1.1.', '0.1.1.', '0.1.1.', '0.1.1.', '0.....'],
+      ['A4 . D5 . D5 .', 'E5 . F#5 . F#5 .', 'E5 . D5 . B4 .', 'A4 . . . . .', 'A4 . D5 . D5 .', 'E5 . F#5 . G5 .', 'F#5 . E5 . D5 .', 'D5 . . . . .'].map(bars6),
+      ['D4:0 . . . . .', 'F#4:1 . . . . .', 'B4:2 . . . . .', 'E4:1 . . . . .', 'D4:0 . . . . .', 'F#4:1 . . . . .', 'A4:2 . . . . .', 'D4:0 . . . . .'].map(bars6),
+      ['0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.....'],
+      ['..1.1.', '..1.1.', '..1.1.', '..1.1.', '..1.1.', '..1.1.', '..1.1.', '1.....']
+    ] },
+  { name: "Bob Piper's Jig", short: 'Jig', bpm: 108, beat: 3,
+    chords: ['D', 'D', 'G', 'A', 'D', 'Bm', 'G', 'A'],
+    first: "Right, the warm-up's over. Here's me own tune, a proper jig. Faster this time. Back on the bodhrán and no mercy!",
+    chart: [
+      ['0.20.2', '0.20.2', '0.20.2', '0.2022', '0.21.2', '0.21.2', '0.20.2', '0.2122'],
+      ['0.12.1', '2.10..', '0.12.1', '2.101.', '0.12.1', '2.10..', '0.12.1', '2.1..0'],
+      ['0..1..', '2..1..', '0..2..', '1..2.1', '0..1..', '2..1..', '0..2..', '1..0.2'],
+      ['01.12.', '01.12.', '01.12.', '01.121', '01.12.', '01.12.', '01.12.', '0.1212'],
+      ['0..1..', '0..1..', '0..1.1', '0.21..', '0..1..', '0..1..', '0..1.1', '0.21.2']
+    ] }
 ];
+let SONGI = 0, SONG = SONGS[0], BPM, STEP, BAR, BEAT, CHORDS, CHART;
+function setSong(n) {
+  SONGI = n; SONG = SONGS[n]; BPM = SONG.bpm; STEP = 60 / BPM / 3; BAR = STEP * 6; BEAT = SONG.beat; CHORDS = SONG.chords; CHART = SONG.chart;
+}
+setSong(0);
+const CH = { D: { r: 2, m: 0 }, G: { r: 7, m: 0 }, A: { r: 9, m: 0 }, Bm: { r: 11, m: 1 } };
+const NOTE = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+function parseNote(t) {   // 'F#5' or 'D4:1' -> { midi, lane }
+  const m = /^([A-G])(#?)(\d)(?::([012]))?$/.exec(t);
+  const midi = 12 * (+m[3] + 1) + NOTE[m[1]] + (m[2] ? 1 : 0);
+  return { midi, lane: m[4] !== undefined ? +m[4] : midi <= 71 ? 0 : midi <= 76 ? 1 : 2 };
+}
 const INSTR = [
-  { name: 'Bodhrán', color: '#e0903f', says: "Right so. I'm Seamus, and this is the bodhrán. Watch me hands, then copy me. Bash the drum as the circles land on the line!" },
+  { name: 'Bodhrán', color: '#e0903f', says: "Right so. I'm Bob Piper, and this is the bodhrán. Watch me hands, then copy me. Bash the drum as the circles land on the line!" },
   { name: 'Tin whistle', color: '#9fd8ff', says: "Lovely drumming! I've swapped to the tin whistle. That's me still on the drum over there, don't ask. Copy the whistle!" },
-  { name: 'Fiddle', color: '#e8574a', says: "Fiddle next. Yes, another Seamus. Same wee man, different stool. Mind your ears." },
+  { name: 'Fiddle', color: '#e8574a', says: "Fiddle next. Yes, another Bob Piper. Same wee man, different stool. Mind your ears." },
   { name: 'Banjo', color: '#8ef06c', says: "Banjo time! Fast and loud, a wee bit of punk in the folk. Hold onto your hats." },
   { name: 'Accordion', color: '#d98cff', says: "Last swap: the squeezebox! Once this is in, the whole session is going." }
 ];
@@ -230,9 +257,10 @@ const GEAR = [
 const WEE = i => `<svg viewBox="0 0 200 240" aria-hidden="true">${body()}${GEAR[i]}</svg>`;
 
 /* ================= save ================= */
-const SKEY = 'sillySession.v1';
-let SAVE = { unlocked: 0, stars: [0, 0, 0, 0, 0, 0], off: 0 };
+const SKEY = 'sillySession.v2';
+let SAVE = { p: [{ unlocked: 0, stars: [0, 0, 0, 0, 0, 0] }, { unlocked: 0, stars: [0, 0, 0, 0, 0, 0] }], cur: 0, off: 0 };
 try { const j = JSON.parse(localStorage.getItem(SKEY)); if (j && typeof j === 'object') SAVE = Object.assign(SAVE, j); } catch (e) {}
+const P = () => SAVE.p[SONGI];
 function persist() { try { localStorage.setItem(SKEY, JSON.stringify(SAVE)); } catch (e) {} }
 const OFFSET = () => (SAVE.off || 0) / 1000;
 
@@ -375,7 +403,7 @@ function voicing(i, lane, chord) {
 function playEv(e, t, vel) {
   switch (e.instr) {
     case 0: vBodhran(t, e.lane, vel); break;
-    case 1: vWhistle(t, e.freqs[0], e.dur, vel, e.step % 3 === 0); break;
+    case 1: vWhistle(t, e.freqs[0], e.dur, vel, SONGI === 1 && e.step % 3 === 0); break;
     case 2: vFiddle(t, e.freqs[0], e.dur, vel); break;
     case 3: vBanjo(t, e.freqs, vel); break;
     case 4: vAccordion(t, e.freqs, e.dur, vel); break;
@@ -395,7 +423,7 @@ function buildRun(kind, s) {
   const run = { kind, s, bars, events: [], mode: (kind === 'play' || kind === 'fin-play') ? 'play' : 'listen', si: 0, ai: 0 };
   run.start = AC.currentTime + 0.45; run.t0 = run.start + BAR; run.tEnd = run.t0 + bars * BAR;
   run.tDone = run.tEnd + (run.mode === 'play' ? 1.1 : 0.6);
-  for (let k = 0; k < 6; k++) run.events.push({ type: 'tick', time: run.start + k * STEP, accent: k % 3 === 0, role: 'click' });
+  for (let k = 0; k < 6; k += BEAT) run.events.push({ type: 'tick', time: run.start + k * STEP, accent: k === 0, role: 'click' });
   const per = [[], [], [], [], []];
   for (let bar = 0; bar < bars; bar++) {
     const chord = CHORDS[bar % 8];
@@ -404,8 +432,10 @@ function buildRun(kind, s) {
       const str = CHART[i][bar % 8];
       for (let st = 0; st < 6; st++) {
         const c = str[st]; if (c === '.') continue;
-        const e = { type: 'note', instr: i, lane: +c, bar, step: st, time: run.t0 + (bar * 6 + st) * STEP, role, chord, state: 'p' };
-        e.freqs = voicing(i, e.lane, chord); per[i].push(e); run.events.push(e);
+        let lane, fr = null;
+        if (c.length === 1) lane = +c; else { const pn = parseNote(c); lane = pn.lane; fr = [mf(pn.midi)]; }
+        const e = { type: 'note', instr: i, lane, bar, step: st, time: run.t0 + (bar * 6 + st) * STEP, role, chord, state: 'p' };
+        e.freqs = fr || voicing(i, e.lane, chord); per[i].push(e); run.events.push(e);
       }
     }
   }
@@ -439,7 +469,7 @@ function say(txt) { const b = $('bubble'); b.textContent = txt; b.classList.add(
 function setPhase(t) { $('phase').textContent = t; }
 function setStageUI(s) {
   MUS.forEach((m, i) => { m.classList.toggle('locked', s < 5 && i > s); m.classList.remove('lead'); });
-  $('stageName').textContent = s < 5 ? 'Round ' + (s + 1) + ' of 5 · ' + INSTR[s].name : 'The Full Session';
+  $('stageName').textContent = SONG.short + ' · ' + (s < 5 ? 'Round ' + (s + 1) + '/5 · ' + INSTR[s].name : 'Full Session');
 }
 function showOv(id) {
   document.querySelectorAll('.ov').forEach(o => { if (o.id !== 'pause') o.classList.remove('on'); });
@@ -449,17 +479,18 @@ const stars = n => '<div class="stars">' + [0, 1, 2].map(i => i < n ? '★' : '<
 
 /* ================= screens ================= */
 function updateTitle() {
-  const tot = SAVE.stars.reduce((a, b) => a + b, 0);
-  $('starsTot').textContent = tot ? '★ ' + tot + ' of 18 · ' : '';
-  const c = $('contBtn');
-  if (SAVE.unlocked > 0) { c.hidden = false; c.textContent = SAVE.unlocked >= 5 ? 'Continue: the finale' : 'Continue: round ' + (SAVE.unlocked + 1); } else c.hidden = true;
+  const tot = SAVE.p.reduce((a, q) => a + q.stars.reduce((x, y) => x + y, 0), 0);
+  $('starsTot').textContent = tot ? '★ ' + tot + ' of 36 · ' : '';
+  const c = $('contBtn'), q = SAVE.p[SAVE.cur];
+  if (q.unlocked > 0) { c.hidden = false; c.textContent = SONGS[SAVE.cur].short + ': ' + (q.unlocked >= 5 ? 'the finale' : 'round ' + (q.unlocked + 1)); } else c.hidden = true;
+  $('tune2Btn').hidden = !(SAVE.p[0].stars[5] > 0);
 }
 function intro(s) {
   S.stage = s; setStageUI(s); setPhase(''); $('score').textContent = '0'; $('combo').textContent = '';
   const card = $('introCard');
   if (s < 5) {
-    card.innerHTML = '<div class="portrait">' + WEE(s) + '</div><h2>' + (s === 0 ? 'Seamus on the bodhrán' : 'Seamus swaps to the ' + INSTR[s].name.toLowerCase()) + '</h2>' +
-      '<p>' + INSTR[s].says + '</p><p class="hint">Tap the lanes (or keys A S D) when the circles reach the line.</p>' +
+    card.innerHTML = '<div class="portrait">' + WEE(s) + '</div><h2>' + (s === 0 ? SONG.name + ': Bob Piper on the bodhrán' : 'Bob Piper swaps to the ' + INSTR[s].name.toLowerCase()) + '</h2>' +
+      '<p>' + (s === 0 ? SONG.first : INSTR[s].says) + '</p><p class="hint">Tap the lanes (or keys A S D) when the circles reach the line.</p>' +
       '<div class="btns"><button class="btn green" data-primary id="goListen">Listen</button><button class="btn alt" id="goPlay">Skip to my turn</button></div>';
     $('goListen').onclick = () => startRun('listen', s);
     $('goPlay').onclick = () => startRun('play', s);
@@ -505,7 +536,7 @@ function showResult(run) {
   if (fin && n === 0) n = 1;
   const avg = st.dts.length ? st.dts.reduce((a, b) => a + b, 0) / st.dts.length : 0;
   const pass = n > 0;
-  if (pass) { SAVE.stars[s] = Math.max(SAVE.stars[s] || 0, n); SAVE.unlocked = Math.max(SAVE.unlocked, Math.min(5, s + 1)); persist(); }
+  if (pass) { P().stars[s] = Math.max(P().stars[s] || 0, n); P().unlocked = Math.max(P().unlocked, Math.min(5, s + 1)); SAVE.cur = SONGI; persist(); }
   const card = $('resultCard');
   const nums = '<div class="stats"><span>' + Math.round(acc * 100) + '% hit</span><span>Perfect ' + st.perfect + '</span><span>Good ' + st.good + '</span><span>Missed ' + st.miss + '</span><span>Best streak ' + st.best + '</span></div>';
   let adj = '';
@@ -514,7 +545,7 @@ function showResult(run) {
     adj = '<p class="hint">You were about ' + Math.abs(ms) + ' ms ' + (ms > 0 ? 'late' : 'early') + ' on average. <button class="lnk" id="fixT">Adjust the timing for me</button></p>';
   }
   if (!fin) {
-    const next = s < 4 ? 'Next: Seamus swaps to the ' + INSTR[s + 1].name.toLowerCase() : 'Next: the Full Session';
+    const next = s < 4 ? 'Next: Bob Piper swaps to the ' + INSTR[s + 1].name.toLowerCase() : 'Next: the Full Session';
     card.innerHTML = '<h2>' + (pass ? ['', 'Grand!', 'Deadly!', 'Class!'][n] : 'So close!') + '</h2>' + stars(n) + nums + adj +
       '<p>' + (pass ? 'That sounded the part. The ' + INSTR[s].name.toLowerCase() + ' joins the band.' : 'Hit at least half the notes to move on. Have another go.') + '</p>' +
       '<div class="btns">' + (pass ? '<button class="btn green" data-primary id="rNext">' + next + '</button><button class="btn alt" id="rAgain">Try again</button>' : '<button class="btn green" data-primary id="rAgain">Try again</button><button class="btn alt" id="rListen">Listen again</button>') + '</div>';
@@ -523,14 +554,15 @@ function showResult(run) {
     if ($('rListen')) $('rListen').onclick = () => startRun('listen', s);
     if (AC && pass) applause(AC.currentTime + 0.05, 0.9, 14);
   } else {
-    const tot18 = SAVE.stars.reduce((a, b) => a + b, 0);
+    const tot18 = P().stars.reduce((a, b) => a + b, 0);
     const title = tot18 >= 15 ? 'Legends of the snug!' : tot18 >= 10 ? 'What a session!' : 'Grand session, lads!';
     card.innerHTML = '<div class="minis">' + [0, 1, 2, 3, 4].map(i => '<div class="mini">' + WEE(i) + '</div>').join('') + '</div><h2>' + title + '</h2>' + stars(n) + nums + adj +
-      '<p>' + tot18 + ' of 18 stars across the whole session. The wee man is delighted with himself. All five of him.</p>' +
-      '<div class="btns"><button class="btn green" data-primary id="rAgain">Play the finale again</button><button class="btn alt" id="rHome">Start from the top</button></div>' +
+      '<p>' + tot18 + ' of 18 stars on ' + SONG.name + '. The wee man is delighted with himself. All five of him.</p>' +
+      '<div class="btns">' + (SONGI === 0 ? '<button class="btn green" data-primary id="rNext2">Next tune: ' + SONGS[1].name + '</button><button class="btn alt" id="rAgain">Finale again</button>' : '<button class="btn green" data-primary id="rAgain">Play the finale again</button><button class="btn alt" id="rHome">Start from the top</button>') + '</div>' +
       '<p class="hint" style="margin-top:12px"><a href="../../index.html#silly" style="color:inherit">Back to gamesdevni.site</a></p>';
     $('rAgain').onclick = () => startRun('fin-play', 5);
-    $('rHome').onclick = () => intro(0);
+    if ($('rHome')) $('rHome').onclick = () => intro(0);
+    if ($('rNext2')) $('rNext2').onclick = () => { setSong(1); intro(0); };
     if (AC) { finalChord(AC.currentTime + 0.1); applause(AC.currentTime + 0.5, 2.6, 60); }
   }
   if ($('fixT')) $('fixT').onclick = () => { SAVE.off = Math.max(-200, Math.min(200, Math.round((SAVE.off || 0) + avg * 1000))); persist(); $('fixT').parentNode.textContent = 'Timing adjusted. Try again!'; };
@@ -593,7 +625,7 @@ function draw(vNow, now) {
   if (run) {
     const k0 = Math.max(-6, Math.floor((vNow - run.t0) / STEP) - 4), k1 = Math.min(run.bars * 6, Math.ceil((vNow + APPROACH - run.t0) / STEP) + 1);
     for (let k = k0; k <= k1; k++) {
-      if (k % 3) continue; const y = yOf(run.t0 + k * STEP); if (y < -4 || y > H + 4) continue;
+      if (k % BEAT) continue; const y = yOf(run.t0 + k * STEP); if (y < -4 || y > H + 4) continue;
       g.strokeStyle = k % 6 === 0 ? 'rgba(255,244,220,.26)' : 'rgba(255,244,220,.09)'; g.lineWidth = k % 6 === 0 ? 3 : 1.5; g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke();
     }
     for (const n of run.shown) {
@@ -657,8 +689,10 @@ window.addEventListener('keydown', e => {
   e.preventDefault(); press(l, inputTime(e));
 });
 const START = Math.max(0, Math.min(5, parseInt(Q.get('stage') || '0', 10) || 0));
-$('playBtn').onclick = () => { initAudio(); intro(START); };
-$('contBtn').onclick = () => { initAudio(); intro(Math.min(5, SAVE.unlocked)); };
+const SONGQ = Math.max(0, Math.min(1, parseInt(Q.get('song') || '0', 10) || 0));
+$('playBtn').onclick = () => { initAudio(); setSong(SONGQ); intro(START); };
+$('contBtn').onclick = () => { initAudio(); setSong(SAVE.cur); intro(Math.min(5, P().unlocked)); };
+$('tune2Btn').onclick = () => { initAudio(); setSong(1); intro(0); };
 function offLabel() { $('offVal').textContent = (SAVE.off > 0 ? '+' : '') + (SAVE.off || 0) + ' ms'; }
 function openPause() { offLabel(); if (AC && S.run && AC.state === 'running') { AC.suspend(); S.pausedByUs = true; } $('pause').classList.add('on'); $('resumeBtn').focus({ preventScroll: true }); }
 function closePause() { $('pause').classList.remove('on'); if (AC && S.pausedByUs) { AC.resume(); S.pausedByUs = false; } }
@@ -667,7 +701,7 @@ $('quitBtn').onclick = () => { location.href = location.pathname; };
 $('offDn').onclick = () => { SAVE.off = Math.max(-200, (SAVE.off || 0) - 10); persist(); offLabel(); };
 $('offUp').onclick = () => { SAVE.off = Math.min(200, (SAVE.off || 0) + 10); persist(); offLabel(); };
 document.addEventListener('visibilitychange', () => { if (document.hidden && S.run) openPause(); });
-window.__ss = { S, level: () => { if (!analyser) return 0; const a = new Float32Array(analyser.fftSize); analyser.getFloatTimeDomainData(a); let m = 0; for (let i = 0; i < a.length; i++) m = Math.max(m, Math.abs(a[i])); return m; }, CHART, STEP };
+window.__ss = { S, level: () => { if (!analyser) return 0; const a = new Float32Array(analyser.fftSize); analyser.getFloatTimeDomainData(a); let m = 0; for (let i = 0; i < a.length; i++) m = Math.max(m, Math.abs(a[i])); return m; }, song: () => SONG };
 
 updateTitle(); setStageUI(0); MUS.forEach(m => m.classList.add('locked')); frame();
 })();
