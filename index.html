@@ -113,6 +113,8 @@
   if (!s) return;
   if (new Date() >= END) { s.parentNode.removeChild(s); return; }
   document.getElementById('xmas-play').addEventListener('click', function () {
+    var song = document.getElementById('xmas-song');
+    if (song) song.pause();
     // Phones get the game full screen; bigger screens play it in place.
     if (window.matchMedia('(max-width: 700px)').matches) {
       window.location.href = 'christmas/index.html';
@@ -159,6 +161,16 @@
     <p class="eyebrow">Latest news from 3BL_Indie</p>
     <h2>Fresh from <span class="hl">the studio</span></h2>
     <div class="news-grid">
+      <article class="panel cut news-item news-song">
+        <p class="news-date">Christmas 2026</p>
+        <h3>A Christmas song for our followers</h3>
+        <p>Thank you for following 3BL this year. Here's a little song from us to say Happy Christmas: <strong>The Roads That We Shared</strong>.</p>
+        <video id="xmas-song" controls preload="none" playsinline poster="video/the_roads_that_we_shared_poster.jpg">
+          <source src="video/the_roads_that_we_shared.mp4" type="video/mp4">
+          Your browser can't play this video. <a href="video/the_roads_that_we_shared.mp4">Download the song</a>.
+        </video>
+        <p class="video-note">3 minutes. Happy Christmas from all of us at 3BL_Indie.</p>
+      </article>
       <article class="panel cut news-item">
         <p class="news-date">8 November 2026</p>
         <h3>Forged in Formation is delayed</h3>
@@ -177,15 +189,15 @@
         <p>Wee Man, our life sim about a wee man living inside your computer, is out now in early access on itch.io.</p>
         <div class="news-links"><a class="btn solid" href="https://gamesdevnisite.itch.io/weeman" target="_blank" rel="noopener">Get Wee Man on itch.io</a></div>
       </article>
+    </div>
+    <details class="news-more"><summary>More news</summary>
+    <div class="news-grid">
       <article class="panel cut news-item">
         <p class="news-date">November 2026</p>
         <h3>Kaiju Coast now plays in your browser</h3>
         <p>No download needed: hold the bay against the kaiju straight from the itch.io page, or still grab it for Windows and Linux.</p>
         <div class="news-links"><a class="btn" href="https://gamesdevnisite.itch.io/kaiju-coast" target="_blank" rel="noopener">Play Kaiju Coast</a></div>
       </article>
-    </div>
-    <details class="news-more"><summary>More news</summary>
-    <div class="news-grid">
       <article class="panel cut news-item">
         <p class="news-date">November 2026</p>
         <h3>Feck Off! is on itch.io</h3>

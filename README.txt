@@ -14,6 +14,10 @@ To change the date, edit END in that script; to update the game, copy the
 new docs/ files over christmas/. After Christmas you can delete the
 section, its script, the CHRISTMAS block at the end of site.css and the
 christmas/ folder.
+The Christmas song (video/the_roads_that_we_shared.mp4, 3 min, with its
+poster) is the first card in Latest news; Kaiju Coast moved into "More
+news" to keep four cards on show. Pressing Play on the Christmas game
+pauses the song.
 
 TWO PAGES (since 15 October 2026):
   index.html  Forged in Formation (the Steam wishlist page), Defend the

@@ -615,3 +615,8 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 .xmas .btn.gold{border-color:#E8C468;color:#E8C468}
 .xmas .btn.gold:hover{background:#E8C468;color:var(--bg)}
 @media(max-width:700px){.xmas{padding-top:96px}.xmas-play .ring{width:72px;height:72px}.xmas-play span{font-size:11px}}
+
+/* Christmas song news card */
+.news-song{box-shadow:inset 0 0 0 1px #5a4a22,0 0 40px rgba(232,196,104,.10)}
+.news-song .news-date{color:#C9A14A}
+.news-song video{width:100%;aspect-ratio:1/1;display:block;background:#000;margin:6px 0 4px;box-shadow:0 0 0 1px var(--line)}
