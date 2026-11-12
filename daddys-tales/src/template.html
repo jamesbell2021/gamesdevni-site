@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Daddy's Tales: twenty-four spooky and silly bedtime stories written for Aaron and Connor Bell by their Daddy, as a pop-up book you can read in your browser.">
+<meta name="theme-color" content="#141629">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Daddy's Tales">
+{{HEADEXTRA}}
+<title>Daddy's Tales</title>
+<style>
+@font-face{font-family:'EB Garamond';src:url(data:font/woff2;base64,{{EBGaramond-Regular}}) format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:'EB Garamond';src:url(data:font/woff2;base64,{{EBGaramond-Italic}}) format('woff2');font-weight:400;font-style:italic}
+@font-face{font-family:'IM Fell English';src:url(data:font/woff2;base64,{{IMFellEnglish-Regular}}) format('woff2');font-style:normal}
+@font-face{font-family:'IM Fell English';src:url(data:font/woff2;base64,{{IMFellEnglish-Italic}}) format('woff2');font-style:italic}
+@font-face{font-family:'IM Fell English SC';src:url(data:font/woff2;base64,{{IMFellEnglishSC-Regular}}) format('woff2')}
+
+:root{
+  --paper:#f1e5c8; --paper2:#e7d6ae; --ink:#2b1d13; --oxblood:#7a1f22; --gilt:#d9a441; --gilt2:#f3d488;
+  --wood1:#5a3218; --wood2:#3a1e0c; --night:#141629;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .12 0 0 0 .5 -.1'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  --fibre:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .04' numOctaves='3' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .28 0 0 0 0 .12 0 0 0 .55 -.15'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--night);color:var(--ink);overscroll-behavior:none;-webkit-text-size-adjust:100%}
+body{font-family:'EB Garamond',Georgia,serif;
+  background:radial-gradient(ellipse at 50% 40%,#2c2c52 0%,#181a33 55%,#0b0c18 100%);
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:var(--grain);opacity:.25;mix-blend-mode:overlay}
+
+/* ---------- stage & book ---------- */
+#stage{position:fixed;top:env(safe-area-inset-top);left:env(safe-area-inset-left);right:env(safe-area-inset-right);bottom:64px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer}
+#bookbox{position:relative}
+#book{position:absolute;left:0;top:0;transform-origin:0 0;perspective:2600px;transition:translate .9s cubic-bezier(.645,.045,.355,1)}
+#book .shadow{position:absolute;inset:6px -2px -14px;border-radius:6px;box-shadow:0 30px 60px rgba(0,0,0,.55),0 8px 18px rgba(0,0,0,.4);pointer-events:none;transition:left .9s,right .9s}
+.sheet{position:absolute;top:0;transform-origin:0 50%;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .9s cubic-bezier(.645,.045,.355,1);will-change:transform}
+.sheet.turned{transform:rotateY(-180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;transform:translateZ(.1px)}
+.face.back{transform:rotateY(180deg) translateZ(.1px)}
+.face::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,0))}
+.sheet.flipF .face.front::after{animation:shadeF .9s ease-in-out}
+.sheet.flipF .face.back::after{animation:shadeB .9s ease-in-out}
+.sheet.flipB .face.back::after{animation:shadeF .9s ease-in-out}
+.sheet.flipB .face.front::after{animation:shadeB .9s ease-in-out}
+@keyframes shadeF{0%{opacity:0}50%{opacity:.9}100%{opacity:.9}}
+@keyframes shadeB{0%{opacity:.9}50%{opacity:.9}100%{opacity:0}}
+.single .sheet.turned.gone{visibility:hidden}
+
+/* ---------- pages ---------- */
+.page{position:absolute;inset:0;background-color:var(--paper);background-image:var(--fibre),var(--grain);background-size:600px,300px}
+.page::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:5}
+.face.front .page::before{background:linear-gradient(90deg,rgba(60,35,10,.28) 0,rgba(60,35,10,.08) 4%,rgba(0,0,0,0) 9%,rgba(0,0,0,0) 96%,rgba(60,35,10,.08) 100%)}
+.face.back .page::before{background:linear-gradient(270deg,rgba(60,35,10,.28) 0,rgba(60,35,10,.08) 4%,rgba(0,0,0,0) 9%,rgba(0,0,0,0) 96%,rgba(60,35,10,.08) 100%)}
+.single .face.front .page::before{background:linear-gradient(90deg,rgba(60,35,10,.18) 0,rgba(0,0,0,0) 5%)}
+.folio{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-family:'IM Fell English',serif;font-size:14px;color:#8a6a48;letter-spacing:.06em}
+.runhead{position:absolute;top:24px;left:44px;right:44px;text-align:center;font-family:'IM Fell English SC',serif;font-size:13px;letter-spacing:.14em;color:#8a6a48}
+.runhead::after{content:"";display:block;margin:6px auto 0;width:60px;height:1px;background:#b8946a}
+
+/* text pages */
+.tbody{position:absolute;left:44px;right:44px;top:62px;height:520px;overflow:hidden;font-size:17.5px;line-height:1.46;text-align:justify;hyphens:auto;-webkit-hyphens:auto;color:var(--ink)}
+.tbody p{margin:0;text-indent:1.3em}
+.tbody p.first,.tbody p.cont{text-indent:0}
+.tbody p.first::first-letter{font-family:'IM Fell English',serif;float:left;font-size:3.5em;line-height:.82;padding:.06em .08em 0 0;color:var(--oxblood)}
+.tbody p.speech{text-indent:1.3em}
+.ttl{text-align:center;margin:4px 0 14px}
+.ttl .kicker{font-family:'IM Fell English SC',serif;font-size:13px;letter-spacing:.2em;color:#8a6a48}
+.ttl h2{font-family:'IM Fell English',serif;font-weight:400;font-size:31px;line-height:1.08;margin:6px 0 8px;color:var(--oxblood)}
+.rule{display:flex;align-items:center;justify-content:center;gap:8px;color:#b08850}
+.rule::before,.rule::after{content:"";width:70px;height:1px;background:currentColor}
+.rule span{width:6px;height:6px;transform:rotate(45deg);background:currentColor;display:block}
+.fin{text-align:center;margin-top:14px;font-size:20px;color:#a07a48}
+
+/* scene (illustration) pages */
+.scene{position:absolute;left:20px;top:22px;width:400px;height:500px;perspective:1100px;perspective-origin:50% 0%;cursor:pointer;border-radius:3px}
+.scene .lw{position:absolute;inset:0;transition:transform .5s ease-out}
+.scene .layer{position:absolute;inset:0}
+.scene .layer svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.scene .layer.pop{transform:rotateX(84deg);opacity:0;transition:transform .35s ease-in,opacity .2s .15s;backface-visibility:hidden}
+.scene .layer.pop svg{filter:drop-shadow(0 5px 3px rgba(30,15,0,.28))}
+.safari .scene .layer.pop svg,.single .scene .layer.pop svg{filter:none}
+.scene .layer.pop{will-change:transform}
+.scene.up .layer.pop{transform:rotateX(0);opacity:1;transition:transform 1s cubic-bezier(.22,1.45,.4,1) calc(var(--i)*.16s),opacity .25s calc(var(--i)*.16s)}
+.scene .frame{position:absolute;inset:-14px;pointer-events:none;z-index:4}
+.scene .frame svg{width:100%;height:100%}
+.caption{position:absolute;left:30px;right:30px;top:528px;text-align:center;font-family:'IM Fell English',serif;font-style:italic;font-size:22px;color:var(--oxblood);line-height:1.1}
+.caption small{display:block;font-style:normal;font-family:'IM Fell English SC',serif;font-size:12px;letter-spacing:.18em;color:#8a6a48;margin-bottom:3px}
+
+/* pull-tab */
+.tab{position:absolute;left:50%;bottom:22px;width:320px;height:46px;margin-left:-160px;cursor:pointer;touch-action:none;z-index:6}
+.tab .slot{position:absolute;left:0;right:0;top:20px;height:6px;border-radius:3px;background:#3a2414;box-shadow:inset 0 2px 3px rgba(0,0,0,.6),0 1px 0 rgba(255,255,255,.5)}
+.tab .knob{position:absolute;top:6px;left:0;height:34px;padding:0 16px 0 12px;display:flex;align-items:center;gap:8px;border-radius:4px 17px 17px 4px;
+  background:linear-gradient(#fbf3dc,#e8d6a8);box-shadow:0 3px 6px rgba(40,20,0,.35),inset 0 0 0 1px rgba(120,80,30,.35);
+  font-family:'IM Fell English',serif;font-style:italic;font-size:15.5px;color:#4a2a14;white-space:nowrap;transition:transform .5s cubic-bezier(.3,1.5,.5,1)}
+.tab .knob i{display:block;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--gilt2),var(--gilt) 55%,#8a5a1a);box-shadow:0 1px 2px rgba(0,0,0,.4);flex:none}
+.tab .knob b{font-weight:400}
+.tab.pulled .knob{transform:translateX(var(--pull,120px))}
+.tab:not(.pulled) .knob{animation:nudge 3.2s ease-in-out 1.5s infinite}
+@keyframes nudge{0%,80%,100%{transform:none}88%{transform:translateX(14px)}}
+
+/* ---------- covers & front matter ---------- */
+.cover{background:#5e1a1f;background-image:var(--grain),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(0,0,0,.06) 0 1px,transparent 1px 3px),radial-gradient(ellipse at 50% 35%,#7a2428,#4a1216)}
+.cover::before{background:none!important}
+.cover .gilt{position:absolute;inset:16px;border:2px solid var(--gilt);border-radius:4px;box-shadow:inset 0 0 0 5px rgba(0,0,0,0),inset 0 0 0 6px var(--gilt);pointer-events:none;opacity:.9}
+.cover .corner{display:block;width:44px;height:44px;color:var(--gilt)}
+.cover .window{position:absolute;left:58px;top:182px;width:324px;height:324px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 3px var(--gilt),0 0 0 9px #5e1a1f,0 0 0 11px var(--gilt),inset 0 0 24px rgba(0,0,0,.6)}
+.cover .window .scene{left:-38px;top:-150px;width:400px;height:500px;cursor:default}
+.cover h1{position:absolute;top:44px;left:0;right:0;margin:0;text-align:center;font-family:'IM Fell English',serif;font-weight:400;font-size:62px;line-height:1;
+  background:linear-gradient(180deg,#fff0b8 0%,var(--gilt2) 35%,var(--gilt) 60%,#9a6420 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #2a0a0a) drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+.cover .sub{position:absolute;top:120px;left:0;right:0;text-align:center;font-family:'IM Fell English SC',serif;font-size:16px;letter-spacing:.22em;color:var(--gilt2)}
+.cover .by{position:absolute;bottom:50px;left:0;right:0;text-align:center;font-family:'IM Fell English',serif;font-style:italic;font-size:19px;color:var(--gilt2)}
+.cover .open{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-family:'IM Fell English SC',serif;font-size:12px;letter-spacing:.2em;color:#e7c27a;opacity:.8;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+.endpaper{background:#24305a}
+.endpaper::before{background:none!important}
+.endpaper svg{position:absolute;inset:0;width:100%;height:100%}
+.mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:50px}
+.ded h3{font-family:'IM Fell English SC',serif;font-weight:400;font-size:15px;letter-spacing:.24em;color:#8a6a48;margin:0 0 18px}
+.ded .names{font-family:'IM Fell English',serif;font-size:40px;line-height:1.15;color:var(--oxblood)}
+.ded .names em{display:block;font-size:22px;color:#6a4a2a;margin:6px 0}
+.ded p{font-size:19px;line-height:1.5;font-style:italic;margin:22px 0 0;max-width:300px}
+.ded .sign{font-family:'IM Fell English',serif;font-size:26px;margin-top:18px;color:#4a2a14}
+.howto h3,.toc h3{font-family:'IM Fell English',serif;font-weight:400;font-size:30px;color:var(--oxblood);margin:0 0 6px}
+.howto ul{list-style:none;padding:0;margin:20px 0 0;text-align:left;font-size:17.5px;line-height:1.4}
+.howto li{display:flex;gap:14px;align-items:center;margin:0 0 16px}
+.howto li svg{flex:none;width:46px;height:46px}
+.howto .warn{margin-top:10px;font-style:italic;color:#7a1f22;font-size:17px}
+.toc{position:absolute;inset:0;padding:28px 40px}
+.toc h3{text-align:center}
+.toc ol{list-style:none;padding:0;margin:10px 0 0;font-size:15px;line-height:1.16}
+.toc li{display:flex;align-items:baseline;gap:6px;cursor:pointer;padding:1px 0;border-radius:3px}
+.toc li:hover{color:var(--oxblood)}
+.toc li span.d{flex:1;border-bottom:1px dotted #b8946a;transform:translateY(-4px)}
+.toc li.bk{cursor:default;font-family:'IM Fell English SC',serif;letter-spacing:.18em;font-size:12px;color:#8a6a48;justify-content:center;margin-top:2px}
+.filler .medal{width:180px;height:180px}
+.filler .next{font-family:'IM Fell English SC',serif;font-size:13px;letter-spacing:.2em;color:#8a6a48;margin-top:22px}
+.filler .nt{font-family:'IM Fell English',serif;font-style:italic;font-size:28px;color:var(--oxblood);margin-top:6px}
+.booktwo .big{font-family:'IM Fell English',serif;font-size:56px;color:var(--oxblood);line-height:1}
+.endp .scene{cursor:default}
+.endp .big{position:absolute;left:0;right:0;top:528px;text-align:center;font-family:'IM Fell English',serif;font-size:38px;color:var(--oxblood)}
+.endp .night{position:absolute;left:0;right:0;top:575px;text-align:center;font-style:italic;font-size:19px;color:#5a3a20}
+.backc .blurb{position:absolute;left:60px;right:60px;top:200px;text-align:center;color:var(--gilt2);font-family:'IM Fell English',serif;font-size:20px;line-height:1.5}
+.backc .blurb b{display:block;font-weight:400;font-size:40px;margin-bottom:20px;background:linear-gradient(180deg,#fff0b8,var(--gilt) 60%,#9a6420);-webkit-background-clip:text;background-clip:text;color:transparent}
+.backc .small{position:absolute;bottom:44px;left:0;right:0;text-align:center;font-family:'IM Fell English SC',serif;font-size:12px;letter-spacing:.2em;color:#e7c27a;opacity:.75}
+
+/* corner curl hint on the right-hand page */
+.curl{position:absolute;right:0;bottom:0;width:34px;height:34px;z-index:7;pointer-events:none;background:linear-gradient(135deg,rgba(0,0,0,0) 50%,#d9c69a 50%,#f4e8cc 70%,#e0cfa4);box-shadow:-2px -2px 4px rgba(0,0,0,.12);border-top-left-radius:8px;animation:curl 3s ease-in-out infinite;transform-origin:100% 100%}
+@keyframes curl{0%,70%,100%{transform:scale(.55)}82%{transform:scale(1)}}
+.face.back .curl,.single .face .curl.l{display:none}
+
+/* ---------- toolbar ---------- */
+#bar{position:fixed;left:0;right:0;bottom:0;height:calc(64px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom)!important;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 10px}
+.wbtn{position:relative;height:42px;min-width:44px;padding:0 16px;border:0;border-radius:3px;cursor:pointer;font-family:'IM Fell English SC',serif;font-size:16px;letter-spacing:.06em;color:#f6dfa8;
+  background:linear-gradient(180deg,#6a3c1e,#4a2610 60%,#3a1c0a);box-shadow:0 0 0 1px #2a1408,inset 0 0 0 2px rgba(217,164,65,.55),0 3px 8px rgba(0,0,0,.5)}
+.wbtn::before,.wbtn::after{content:"";position:absolute;width:7px;height:7px;border:1.5px solid var(--gilt);opacity:.9}
+.wbtn::before{left:4px;top:4px;border-right:0;border-bottom:0}
+.wbtn::after{right:4px;bottom:4px;border-left:0;border-top:0}
+.wbtn:active{transform:translateY(1px)}
+.wbtn:disabled{opacity:.4;cursor:default}
+.wbtn.round{width:42px;padding:0;border-radius:50%;font-size:19px}
+.wbtn.round::before,.wbtn.round::after{display:none}
+#pg{min-width:76px;text-align:center;font-family:'IM Fell English',serif;font-style:italic;color:#cbb88e;font-size:15px}
+#home{display:none;text-decoration:none;line-height:42px;text-align:center}
+.onsite #home{display:inline-block}
+@media (max-height:500px){#bar{height:calc(50px + env(safe-area-inset-bottom))}.wbtn{height:36px}.wbtn.round{width:36px}#home{line-height:36px}}
+@media (max-width:560px){.wbtn{padding:0 11px;font-size:15px;white-space:nowrap}.wbtn .w{display:none}#pg{min-width:34px;font-size:13px}#bar{gap:7px}}
+#hint{position:fixed;left:50%;top:14px;transform:translateX(-50%);font-family:'IM Fell English',serif;font-style:italic;color:#e6d4aa;font-size:15px;opacity:0;transition:opacity .6s;pointer-events:none;text-align:center}
+#hint.show{opacity:.9}
+
+/* ---------- scene animation helpers ---------- */
+.scene svg *{transform-box:fill-box}
+.sv-rise{transform:translateY(var(--dy,40px));opacity:0;transition:transform .9s cubic-bezier(.3,1.45,.5,1) var(--d,0s),opacity .4s var(--d,0s)}
+.on .sv-rise{transform:none;opacity:1}
+.sv-hid{opacity:0;transition:opacity .5s var(--d,0s)}
+.on .sv-hid{opacity:1}
+.sv-pre{transition:opacity .4s}
+.on .sv-pre{opacity:0}
+.sv-grow{transform-origin:50% 100%;transform:scale(0);transition:transform .55s cubic-bezier(.3,1.7,.5,1) var(--d,0s)}
+.on .sv-grow{transform:scale(1)}
+.sv-drop{transform:translateY(-520px);opacity:0;transition:transform .42s cubic-bezier(.55,0,.6,1.35),opacity 0s .42s}
+.on .sv-drop{transform:none;opacity:1;transition:transform .42s cubic-bezier(.55,0,.6,1.35),opacity 0s}
+.sv-door{transform-origin:100% 50%;transition:transform .8s cubic-bezier(.3,1.3,.5,1)}
+.on .sv-door{transform:scaleX(.1) skewY(-8deg)}
+.sv-lidoff{transition:transform .8s cubic-bezier(.3,1.1,.5,1),opacity .6s .4s}
+
+.twinkle{animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{50%{opacity:.25}}
+.blink{animation:blink 4s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.blinkred{animation:blinkred 1.2s steps(2) infinite}
+@keyframes blinkred{50%{opacity:.15}}
+.drift{animation:drift 14s ease-in-out infinite alternate}
+.drift.slow{animation-duration:20s;animation-direction:alternate-reverse}
+@keyframes drift{to{transform:translateX(-60px)}}
+.rain{animation:rain .5s linear infinite}
+@keyframes rain{to{transform:translate(-8px,26px)}}
+.bob{animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(3px)}}
+.floaty{animation:floaty 4s ease-in-out infinite}
+@keyframes floaty{50%{transform:translateY(-10px) rotate(2deg)}}
+.swing{transform-origin:50% 0;animation:swing 2.4s ease-in-out infinite}
+@keyframes swing{0%,100%{transform:rotate(14deg)}50%{transform:rotate(-14deg)}}
+.wag{transform-origin:100% 100%;animation:wag .4s ease-in-out infinite alternate}
+@keyframes wag{to{transform:rotate(-25deg)}}
+.spin{animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.flame{transform-origin:50% 100%;animation:flame .35s ease-in-out infinite alternate}
+@keyframes flame{to{transform:scale(.88,1.12) skewX(4deg)}}
+.flicker{animation:flicker .3s infinite alternate}
+@keyframes flicker{to{opacity:.12}}
+.tvflick{animation:flicker .2s infinite alternate}
+.wiggle{transform-origin:0% 50%;animation:wiggle 1.4s ease-in-out infinite alternate}
+@keyframes wiggle{to{transform:rotate(10deg)}}
+.flap{transform-origin:100% 50%;animation:flap .35s ease-in-out infinite alternate}
+@keyframes flap{to{transform:scaleY(.4)}}
+.fly{animation:fly 1.2s linear infinite}
+@keyframes fly{25%{transform:translate(8px,-6px)}50%{transform:translate(0,-12px)}75%{transform:translate(-8px,-6px)}}
+.kick{animation:kick .5s ease-in-out infinite alternate}
+@keyframes kick{to{transform:translateY(6px)}}
+.weed{transform-origin:50% 100%;animation:weed 3s ease-in-out infinite alternate}
+@keyframes weed{to{transform:skewX(8deg)}}
+.rise-bub{animation:risebub 2.4s ease-in infinite}
+@keyframes risebub{0%{transform:translateY(0);opacity:0}20%{opacity:1}100%{transform:translateY(-90px);opacity:0}}
+.steam{animation:steam 2s ease-in-out infinite}
+@keyframes steam{50%{transform:translateY(-6px) skewX(6deg);opacity:.3}}
+.spore{animation:spore 3s ease-in-out infinite}
+@keyframes spore{50%{transform:translate(6px,-14px)}}
+.gull{animation:gull 9s linear infinite}
+@keyframes gull{50%{transform:translate(60px,-14px)}}
+.whisper{animation:twinkle 2s ease-in-out infinite}
+.heart{transition:opacity .5s var(--d,0s),transform 1.2s var(--d,0s)}
+.on .heart{transform:translateY(-24px)}
+.page:not(.vis) .scene *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.scene svg *{animation:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="wc" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feMorphology in="d" operator="erode" radius="1.1" result="e"/>
+      <feComposite in="d" in2="e" operator="out" result="edge"/>
+      <feColorMatrix in="edge" type="matrix" values="0 0 0 0 .14  0 0 0 0 .08  0 0 0 0 .04  0 0 0 .42 0" result="ed"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".5" numOctaves="2" seed="9" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -.55 0 0 0 1.18" result="mot"/>
+      <feComposite in="d" in2="mot" operator="in" result="m"/>
+      <feMerge><feMergeNode in="m"/><feMergeNode in="ed"/></feMerge>
+    </filter>
+    <filter id="deckle" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="3" seed="2" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="16" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+    <filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .45 -.12"/></filter>
+  </defs>
+</svg>
+<div id="stage"><div id="bookbox"><div id="book"><div class="shadow"></div></div></div></div>
+<div id="hint"></div>
+<div id="bar">
+  <a class="wbtn round" id="home" href="../#silly" aria-label="Back to gamesdevni.site" title="Back to gamesdevni.site">&#8962;</a>
+  <button class="wbtn" id="prev" aria-label="Previous page">&lsaquo;<span class="w"> Back</span></button>
+  <button class="wbtn" id="tocb">Contents</button>
+  <span id="pg"></span>
+  <button class="wbtn round" id="snd" aria-label="Sound on or off" title="Sound">&#9835;</button>
+  <button class="wbtn" id="next" aria-label="Next page"><span class="w">Next </span>&rsaquo;</button>
+</div>
+<div id="measure" style="position:absolute;left:-9999px;top:0;width:440px;height:640px;visibility:hidden"><div class="page"><div class="tbody"></div></div></div>
+<script>const STORIES = {{STORIES}};</script>
+<script>{{ART}}</script>
+<script>{{SCENES}}</script>
+<script>{{BOOK}}</script>
+</body>
+</html>

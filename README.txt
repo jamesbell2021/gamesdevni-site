@@ -48,6 +48,15 @@ the section and point it at the new folder.
               copy its index.pck over the matching .pck (notes at the top of
               silly/costa-chaos/index.html). Direct links: #lookee or #hotel.
 
+  daddys-tales/  Daddy's Tales (added 12 November 2026): James's 24 bedtime
+              stories for Aaron and Connor as a page-turning pop-up book. One
+              self-contained page (index.html, about 0.5 MB); thumb.jpg is the
+              card picture, share.jpg the link preview, icon.png the iPhone
+              home-screen icon. Its card sits in the Silly stuff section like
+              the others, but it lives in its own top-level folder:
+              gamesdevni.site/daddys-tales/. To change a story or a picture,
+              see daddys-tales/src/README.txt.
+
 TWO PAGES (since 15 October 2026):
   index.html  Forged in Formation (the Steam wishlist page), Defend the
               Drift, The House Is Haunted (#haunted, out now in early
