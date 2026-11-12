@@ -132,8 +132,8 @@ button{font:inherit;color:inherit;cursor:pointer}
   <div class="hero">
     <img src="session.jpg" alt="The Silly Session: five wee men playing bodhr&aacute;n, tin whistle, fiddle, banjo and accordion" width="1024" height="559">
     <p class="tag">An Irish music session. A silly one.</p>
-    <p class="how">Start with the Mountains of Mourne, then Bob Piper's own jig. Watch the wee man, then copy him: tap the three lanes (or keys A S D) as the circles land. Each round he swaps to a new instrument and the last one stays behind to keep playing, until the whole session is one tune. Turn your sound up!</p>
-    <div class="btns"><button class="btn green" id="playBtn" data-primary>Play</button><button class="btn alt" id="contBtn" hidden>Continue</button><button class="btn" id="tune2Btn" hidden>Tune 2: Bob Piper's Jig</button></div>
+    <p class="how">Start with the Mountains of Mourne, then She'll Be Coming Round the Mountain, then Bob Piper's own jig. Watch the wee man, then copy him: tap the three lanes (or keys A S D) as the circles land. Each round he swaps to a new instrument and the last one stays behind to keep playing, until the whole session is one tune. Turn your sound up!</p>
+    <div class="btns"><button class="btn green" id="playBtn" data-primary>Play</button><button class="btn alt" id="contBtn" hidden>Continue</button><span id="tuneBtns" style="display:contents"></span></div>
     <p class="foot"><span id="starsTot"></span><a href="../../index.html#silly">Back to gamesdevni.site</a> &middot; <button class="lnk" id="setBtn">Sound timing</button></p>
   </div>
 </div>
@@ -176,20 +176,30 @@ const SONGS = [
       ['0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.....'],
       ['..1.1.', '..1.1.', '..1.1.', '..1.1.', '..1.1.', '..1.1.', '..1.1.', '1.....']
     ] },
-  { name: "Bob Piper's Jig", short: 'Jig', bpm: 108, beat: 3,
-    chords: ['D', 'D', 'G', 'A', 'D', 'Bm', 'G', 'A'],
-    first: "Right, the warm-up's over. Here's me own tune, a proper jig. Faster this time. Back on the bodhrán and no mercy!",
+  { name: "She'll Be Coming Round the Mountain", short: 'Mountain', bpm: 80, beat: 2, spb: 8,
+    chords: ['D', 'D', 'A', 'D', 'D', 'D', 'A', 'D'],
+    first: "Grand job! Now a singalong: She'll Be Coming Round the Mountain. Back on the bodhrán. Toot toot!",
     chart: [
-      ['0.20.2', '0.20.2', '0.20.2', '0.2022', '0.21.2', '0.21.2', '0.20.2', '0.2122'],
-      ['0.12.1', '2.10..', '0.12.1', '2.101.', '0.12.1', '2.10..', '0.12.1', '2.1..0'],
-      ['0..1..', '2..1..', '0..2..', '1..2.1', '0..1..', '2..1..', '0..2..', '1..0.2'],
-      ['01.12.', '01.12.', '01.12.', '01.121', '01.12.', '01.12.', '01.12.', '0.1212'],
-      ['0..1..', '0..1..', '0..1.1', '0.21..', '0..1..', '0..1..', '0..1.1', '0.21.2']
+      ['0.1.0.1.', '0.1.0.1.', '0.1.0.1.', '0.1.0.1.', '0.1.0.1.', '0.1.0.1.', '0.1.0.1.', '0.......'],
+      ['A4 . D5 . D5 . D5 .', 'F#5 . . . F#5 . . .', 'E5 . E5 . E5 . D5 .', 'D5 . . . . . . .', 'A4 . D5 . D5 . D5 .', 'F#5 . . . F#5 . . .', 'E5 . D5 . E5 . F#5 .', 'D5 . . . . . . .'].map(bars6),
+      ['D4:0 . . . . . . .', 'F#4:1 . . . . . . .', 'E4:1 . . . . . . .', 'D4:0 . . . . . . .', 'D4:0 . . . . . . .', 'F#4:1 . . . . . . .', 'A4:2 . . . . . . .', 'D4:0 . . . . . . .'].map(bars6),
+      ['0.1.1.1.', '0.1.1.1.', '0.1.1.1.', '0.1.1.1.', '0.1.1.1.', '0.1.1.1.', '0.1.1.1.', '0.......'],
+      ['..1...1.', '..1...1.', '..1...1.', '..1...1.', '..1...1.', '..1...1.', '..1...1.', '1.......']
+    ] },
+  { name: "Bob Piper's Jig", short: 'Jig', bpm: 124, beat: 3, cut: true,
+    chords: ['D', 'D', 'G', 'A', 'D', 'Bm', 'G', 'A'],
+    first: "Right, the warm-up's over. Here's me own tune, a proper jig, and it's TOUGH. Fast and full of notes. Back on the bodhrán. Mind yerself!",
+    chart: [
+      ['010212', '020121', '010212', '021202', '012021', '012120', '021012', '210212'],
+      ['0121.2', '2101.0', '0122.1', '2.1012', '0121.2', '2.1010', '0122.1', '21.012'],
+      ['012012', '210210', '012.12', '1212.0', '012012', '210210', '021.20', '1.2.01'],
+      ['011211', '011211', '011211', '012121', '011211', '011211', '011211', '012121'],
+      ['012.12', '0.1212', '01.121', '0.2121', '012.12', '0.1212', '01.121', '012012']
     ] }
 ];
-let SONGI = 0, SONG = SONGS[0], BPM, STEP, BAR, BEAT, CHORDS, CHART;
+let SONGI = 0, SONG = SONGS[0], BPM, STEP, BAR, BEAT, SPB, CHORDS, CHART;
 function setSong(n) {
-  SONGI = n; SONG = SONGS[n]; BPM = SONG.bpm; STEP = 60 / BPM / 3; BAR = STEP * 6; BEAT = SONG.beat; CHORDS = SONG.chords; CHART = SONG.chart;
+  SONGI = n; SONG = SONGS[n]; BPM = SONG.bpm; STEP = 60 / BPM / 3; SPB = SONG.spb || 6; BAR = STEP * SPB; BEAT = SONG.beat; CHORDS = SONG.chords; CHART = SONG.chart;
 }
 setSong(0);
 const CH = { D: { r: 2, m: 0 }, G: { r: 7, m: 0 }, A: { r: 9, m: 0 }, Bm: { r: 11, m: 1 } };
@@ -257,8 +267,8 @@ const GEAR = [
 const WEE = i => `<svg viewBox="0 0 200 240" aria-hidden="true">${body()}${GEAR[i]}</svg>`;
 
 /* ================= save ================= */
-const SKEY = 'sillySession.v2';
-let SAVE = { p: [{ unlocked: 0, stars: [0, 0, 0, 0, 0, 0] }, { unlocked: 0, stars: [0, 0, 0, 0, 0, 0] }], cur: 0, off: 0 };
+const SKEY = 'sillySession.v3';
+let SAVE = { p: SONGS.map(() => ({ unlocked: 0, stars: [0, 0, 0, 0, 0, 0] })), cur: 0, off: 0 };
 try { const j = JSON.parse(localStorage.getItem(SKEY)); if (j && typeof j === 'object') SAVE = Object.assign(SAVE, j); } catch (e) {}
 const P = () => SAVE.p[SONGI];
 function persist() { try { localStorage.setItem(SKEY, JSON.stringify(SAVE)); } catch (e) {} }
@@ -403,7 +413,7 @@ function voicing(i, lane, chord) {
 function playEv(e, t, vel) {
   switch (e.instr) {
     case 0: vBodhran(t, e.lane, vel); break;
-    case 1: vWhistle(t, e.freqs[0], e.dur, vel, SONGI === 1 && e.step % 3 === 0); break;
+    case 1: vWhistle(t, e.freqs[0], e.dur, vel, SONG.cut && e.step % 3 === 0); break;
     case 2: vFiddle(t, e.freqs[0], e.dur, vel); break;
     case 3: vBanjo(t, e.freqs, vel); break;
     case 4: vAccordion(t, e.freqs, e.dur, vel); break;
@@ -423,18 +433,18 @@ function buildRun(kind, s) {
   const run = { kind, s, bars, events: [], mode: (kind === 'play' || kind === 'fin-play') ? 'play' : 'listen', si: 0, ai: 0 };
   run.start = AC.currentTime + 0.45; run.t0 = run.start + BAR; run.tEnd = run.t0 + bars * BAR;
   run.tDone = run.tEnd + (run.mode === 'play' ? 1.1 : 0.6);
-  for (let k = 0; k < 6; k += BEAT) run.events.push({ type: 'tick', time: run.start + k * STEP, accent: k === 0, role: 'click' });
+  for (let k = 0; k < SPB; k += BEAT) run.events.push({ type: 'tick', time: run.start + k * STEP, accent: k === 0, role: 'click' });
   const per = [[], [], [], [], []];
   for (let bar = 0; bar < bars; bar++) {
     const chord = CHORDS[bar % 8];
     for (let i = 0; i < 5; i++) {
       const role = roleFor(kind, s, i, bar); if (!role) continue;
       const str = CHART[i][bar % 8];
-      for (let st = 0; st < 6; st++) {
+      for (let st = 0; st < SPB; st++) {
         const c = str[st]; if (c === '.') continue;
         let lane, fr = null;
         if (c.length === 1) lane = +c; else { const pn = parseNote(c); lane = pn.lane; fr = [mf(pn.midi)]; }
-        const e = { type: 'note', instr: i, lane, bar, step: st, time: run.t0 + (bar * 6 + st) * STEP, role, chord, state: 'p' };
+        const e = { type: 'note', instr: i, lane, bar, step: st, time: run.t0 + (bar * SPB + st) * STEP, role, chord, state: 'p' };
         e.freqs = fr || voicing(i, e.lane, chord); per[i].push(e); run.events.push(e);
       }
     }
@@ -480,10 +490,11 @@ const stars = n => '<div class="stars">' + [0, 1, 2].map(i => i < n ? '★' : '<
 /* ================= screens ================= */
 function updateTitle() {
   const tot = SAVE.p.reduce((a, q) => a + q.stars.reduce((x, y) => x + y, 0), 0);
-  $('starsTot').textContent = tot ? '★ ' + tot + ' of 36 · ' : '';
+  $('starsTot').textContent = tot ? '★ ' + tot + ' of ' + SONGS.length * 18 + ' · ' : '';
   const c = $('contBtn'), q = SAVE.p[SAVE.cur];
   if (q.unlocked > 0) { c.hidden = false; c.textContent = SONGS[SAVE.cur].short + ': ' + (q.unlocked >= 5 ? 'the finale' : 'round ' + (q.unlocked + 1)); } else c.hidden = true;
-  $('tune2Btn').hidden = !(SAVE.p[0].stars[5] > 0);
+  const tb = $('tuneBtns'); tb.innerHTML = '';
+  SONGS.forEach((sg, i) => { if (i && SAVE.p[i - 1].stars[5] > 0) { const b = document.createElement('button'); b.className = 'btn'; b.textContent = 'Tune ' + (i + 1) + ': ' + sg.name; b.onclick = () => { initAudio(); setSong(i); intro(0); }; tb.appendChild(b); } });
 }
 function intro(s) {
   S.stage = s; setStageUI(s); setPhase(''); $('score').textContent = '0'; $('combo').textContent = '';
@@ -558,11 +569,11 @@ function showResult(run) {
     const title = tot18 >= 15 ? 'Legends of the snug!' : tot18 >= 10 ? 'What a session!' : 'Grand session, lads!';
     card.innerHTML = '<div class="minis">' + [0, 1, 2, 3, 4].map(i => '<div class="mini">' + WEE(i) + '</div>').join('') + '</div><h2>' + title + '</h2>' + stars(n) + nums + adj +
       '<p>' + tot18 + ' of 18 stars on ' + SONG.name + '. The wee man is delighted with himself. All five of him.</p>' +
-      '<div class="btns">' + (SONGI === 0 ? '<button class="btn green" data-primary id="rNext2">Next tune: ' + SONGS[1].name + '</button><button class="btn alt" id="rAgain">Finale again</button>' : '<button class="btn green" data-primary id="rAgain">Play the finale again</button><button class="btn alt" id="rHome">Start from the top</button>') + '</div>' +
+      '<div class="btns">' + (SONGI < SONGS.length - 1 ? '<button class="btn green" data-primary id="rNext2">Next tune: ' + SONGS[SONGI + 1].name + '</button><button class="btn alt" id="rAgain">Finale again</button>' : '<button class="btn green" data-primary id="rAgain">Play the finale again</button><button class="btn alt" id="rHome">Start from the top</button>') + '</div>' +
       '<p class="hint" style="margin-top:12px"><a href="../../index.html#silly" style="color:inherit">Back to gamesdevni.site</a></p>';
     $('rAgain').onclick = () => startRun('fin-play', 5);
     if ($('rHome')) $('rHome').onclick = () => intro(0);
-    if ($('rNext2')) $('rNext2').onclick = () => { setSong(1); intro(0); };
+    if ($('rNext2')) $('rNext2').onclick = () => { setSong(SONGI + 1); intro(0); };
     if (AC) { finalChord(AC.currentTime + 0.1); applause(AC.currentTime + 0.5, 2.6, 60); }
   }
   if ($('fixT')) $('fixT').onclick = () => { SAVE.off = Math.max(-200, Math.min(200, Math.round((SAVE.off || 0) + avg * 1000))); persist(); $('fixT').parentNode.textContent = 'Timing adjusted. Try again!'; };
@@ -623,10 +634,10 @@ function draw(vNow, now) {
   for (let i = 1; i < 3; i++) { g.beginPath(); g.moveTo(i * lw, 0); g.lineTo(i * lw, H); g.stroke(); }
   const pxs = (hitY + R) / APPROACH, yOf = t => hitY - (t - vNow) * pxs;
   if (run) {
-    const k0 = Math.max(-6, Math.floor((vNow - run.t0) / STEP) - 4), k1 = Math.min(run.bars * 6, Math.ceil((vNow + APPROACH - run.t0) / STEP) + 1);
+    const k0 = Math.max(-6, Math.floor((vNow - run.t0) / STEP) - 4), k1 = Math.min(run.bars * SPB, Math.ceil((vNow + APPROACH - run.t0) / STEP) + 1);
     for (let k = k0; k <= k1; k++) {
       if (k % BEAT) continue; const y = yOf(run.t0 + k * STEP); if (y < -4 || y > H + 4) continue;
-      g.strokeStyle = k % 6 === 0 ? 'rgba(255,244,220,.26)' : 'rgba(255,244,220,.09)'; g.lineWidth = k % 6 === 0 ? 3 : 1.5; g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke();
+      g.strokeStyle = k % SPB === 0 ? 'rgba(255,244,220,.26)' : 'rgba(255,244,220,.09)'; g.lineWidth = k % SPB === 0 ? 3 : 1.5; g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke();
     }
     for (const n of run.shown) {
       const y = yOf(n.time); if (y < -R * 2 || y > H + R * 2 || n.state === 'h') continue;
@@ -689,10 +700,9 @@ window.addEventListener('keydown', e => {
   e.preventDefault(); press(l, inputTime(e));
 });
 const START = Math.max(0, Math.min(5, parseInt(Q.get('stage') || '0', 10) || 0));
-const SONGQ = Math.max(0, Math.min(1, parseInt(Q.get('song') || '0', 10) || 0));
+const SONGQ = Math.max(0, Math.min(SONGS.length - 1, parseInt(Q.get('song') || '0', 10) || 0));
 $('playBtn').onclick = () => { initAudio(); setSong(SONGQ); intro(START); };
 $('contBtn').onclick = () => { initAudio(); setSong(SAVE.cur); intro(Math.min(5, P().unlocked)); };
-$('tune2Btn').onclick = () => { initAudio(); setSong(1); intro(0); };
 function offLabel() { $('offVal').textContent = (SAVE.off > 0 ? '+' : '') + (SAVE.off || 0) + ' ms'; }
 function openPause() { offLabel(); if (AC && S.run && AC.state === 'running') { AC.suspend(); S.pausedByUs = true; } $('pause').classList.add('on'); $('resumeBtn').focus({ preventScroll: true }); }
 function closePause() { $('pause').classList.remove('on'); if (AC && S.pausedByUs) { AC.resume(); S.pausedByUs = false; } }

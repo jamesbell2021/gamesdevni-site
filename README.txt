@@ -197,4 +197,4 @@ screenshots are out/screenshots/ 01, 03, 04, 06, 07, 09, 10 and 11, cut down to
 no buy widget.
 
 THE SILLY SESSION (silly/silly-session/)
-One-file rhythm game, no libraries; all sound is synthesised in code. Bob Piper (the wee man) swaps instruments each round (bodhran, whistle, fiddle, banjo, accordion). Two tunes (SONGS array at the top of the script): The Mountains of Mourne (easy, 3/4, melody typed in from memory, simplified) then Bob Piper's Jig. Add a tune by adding a SONGS entry. ?song=1 starts on the jig. Test with ?auto=1 (plays itself) and ?stage=N (0-5).
+One-file rhythm game, no libraries; all sound is synthesised in code. Bob Piper (the wee man) swaps instruments each round (bodhran, whistle, fiddle, banjo, accordion). Three tunes, easy to tough (SONGS array at the top of the script): The Mountains of Mourne (3/4), She'll Be Coming Round the Mountain (4/4), then Bob Piper's Jig (fast, dense). Melodies typed in from memory and simplified. Add a tune by adding a SONGS entry. ?song=N (0-2) starts on that tune. Test with ?auto=1 (plays itself) and ?stage=N (0-5).
