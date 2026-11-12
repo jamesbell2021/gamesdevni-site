@@ -165,26 +165,49 @@ const WIN = 0.15, PERF = 0.07;         // hit windows (seconds)
    chart[instrument][bar] is either a string of lanes ('0' '1' '2', '.' = rest) that play chord notes,
    or an array of 6 tokens: '.' or a note like 'F#5' (lane picked from the pitch) or 'D4:1' (lane forced). */
 const bars6 = s => s.split(' ');
+const mel = str => { const a = Array(12).fill('.'); str.split(' ').filter(Boolean).forEach(t => { const [p, n] = t.split(':'); a[+p] = n; }); return a; };
+function MOURNE_MEL() {
+  const b1 = mel('0:D4 2:B4 5:B4~ 6:B4 8:A4 11:G4~'), b2 = mel('0:A4 2:G4 4:F#4 6:E4 10:E4~ 11:E4~'), b3 = mel('0:E4 2:D4 4:D4 6:D4 8:E4 10:F#4'), b4 = mel('0:A4 2:G4 5:F#4~ 6:G4 10:D4');
+  const b9 = mel('0:D4 2:A4 5:A4~ 6:A4 8:B4 11:A4~'), b10 = mel('0:A4 2:G4 4:F#4 6:G4 10:G4~ 11:F#4~'), b11 = mel('0:E4 2:G4 4:A4 6:B4 8:A4 10:G4'), b12 = mel('0:B4 2:A4 5:G4~ 6:A4 10:D4 11:D4~');
+  const end = mel('0:A4 2:G4 5:F#4~ 6:G4');
+  return [mel('10:D4'), b1, b2, b3, b4, b1, b2, b3, b4, b9, b10, b11, b12, b1, b2, b3, end];
+}
+function MOUNTAIN_MEL() {
+  const m = t => t.split(' ');
+  return [m('. . D4 E4'), m('G4 G4 G4 G4'), m('E4 D4 B3 D4'), m('G4 . . .'), m('. . G4 A4'), m('B4 B4 B4 B4'), m('D5 B4 A4 G4'), m('A4 . . .'),
+    m('. . D5 C5'), m('B4 B4 B4 B4'), m('A4 G4 G4 G4'), m('E4 E4 E4 E4'), m('A4 G4 F#4 E4'), m('D4 D4 D4 D4'), m('B4 A4 E4 F#4'), m('G4 . . .')];
+}
+function MOUNTAIN_FID() {   // a long harmony note on the first beat of each bar
+  const n = ['', 'G4:0', 'B3:0', 'D4:1', '', 'D4:2', 'G4:1', 'F#4:1', '', 'D4:2', 'G4:1', 'E4:0', 'E4:0', 'D4:2', 'F#4:1', 'G4:0'];
+  return n.map(x => x ? [x, '.', '.', '.'] : ['.', '.', '.', '.']);
+}
+function MOURNE_FID() {   // long harmony notes, one a bar
+  const a = n => mel('0:' + n), L1 = [a('G4:0'), a('E4:1'), a('F#4:2'), a('G4:1')], L3 = [a('F#4:2'), a('G4:0'), a('G4:1'), a('E4:1')];
+  return [mel(''), ...L1, ...L1, ...L3, ...L1.slice(0, 3), a('G4:0')];
+}
 const SONGS = [
-  { name: 'The Mountains of Mourne', short: 'Mourne', bpm: 68, beat: 2,
-    chords: ['D', 'D', 'G', 'A', 'D', 'D', 'A', 'D'],
-    first: "Right so. I'm Bob Piper. We'll start easy with the Mountains of Mourne, nice and slow, and I'm on the bodhrán. Watch me hands, then copy me. Bash the drum as the circles land on the line!",
+  { name: 'The Mountains of Mourne', short: 'Mourne', bpm: 66, beat: 6, spb: 12, fine: true, nb: 17, lanes: [66, 71],
+    // Percy French / Houston Collisson, 6/8 in G, charted on a 16th-note grid (12 steps a bar) from the sheet music.
+    // A '~' marks a quick ornament note: you hear it, but you don't have to hit it. Bar 0 is the one-note lead-in.
+    chords: ['G', 'G', 'C', 'D', 'G', 'G', 'C', 'D', 'G', 'D', 'G', 'G', 'A', 'G', 'C', 'D', 'G'],
+    first: "Right so. I'm Bob Piper. We'll start easy with The Mountains of Mourne, nice and slow, and I'm on the bodhrán. Watch me hands, then copy me. Bash the drum as the circles land on the line!",
     chart: [
-      ['0.1.1.', '0.1.1.', '0.1.1.', '0.1.1.', '0.1.1.', '0.1.1.', '0.1.1.', '0.....'],
-      ['A4 . D5 . D5 .', 'E5 . F#5 . F#5 .', 'E5 . D5 . B4 .', 'A4 . . . . .', 'A4 . D5 . D5 .', 'E5 . F#5 . G5 .', 'F#5 . E5 . D5 .', 'D5 . . . . .'].map(bars6),
-      ['D4:0 . . . . .', 'F#4:1 . . . . .', 'B4:2 . . . . .', 'E4:1 . . . . .', 'D4:0 . . . . .', 'F#4:1 . . . . .', 'A4:2 . . . . .', 'D4:0 . . . . .'].map(bars6),
-      ['0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.1.2.', '0.....'],
-      ['..1.1.', '..1.1.', '..1.1.', '..1.1.', '..1.1.', '..1.1.', '..1.1.', '1.....']
+      ['............', ...Array(15).fill('0.....1.....'), '0...........'],
+      MOURNE_MEL(),
+      MOURNE_FID(),
+      ['............', ...Array(15).fill('0...1...1...'), '0...........'],
+      ['............', ...Array(15).fill('....1.....1.'), '1...........']
     ] },
-  { name: "She'll Be Coming Round the Mountain", short: 'Mountain', bpm: 80, beat: 2, spb: 8,
-    chords: ['D', 'D', 'A', 'D', 'D', 'D', 'A', 'D'],
+  { name: "She'll Be Coming Round the Mountain", short: 'Mountain', bpm: 72, beat: 2, spb: 4, nb: 16, lanes: [66, 69],
+    // Southern Mountain Song, 2/4 in G, from the sheet music (one bar = 4 eighth-note steps).
+    chords: ['G', 'G', 'G', 'G', 'G', 'G', 'G', 'D', 'D', 'G', 'G', 'C', 'C', 'G', 'D', 'G'],
     first: "Grand job! Now a singalong: She'll Be Coming Round the Mountain. Back on the bodhrán. Toot toot!",
     chart: [
-      ['0.1.0.1.', '0.1.0.1.', '0.1.0.1.', '0.1.0.1.', '0.1.0.1.', '0.1.0.1.', '0.1.0.1.', '0.......'],
-      ['A4 . D5 . D5 . D5 .', 'F#5 . . . F#5 . . .', 'E5 . E5 . E5 . D5 .', 'D5 . . . . . . .', 'A4 . D5 . D5 . D5 .', 'F#5 . . . F#5 . . .', 'E5 . D5 . E5 . F#5 .', 'D5 . . . . . . .'].map(bars6),
-      ['D4:0 . . . . . . .', 'F#4:1 . . . . . . .', 'E4:1 . . . . . . .', 'D4:0 . . . . . . .', 'D4:0 . . . . . . .', 'F#4:1 . . . . . . .', 'A4:2 . . . . . . .', 'D4:0 . . . . . . .'].map(bars6),
-      ['0.1.1.1.', '0.1.1.1.', '0.1.1.1.', '0.1.1.1.', '0.1.1.1.', '0.1.1.1.', '0.1.1.1.', '0.......'],
-      ['..1...1.', '..1...1.', '..1...1.', '..1...1.', '..1...1.', '..1...1.', '..1...1.', '1.......']
+      ['....', ...Array(14).fill('0.1.'), '0...'],
+      MOUNTAIN_MEL(),
+      MOUNTAIN_FID(),
+      ['....', ...Array(14).fill('0.11'), '0...'],
+      ['....', ...Array(14).fill('.1.1'), '1...']
     ] },
   { name: "Bob Piper's Jig", short: 'Jig', bpm: 124, beat: 3, cut: true,
     chords: ['D', 'D', 'G', 'A', 'D', 'Bm', 'G', 'A'],
@@ -197,17 +220,18 @@ const SONGS = [
       ['012.12', '0.1212', '01.121', '0.2121', '012.12', '0.1212', '01.121', '012012']
     ] }
 ];
+SONGS.forEach(g => { g.lanes = g.lanes || [71, 76]; g.nb = g.nb || 8; });
 let SONGI = 0, SONG = SONGS[0], BPM, STEP, BAR, BEAT, SPB, CHORDS, CHART;
 function setSong(n) {
-  SONGI = n; SONG = SONGS[n]; BPM = SONG.bpm; STEP = 60 / BPM / 3; SPB = SONG.spb || 6; BAR = STEP * SPB; BEAT = SONG.beat; CHORDS = SONG.chords; CHART = SONG.chart;
+  SONGI = n; SONG = SONGS[n]; BPM = SONG.bpm; STEP = 60 / BPM / 3 / (SONG.fine ? 2 : 1); SPB = SONG.spb || 6; BAR = STEP * SPB; BEAT = SONG.beat; CHORDS = SONG.chords; CHART = SONG.chart;
 }
 setSong(0);
-const CH = { D: { r: 2, m: 0 }, G: { r: 7, m: 0 }, A: { r: 9, m: 0 }, Bm: { r: 11, m: 1 } };
+const CH = { C: { r: 0, m: 0 }, D: { r: 2, m: 0 }, G: { r: 7, m: 0 }, A: { r: 9, m: 0 }, Bm: { r: 11, m: 1 } };
 const NOTE = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
 function parseNote(t) {   // 'F#5' or 'D4:1' -> { midi, lane }
   const m = /^([A-G])(#?)(\d)(?::([012]))?$/.exec(t);
   const midi = 12 * (+m[3] + 1) + NOTE[m[1]] + (m[2] ? 1 : 0);
-  return { midi, lane: m[4] !== undefined ? +m[4] : midi <= 71 ? 0 : midi <= 76 ? 1 : 2 };
+  return { midi, lane: m[4] !== undefined ? +m[4] : midi <= SONG.lanes[0] ? 0 : midi <= SONG.lanes[1] ? 1 : 2 };
 }
 const INSTR = [
   { name: 'Bodhrán', color: '#e0903f', says: "Right so. I'm Bob Piper, and this is the bodhrán. Watch me hands, then copy me. Bash the drum as the circles land on the line!" },
@@ -429,31 +453,32 @@ function roleFor(kind, s, i, bar) {
   return null;
 }
 function buildRun(kind, s) {
-  const bars = kind === 'fin-play' ? 20 : 8;
+  const bars = kind === 'fin-play' ? 20 : SONG.nb;
   const run = { kind, s, bars, events: [], mode: (kind === 'play' || kind === 'fin-play') ? 'play' : 'listen', si: 0, ai: 0 };
   run.start = AC.currentTime + 0.45; run.t0 = run.start + BAR; run.tEnd = run.t0 + bars * BAR;
   run.tDone = run.tEnd + (run.mode === 'play' ? 1.1 : 0.6);
   for (let k = 0; k < SPB; k += BEAT) run.events.push({ type: 'tick', time: run.start + k * STEP, accent: k === 0, role: 'click' });
   const per = [[], [], [], [], []];
   for (let bar = 0; bar < bars; bar++) {
-    const chord = CHORDS[bar % 8];
+    const chord = CHORDS[bar % SONG.nb];
     for (let i = 0; i < 5; i++) {
       const role = roleFor(kind, s, i, bar); if (!role) continue;
-      const str = CHART[i][bar % 8];
+      const str = CHART[i][bar % SONG.nb];
       for (let st = 0; st < SPB; st++) {
         const c = str[st]; if (c === '.') continue;
         let lane, fr = null;
-        if (c.length === 1) lane = +c; else { const pn = parseNote(c); lane = pn.lane; fr = [mf(pn.midi)]; }
-        const e = { type: 'note', instr: i, lane, bar, step: st, time: run.t0 + (bar * SPB + st) * STEP, role, chord, state: 'p' };
+        let orn = false; let tk = c; if (c.length > 1 && c.endsWith('~')) { orn = true; tk = c.slice(0, -1); }
+        if (tk.length === 1) lane = +tk; else { const pn = parseNote(tk); lane = pn.lane; fr = [mf(pn.midi)]; }
+        const e = { type: 'note', instr: i, lane, bar, step: st, time: run.t0 + (bar * SPB + st) * STEP, role: orn && role === 'player' ? 'auto' : role, orn, chord, state: 'p' };
         e.freqs = fr || voicing(i, e.lane, chord); per[i].push(e); run.events.push(e);
       }
     }
   }
   const CAP = [0, 2.6, 4, 0, 3];
-  per.forEach((a, i) => a.forEach((e, k) => { const nx = a[k + 1], cap = CAP[i] * STEP; let d = nx ? (nx.time - e.time) * 0.94 : cap; if (cap) d = Math.min(d, cap); e.dur = Math.max(0.1, d); }));
+  per.forEach((a, i) => a.forEach((e, k) => { const nx = a[k + 1], cap = CAP[i] * STEP * (SONG.fine ? 2 : 1); let d = nx ? (nx.time - e.time) * 0.94 : cap; if (cap) d = Math.min(d, cap); e.dur = Math.max(0.1, d); }));
   run.events.sort((a, b) => a.time - b.time);
   run.notes = run.events.filter(e => e.type === 'note' && e.role === 'player');
-  run.shown = kind === 'listen' ? run.events.filter(e => e.type === 'note' && e.instr === s) : (run.mode === 'play' ? run.notes : []);
+  run.shown = kind === 'listen' ? run.events.filter(e => e.type === 'note' && e.instr === s && !e.orn) : (run.mode === 'play' ? run.notes : []);
   run.ghost = kind === 'listen';
   return run;
 }
