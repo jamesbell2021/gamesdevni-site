@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sound test</title>
+<style>
+  body{margin:0;background:#0E1116;color:#F2EFE6;font:16px/1.5 ui-monospace,Menlo,Consolas,monospace;padding:18px}
+  h1{font-size:20px;margin:0 0 6px;color:#E8C468}
+  p{color:#B8B5AC;margin:0 0 14px}
+  button{display:block;width:100%;max-width:520px;margin:0 0 12px;padding:16px;font:700 16px ui-monospace,Menlo,monospace;
+    background:#141922;color:#F2EFE6;border:2px solid #E8C468;border-radius:6px;text-align:left}
+  button b{color:#E8C468;margin-right:8px}
+  button.done{border-color:#1FC8DA}
+  #info{white-space:pre-wrap;font-size:13px;color:#B8B5AC;border-top:1px solid #2A303C;padding-top:12px;margin-top:8px}
+</style>
+</head>
+<body>
+<h1>Sound test</h1>
+<p>Turn the volume up. Tap each button once and note which letters you hear a beep from. Then try them all again with the silent switch flipped the other way.</p>
+<button id="a"><b>A</b>Web Audio beep</button>
+<button id="b"><b>B</b>Web Audio beep, "playback" mode</button>
+<button id="c"><b>C</b>Web Audio beep, through an audio player</button>
+<button id="d"><b>D</b>Plain audio-player beep</button>
+<div id="info"></div>
+<script>
+// Each test makes its own beep in a different way, so the results show which
+// route the phone lets through.
+function tone(ctx, dest, freq) {
+  var o = ctx.createOscillator(), g = ctx.createGain();
+  o.frequency.value = freq; g.gain.value = 0.3;
+  o.connect(g); g.connect(dest || ctx.destination);
+  o.start(); o.stop(ctx.currentTime + 0.7);
+}
+function wavUrl(freq) {
+  var rate = 44100, n = rate * 0.7, b = new ArrayBuffer(44 + n * 2), v = new DataView(b);
+  function w(o, s) { for (var i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); }
+  w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVE'); w(12, 'fmt ');
+  v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+  v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true);
+  w(36, 'data'); v.setUint32(40, n * 2, true);
+  for (var i = 0; i < n; i++) v.setInt16(44 + i * 2, Math.sin(i * 2 * Math.PI * freq / rate) * 9000 * Math.min(1, (n - i) / 2000), true);
+  return URL.createObjectURL(new Blob([b], { type: 'audio/wav' }));
+}
+var AC = window.AudioContext || window.webkitAudioContext;
+var ctxA = null, ctxB = null, ctxC = null, el = null;
+var log = [];
+function note(t) { log.push(t); show(); }
+function show() {
+  var s = [ctxA, ctxB, ctxC].map(function (c, i) { return 'ABC'[i] + ': ' + (c ? c.state + ' @' + c.sampleRate + 'Hz' : '-'); }).join('   ');
+  document.getElementById('info').textContent = s + '\naudioSession: ' + (navigator.audioSession ? navigator.audioSession.type + ' / ' + navigator.audioSession.state : 'not supported') +
+    '\n' + log.slice(-6).join('\n') + '\n\n' + navigator.userAgent;
+}
+document.getElementById('a').onclick = function () {
+  try { if (navigator.audioSession) navigator.audioSession.type = 'auto'; } catch (e) {}
+  if (!ctxA) ctxA = new AC();
+  ctxA.resume(); tone(ctxA, null, 440); this.className = 'done'; note('A played'); setTimeout(show, 800);
+};
+document.getElementById('b').onclick = function () {
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) { note('B: ' + e); }
+  if (!ctxB) ctxB = new AC();
+  ctxB.resume(); tone(ctxB, null, 550); this.className = 'done'; note('B played'); setTimeout(show, 800);
+};
+document.getElementById('c').onclick = function () {
+  try {
+    if (!ctxC) {
+      ctxC = new AC();
+      var dest = ctxC.createMediaStreamDestination();
+      el = document.createElement('audio'); el.setAttribute('playsinline', ''); el.srcObject = dest.stream;
+      ctxC.__dest = dest;
+    }
+    ctxC.resume(); el.play(); tone(ctxC, ctxC.__dest, 660); this.className = 'done'; note('C played');
+  } catch (e) { note('C failed: ' + e); }
+  setTimeout(show, 800);
+};
+document.getElementById('d').onclick = function () {
+  var a = new Audio(wavUrl(770)); a.setAttribute('playsinline', '');
+  var p = a.play(); if (p && p.catch) p.catch(function (e) { note('D failed: ' + e); });
+  this.className = 'done'; note('D played'); setTimeout(show, 800);
+};
+show();
+</script>
+</body>
+</html>
