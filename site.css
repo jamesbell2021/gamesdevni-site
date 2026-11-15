@@ -218,6 +218,7 @@ ul.ticks li::before{content:"";position:absolute;left:0;top:.6em;width:9px;heigh
 .drift .drift-video{margin-top:0}
 .drift .drift-videos{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .drift .drift-videos .video-note{margin-top:12px}
+.drift .drift-trailer-note{margin:12px 0 30px}
 @media (max-width:860px){.drift .drift-videos{grid-template-columns:1fr}}
 /* The House Is Haunted: ghost-green on the night, one warning red. */
 .haunted{--ghost:#8FE6CF;--ghost-dim:#5FA898;--warn:#FF5A3C;background:linear-gradient(180deg,rgba(143,230,207,.06),transparent 55%),var(--bg);border-top:1px solid var(--line)}
