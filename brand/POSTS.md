@@ -160,7 +160,7 @@ page pointing to it.
 
 Instagram: the same words without the X hashtags, then the usual set with `#horrorgame` in place of `#strategygame` and `#comingsoon` in place of `#itchio`.
 
-## Ready now: Tripod Attack! is out (added 19 Oct, the day it went live on itch.io)
+## Sun 15 Nov: Tripod Attack! is out (the home Claude's entry of 19 Oct; the Thursday and Saturday reminders reached the session three days and a day late, so prepared 15 Nov with the two pictures in the repo, the reel not being in git)
 
 **File:** the Tripod Attack! reel (`tripod-attack-reel.mp4`, 1080x1920, made by `tools/make_reel.py` in the Animation- repo, branch `claude/tripod-attack-arcade-pp311n`; not in git, sent in chat) for both. Picture instead: `tripod-attack/launch/out/x_card_1200x675.jpg` on X, `instagram_1080x1080.jpg` on Instagram.
 **Reply:** Play it on itch.io: https://gamesdevnisite.itch.io/tripod-attack
