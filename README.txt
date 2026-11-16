@@ -108,6 +108,15 @@ Tools/trailer/stills_shots.json), the commander's ring and fall
 (gameplay/commander_down.mp4) and the keg chain (renders/Keg_Chain.mp4), cut
 with ffmpeg.
 
+The trailer since 16 November 2026 is the full Steam cut James approved that
+day, 84 seconds, with the new skirmish in it (the redcoat ship, the pikes, the
+charge): ~/Videos/Forged_in_Formation_Steam_Trailer_2026-11c.mp4, cut in the
+game's repo from Tools/trailer/edit_steam2026c.json and re-encoded for the web
+in two passes at 2.7 Mbit/s (30 MB). The site and the Steam page show the same
+trailer. The poster is unchanged (the Hundred Charge). The 30-second cut it
+replaced is still video/forged_in_formation_30s.mp4, for social posts. The
+paragraph below describes October's trailer and screenshots.
+
 Sources: the trailer is the cut of 11 October 2026,
 Tools/trailer/Forged_in_Formation_Trailer.mp4 in the game's repo (recorded in
 the game by Tools/trailer/record_trailer.sh, cut by assemble.py from edit.json,
