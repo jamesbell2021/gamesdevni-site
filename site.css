@@ -658,3 +658,8 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 .silly-pics.one{grid-template-columns:1fr}
 .silly-pics.one img{aspect-ratio:640/349}
 .silly-grid{align-items:start}
+
+/* ============ PLANKS & POWDER release card (17 November 2026) ============ */
+.news-planks{box-shadow:inset 0 0 0 1px #6a5426,0 0 40px rgba(232,176,74,.10)}
+.news-planks .news-date{color:#E8B04A}
+.news-planks video{width:100%;aspect-ratio:16/9;display:block;background:#000;margin:6px 0 4px;box-shadow:0 0 0 1px var(--line)}

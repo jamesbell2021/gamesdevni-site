@@ -3,6 +3,15 @@
 Upload the whole folder as it is: index.html, games.html, site.css,
 screenshots/, video/.
 
+PLANKS & POWDER (added 17 November 2026, release day): out now on the
+Microsoft Store (https://apps.microsoft.com/detail/9MZSC0GF71BP). The front
+page has a news card (#planks, second in Latest news, with the 37-second
+trailer video/planks_and_powder_trailer.mp4, 6 MB, and its poster), a card
+first in the "More from 3BL" grid and in games.html's header grid (thumbnail
+screenshots/pp_broadside_thumb.jpg), and a link at the top of the More Games
+menu on both pages. Wee Man's news card moved into "More news". The game
+counts went from twenty-two to twenty-three.
+
 CHRISTMAS 2026 (added 12 November 2026): the front page opens with
 "Happy Christmas from 3BL" (#christmas, just under the menu) and our
 browser game A Timeless Christmas Tree. The game's web build lives in
