@@ -10,7 +10,8 @@ trailer video/planks_and_powder_trailer.mp4, 6 MB, and its poster), a card
 first in the "More from 3BL" grid and in games.html's header grid (thumbnail
 screenshots/pp_broadside_thumb.jpg), and a link at the top of the More Games
 menu on both pages. Wee Man's news card moved into "More news". The game
-counts went from twenty-two to twenty-three.
+counts went from twenty-two to twenty-three. Bolts & Boulders' news card
+got its Store trailer too (video/bolts_and_boulders_trailer.mp4, with poster).
 
 CHRISTMAS 2026 (added 12 November 2026): the front page opens with
 "Happy Christmas from 3BL" (#christmas, just under the menu) and our
