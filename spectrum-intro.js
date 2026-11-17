@@ -13,8 +13,10 @@
  * The picture is a real 6912-byte SCREEN$ (brand/3bl_loading.scr, made by
  * brand/make_loading_scr.py), embedded below so it works offline.
  *
- * Plays once per browser visit, about eleven seconds. Any key, click or tap skips it.
- * Sound is off until SOUND is pressed (browsers block sound that starts by itself).
+ * Plays once per browser visit, about eleven seconds. Any key skips it. The first tap or
+ * click on the screen turns the tape sound on (browsers block sound that starts by itself);
+ * a second tap, or the SKIP button, skips. On iPhones the sound is set to play even with
+ * the silent switch on, as a video would.
  * Never plays for people whose device asks for reduced motion.
  * Add ?intro to the address to see it again, ?nointro to skip it.
  */
@@ -59,7 +61,9 @@
     "#zx{position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity " + T_FADE + "s}" +
     "#zx canvas{width:min(100vw,133.33vh);height:auto;aspect-ratio:4/3;image-rendering:pixelated;image-rendering:crisp-edges}" +
     "#zx button{position:absolute;bottom:14px;font:12px/1 monospace;letter-spacing:.12em;padding:9px 12px;background:#000;color:#fff;border:2px solid #fff;cursor:pointer}" +
-    "#zx .zx-skip{right:14px}#zx .zx-snd{left:14px}#zx button:focus-visible{outline:3px solid #ff0}";
+    "#zx .zx-skip{right:14px}#zx .zx-snd{left:14px}" +
+    "#zx .zx-hint{position:absolute;top:14px;left:50%;transform:translateX(-50%);font:12px/1 monospace;letter-spacing:.14em;color:#fff;background:#000;padding:8px 12px;border:2px solid #fff;animation:zxblink 1s steps(2) infinite}" +
+    "@keyframes zxblink{50%{opacity:0}}#zx button:focus-visible{outline:3px solid #ff0}";
   document.head.appendChild(css);
   var box = document.createElement("div"); box.id = "zx";
   box.setAttribute("role", "img");
@@ -67,7 +71,8 @@
   var cv = document.createElement("canvas"); cv.width = 320; cv.height = 240; box.appendChild(cv);
   var snd = document.createElement("button"); snd.className = "zx-snd"; snd.type = "button"; snd.textContent = "SOUND OFF";
   var skip = document.createElement("button"); skip.className = "zx-skip"; skip.type = "button"; skip.textContent = "SKIP";
-  box.appendChild(snd); box.appendChild(skip);
+  var hint = document.createElement("div"); hint.className = "zx-hint"; hint.textContent = "TAP FOR SOUND";
+  box.appendChild(snd); box.appendChild(skip); box.appendChild(hint);
   document.body.insertBefore(box, document.body.firstChild);
   var oldOverflow = document.documentElement.style.overflow;
   document.documentElement.style.overflow = "hidden";
@@ -98,16 +103,18 @@
     var sr = actx.sampleRate, n = Math.ceil(sr * T_SCR_END), b = actx.createBuffer(1, n, sr), d = b.getChannelData(0);
     TL.forEach(function (seg) {
       var s0 = Math.floor(sr * seg[0]), s1 = Math.min(n, Math.floor(sr * seg[1])), i = s0;
-      if (seg[3] === "pilot") { var h = sr / 807 / 2; for (; i < s1; i++) d[i] = (((i - s0) / h) | 0) % 2 ? 0.15 : -0.15; }
+      if (seg[3] === "pilot") { var h = sr / 807 / 2; for (; i < s1; i++) d[i] = (((i - s0) / h) | 0) % 2 ? 0.28 : -0.28; }
       else if (seg[3]) {
         // sync pulse, then bits: a 0 is a short pulse pair, a 1 twice as long
-        while (i < s1) { var half = sr / (Math.random() < 0.5 ? 2044 : 1022) / 2; for (var k = 0; k < half * 2 && i < s1; k++, i++) d[i] = k < half ? 0.13 : -0.13; }
+        while (i < s1) { var half = sr / (Math.random() < 0.5 ? 2044 : 1022) / 2; for (var k = 0; k < half * 2 && i < s1; k++, i++) d[i] = k < half ? 0.25 : -0.25; }
       }
     });
     return b;
   }
   function startSound() {
     try {
+      // iPhone/iPad: without this, Web Audio is silenced by the ring/silent switch
+      try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) {}
       actx = actx || new (window.AudioContext || window.webkitAudioContext)();
       if (actx.state === "suspended") actx.resume();
       buf = buf || buildSound();
@@ -117,11 +124,11 @@
     } catch (e) {}
   }
   function stopSound() { try { if (src) src.stop(); } catch (e) {} src = null; }
-  snd.addEventListener("click", function (ev) {
-    ev.stopPropagation();
+  function toggleSound() {
     soundOn = !soundOn; snd.textContent = soundOn ? "SOUND ON" : "SOUND OFF";
     if (soundOn) startSound(); else stopSound();
-  });
+  }
+  snd.addEventListener("click", function (ev) { ev.stopPropagation(); toggleSound(); });
 
   // ---------------------------------------------------------------- finish / skip
   var done = false;
@@ -141,7 +148,12 @@
   }
   window.addEventListener("keydown", onKey, true);
   skip.addEventListener("click", function (ev) { ev.stopPropagation(); finish(); });
-  box.addEventListener("click", finish);
+  // first tap on the screen: sound on (the tap is what lets the browser play it); next tap: skip
+  var tapped = false;
+  box.addEventListener("click", function () {
+    if (!tapped) { tapped = true; if (!soundOn) toggleSound(); hint.style.display = "none"; return; }
+    finish();
+  });
 
   // ---------------------------------------------------------------- the Spectrum's screen memory
   var mem = new Uint8Array(6912);

@@ -5,7 +5,7 @@ screenshots/, video/.
 
 SPECTRUM LOADING INTRO (added 17 November 2026): spectrum-intro.js plays a ZX
 Spectrum tape-loading screen over the front page, once per browser visit (about
-11 s; any key, click or tap skips it; SOUND button for the tape noise; never for
+11 s; first tap turns the tape sound on, second tap or any key skips; never for
 reduced-motion users). LOAD "" is typed, red/cyan pilot border, "Program:
 3BL_INDIE" and "Bytes: LOADSCREEN" headers, then a real 6912-byte SCREEN$ loads
 in Spectrum memory order under blue/yellow stripes, colours last.
