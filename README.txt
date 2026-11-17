@@ -3,6 +3,20 @@
 Upload the whole folder as it is: index.html, games.html, site.css,
 screenshots/, video/.
 
+SPECTRUM LOADING INTRO (added 17 November 2026): spectrum-intro.js plays a ZX
+Spectrum tape-loading screen over the front page, once per browser visit (about
+11 s; any key, click or tap skips it; SOUND button for the tape noise; never for
+reduced-motion users). LOAD "" is typed, red/cyan pilot border, "Program:
+3BL_INDIE" and "Bytes: LOADSCREEN" headers, then a real 6912-byte SCREEN$ loads
+in Spectrum memory order under blue/yellow stripes, colours last.
+  - The picture: brand/3bl_loading.scr (preview brand/3bl_loading_preview.png),
+    built by brand/make_loading_scr.py from brand/loading_scr_panels.json (four
+    game shots converted to Spectrum colours around the logo). The .scr is also
+    embedded in spectrum-intro.js as base64, so after rebuilding it, paste the new
+    base64 (base64 -w0 brand/3bl_loading.scr) into SCR_B64.
+  - To watch it again: gamesdevni.site/?intro   To skip: ?nointro
+  - It is loaded by the first line inside <body> of index.html only.
+
 PLANKS & POWDER (added 17 November 2026, release day): out now on the
 Microsoft Store (https://apps.microsoft.com/detail/9MZSC0GF71BP). The front
 page has a news card (#planks, second in Latest news, with the 37-second
