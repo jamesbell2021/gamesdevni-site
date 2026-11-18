@@ -45,8 +45,10 @@ pauses the song.
 
 CHRISTMAS DAY PARTY (added 18 November 2026): a third Christmas present, the
 family game show (repo jamesbell2021/family-game-night). Its own page is
-christmas-day-party/index.html, styled as a 1980s Christmas TV listing with
-the screenshots in wood-effect tellies (fonts copied from carpet-grand-prix/
+christmas-day-party/index.html, styled as a 1980s Christmas TV listing. The
+hero picture is the game on a drawn 1980s telly (img/tv-lobby.jpg and
+tv-reveal.jpg, made with a Python script from game screenshots); the other
+screenshots sit in CSS wood-effect tellies (fonts copied from carpet-grand-prix/
 so it stands on its own). Downloads in christmas-day-party/downloads/: a
 single program with no install (built with yao-pkg from the game repo:
 npm run build), Windows zip 23 MB, Linux tar.gz 29 MB. The page swaps its
