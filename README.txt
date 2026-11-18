@@ -43,7 +43,16 @@ poster) is the first card in Latest news; Kaiju Coast moved into "More
 news" to keep four cards on show. Pressing Play on the Christmas game
 pauses the song.
 
-CHRISTMAS DAY PARTY (added 18 November 2026): a third Christmas present, the
+LAVA RAID (added 18 November 2026): the third free present (the Christmas
+tree is a site feature, not one of the presents; the cards are labelled
+Present no. 1, 2 and 3). An original 1980s LCD handheld game in one file,
+lava-raid/index.html: the handheld is HTML/CSS, the LCD is SVG built by the
+script (every segment is a <g class="seg">, lit with .on). Fills the screen
+on a phone held sideways; Full screen button; best score kept in the
+browser. Card #xmas-lava on the front page, picture lava-raid/lava-raid.jpg.
+Nothing to download, so it has no closing date of its own.
+
+CHRISTMAS DAY PARTY (added 18 November 2026): the second Christmas present, the
 family game show (repo jamesbell2021/family-game-night). Its own page is
 christmas-day-party/index.html, styled as a 1980s Christmas TV listing. The
 hero picture is the game on a drawn 1980s telly (img/tv-lobby.jpg and

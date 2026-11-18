@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0716">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Lava Raid · a Christmas present from 3BL</title>
+<meta name="description" content="Lava Raid: a free 1980s-style LCD handheld game. Steal the dinosaur's eggs and dodge the lava. Plays in your browser, best on a phone held sideways. A Christmas present from 3BL.">
+<meta property="og:title" content="Lava Raid · a Christmas present from 3BL">
+<meta property="og:description" content="A 1980s LCD handheld game in your browser. Steal the eggs, dodge the lava, don't wake the mammy.">
+<meta property="og:image" content="https://gamesdevni.site/lava-raid/lava-raid.jpg">
+<style>
+/* Lava Raid: an original 1980s-style LCD handheld, drawn in HTML/CSS with an SVG LCD.
+   Fonts (SIL Open Font Licence): Press Start 2P and VT323, copied from carpet-grand-prix/. */
+@font-face{font-family:Pixel;src:url(fonts/PressStart2P.woff) format('woff');font-display:swap}
+@font-face{font-family:Term;src:url(fonts/VT323.woff) format('woff');font-display:swap}
+:root{--ink:#0b0716;--cream:#f7efd9;--dim:#cbbfe0;--gold:#ffcf2e;--red:#e0262e}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--ink);color:var(--cream);font-family:Term,ui-monospace,monospace;font-size:22px;line-height:1.35}
+body{background:radial-gradient(ellipse at 50% 0,#2a1a3c 0,var(--ink) 70%) fixed}
+a{color:var(--gold)}
+
+/* ---------- the stage: on a sideways phone the handheld fills the screen ---------- */
+.stage{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) 8px max(8px,env(safe-area-inset-left));position:relative}
+.hint{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:17px;color:var(--dim)}
+.hint a{margin:0 8px}
+.tools{position:absolute;top:8px;right:max(10px,env(safe-area-inset-right));display:flex;gap:8px;z-index:5}
+.tools button{font-family:Pixel,monospace;font-size:9px;text-transform:uppercase;color:var(--cream);background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.2);padding:7px 9px;cursor:pointer}
+.tools button:hover{border-color:var(--gold)}
+.back{position:absolute;top:10px;left:max(12px,env(safe-area-inset-left));font-size:17px;color:var(--dim);text-decoration:none;z-index:5}
+
+/* ---------- the handheld ---------- */
+.device{--w:min(96vw,calc((100dvh - 64px) * 1.72));width:var(--w);aspect-ratio:1.72;container-type:inline-size;position:relative;
+  border-radius:4.5cqw;padding:1.7cqw;user-select:none;-webkit-user-select:none;touch-action:manipulation;
+  background:linear-gradient(160deg,#5a1d14 0,#3a110b 55%,#260a06 100%);
+  box-shadow:0 2.5cqw 4cqw rgba(0,0,0,.6),inset 0 .4cqw .3cqw rgba(255,255,255,.18),inset 0 -.6cqw .6cqw rgba(0,0,0,.5)}
+/* brushed-metal faceplate */
+.face{position:absolute;inset:1.7cqw;border-radius:3cqw;overflow:hidden;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,rgba(0,0,0,.035) 1px 3px),
+    linear-gradient(180deg,#f2e3b6 0,#dcc58c 45%,#c7ab6c 100%);
+  box-shadow:inset 0 .3cqw .2cqw rgba(255,255,255,.7),inset 0 -.3cqw .4cqw rgba(80,50,10,.45)}
+.face::before{content:"";position:absolute;left:0;right:0;top:0;height:42%;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0));pointer-events:none}
+/* orange-red stripes across the faceplate, very 1980s */
+.stripe{position:absolute;left:0;right:0;height:.9cqw;background:#d8501e}
+.stripe.s1{bottom:5.2cqw}.stripe.s2{bottom:3.7cqw;background:#e98a1c}.stripe.s3{bottom:2.2cqw;background:#f2b51e}
+
+/* logo box, top left */
+.logo{position:absolute;left:3.4cqw;top:3.3cqw;width:14.5cqw;border:.35cqw solid #5a1d14;border-radius:1cqw;padding:.8cqw .6cqw;text-align:center;background:rgba(255,255,255,.18)}
+.logo b{display:block;font-family:Pixel,monospace;font-size:3.1cqw;color:#5a1d14;letter-spacing:.1em;line-height:1}
+.logo i{display:block;font-style:normal;font-family:Pixel,monospace;font-size:1.05cqw;color:#5a1d14;margin-top:.7cqw;letter-spacing:.06em}
+.logo s{display:block;text-decoration:none;font-family:Pixel,monospace;font-size:.9cqw;color:#b03a16;margin-top:.4cqw}
+
+/* the screen window */
+.bezel{position:absolute;left:21cqw;top:3.2cqw;width:58cqw;height:44.5cqw;border-radius:1.6cqw;background:linear-gradient(180deg,#3b1a12,#24100b);
+  box-shadow:inset 0 .3cqw .5cqw rgba(0,0,0,.8),0 .15cqw 0 rgba(255,255,255,.6)}
+.bezel .title{position:absolute;left:0;right:0;top:.7cqw;text-align:center;font-family:Pixel,monospace;font-size:1.55cqw;color:#f2b51e;letter-spacing:.35em}
+.bezel .sub{position:absolute;left:0;right:0;bottom:.75cqw;text-align:center;font-family:Pixel,monospace;font-size:1.05cqw;color:#e9cf9a;letter-spacing:.3em}
+.lcd{position:absolute;left:2.6cqw;right:2.6cqw;top:3.2cqw;bottom:3.2cqw;border-radius:.6cqw;overflow:hidden;
+  background:linear-gradient(170deg,#c9d0b3 0,#b9c2a2 60%,#aeb795 100%);box-shadow:inset 0 .4cqw .8cqw rgba(0,0,0,.45)}
+.lcd svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.lcd::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.22) 0,rgba(255,255,255,0) 38%,rgba(255,255,255,0) 70%,rgba(255,255,255,.08) 100%)}
+.seg{opacity:.045;transition:opacity 40ms}
+.seg.on{opacity:.9}
+.hole{fill:#bfc7a9}
+
+/* buttons */
+.big{position:absolute;width:11.5cqw;height:11.5cqw;border-radius:50%;border:0;cursor:pointer;padding:0;
+  background:radial-gradient(circle at 38% 30%,#ff6d5e 0,#e0262e 38%,#9c1015 100%);
+  box-shadow:0 .7cqw 0 #5a0b0e,0 1cqw 1.2cqw rgba(0,0,0,.4),inset 0 -.3cqw .4cqw rgba(0,0,0,.3)}
+.big:active,.big.down{transform:translateY(.55cqw);box-shadow:0 .15cqw 0 #5a0b0e,0 .4cqw .6cqw rgba(0,0,0,.4),inset 0 -.2cqw .3cqw rgba(0,0,0,.3)}
+.well{position:absolute;width:15cqw;height:15cqw;border-radius:50%;background:radial-gradient(circle,#3a110b 0 58%,rgba(0,0,0,0) 60%),radial-gradient(circle,rgba(0,0,0,.25) 0 62%,rgba(0,0,0,0) 64%)}
+.wl{left:4.8cqw;top:25cqw}.wr{right:4.8cqw;top:25cqw}
+.bl{left:6.55cqw;top:26.4cqw}.br{right:6.55cqw;top:26.4cqw}
+.lab{position:absolute;font-family:Pixel,monospace;font-size:1.25cqw;color:#5a1d14;letter-spacing:.12em}
+.ll{left:8.2cqw;top:41.6cqw}.lr{right:7.4cqw;top:41.6cqw}
+.small{position:absolute;right:4.3cqw;width:5.4cqw;height:2.6cqw;border-radius:1.3cqw;border:0;cursor:pointer;padding:0;
+  background:linear-gradient(180deg,#6b6460,#3e3835);box-shadow:0 .35cqw 0 #1d1917,inset 0 .2cqw .2cqw rgba(255,255,255,.25)}
+.small:active,.small.down{transform:translateY(.3cqw);box-shadow:0 .05cqw 0 #1d1917}
+.sa{top:4.2cqw}.sb{top:9cqw}.st{top:13.8cqw}
+.slab{position:absolute;right:10.6cqw;font-family:Pixel,monospace;font-size:1.05cqw;color:#5a1d14;text-align:right;letter-spacing:.08em}
+.la{top:4.9cqw}.lb{top:9.7cqw}.lt{top:14.5cqw}
+.acl{position:absolute;right:5.6cqw;top:19.6cqw;width:1.1cqw;height:1.1cqw;border-radius:50%;background:#2a1a10;box-shadow:inset 0 .15cqw .2cqw #000}
+.acllab{position:absolute;right:7.4cqw;top:19.75cqw;font-family:Pixel,monospace;font-size:.75cqw;color:#5a1d14}
+.made{position:absolute;left:0;right:0;bottom:.5cqw;text-align:center;font-family:Pixel,monospace;font-size:.8cqw;color:#5a1d14;letter-spacing:.2em}
+
+/* portrait phones: ask for sideways (the game still works small) */
+.turn{display:none}
+@media (orientation:portrait) and (max-width:700px){
+  .turn{display:block;position:absolute;top:calc(50% + 34vw);left:0;right:0;text-align:center;color:var(--gold);font-family:Pixel,monospace;font-size:11px;line-height:1.8;padding:0 20px}
+  .turn span{display:inline-block;font-size:26px;animation:rot 2s ease-in-out infinite}
+  @keyframes rot{0%,30%{transform:rotate(0)}60%,100%{transform:rotate(90deg)}}
+}
+/* a sideways phone: hide everything except the handheld */
+@media (orientation:landscape) and (max-height:520px){
+  .hint{display:none}
+  .device{--w:min(98vw,calc((100dvh - 14px) * 1.72))}
+  .tools{top:auto;bottom:max(8px,env(safe-area-inset-bottom));right:max(6px,env(safe-area-inset-right));flex-direction:column}
+  .tools button{font-size:16px;padding:6px 8px}.tools .txt{display:none}
+  .back{top:6px;font-size:0}.back::before{content:'<<';font-size:16px}
+}
+
+/* ---------- the page below ---------- */
+.info{width:min(980px,100% - 32px);margin:0 auto;padding:30px 0 50px}
+.gift{font-family:Pixel,monospace;font-size:12px;color:#ef5b50;text-transform:uppercase;margin:0 0 10px}
+h1{font-family:Pixel,monospace;font-weight:normal;font-size:clamp(26px,5vw,44px);color:var(--gold);margin:0 0 14px;text-shadow:4px 4px 0 var(--red)}
+h2{font-family:Pixel,monospace;font-weight:normal;font-size:15px;color:var(--gold);text-transform:uppercase;margin:34px 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.keys{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0}
+.keys dt{font-family:Pixel,monospace;font-size:11px;color:#ff5fa2;padding-top:6px}
+.keys dd{margin:0}
+ul.rules{margin:0;padding-left:1.1em}
+ul.rules li{margin:0 0 6px}
+footer{border-top:3px solid #3a2d5a;margin-top:36px;padding-top:18px;color:var(--dim);font-size:18px}
+@media (max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <a class="back" href="../">&lt;&lt; gamesdevni.site</a>
+  <div class="tools"><button id="fsBtn" type="button" aria-label="Full screen">⛶<span class="txt"> Full screen</span></button><button id="sndBtn" type="button" aria-label="Sound">🔊<span class="txt"> Sound on</span></button></div>
+
+  <div class="device" id="device" role="application" aria-label="Lava Raid handheld game">
+    <div class="face">
+      <div class="logo"><b>3BL</b><i>LCD POCKET GAME</i><s>NO. 3 · XMAS 2026</s></div>
+
+      <div class="bezel">
+        <div class="title">LAVA RAID</div>
+        <div class="lcd"><svg id="lcd" viewBox="0 0 400 250" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+        <div class="sub">- DINO EGG DASH -</div>
+      </div>
+
+      <div class="well wl"></div><div class="well wr"></div>
+      <button class="big bl" id="bLeft" type="button" aria-label="Left"></button>
+      <button class="big br" id="bRight" type="button" aria-label="Right"></button>
+      <div class="lab ll">◀ LEFT</div><div class="lab lr">RIGHT ▶</div>
+
+      <button class="small sa" id="bA" type="button" aria-label="Game A"></button><div class="slab la">GAME A</div>
+      <button class="small sb" id="bB" type="button" aria-label="Game B"></button><div class="slab lb">GAME B</div>
+      <button class="small st" id="bT" type="button" aria-label="Time"></button><div class="slab lt">TIME</div>
+      <div class="acl"></div><div class="acllab">ACL</div>
+
+      <div class="stripe s1"></div><div class="stripe s2"></div><div class="stripe s3"></div>
+      <div class="made">MADE IN NORTHERN IRELAND</div>
+    </div>
+  </div>
+
+  <div class="turn"><span>📱</span><br>Turn your phone sideways<br>for the full handheld</div>
+  <p class="hint">Press <b>GAME A</b> to play · <a href="#how">How to play ↓</a></p>
+</div>
+
+<div class="info" id="how">
+  <p class="gift">A Christmas present from 3BL · the third one under the tree</p>
+  <h1>Lava Raid</h1>
+  <p>The volcano is going off, and the mammy dinosaur has a nest full of eggs. Sneak across, nick an egg while she's asleep, and carry it back to your cave without getting splatted by the lava. Just like the wee LCD games you got in your stocking in 1982, only this one lives in your browser and never needs a new battery.</p>
+  <div class="grid">
+    <div>
+      <h2>How to play</h2>
+      <ul class="rules">
+        <li>Press <b>GAME A</b> to start (<b>GAME B</b> is faster, for experts).</li>
+        <li>Walk <b>RIGHT</b> to the nest. If the mammy is asleep (Zzz) you grab an egg.</li>
+        <li>Walk <b>LEFT</b> back to your cave to bank it. One point an egg.</li>
+        <li>Lava falls in the three spaces in between. Don't be under it when it lands!</li>
+        <li>When she lifts her head, get out of the nest. If she's awake when you're there, she'll have you.</li>
+        <li>Three misses and it's game over. Reach 100 and 300 and your misses are wiped.</li>
+        <li>It gets faster the more eggs you steal.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Buttons</h2>
+      <dl class="keys">
+        <dt>◀ ▶</dt><dd>Tap the big red buttons, or use the arrow keys</dd>
+        <dt>A / B</dt><dd>Game A or Game B (keys 1 and 2, or Space)</dd>
+        <dt>TIME</dt><dd>Back to the clock (key T)</dd>
+        <dt>M</dt><dd>Beeps on or off</dd>
+      </dl>
+      <p>Best on a phone held sideways: tap <b>Full screen</b> at the top. Your best score is remembered on this device.</p>
+    </div>
+  </div>
+  <footer>
+    <p>Happy Christmas from 3BL! Lava Raid is an original game, drawn and beeped entirely in code. Made in Northern Ireland.</p>
+    <p>Typefaces: Press Start 2P and VT323, under the SIL Open Font Licence. <a href="../">&lt;&lt; Back to gamesdevni.site</a></p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('lcd');
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || svg).appendChild(e); return e; };
+  const LS = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } } };
+
+  /* ================= the printed background (coloured, behind the LCD) ================= */
+  const defs = el('defs', {});
+  defs.innerHTML = '<filter id="lcdShadow" x="-5%" y="-5%" width="110%" height="110%"><feDropShadow dx="1.6" dy="2.2" stdDeviation="0.6" flood-color="#2b3020" flood-opacity="0.28"/></filter>';
+  const print = el('g', { opacity: 0.55 });
+  el('rect', { x: 0, y: 228, width: 400, height: 22, fill: '#d9b47a' }, print);                       // sand
+  el('circle', { cx: 205, cy: 40, r: 16, fill: '#efc65a', opacity: 0.6 }, print);                    // hazy sun
+  el('path', { d: 'M150 228 Q190 196 230 214 T330 205 L400 210 L400 228Z', fill: '#9fb07a' }, print); // hills
+  el('path', { d: 'M0 250 L0 118 L38 50 L84 50 L132 250Z', fill: '#a8653a' }, print);                // volcano
+  el('path', { d: 'M38 50 L84 50 L78 60 L64 56 L50 62 L44 56Z', fill: '#e2502a' }, print);           // glowing crater
+  el('path', { d: 'M52 62 L60 90 L56 120 L64 150 L58 175 M70 60 L76 95 L72 125', stroke: '#e2502a', 'stroke-width': 4, fill: 'none' }, print); // lava runs
+  el('path', { d: 'M12 232 L12 206 Q34 180 58 206 L58 232Z', fill: '#4a2a18' }, print);             // cave mouth
+  el('path', { d: 'M280 231 Q304 220 330 231 Z', fill: '#7a5230' }, print);                          // nest
+  el('path', { d: 'M278 230 L334 226 M282 226 L328 232 M286 233 L326 223', stroke: '#5c3a1e', 'stroke-width': 2 }, print);
+  el('path', { d: 'M150 232 l6 -14 l3 14 M244 232 l5 -12 l4 12 M262 232 l-4 -10 l7 10', stroke: '#6f8d4a', 'stroke-width': 2.5, fill: 'none' }, print); // ferns
+
+  /* ================= LCD segments ================= */
+  const lcd = el('g', { filter: 'url(#lcdShadow)', fill: '#1b1f17' });
+  const SEG = {};
+  function seg(name, build) { const g = el('g', { class: 'seg' }, lcd); build(g); SEG[name] = g; return g; }
+  const on = (n, v) => { const s = SEG[n]; if (s) s.classList.toggle('on', !!v); };
+
+  const POS = [34, 128, 182, 236, 300]; // cave, three lava spaces, nest
+  const GROUND = 229;
+
+  // the caveman: plain, or carrying an egg over his head
+  function caveman(g, x, carry, stepPose) {
+    const P = (pts) => el('polygon', { points: pts.map(p => (p[0] + x) + ',' + p[1]).join(' ') }, g);
+    el('circle', { cx: x, cy: 193, r: 6.2 }, g);                                          // head
+    P([[-6, 190], [-7, 184], [-3, 187], [-2, 182], [1, 186], [4, 181], [5, 186], [8, 185], [6, 190]]); // shaggy hair
+    P([[-7, 201], [7, 201], [10, 216], [6, 214], [3, 217], [0, 214], [-3, 217], [-6, 214], [-10, 216]]); // tunic
+    if (stepPose) { P([[-5, 215], [-1, 215], [-7, 227], [-11, 227]]); P([[1, 215], [5, 215], [9, 227], [5, 227]]); }
+    else { P([[-5, 215], [-2, 215], [-2, 227], [-6, 227]]); P([[2, 215], [5, 215], [6, 227], [2, 227]]); }
+    P([[-12, 227], [-4, 227], [-4, 230], [-12, 230]]); P([[3, 227], [11, 227], [11, 230], [3, 230]]); // feet
+    if (carry) {
+      P([[-7, 202], [-4, 201], [-6, 182], [-9, 183]]); P([[7, 202], [4, 201], [6, 182], [9, 183]]);  // arms up
+      el('ellipse', { cx: x, cy: 173, rx: 6.5, ry: 8.5 }, g);                                       // the egg
+    } else {
+      P([[-7, 202], [-4, 203], [-12, 213], [-14, 211]]); P([[7, 202], [4, 203], [12, 211], [14, 209]]); // arms swinging
+    }
+  }
+  POS.forEach((x, p) => { seg('man' + p, g => caveman(g, x, false, p % 2)); seg('carry' + p, g => caveman(g, x, true, p % 2)); });
+
+  // lava: an arc out of the crater, then falling, then a splash on the ground
+  const CRATER = [61, 48];
+  function lavaXY(c, r) {
+    const X = POS[c + 1];
+    if (r === 0) return [CRATER[0] + (X - CRATER[0]) * 0.42, 24, -55];
+    if (r === 1) return [CRATER[0] + (X - CRATER[0]) * 0.8, 58, -25];
+    if (r === 2) return [X, 100, 0];
+    return [X, 142, 0];
+  }
+  function drop(g, x, y, ang) {
+    el('path', { d: 'M0 -11 C3 -5 7 -1 7 4 A7 7 0 1 1 -7 4 C-7 -1 -3 -5 0 -11Z', transform: `translate(${x} ${y}) rotate(${ang})` }, g);
+    el('circle', { cx: x - 9 * Math.cos((ang + 90) * Math.PI / 180) * 0.2 + 4, cy: y - 14, r: 2 }, g);
+  }
+  for (let c = 0; c < 3; c++) {
+    for (let r = 0; r < 4; r++) seg(`lava${c}_${r}`, g => { const [x, y, a] = lavaXY(c, r); drop(g, x, y, a); });
+    seg(`lava${c}_4`, g => { const x = POS[c + 1]; // splash
+      el('path', { d: `M${x - 14} ${GROUND} Q${x - 10} ${GROUND - 9} ${x - 5} ${GROUND - 4} L${x - 3} ${GROUND - 13} L${x + 1} ${GROUND - 5} L${x + 5} ${GROUND - 12} L${x + 7} ${GROUND - 4} Q${x + 11} ${GROUND - 9} ${x + 14} ${GROUND} Z` }, g);
+      el('circle', { cx: x - 16, cy: GROUND - 14, r: 2.2 }, g); el('circle', { cx: x + 16, cy: GROUND - 15, r: 2.2 }, g); });
+    seg(`burn${c + 1}`, g => { const x = POS[c + 1]; // a puff of smoke where the caveman was
+      for (const [dx, dy, r] of [[-8, 186, 7], [6, 182, 8], [0, 172, 7], [-4, 198, 6], [8, 197, 6]]) el('circle', { cx: x + dx, cy: dy, r }, g); });
+  }
+  // eruption at the crater, two frames, and smoke
+  seg('erupt0', g => { el('path', { d: 'M48 50 L44 32 L52 40 L56 22 L62 38 L68 20 L71 38 L78 30 L74 50Z' }, g); });
+  seg('erupt1', g => { el('path', { d: 'M50 50 L40 38 L54 42 L60 28 L66 42 L80 36 L72 50Z' }, g); el('circle', { cx: 46, cy: 26, r: 3 }, g); el('circle', { cx: 78, cy: 24, r: 3 }, g); });
+  seg('smoke0', g => { for (const [x, y, r] of [[56, 14, 6], [66, 10, 7], [76, 14, 5]]) el('circle', { cx: x, cy: y, r }, g); });
+  seg('smoke1', g => { for (const [x, y, r] of [[48, 10, 5], [60, 6, 6], [72, 8, 5], [84, 12, 4]]) el('circle', { cx: x, cy: y, r }, g); });
+
+  // the nest's eggs
+  [[292, 222], [304, 219], [316, 222]].forEach(([x, y], i) => seg('egg' + i, g => el('ellipse', { cx: x, cy: y, rx: 5, ry: 6.5 }, g)));
+
+  // the mammy dinosaur
+  seg('dinoBody', g => {
+    el('ellipse', { cx: 372, cy: 202, rx: 25, ry: 23 }, g);                               // body
+    el('polygon', { points: '388,196 400,186 400,214 392,222' }, g);                     // tail (runs off the screen)
+    el('polygon', { points: '358,218 368,218 368,229 352,229' }, g);                     // leg
+    el('polygon', { points: '378,220 388,216 392,229 376,229' }, g);
+    el('polygon', { points: '350,196 354,192 360,180 366,184 358,200' }, g);             // neck base
+    el('polygon', { points: '352,204 344,206 343,210 346,208 353,209' }, g);             // wee arm
+    for (let i = 0; i < 5; i++) el('polygon', { points: `${362 + i * 6},${180 - (i === 2 ? 2 : 0)} ${366 + i * 6},${172} ${369 + i * 6},${181}` }, g); // back spikes
+  });
+  seg('dinoSleep', g => { // head down on the ground, eyes shut
+    el('path', { d: 'M358 200 Q352 210 344 214 L326 216 Q318 218 318 223 Q320 229 330 228 L350 226 Q362 222 364 210Z' }, g);
+    el('rect', { x: 330, y: 219, width: 7, height: 1.6, class: 'hole' }, g);           // shut eye
+    el('rect', { x: 320, y: 224, width: 3, height: 1.4, class: 'hole' }, g);           // nostril
+  });
+  seg('z0', g => el('text', { x: 340, y: 206, 'font-size': 10, 'font-family': 'monospace', 'font-weight': 'bold' }, g).textContent = 'z');
+  seg('z1', g => el('text', { x: 348, y: 192, 'font-size': 13, 'font-family': 'monospace', 'font-weight': 'bold' }, g).textContent = 'z');
+  seg('z2', g => el('text', { x: 358, y: 174, 'font-size': 17, 'font-family': 'monospace', 'font-weight': 'bold' }, g).textContent = 'Z');
+  seg('dinoAlert', g => { // head up, one eye open, looking at the nest
+    el('path', { d: 'M356 198 Q352 180 348 168 L338 160 Q326 156 318 160 Q314 166 320 170 L334 172 Q340 176 342 190 Q346 202 356 202Z' }, g);
+    el('circle', { cx: 334, cy: 163, r: 2.3, class: 'hole' }, g);
+    el('rect', { x: 318, y: 165, width: 9, height: 1.4, class: 'hole' }, g);          // closed mouth line
+  });
+  seg('alarm', g => { el('rect', { x: 337, y: 132, width: 4, height: 13 }, g); el('rect', { x: 337, y: 148, width: 4, height: 4 }, g); });
+  seg('dinoAttack', g => { // lunging over the nest, jaws open
+    el('path', { d: 'M356 200 Q344 186 334 182 L316 176 Q300 172 292 178 L300 184 L292 188 Q300 196 316 194 L330 196 Q342 202 354 208Z' }, g);
+    el('polygon', { points: '296,180 299,186 302,180 305,186 308,180 311,186 314,180 316,186 296,188' }, g);  // teeth
+    el('circle', { cx: 322, cy: 179, r: 2.4, class: 'hole' }, g);
+    el('path', { d: 'M317 172 L327 176', stroke: '#1b1f17', 'stroke-width': 2 }, g); // angry brow
+  });
+  // a wee flash at the cave when an egg is banked
+  seg('star', g => el('polygon', { points: '34,150 37,160 47,161 39,167 42,177 34,171 26,177 29,167 21,161 31,160' }, g));
+
+  // seven-segment score / clock (four digits), colon, AM/PM, game labels, misses
+  const DIG = [];
+  function digit(x, y) {
+    const w = 13, h = 22, t = 3.2, segs = {};
+    const H = (yy) => `${x + t * .6},${yy} ${x + t},${yy - t / 2} ${x + w - t},${yy - t / 2} ${x + w - t * .6},${yy} ${x + w - t},${yy + t / 2} ${x + t},${yy + t / 2}`;
+    const V = (xx, y0, y1) => `${xx},${y0 + t * .6} ${xx + t / 2},${y0 + t} ${xx + t / 2},${y1 - t} ${xx},${y1 - t * .6} ${xx - t / 2},${y1 - t} ${xx - t / 2},${y0 + t}`;
+    const def = { a: H(y), g: H(y + h / 2), d: H(y + h), f: V(x + t / 2, y, y + h / 2), b: V(x + w - t / 2, y, y + h / 2), e: V(x + t / 2, y + h / 2, y + h), c: V(x + w - t / 2, y + h / 2, y + h) };
+    for (const k in def) { const g = el('g', { class: 'seg' }, lcd); el('polygon', { points: def[k] }, g); segs[k] = g; }
+    return segs;
+  }
+  [262, 279, 300, 317].forEach(x => DIG.push(digit(x, 10)));
+  seg('colon', g => { el('rect', { x: 294, y: 15, width: 3, height: 3 }, g); el('rect', { x: 294, y: 25, width: 3, height: 3 }, g); });
+  const txt = (name, x, y, s, t) => seg(name, g => { const e = el('text', { x, y, 'font-size': s, 'font-family': 'monospace', 'font-weight': 'bold' }, g); e.textContent = t; });
+  txt('am', 336, 18, 7, 'AM'); txt('pm', 336, 30, 7, 'PM');
+  txt('gameA', 262, 44, 7, 'GAME A'); txt('gameB', 300, 44, 7, 'GAME B');
+  txt('missTxt', 352, 56, 7, 'MISS');
+  for (let i = 0; i < 3; i++) seg('miss' + i, g => { const x = 354 + i * 13; // cracked egg icons
+    el('path', { d: `M${x} 62 a5 6.5 0 1 0 0.01 0 Z M${x - 5} 66 l3 -2 l2 3 l3 -3 l2 2`, 'fill-rule': 'evenodd' }, g); });
+  const DIGITS = { 0: 'abcdef', 1: 'bc', 2: 'abged', 3: 'abgcd', 4: 'fgbc', 5: 'afgcd', 6: 'afgedc', 7: 'abc', 8: 'abcdefg', 9: 'abcdfg' };
+  function showNumber(n, blankLeading) {
+    const s = String(Math.max(0, Math.floor(n))).padStart(4, ' ').slice(-4);
+    DIG.forEach((d, i) => { const ch = s[i]; const lit = ch === ' ' ? '' : DIGITS[ch]; for (const k in d) d[k].classList.toggle('on', lit.includes(k)); });
+  }
+  function showClock(blink) {
+    const now = new Date(); let h = now.getHours(); const pm = h >= 12; h = h % 12 || 12;
+    const s = String(h).padStart(2, ' ') + String(now.getMinutes()).padStart(2, '0');
+    DIG.forEach((d, i) => { const ch = s[i]; const lit = ch === ' ' ? '' : DIGITS[ch]; for (const k in d) d[k].classList.toggle('on', lit.includes(k)); });
+    on('colon', blink); on('am', !pm); on('pm', pm);
+  }
+
+  /* ================= sound: a wee piezo beeper ================= */
+  let ac = null, sound = LS.get('lavaraid_sound') !== 'off';
+  function beep(freq, ms, vol, when) {
+    if (!sound) return;
+    try {
+      if (!ac) ac = new (window.AudioContext || window.webkitAudioContext)();
+      if (ac.state === 'suspended') ac.resume();
+      const t = ac.currentTime + (when || 0), o = ac.createOscillator(), g = ac.createGain();
+      o.type = 'square'; o.frequency.value = freq;
+      g.gain.setValueAtTime(vol || 0.05, t); g.gain.setValueAtTime(0, t + ms / 1000);
+      o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + ms / 1000 + 0.02);
+    } catch (e) { /* no audio */ }
+  }
+  const sfx = {
+    tick: () => beep(1320, 22, 0.03),
+    grab: () => beep(2093, 70, 0.06),
+    bank: () => { beep(1568, 60, 0.06); beep(2093, 60, 0.06, 0.08); beep(2637, 90, 0.06, 0.16); },
+    miss: () => { for (let i = 0; i < 6; i++) beep(i % 2 ? 330 : 440, 110, 0.07, i * 0.13); },
+    over: () => { [784, 659, 523, 392].forEach((f, i) => beep(f, 180, 0.07, i * 0.22)); },
+    start: () => { [523, 659, 784, 1046].forEach((f, i) => beep(f, 80, 0.05, i * 0.09)); },
+  };
+
+  /* ================= the game ================= */
+  const S = { mode: 'time', game: 'A', score: 0, misses: 0, pos: 0, carry: false, eggs: 3, lava: [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
+    dino: 'sleep', dinoT: 10, timer: null, zf: 0, frame: 0, busy: false, best: Number(LS.get('lavaraid_best') || 0) };
+
+  const ALL = Object.keys(SEG);
+  function clearAll() { ALL.forEach(n => on(n, false)); DIG.forEach(d => { for (const k in d) d[k].classList.remove('on'); }); }
+
+  function draw() {
+    for (let p = 0; p < 5; p++) { on('man' + p, S.pos === p && !S.carry); on('carry' + p, S.pos === p && S.carry); }
+    for (let c = 0; c < 3; c++) for (let r = 0; r < 5; r++) on(`lava${c}_${r}`, S.lava[c][r]);
+    for (let i = 0; i < 3; i++) on('egg' + i, i < S.eggs);
+    on('dinoBody', true);
+    on('dinoSleep', S.dino === 'sleep'); on('dinoAlert', S.dino === 'stir'); on('alarm', S.dino === 'stir' && S.frame % 2 === 0); on('dinoAttack', S.dino === 'awake');
+    const zs = S.dino === 'sleep'; on('z0', zs && S.zf % 3 >= 0); on('z1', zs && S.zf % 3 >= 1); on('z2', zs && S.zf % 3 >= 2);
+    on('gameA', S.mode !== 'time' && S.game === 'A'); on('gameB', S.mode !== 'time' && S.game === 'B');
+    on('missTxt', S.misses > 0); for (let i = 0; i < 3; i++) on('miss' + i, i < S.misses);
+    if (S.mode !== 'time') { showNumber(S.score); on('colon', false); on('am', false); on('pm', false); }
+  }
+
+  function speed() {
+    const base = S.game === 'A' ? 560 : 430;
+    return Math.max(S.game === 'A' ? 175 : 150, base - S.score * 3);
+  }
+  const rand = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+
+  function startGame(which) {
+    stopTimer();
+    S.mode = 'play'; S.game = which; S.score = 0; S.misses = 0; S.pos = 0; S.carry = false; S.eggs = 3; S.busy = false;
+    S.lava = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]];
+    S.dino = 'sleep'; S.dinoT = rand(8, 12);
+    clearAll(); draw(); sfx.start();
+    S.timer = setTimeout(tick, 900);
+  }
+  function stopTimer() { if (S.timer) clearTimeout(S.timer); S.timer = null; }
+
+  function tick() {
+    if (S.mode !== 'play' || S.busy) return;
+    S.frame++; S.zf++;
+    // lava: splashes vanish, everything falls one step, the bottom one lands
+    let hit = -1;
+    for (let c = 0; c < 3; c++) {
+      const L = S.lava[c];
+      L[4] = 0;
+      if (L[3]) { L[3] = 0; L[4] = 1; if (S.pos === c + 1) hit = c; }
+      for (let r = 3; r > 0; r--) { if (L[r - 1]) { L[r] = 1; L[r - 1] = 0; } }
+    }
+    // the volcano spits more the further you get
+    const p = Math.min(0.62, (S.game === 'A' ? 0.3 : 0.42) + S.score * 0.003);
+    let spat = false;
+    if (Math.random() < p) {
+      const c = rand(0, 2);
+      if (!S.lava[c][0] && !S.lava[c][1]) { S.lava[c][0] = 1; spat = true; }
+    }
+    on('erupt0', spat && S.frame % 2 === 0); on('erupt1', spat && S.frame % 2 === 1);
+    on('smoke0', S.frame % 2 === 0); on('smoke1', S.frame % 2 === 1);
+    // the mammy: asleep, stirring (warning), awake (danger at the nest)
+    if (--S.dinoT <= 0) {
+      if (S.dino === 'sleep') { S.dino = 'stir'; S.dinoT = S.game === 'A' ? 3 : 2; }
+      else if (S.dino === 'stir') { S.dino = 'awake'; S.dinoT = rand(4, 7); }
+      else { S.dino = 'sleep'; S.dinoT = Math.max(5, rand(8, 14) - Math.floor(S.score / 25)); }
+    }
+    if (S.eggs === 0 && !S.carry && S.pos !== 4) S.eggs = 3; // she lays a fresh clutch
+    on('star', false);
+    draw();
+    sfx.tick();
+    if (hit >= 0) return miss('burn' + (hit + 1));
+    if (S.dino === 'awake' && S.pos === 4) return miss('dinoAttack');
+    S.timer = setTimeout(tick, speed());
+  }
+
+  function move(dir) {
+    if (S.mode === 'time' || S.mode === 'over') return;
+    if (S.busy) return;
+    const np = Math.max(0, Math.min(4, S.pos + dir));
+    if (np === S.pos) return;
+    S.pos = np;
+    if (S.pos === 4 && S.dino === 'awake') { draw(); return miss('dinoAttack'); }
+    if (S.pos === 4 && !S.carry && S.eggs > 0) { S.carry = true; S.eggs--; sfx.grab(); }
+    if (S.pos === 0 && S.carry) {
+      S.carry = false; S.score++; sfx.bank(); on('star', true);
+      if (S.score === 100 || S.score === 300) S.misses = 0; // bonus: misses wiped
+    }
+    draw();
+  }
+
+  function miss(culprit) {
+    S.busy = true; stopTimer(); sfx.miss();
+    let n = 0;
+    const blink = setInterval(() => {
+      n++;
+      const v = n % 2 === 0;
+      on(culprit, v || culprit === 'dinoAttack');
+      on('man' + S.pos, v && !S.carry); on('carry' + S.pos, v && S.carry);
+      if (n >= 9) {
+        clearInterval(blink);
+        S.misses++;
+        if (S.misses >= 3) return gameOver();
+        on(culprit, false);
+        S.pos = 0; S.carry = false; S.lava = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]];
+        S.dino = 'sleep'; S.dinoT = rand(7, 11); S.busy = false;
+        draw();
+        S.timer = setTimeout(tick, 900);
+      }
+    }, 160);
+  }
+
+  function gameOver() {
+    S.mode = 'over'; S.busy = false; sfx.over();
+    if (S.score > S.best) { S.best = S.score; LS.set('lavaraid_best', S.best); }
+    draw();
+    let n = 0;
+    S.timer = setInterval(() => { n++; showNumber(n % 2 ? -1 : S.score); if (n % 2) DIG.forEach(d => { for (const k in d) d[k].classList.remove('on'); }); if (n > 40) { clearInterval(S.timer); toClock(); } }, 450);
+  }
+
+  function toClock() {
+    stopTimer(); if (S.timer) clearInterval(S.timer);
+    S.mode = 'time'; S.pos = 0; S.carry = false; S.eggs = 3; S.misses = 0; S.dino = 'sleep';
+    S.lava = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]];
+    clearAll(); draw(); showClock(true);
+  }
+
+  // the clock ticks over (and the mammy snores) when nobody's playing
+  setInterval(() => {
+    if (S.mode !== 'time') return;
+    S.zf++; S.frame++;
+    draw(); showClock(S.frame % 2 === 0);
+    on('smoke0', S.frame % 4 < 2); on('smoke1', S.frame % 4 >= 2);
+  }, 500);
+
+  /* ================= controls ================= */
+  function press(id, fn) {
+    const b = document.getElementById(id);
+    const go = e => { e.preventDefault(); b.classList.add('down'); fn(); };
+    const up = () => b.classList.remove('down');
+    b.addEventListener('pointerdown', go);
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(t => b.addEventListener(t, up));
+    b.addEventListener('contextmenu', e => e.preventDefault());
+  }
+  press('bLeft', () => move(-1));
+  press('bRight', () => move(1));
+  press('bA', () => startGame('A'));
+  press('bB', () => startGame('B'));
+  press('bT', () => { if (S.mode !== 'play') toClock(); });
+  // anywhere on the left or right half of the screen also moves (handy on small phones)
+  document.querySelector('.lcd').addEventListener('pointerdown', e => {
+    const r = e.currentTarget.getBoundingClientRect();
+    if (S.mode === 'play') move(e.clientX < r.left + r.width / 2 ? -1 : 1);
+  });
+  const flash = id => { const b = document.getElementById(id); b.classList.add('down'); setTimeout(() => b.classList.remove('down'), 120); };
+  document.addEventListener('keydown', e => {
+    if (e.repeat) return;
+    const k = e.key.toLowerCase();
+    if (k === 'arrowleft' || k === 'a') { move(-1); flash('bLeft'); e.preventDefault(); }
+    else if (k === 'arrowright' || k === 'd') { move(1); flash('bRight'); e.preventDefault(); }
+    else if (k === '1' || (k === ' ' && S.mode !== 'play')) { startGame('A'); flash('bA'); e.preventDefault(); }
+    else if (k === '2') { startGame('B'); flash('bB'); }
+    else if (k === 't') { if (S.mode !== 'play') toClock(); flash('bT'); }
+    else if (k === 'm') toggleSound();
+  });
+
+  const sndBtn = document.getElementById('sndBtn');
+  function toggleSound() { sound = !sound; LS.set('lavaraid_sound', sound ? 'on' : 'off'); sndBtn.innerHTML = sound ? '🔊<span class="txt"> Sound on</span>' : '🔇<span class="txt"> Sound off</span>'; if (sound) beep(1568, 60, 0.05); }
+  sndBtn.innerHTML = sound ? '🔊<span class="txt"> Sound on</span>' : '🔇<span class="txt"> Sound off</span>';
+  sndBtn.addEventListener('click', toggleSound);
+  document.getElementById('fsBtn').addEventListener('click', () => {
+    const st = document.getElementById('stage');
+    const req = st.requestFullscreen || st.webkitRequestFullscreen;
+    if (!document.fullscreenElement && req) {
+      Promise.resolve(req.call(st)).then(() => { try { screen.orientation.lock('landscape').catch(() => {}); } catch (e) { /* not supported */ } }).catch(() => {});
+    } else if (document.exitFullscreen) document.exitFullscreen();
+  });
+
+  // power on: every segment lights for a moment (like pressing ACL), then the clock
+  ALL.forEach(n => on(n, true)); DIG.forEach(d => { for (const k in d) d[k].classList.add('on'); });
+  setTimeout(toClock, 1200);
+  window.__lavaRaid = S; // for testing
+})();
+</script>
+</body>
+</html>
