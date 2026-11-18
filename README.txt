@@ -43,6 +43,18 @@ poster) is the first card in Latest news; Kaiju Coast moved into "More
 news" to keep four cards on show. Pressing Play on the Christmas game
 pauses the song.
 
+CHRISTMAS DAY PARTY (added 18 November 2026): a third Christmas present, the
+family game show (repo jamesbell2021/family-game-night). Its own page is
+christmas-day-party/index.html, styled as a 1980s Christmas TV listing with
+the screenshots in wood-effect tellies (fonts copied from carpet-grand-prix/
+so it stands on its own). Downloads in christmas-day-party/downloads/: a
+single program with no install (built with yao-pkg from the game repo:
+npm run build), Windows zip 23 MB, Linux tar.gz 29 MB. The page swaps its
+buttons for a thank-you from 6 January 2027 (END in its script), and its
+front-page card (#xmas-party, under Carpet Grand Prix) goes when the whole
+Christmas section comes down on 7 January. To remove it for good, delete the
+card and the christmas-day-party/ folder.
+
 CARPET GRAND PRIX (added 12 November 2026): a second Christmas present, a
 free download until Christmas Day. Its page is carpet-grand-prix/index.html
 (gamesdevni.site/carpet-grand-prix/, early-80s styling, its own fonts in

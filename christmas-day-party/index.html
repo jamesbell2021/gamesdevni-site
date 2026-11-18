@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Christmas Day Party · a Christmas present from 3BL</title>
+<meta name="description" content="A free family game show for Christmas Day. The telly shows the game and up to eight people play on their phones: a pub quiz, Pass the Parcel Bomb, Musical Chairs and more. A Christmas present from 3BL.">
+<meta property="og:title" content="Christmas Day Party · a Christmas present from 3BL">
+<meta property="og:description" content="A free family game show for the telly. Up to eight players, and your phones are the buzzers. Free until Twelfth Night.">
+<meta property="og:image" content="https://gamesdevni.site/christmas-day-party/img/lobby.jpg">
+<style>
+/* Christmas Day Party download page: a 1980s Christmas telly special.
+   Fonts (SIL Open Font Licence): Racing Sans One, Press Start 2P, VT323. */
+@font-face{font-family:Racing;src:url(fonts/RacingSansOne.woff) format('woff');font-display:swap}
+@font-face{font-family:Pixel;src:url(fonts/PressStart2P.woff) format('woff');font-display:swap}
+@font-face{font-family:Term;src:url(fonts/VT323.woff) format('woff');font-display:swap}
+:root{
+  --ink:#0b0716; --panel:#170f2a; --cream:#f7efd9; --dim:#cbbfe0;
+  --red:#e0262e; --green:#1f9e4f; --gold:#ffcf2e; --pink:#ff5fa2; --cyan:#38d6e8; --purple:#7b4fd6;
+}
+*{box-sizing:border-box}
+html{background:var(--ink)}
+body{margin:0;background:var(--ink);color:var(--cream);font-family:Term,ui-monospace,monospace;font-size:23px;line-height:1.35;
+  background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:6px 6px}
+/* CRT scanlines over everything, very faint */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(rgba(0,0,0,0) 0 2px,rgba(0,0,0,.12) 2px 3px)}
+a{color:var(--gold)}
+img{max-width:100%;height:auto;display:block}
+.wrap{width:min(1080px,100% - 32px);margin-inline:auto}
+.stripes{height:24px;background:linear-gradient(var(--red) 0 25%,var(--gold) 25% 50%,var(--green) 50% 75%,var(--cyan) 75%)}
+.pixel{font-family:Pixel,monospace;text-transform:uppercase;letter-spacing:.04em}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;font-size:20px}
+nav a{text-decoration:none;color:var(--dim)}
+nav a:hover{color:var(--gold)}
+nav span{font-family:Pixel,monospace;font-size:11px;color:var(--dim)}
+
+/* ---- Hero: a page from the Christmas TV listings ---- */
+.listing{position:relative;margin:18px 0 40px;background:var(--cream);color:var(--ink);border:5px solid var(--ink);outline:5px solid var(--cream);box-shadow:14px 14px 0 #000;overflow:hidden}
+.mast{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:var(--red);color:var(--cream);padding:10px 18px;font-family:Pixel,monospace;font-size:12px;text-transform:uppercase}
+.mast b{font-family:Racing,Impact,sans-serif;font-weight:normal;font-size:26px;text-transform:none;letter-spacing:.02em}
+.lbody{display:grid;grid-template-columns:auto 1fr;gap:24px;padding:28px 28px 30px}
+.time{font-family:Pixel,monospace;font-size:22px;color:var(--red);padding-top:12px;border-right:4px dotted #b9ae96;padding-right:22px}
+.time small{display:block;font-size:10px;color:#6b5f4a;margin-top:10px;line-height:1.6}
+.gift{font-family:Pixel,monospace;font-size:12px;color:var(--purple);margin:0 0 12px;text-transform:uppercase}
+h1{font-family:Racing,Impact,sans-serif;font-weight:normal;font-size:clamp(54px,10vw,112px);line-height:.88;margin:0;
+  background:linear-gradient(180deg,#fff2a8 0,var(--gold) 45%,#f08a1e 55%,var(--red) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-stroke:2px var(--ink);filter:drop-shadow(5px 5px 0 var(--ink))}
+.strap{font-size:clamp(24px,2.8vw,29px);line-height:1.2;margin:18px 0 0;max-width:38ch}
+.cast{margin:14px 0 0;color:#4b3f63}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 0;padding:0;list-style:none}
+.facts li{font-family:Pixel,monospace;font-size:10px;text-transform:uppercase;padding:8px 10px;background:var(--ink);color:var(--cream)}
+.facts li:nth-child(5n+1){background:var(--red)}.facts li:nth-child(5n+2){background:var(--green)}.facts li:nth-child(5n+3){background:var(--purple)}
+
+/* ---- The gift tag with the downloads ---- */
+.tag{position:relative;background:var(--gold);color:var(--ink);padding:30px 30px 28px 60px;margin:0 0 54px;box-shadow:10px 10px 0 #000;
+  clip-path:polygon(34px 0,100% 0,100% 100%,34px 100%,0 50%)}
+.tag::before{content:"";position:absolute;left:22px;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;background:var(--ink)}
+.tag h2{font-family:Racing,Impact,sans-serif;font-weight:normal;font-size:clamp(34px,5vw,48px);margin:0;color:var(--red);line-height:1}
+.tag p{margin:10px 0 0;color:#3a2a10}
+.countdown{font-family:Pixel,monospace;font-size:12px;text-transform:uppercase;color:var(--ink);margin-top:14px}
+.dl{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px}
+.btn{display:inline-flex;flex-direction:column;gap:6px;padding:16px 20px;font-family:Pixel,monospace;font-size:13px;text-transform:uppercase;
+  text-decoration:none;color:var(--cream);background:var(--green);border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.btn small{font-family:Term,monospace;font-size:20px;text-transform:none;color:#dff3e3}
+.btn.linux{background:var(--purple)}
+.btn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--ink)}
+.btn:active{transform:translate(5px,5px);box-shadow:1px 1px 0 var(--ink)}
+.closed{display:none}
+.tag.over .open{display:none}
+.tag.over .closed{display:block}
+
+/* ---- Sections ---- */
+section{margin:0 0 58px}
+h3{font-family:Pixel,monospace;font-size:16px;text-transform:uppercase;color:var(--gold);margin:0 0 20px;line-height:1.5}
+h3::before{content:"▶ ";color:var(--pink)}
+/* screenshots sit in a wood-effect 1980s telly */
+.crt{position:relative;padding:18px 18px 46px;border-radius:22px;background:linear-gradient(135deg,#6b4423,#3e2612 60%,#5a381c);box-shadow:10px 10px 0 #000}
+.crt img{border-radius:26px/20px;border:6px solid #111;box-shadow:inset 0 0 40px #000}
+.crt::before{content:"";position:absolute;inset:24px 24px 52px;border-radius:22px/16px;pointer-events:none;z-index:1;
+  background:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.14),transparent 45%),repeating-linear-gradient(rgba(0,0,0,0) 0 3px,rgba(0,0,0,.16) 3px 4px)}
+.crt::after{content:"● ● ●";position:absolute;right:26px;bottom:13px;font-size:14px;letter-spacing:6px;color:#d9c07a}
+.crt .chan{position:absolute;left:26px;bottom:12px;font-family:Pixel,monospace;font-size:10px;color:#d9c07a;text-transform:uppercase}
+.cap{margin:14px 0 0;color:var(--dim);font-size:20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:0;padding:0;list-style:none}
+.games li{background:var(--panel);border:3px solid #3a2d5a;padding:14px 16px;box-shadow:6px 6px 0 #000}
+.games b{display:block;font-family:Pixel,monospace;font-weight:normal;font-size:11px;line-height:1.6;color:var(--cyan);text-transform:uppercase;margin-bottom:8px}
+.games span{display:block;color:var(--cream);font-size:21px;line-height:1.25}
+.games .star{border-color:var(--gold);background:#2a1d10}
+.games .star b{color:var(--gold)}
+.quiz{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.quiz li{padding-left:58px;position:relative}
+.quiz li::before{content:attr(data-n);position:absolute;left:0;top:2px;font-family:Pixel,monospace;font-size:11px;color:var(--ink);background:var(--cyan);padding:5px 6px}
+.quiz b{color:var(--gold);font-weight:normal}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.steps li{counter-increment:s;position:relative;padding:14px 16px 14px 66px;background:var(--panel);border:3px solid #3a2d5a}
+.steps li::before{content:counter(s);position:absolute;left:12px;top:12px;width:38px;height:38px;display:grid;place-items:center;
+  font-family:Pixel,monospace;font-size:14px;color:var(--ink);background:var(--gold)}
+.steps b{color:var(--gold);font-weight:normal}
+.note{background:#000;border-left:6px solid var(--pink);padding:14px 18px;margin:18px 0 0;color:var(--dim)}
+.keys{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0}
+.keys dt{font-family:Pixel,monospace;font-size:12px;color:var(--pink);padding-top:6px}
+.keys dd{margin:0}
+code{font-family:Term,monospace;background:#000;color:var(--cyan);padding:0 6px}
+footer{border-top:4px solid #3a2d5a;padding:26px 0 40px;color:var(--dim);font-size:19px}
+footer p{margin:0 0 8px}
+@media (max-width:760px){
+  body{font-size:21px}
+  .lbody{grid-template-columns:1fr;padding:22px 18px 24px;gap:12px}
+  .time{border-right:0;border-bottom:4px dotted #b9ae96;padding:0 0 12px;font-size:18px}
+  .mast b{font-size:22px}
+  nav span{display:none}
+  .grid{grid-template-columns:1fr}
+  .tag{padding:24px 18px 22px 50px}
+  .btn{width:100%}
+  .crt{padding:10px 10px 36px}
+  .crt::before{inset:16px 16px 42px}
+}
+</style>
+</head>
+<body>
+<div class="stripes" aria-hidden="true"></div>
+<div class="wrap">
+  <nav>
+    <a href="../">&lt;&lt; gamesdevni.site</a>
+    <span>3BL · Christmas 2026</span>
+  </nav>
+
+  <header class="listing">
+    <div class="mast"><b>Christmas Day</b><span>Your living room · 25 December</span></div>
+    <div class="lbody">
+      <div class="time">7.30<small>after<br>the dinner</small></div>
+      <div>
+        <p class="gift">A Christmas present from 3BL</p>
+        <h1>Christmas Day<br>Party!</h1>
+        <p class="strap">The family game show, live from your own living room. The telly shows the game and up to eight of you play on your phones, from the kids to Granny.</p>
+        <p class="cast">Starring: your family. With an elf, a gingerbread man, a polar bear, a penguin, a snowman, a reindeer, Santa and a robin.</p>
+        <ul class="facts">
+          <li>1–8 players</li><li>Phones as controllers</li><li>No app needed</li><li>Windows · Linux</li><li>Free</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <div class="tag" id="tag">
+    <div class="open">
+      <h2>Happy Christmas! Here's your present.</h2>
+      <p>Free to download until Twelfth Night. Plug the computer into the telly, get everyone on the Wi-Fi, and let the arguments begin.</p>
+      <p class="countdown" id="countdown"></p>
+      <div class="dl">
+        <a class="btn" href="downloads/ChristmasDayParty_Windows.zip" download>Download for Windows<small>Windows 10 or 11 · 23 MB zip</small></a>
+        <a class="btn linux" href="downloads/ChristmasDayParty_Linux.tar.gz" download>Download for Linux<small>64-bit · 29 MB tar.gz</small></a>
+      </div>
+    </div>
+    <div class="closed">
+      <h2>The present's been unwrapped!</h2>
+      <p>Christmas Day Party was free to download over Christmas 2026. Thanks to every family who played. Keep an eye on <a href="../" style="color:var(--red)">gamesdevni.site</a> for what 3BL makes next.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="crt"><img src="img/lobby.jpg" alt="The lobby on the telly: a snowy night, a QR code to join, and eight cartoon characters along the bottom: an elf, a gingerbread man, a polar bear, a penguin, a snowman, a reindeer, Santa and a robin" width="1600" height="900" loading="eager"><span class="chan">Channel 1</span></div>
+    <p class="cap">Everyone scans the code, picks a character and types their name. The first one in is the host.</p>
+  </section>
+
+  <section>
+    <h3>What's in the box</h3>
+    <ul class="games">
+      <li class="star"><b>🎄 The Full Christmas Show</b><span>The quiz, then Pass the Parcel Bomb, Snowball Frenzy, Musical Chairs and Santa's Fibs, ending on a podium with silly prizes. About half an hour.</span></li>
+      <li><b>🍻 Christmas Pub Quiz</b><span>Four rounds and a final bet, with jokers, snowballs and a family round. About ten minutes.</span></li>
+      <li><b>💣 Pass the Parcel Bomb</b><span>Pass it fast. Whoever's holding it when it goes off gets a sooty face for the rest of the show.</span></li>
+      <li><b>🪑 Musical Chairs</b><span>When the carol stops, hit SIT! Slowest is out. Jump the gun and you're out too.</span></li>
+      <li><b>❄️ Snowball Frenzy</b><span>Ten seconds of tapping like mad.</span></li>
+      <li><b>🤥 Santa's Fibs</b><span>Make up fake answers to fool your family, then spot the real one.</span></li>
+      <li><b>🎲 Snakes &amp; Ladders and Ludo</b><span>Candy-cane ladders, icy slides, and rolling the dice on your phone.</span></li>
+    </ul>
+    <p class="note">Only a few of you? 🤖 Computer players fill the empty places in the quiz, Musical Chairs and Pass the Parcel. Professor Tinsel knows everything but takes his time. Dozy Sprout answers instantly and is usually wrong.</p>
+  </section>
+
+  <section class="grid">
+    <div>
+      <h3>The pub quiz</h3>
+      <ol class="quiz">
+        <li data-n="R1"><b>Christmas Crackers:</b> general knowledge, old telly, a Northern Ireland question, put-it-in-order and closest number.</li>
+        <li data-n="R2"><b>Eyes &amp; Ears:</b> guess the film from emoji (🏠👦😱✈️) and name the carol the telly plays.</li>
+        <li data-n="R3"><b>Quick-fire true or false:</b> eight seconds each.</li>
+        <li data-n="R4"><b>The Family Round:</b> everyone secretly types answers at the start ("the worst present you ever got"), then the family guesses who wrote what.</li>
+        <li data-n="BET"><b>The Final Question:</b> bet some or all of your points. Get it wrong and you lose them.</li>
+      </ol>
+      <p>Everyone gets one 🃏 <b>Joker</b> to double their points, and whoever's last gets a ❄️ <b>Snowball</b> to throw at a rival, burying their buttons in snow.</p>
+    </div>
+    <div>
+      <div class="crt"><img src="img/reveal.jpg" alt="A quiz answer being revealed: each player's character sits on the answer they chose, the right answer glows, and a banner says NOBODY GOT IT!" width="1600" height="900" loading="lazy"><span class="chan">Channel 2</span></div>
+      <p class="cap">Everyone's character drops onto the answer they picked. Then the drumroll.</p>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div>
+      <div class="crt"><img src="img/parcel.jpg" alt="Pass the Parcel Bomb: a fizzing present in the middle of a circle of characters, with 'Dad has the parcel!' at the top" width="1600" height="900" loading="lazy"><span class="chan">Channel 3</span></div>
+    </div>
+    <div>
+      <div class="crt"><img src="img/phones.jpg" alt="Three phone screens: quiz answer buttons with a joker button, a pass-the-parcel screen to choose who to pass to, and a musical chairs 'You're out!' screen" width="1250" height="800" loading="lazy"><span class="chan">Channel 4</span></div>
+      <p class="cap">No app needed: every phone just opens a web page. Big buttons, so Granny can play too.</p>
+    </div>
+  </section>
+
+  <section>
+    <h3>How to play</h3>
+    <ol class="steps">
+      <li><b>Download and unzip</b> on a Windows or Linux computer, ideally one plugged into the telly with an HDMI lead. On Windows, run <code>ChristmasDayParty.exe</code>. If Windows says it protected your PC, click <i>More info</i> then <i>Run anyway</i>. On Linux, run <code>./ChristmasDayParty</code> in the folder.</li>
+      <li><b>Allow it on your network.</b> The first time, Windows asks about the firewall: tick <i>Private networks</i> and click <i>Allow</i>. Without that, the phones can't connect.</li>
+      <li><b>Put it on the telly.</b> The game opens in your web browser by itself. Press <b>F</b> for full screen and click once to start the carols.</li>
+      <li><b>Everyone joins.</b> Get everyone on the home Wi-Fi (not the guest network) and scan the QR code with the phone camera. The first person in is the host and picks the game from their phone.</li>
+    </ol>
+    <p class="note">Phone won't connect? It must be on the same Wi-Fi as the computer, not on mobile data or a VPN. Leave the black window open while you play: closing it stops the game. On Linux you may need to open port 3000 (<code>sudo ufw allow 3000/tcp</code>).</p>
+  </section>
+
+  <section class="grid">
+    <div>
+      <h3>On the telly</h3>
+      <dl class="keys">
+        <dt>F</dt><dd>Full screen</dd>
+        <dt>M</dt><dd>Carols on or off</dd>
+        <dt>N</dt><dd>Next carol</dd>
+      </dl>
+      <p>The host can pause from their phone at any time (dinner's ready!). The telly shows a snowy screensaver until you carry on.</p>
+      <p>Want your own music? Drop mp3 files into the <code>music</code> folder next to the program.</p>
+    </div>
+    <div>
+      <div class="crt"><img src="img/chairs.jpg" alt="Musical Chairs: characters circling two chairs with 'Music playing… get ready!' at the top" width="1600" height="900" loading="lazy"><span class="chan">Channel 1</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Happy Christmas from 3BL! Made in Northern Ireland.</p>
+    <p>Typefaces: Racing Sans One, Press Start 2P and VT323, under the SIL Open Font Licence. Carol melodies are traditional and long out of copyright; the arrangements, characters and pictures are all made in code.</p>
+    <p><a href="../">&lt;&lt; Back to gamesdevni.site</a></p>
+  </footer>
+</div>
+<div class="stripes" aria-hidden="true"></div>
+<script>
+(function () {
+  // The present is free until the end of Twelfth Night (5 January, in the
+  // visitor's own time zone), when the Christmas section on the front page
+  // also comes down. After that the buttons are replaced by a thank-you.
+  // To change the date, edit END. The files stay in downloads/ until deleted.
+  var END = new Date(2027, 0, 6, 0, 0, 0);
+  var tag = document.getElementById('tag');
+  var out = document.getElementById('countdown');
+  function tick() {
+    var left = END - new Date();
+    if (left <= 0) { tag.classList.add('over'); return; }
+    var days = Math.floor(left / 86400000);
+    var hours = Math.floor(left / 3600000) % 24;
+    out.textContent = days > 0
+      ? days + (days === 1 ? ' day' : ' days') + ' left to unwrap it'
+      : hours + (hours === 1 ? ' hour' : ' hours') + ' left to unwrap it';
+  }
+  tick();
+  setInterval(tick, 60000);
+})();
+</script>
+</body>
+</html>
