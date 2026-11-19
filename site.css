@@ -673,3 +673,8 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 .jt .video-frame{box-shadow:0 0 0 1px #1d3312,0 0 40px rgba(123,192,67,.2)}
 .jt .video-frame iframe{width:100%;display:block;aspect-ratio:16/9;border:0;background:#000}
 .jt .video-note a{color:var(--jt)}
+.jt .jt-media{margin:34px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.jt .jt-badge{display:inline-flex;align-items:center;gap:8px;background:#e62117;color:#fff;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px 6px 10px;border-radius:3px;box-shadow:0 0 18px rgba(230,33,23,.35)}
+.jt .jt-badge i{width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent #fff}
+.jt .jt-media h3{margin:0;color:var(--jt-amber);font-size:clamp(17px,2.2vw,24px);line-height:1.25}
+.jt .jt-media + .video-frame{margin-top:14px}
