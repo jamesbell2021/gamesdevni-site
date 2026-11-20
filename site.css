@@ -678,3 +678,9 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 .jt .jt-badge i{width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent #fff}
 .jt .jt-media h3{margin:0;color:var(--jt-amber);font-size:clamp(17px,2.2vw,24px);line-height:1.25}
 .jt .jt-media + .video-frame{margin-top:14px}
+.jt .jt-get{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin:22px 0 10px}
+.jt .jt-btn{display:inline-flex;align-items:center;border:1px solid var(--jt);color:var(--jt);padding:8px 16px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;background:rgba(7,10,6,.6)}
+.jt .jt-btn:hover{background:var(--jt);color:#000}
+.jt .jt-steam{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--jt-amber);color:var(--jt-amber);padding:8px 16px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;box-shadow:0 0 14px rgba(244,214,140,.2)}
+.jt .jt-steam i{width:8px;height:8px;background:var(--jt-amber);display:block;animation:blink 1.4s steps(2,jump-none) infinite}
+.jt .jt-steam-note{margin:6px 0 0;color:var(--text);max-width:62ch}
