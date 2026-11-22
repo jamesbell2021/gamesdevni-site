@@ -77,7 +77,7 @@ nav li.more:hover ul.more-list,nav li.more:focus-within ul.more-list{display:fle
   background:
    linear-gradient(90deg,rgba(14,17,22,.97) 0%,rgba(14,17,22,.88) 42%,rgba(14,17,22,.55) 100%),
    linear-gradient(0deg,var(--bg) 0%,transparent 30%),
-   url("screenshots/the_hundred_charge.jpg") center/cover no-repeat,
+   url("screenshots/fif_square_against_horse.jpg") center/cover no-repeat,
    var(--bg)}
 .hero::before{content:"";position:absolute;inset:0;background-image:
    linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
