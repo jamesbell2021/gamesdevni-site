@@ -684,3 +684,8 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 .jt .jt-steam{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--jt-amber);color:var(--jt-amber);padding:8px 16px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;box-shadow:0 0 14px rgba(244,214,140,.2)}
 .jt .jt-steam i{width:8px;height:8px;background:var(--jt-amber);display:block;animation:blink 1.4s steps(2,jump-none) infinite}
 .jt .jt-steam-note{margin:6px 0 0;color:var(--text);max-width:62ch}
+
+/* Our games: the three groups' headings (22 November 2026) */
+.games-group{margin-top:44px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#FF8C2B;border-bottom:1px solid var(--line);padding-bottom:10px}
+.games-group + .game-grid{margin-top:18px}
+.game-card a.gc-art{text-decoration:none}

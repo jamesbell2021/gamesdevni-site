@@ -52,36 +52,10 @@
     </a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">Menu</button>
     <ul id="menu">
-      <li><a href="#trailer">Trailer</a></li>
-      <li><a href="#game">The Game</a></li>
-      <li><a href="#island">The Island</a></li>
-      <li><a href="#play">Ways to Play</a></li>
-      <li><a href="#screens">Screenshots</a></li>
-      <li><a href="#story">Story</a></li>
-      <li><a href="#drift">Defend the Drift</a></li>
-      <li><a href="#haunted">The House Is Haunted</a></li>
-      <li class="more"><a href="#itch" aria-haspopup="true">More Games</a>
-        <ul class="more-list">
-          <li><a href="#planks">Planks &amp; Powder (new)</a></li>
-          <li><a href="#silly">Silly Stuff (for fun)</a></li>
-          <li><a href="games.html#kc">Kaiju Coast</a></li>
-          <li><a href="games.html#rd">Rig-Down</a></li>
-          <li><a href="games.html#ri">Rust &amp; Iron</a></li>
-          <li><a href="games.html#geode">Geode</a></li>
-          <li><a href="games.html#ta">Tripod Attack!</a></li>
-          <li><a href="games.html#hi">Hippo Island</a></li>
-          <li><a href="games.html#bw">Block War Belfast 2098</a></li>
-          <li><a href="games.html#pv">Periscope Vectors</a></li>
-          <li><a href="games.html#vc">Vector Cascades</a></li>
-          <li><a href="games.html#vv">Vector Volley</a></li>
-          <li><a href="games.html#nmt">Neon Mega Tank</a></li>
-          <li><a href="games.html#pultz">Pultz</a></li>
-          <li><a href="games.html#cyber">Cyber Vikings</a></li>
-          <li><a href="games.html#aom">Angry Old Men</a></li>
-          <li><a href="games.html#vbn">Victory By None</a></li>
-          <li><a href="games.html">All twenty-three games</a></li>
-        </ul>
-      </li>
+      <li><a href="#top">Forged in Formation</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#about">About</a></li>
       <li><a class="nav-cta" data-steam href="#wishlist">Wishlist</a></li>
     </ul>
   </div>
@@ -108,6 +82,21 @@
     </div>
   </div>
 </header>
+
+<!-- ============ TRAILER ============ -->
+<section id="trailer" class="trailer">
+  <div class="wrap">
+    <p class="eyebrow">Trailer</p>
+    <h2>Round them up. <span class="hl">Make them an army.</span></h2>
+    <div class="video-frame">
+      <video controls preload="none" poster="video/trailer_poster.jpg" playsinline>
+        <source src="video/forged_in_formation_trailer.mp4" type="video/mp4">
+        Your browser can't play this video. <a href="video/forged_in_formation_trailer.mp4">Download the trailer</a>.
+      </video>
+    </div>
+    <p class="video-note">Captured in the game, November 2026: Column, Line and Square, many hands at the gate and the capstan, the island by lamplight, a redcoat ship landing soldiers on the skirmish island, your men taking up pikes and charging, the 2 Player Battle and the charge that ends the campaign.</p>
+  </div>
+</section>
 
 <!-- ============ CHRISTMAS (takes itself down after Twelfth Night: see the script below) ============ -->
 <section id="christmas" class="xmas" aria-label="Happy Christmas from 3BL">
@@ -170,6 +159,11 @@
   // Carpet Grand Prix's download closes at the end of Christmas Day.
   var gift = document.getElementById('xmas-gift');
   if (gift && new Date() >= new Date(2026, 11, 26)) gift.parentNode.removeChild(gift);
+  // The games grid's cards for the presents go when the presents do.
+  document.querySelectorAll('[data-until]').forEach(function (card) {
+    var d = card.getAttribute('data-until').split('-');
+    if (new Date() >= new Date(+d[0], +d[1] - 1, +d[2])) card.parentNode.removeChild(card);
+  });
   if (new Date() >= END) { s.parentNode.removeChild(s); return; }
   document.getElementById('xmas-play').addEventListener('click', function () {
     var song = document.getElementById('xmas-song');
@@ -192,565 +186,96 @@
 })();
 </script>
 
-<!-- ============ JUNGLE & TUNNELS ============ -->
-<section id="jt" class="jt">
+<!-- ============ OUR GAMES: coming to Steam, free, and out now (the itch.io games in full on games.html) ============ -->
+<section id="games" class="itch">
+  <span id="itch"></span>
   <div class="wrap">
-    <p class="eyebrow">Out now on itch.io and the Microsoft Store / Coming soon to Steam</p>
-    <h2>Jungle <span class="hl">&amp; Tunnels</span></h2>
-    <p class="date">Command the squad, then go down the hole</p>
-    <div class="jt-get">
-      <a class="jt-btn" href="https://apps.microsoft.com/detail/9NRKLB9KJX9L" target="_blank" rel="noopener">Microsoft Store</a>
-      <a class="jt-btn" href="https://gamesdevnisite.itch.io/jungle-and-tunnels" target="_blank" rel="noopener">itch.io</a>
-      <span class="jt-steam"><i></i>Coming soon to Steam</span>
-    </div>
-    <p class="jt-steam-note">Jungle &amp; Tunnels is on its way to Steam, and it'll be out there as soon as we can release it. Play it now on Windows from itch.io or the Microsoft Store.</p>
-    <div class="jt-media">
-      <span class="jt-badge"><i></i>In the media</span>
-      <h3>As seen on YouTube: Richard Yorke goes down the tunnels</h3>
-    </div>
-    <div class="video-frame">
-      <iframe src="https://www.youtube-nocookie.com/embed/7Q1hZVEoVbE" title="Command the Squad, Enter the Tunnels | Jungle and Tunnels, by Richard Yorke" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    <p class="video-note">Played and reviewed by <a href="https://youtu.be/7Q1hZVEoVbE" target="_blank" rel="noopener">Richard Yorke on YouTube</a>.</p>
-  </div>
-</section>
+    <p class="eyebrow">Every game from 3BL_Indie</p>
+    <h2>Our <span class="hl">games</span></h2>
+    <p class="lead" style="margin-top:16px">Everything we've made, in one place: what's coming to Steam, what's free, and what you can play today. Every one has a bit of home in it.</p>
 
-<!-- ============ LATEST NEWS ============ -->
-<section id="news" class="news">
-  <div class="wrap">
-    <p class="eyebrow">Latest news from 3BL_Indie</p>
-    <h2>Fresh from <span class="hl">the studio</span></h2>
-    <div class="news-grid">
-      <article class="panel cut news-item">
-        <p class="news-date">22 November 2026 · New</p>
-        <h3>Forged in Formation's Steam page is live: wishlist it now</h3>
-        <p>Our store page is up on Steam, with the trailer and screenshots. The game isn't on sale yet, but you can wishlist it today. It's the single biggest thing you can do for a small studio: it tells Steam to show the game to more players, and Steam will tell you the day it's out.</p>
-        <div class="news-links"><a class="btn solid" data-steam href="#wishlist">Wishlist on Steam</a><a class="btn" href="#trailer">Watch the trailer</a></div>
-      </article>
-      <article class="panel cut news-item news-song">
-        <p class="news-date">Christmas 2026</p>
-        <h3>A Christmas song for our followers</h3>
-        <p>Thank you for following 3BL this year. Here's a little song from us to say Happy Christmas: <strong>The Roads That We Shared</strong>.</p>
-        <video id="xmas-song" controls preload="none" playsinline poster="video/the_roads_that_we_shared_poster.jpg">
-          <source src="video/the_roads_that_we_shared.mp4" type="video/mp4">
-          Your browser can't play this video. <a href="video/the_roads_that_we_shared.mp4">Download the song</a>.
-        </video>
-        <p class="video-note">3 minutes. Happy Christmas from all of us at 3BL_Indie.</p>
-      </article>
-      <article class="panel cut news-item news-planks" id="planks">
-        <p class="news-date">17 November 2026 · New</p>
-        <h3>Planks &amp; Powder is out now on the Microsoft Store</h3>
-        <p>Build your own wooden ship block by block, then sail the real Strangford Lough, from Portaferry through the Narrows and past Sketrick Island, all the way home to Newtownards under Scrabo Tower. Fire broadsides at raiders and watch every plank break: hole her below the waterline and she floods, lists and goes down. Race the regatta round the marks, run past the Revenue cutters at night, storm the old fort on Rough Island, or survive wave after wave in Open Sea. Up to four can crew one ship on the sofa, or battle over your home network. Easy one-button controls for younger sailors.</p>
-        <div class="pp-trailer" style="position:relative;width:100%;height:0;padding-top:56.25%;overflow:hidden;background:#000;margin:6px 0 4px">
-          <video controls preload="none" playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;background:#000" poster="video/planks_and_powder_poster.jpg">
-            <source src="video/planks_and_powder_trailer.mp4" type="video/mp4">
-            Your browser can't play this video. <a href="video/planks_and_powder_trailer.mp4">Download the trailer</a>.
-          </video>
+    <h3 class="games-group">Coming to Steam</h3>
+    <div class="game-grid">
+      <div class="game-card" style="--c:#FF8C2B">
+        <a class="gc-shot" data-steam href="#wishlist" tabindex="-1" aria-hidden="true"><img src="screenshots/column_to_the_boat_thumb.jpg" alt="Forged in Formation: a column of rebels marching down to the boat" loading="lazy"></a>
+        <span class="gc-new">Wishlist now</span>
+        <div class="gc-body">
+          <h3><a data-steam href="#wishlist">Forged in Formation</a></h3>
+          <p>Round up the rebels of '98 and snap them into Column, Line or Square to get them off the island.</p>
+          <span class="gc-plat">Windows · Steam · Coming soon</span>
+          <div class="gc-links"><a href="#trailer">Trailer</a><a href="#game">About</a><a data-steam href="#wishlist">Wishlist</a></div>
         </div>
-        <p class="video-note">37-second trailer. Made in Newtownards.</p>
-        <div class="news-links"><a class="btn solid" href="https://apps.microsoft.com/detail/9MZSC0GF71BP" target="_blank" rel="noopener">Get it on the Microsoft Store</a></div>
-      </article>
-      <article class="panel cut news-item">
-        <p class="news-date">18 November 2026</p>
-        <h3>Forged in Formation is coming to Steam as the full game</h3>
-        <p>A change of plan, and a good one: Forged in Formation won't be in Early Access. It's coming to Steam finished, version 1.0, with the whole ten-level campaign, Skirmish, the 1 Player Battle and the 2 Player Battle. Our store page is with Steam for checking now. The Wishlist buttons here go live the day it's up, and we'll give you the release date as soon as it's certain.</p>
-        <div class="news-links"><a class="btn" href="#trailer">Watch the trailer</a><a class="btn solid" data-steam href="#wishlist">Wishlist on Steam</a></div>
-      </article>
-      <article class="panel cut news-item">
-        <p class="news-date">14 November 2026</p>
-        <h3>Both our games are coming to Steam in 2027</h3>
-        <p>Forged in Formation and Defend the Drift now each have their own place on Steam. Both are coming to Steam Early Access in 2027: Forged in Formation in March, and Defend the Drift, our battle game of the Anglo-Zulu War. Their store pages are being built now, and they'll be taking wishlists soon. The Wishlist buttons on this page go live the day they do.</p>
-        <div class="news-links"><a class="btn" href="#trailer">Forged in Formation</a><a class="btn" href="#drift">Defend the Drift</a></div>
-      </article>
-      <article class="panel cut news-item">
-        <p class="news-date">8 November 2026</p>
-        <h3>Bolts &amp; Boulders is now on the Microsoft Store</h3>
-        <p>Our castle-smashing siege game is now on Windows through the Microsoft Store, as well as on itch.io. Every wall is built from hundreds of voxel bricks that crack, topple and burn. Play Sir Roland of the Blue Keep, aim the catapult with boulders, fire pots and powder kegs, then fight hand to hand once the gate gives way. Raise ladders, ram gates and dig mines in Siege mode, or build your own castle in the Castle Designer and defend it against the computer or a friend, pass-and-play or over your home network.</p>
-        <div class="pp-trailer" style="position:relative;width:100%;height:0;padding-top:56.25%;overflow:hidden;background:#000;margin:6px 0 4px">
-          <video controls preload="none" playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;background:#000" poster="video/bolts_and_boulders_poster.jpg">
-            <source src="video/bolts_and_boulders_trailer.mp4" type="video/mp4">
-            Your browser can't play this video. <a href="video/bolts_and_boulders_trailer.mp4">Download the trailer</a>.
-          </video>
+      </div>
+      <div class="game-card" style="--c:#C9A227">
+        <a class="gc-shot" href="#drift" tabindex="-1" aria-hidden="true"><img src="screenshots/drift_rorkes_drift_thumb.jpg" alt="Defend the Drift: the mission station at Rorke's Drift under attack" loading="lazy"></a>
+        <div class="gc-body">
+          <h3><a href="#drift">Defend the Drift</a></h3>
+          <p>The Anglo-Zulu War of 1879 in six battles, from either side, alone or with a friend.</p>
+          <span class="gc-plat">Windows · Steam · Planned for 2027</span>
+          <div class="gc-links"><a href="#drift">About</a></div>
         </div>
-        <p class="video-note">27-second trailer.</p>
-        <div class="news-links"><a class="btn solid" href="https://apps.microsoft.com/detail/9p27lsgjpq8p?ocid=webpdpshare" target="_blank" rel="noopener">Get it on the Microsoft Store</a><a class="btn" href="https://gamesdevnisite.itch.io/bolts-and-boulders" target="_blank" rel="noopener">Also on itch.io</a></div>
-      </article>
-    </div>
-    <details class="news-more"><summary>More news</summary>
-    <div class="news-grid">
-      <article class="panel cut news-item">
-        <p class="news-date">November 2026</p>
-        <h3>Wee Man is out on itch.io</h3>
-        <p>Wee Man, our life sim about a wee man living inside your computer, is out now in early access on itch.io.</p>
-        <div class="news-links"><a class="btn solid" href="https://gamesdevnisite.itch.io/weeman" target="_blank" rel="noopener">Get Wee Man on itch.io</a></div>
-      </article>
-      <article class="panel cut news-item">
-        <p class="news-date">November 2026</p>
-        <h3>Kaiju Coast now plays in your browser</h3>
-        <p>No download needed: hold the bay against the kaiju straight from the itch.io page, or still grab it for Windows and Linux.</p>
-        <div class="news-links"><a class="btn" href="https://gamesdevnisite.itch.io/kaiju-coast" target="_blank" rel="noopener">Play Kaiju Coast</a></div>
-      </article>
-      <article class="panel cut news-item">
-        <p class="news-date">November 2026</p>
-        <h3>Feck Off! is on itch.io</h3>
-        <p>The apocalypse has come to the west of Ireland, and one prepper has rigged his farmhouse to keep his stuff. Feck Off! is a darkly funny, Spy vs Spy-style trap game: boxing gloves, buckets over the door, garden turrets and land mines, while you look after the sheep, the cow and the hens. Graphic violence, played for laughs.</p>
-        <div class="news-links"><a class="btn solid" href="https://gamesdevnisite.itch.io/feck-off" target="_blank" rel="noopener">Get Feck Off! on itch.io</a></div>
-      </article>
-      <article class="panel cut news-item">
-        <p class="news-date">November 2026</p>
-        <h3>Drawn Deep is on itch.io</h3>
-        <p>Drawn Deep is our four-player dungeon crawler in glowing neon vectors. The dungeon is drawn from a bag as you play, so no two runs are the same. Fight turn by turn with over-the-top spells, play pass-and-play with friends or online, and let the AI fill any empty seats.</p>
-        <div class="news-links"><a class="btn solid" href="https://gamesdevnisite.itch.io/drawn-deep" target="_blank" rel="noopener">Get Drawn Deep on itch.io</a></div>
-      </article>
-      <article class="panel cut news-item">
-        <p class="news-date">November 2026</p>
-        <h3>Geode 2 is on itch.io</h3>
-        <p>Geode 2, the follow-up to our orbital horror game Geode, is now on itch.io.</p>
-        <div class="news-links"><a class="btn solid" href="https://gamesdevnisite.itch.io/geode-2" target="_blank" rel="noopener">Get Geode 2 on itch.io</a></div>
-      </article>
-      <article class="panel cut news-item">
-        <p class="news-date">November 2026</p>
-        <h3>Trenches &amp; Tunnels is on itch.io</h3>
-        <p>Our new game Trenches &amp; Tunnels is now on itch.io.</p>
-        <div class="news-links"><a class="btn solid" href="https://gamesdevnisite.itch.io/trenches-and-tunnels" target="_blank" rel="noopener">Get Trenches &amp; Tunnels on itch.io</a></div>
-      </article>
-    </div>
-    </details>
-  </div>
-</section>
-
-<!-- ============ TRAILER ============ -->
-<section id="trailer" class="trailer">
-  <div class="wrap">
-    <p class="eyebrow">01 / Trailer</p>
-    <h2>Round them up. <span class="hl">Make them an army.</span></h2>
-    <div class="video-frame">
-      <video controls preload="none" poster="video/trailer_poster.jpg" playsinline>
-        <source src="video/forged_in_formation_trailer.mp4" type="video/mp4">
-        Your browser can't play this video. <a href="video/forged_in_formation_trailer.mp4">Download the trailer</a>.
-      </video>
-    </div>
-    <p class="video-note">Captured in the game, November 2026: Column, Line and Square, many hands at the gate and the capstan, the island by lamplight, a redcoat ship landing soldiers on the skirmish island, your men taking up pikes and charging, the 2 Player Battle and the charge that ends the campaign.</p>
-  </div>
-</section>
-
-<!-- ============ THE GAME ============ -->
-<section id="game">
-  <div class="wrap">
-    <p class="eyebrow">02 / The Game</p>
-    <div class="pitch">
-      <div>
-        <h2>Lead the many. <span class="hl">Lose none.</span></h2>
-        <p class="quote" style="margin-top:28px">Think <em>Pikmin</em> meets <em>Holdfast</em>: a straggling crowd becomes a drilled little army, and every call you make decides who makes it.</p>
       </div>
-      <div>
-        <p class="lead">You are <strong>the Founder</strong>, and you don't stay down. Every rebel you find falls in behind you, and <strong>every one is a spare life</strong>: get knocked down and you're back up in the nearest of them. The ones you lose are gone for good. Scout ahead on your own if you dare, but out there alone, one more knock ends it.</p>
-        <p class="lead">You can throw a punch, and you will, but <strong>the shape of your squad is your real weapon:</strong> thread a breach in Column, sweep the open ground in Line, and plant a Square when the cavalry comes thundering in. Change too late and the stragglers pay for it.</p>
-        <p class="lead">Get your people out, bank them toward a nation of a hundred, and go back for more. The island will be waiting.</p>
-      </div>
-    </div>
-
-    <div class="features four">
-      <div class="panel cut feature"><div class="num">01</div><h3>Recruit</h3><p>Rebels hide in villages, wander the cane and wait in the Crown's cells. Walk close and they fall in: a growing column of men and women at your back.</p></div>
-      <div class="panel cut feature"><div class="num">02</div><h3>Reform</h3><p>Column, Line, Square, on one button. Every enemy's cone tells you what it's doing: green while it looks, amber when it's seen you, red before it fires. Read it, reform, and the danger walks past you.</p></div>
-      <div class="panel cut feature"><div class="num">03</div><h3>Rise</h3><p>Every man and woman you bring home counts toward a free nation. The bigger it grows, the more the Crown sends to stop you.</p></div>
-      <div class="panel cut feature"><div class="num">04<span class="new">NEW</span></div><h3>Many hands</h3><p>The bigger your crowd, the more you can do. Six men on a platform lift a gate. A crew at the capstan winds up a drawbridge. Hands on the pump drain a ford and strand its alligators. A team drags a field gun up to the Redoubt. And there's a hole in the wall only Bonnie fits, with a bell beyond it.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FORMATIONS ============ -->
-<section id="formations" class="formations">
-  <div class="wrap">
-    <p class="eyebrow">03 / Core Mechanic</p>
-    <h2>Three shapes. <span class="hl">One right answer.</span></h2>
-    <p class="lead" style="margin-top:16px">Every formation saves your people from something and leaves them open to something else. Your men need time to move into the new shape, so a change made a heartbeat too late still costs you.</p>
-
-    <div class="form-grid">
-      <div class="panel cut form-card">
-        <svg viewBox="0 0 200 120" fill="#FF8C2B" aria-hidden="true">
-          <rect x="92" y="6" width="16" height="16"/><rect x="92" y="30" width="16" height="16"/><rect x="92" y="54" width="16" height="16"/><rect x="92" y="78" width="16" height="16"/><rect x="92" y="102" width="16" height="12"/>
-        </svg>
-        <h3>Column</h3>
-        <p class="use">Breaches, bridges, mountain ledges</p>
-        <p>Single file through the gap in the fort wall and along the cliff path. Long and thin: a volley down its length is a disaster.</p>
-      </div>
-      <div class="panel cut form-card">
-        <svg viewBox="0 0 200 120" fill="#1FC8DA" aria-hidden="true">
-          <rect x="14" y="52" width="16" height="16"/><rect x="48" y="52" width="16" height="16"/><rect x="82" y="52" width="16" height="16"/><rect x="116" y="52" width="16" height="16"/><rect x="150" y="52" width="16" height="16"/>
-        </svg>
-        <h3 style="color:var(--accent-2)">Line</h3>
-        <p class="use">Open ground</p>
-        <p>A wide front, fast across the open field. A volley from the side only catches its end. Caught head on, it loses everyone.</p>
-      </div>
-      <div class="panel cut form-card">
-        <svg viewBox="0 0 200 120" fill="#F2EFE6" aria-hidden="true">
-          <rect x="62" y="18" width="16" height="16"/><rect x="92" y="18" width="16" height="16"/><rect x="122" y="18" width="16" height="16"/>
-          <rect x="62" y="52" width="16" height="16"/><rect x="122" y="52" width="16" height="16"/>
-          <rect x="62" y="86" width="16" height="16"/><rect x="92" y="86" width="16" height="16"/><rect x="122" y="86" width="16" height="16"/>
-          <rect x="94" y="54" width="12" height="12" fill="#FF8C2B"/>
-        </svg>
-        <h3 style="color:var(--text)">Square</h3>
-        <p class="use">Cavalry, bayonets, the boar</p>
-        <p>A closed ring with you at its heart. It turns a bayonet charge and stops dragoons and a wild boar dead. Slow, and too wide for narrow ground. Against the cannon, no shape helps: get out of its cone.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ THE ISLAND ============ -->
-<section id="island">
-  <div class="wrap">
-    <p class="eyebrow">04 / The Island</p>
-    <h2>An island that <span class="hl">fights back</span></h2>
-    <p class="lead" style="margin-top:16px">The redcoats hold the forts. The island holds everything else.</p>
-
-    <div class="threats">
-      <div class="panel cut threat"><h3><i>!</i>Redcoat lines</h3><p>"Make ready! Present!" Muskets level, their lane on the ground turns from amber to red, and you have a heartbeat to get out of it.</p></div>
-      <div class="panel cut threat"><h3><i>!</i>Dragoons</h3><p>They sweep the open ground in threes. Nothing in your squad can touch them, except Bonnie.</p></div>
-      <div class="panel cut threat"><h3><i>!</i>Cannon batteries</h3><p>A fire cone swings across the ground to find you, the gunners present, and the gun roars. No formation stops a cannonball: get out of the cone, or get to the gun.</p></div>
-      <div class="panel cut threat"><h3><i>!</i>Riflemen and grenadiers</h3><p>Green-jacketed marksmen who punish standing still. Grenades that sit in a red ring, fizzing, before they burst.</p></div>
-      <div class="panel cut threat"><h3><i>!</i>The eagle</h3><p>It circles the mountain pass and stoops on the straggler. Men thrown from the ledge vanish into the fog below.</p></div>
-      <div class="panel cut threat"><h3><i>!</i>Alligators</h3><p>One lies in every ford, patient and impossible to kill. Wading slows everyone, in any formation. You'll hear the hiss before the jaws.</p></div>
-      <div class="panel cut threat"><h3><i>!</i>The fer-de-lance</h3><p>It waits in the cane. Walk your people round it, or count the cost.</p></div>
-      <div class="panel cut threat"><h3><i>!</i>Man traps</h3><p>Steel jaws hidden on the plantation paths. Look before you lead anyone through.</p></div>
-      <div class="panel cut threat"><h3><i>!</i>The gaoler</h3><p>A bearded brute in a foul temper, with a cudgel that sends your whole squad flying and the key to the cells on his belt. Knock him down for it. It takes a while.</p></div>
-      <div class="panel cut threat"><h3><i>!</i>The barracks</h3><p>Fight within earshot of it and the bugle sounds: squads of line infantry turn out to hunt you down. Go low, and go round.</p></div>
-      <div class="panel cut threat"><h3><i>!</i>The wild boar</h3><p>It charges your squad on sight and scatters everyone it hits, unless it meets a Square.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ THE DOG ============ -->
-<section id="dog" style="padding-top:0">
-  <div class="wrap">
-    <div class="split">
-      <img src="screenshots/river_crossing.jpg" alt="The squad wades the river beside the bridge, the water breaking white along its banks" loading="lazy">
-      <div>
-        <p class="eyebrow">Bonnie, a loyal dog at your heel</p>
-        <h2>The only thing on the island <span class="hl">a dragoon fears</span></h2>
-        <ul class="ticks">
-          <li>Bonnie follows you everywhere and goes for any redcoat who comes near your people.</li>
-          <li>She runs down fleeing snipers and grenadiers, and she is the only thing that can bring down a dragoon.</li>
-          <li>She's terrified of alligators, snakes and traps. Listen for her warning growl.</li>
-          <li><strong>Second player: Bonnie.</strong> Hand her to a friend on a controller. She stays tethered to the Founder, the camera pulls out to keep her in frame, every redcoat hunts her too, and if she falls one of your people gives his life for hers. Only she fits through the gaps in the walls, and she is the only one who can ring the bell beyond them.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WAYS TO PLAY ============ -->
-<section id="play" style="background:linear-gradient(180deg,transparent,rgba(255,140,43,.04),transparent)">
-  <div class="wrap">
-    <p class="eyebrow">05 / Ways to Play</p>
-    <h2>Four ways to <span class="hl">take the field</span></h2>
-    <p class="lead" style="margin-top:16px">Follow the Founder from the cove to Kingston, push your luck on an endless island, or settle it on the battlefield, against the computer or a friend on the same sofa.</p>
-
-    <div class="features four">
-      <div class="panel cut feature"><div class="num">MODE 01<span class="new">REBUILT</span></div><h3>Campaign</h3><p>Ten levels across the island, from the Cove Landing to Kingston Harbour, and none of them a corridor: a village on its terrace above the beach, three cane fields climbing to a mill, a causeway through the swamp, a river in flood, a hill in three belts, a town on a slope. Dusk at the mill, rain on the Cane Road, lamplight at the magazine, fog on the Mountain Pass, and an ending worth the march. Bring a friend: Bonnie takes a second controller.</p></div>
-      <div class="panel cut feature"><div class="num">MODE 02<span class="new">NEW WEAPONS</span></div><h3>Skirmish</h3><p>A freshly made island every trip. Go back inland for more men, again and again, harder every time, until one trip is too many. Your score is how far you got. Save nearly everyone on the right campaign levels and the Founder takes a weapon with him: a claymore from the Smugglers' Harbour, a flintlock from the Sugar Mill, timed grenades from the Powder Magazine and a long rifle from the Redoubt.</p></div>
-      <div class="panel cut feature"><div class="num">MODE 03<span class="new">NEW</span></div><h3>1 Player Battle</h3><p>Take on the computer at Easy, Normal or Hard. It plays by your rules: it forms Square against your horse, waits for your line to fire, and comes for your commander the moment you look away.</p></div>
-      <div class="panel cut feature"><div class="num">MODE 04<span class="new">UPDATED</span></div><h3>2 Player Battle</h3><p>Couch versus on one screen, keyboard against gamepad, in the spirit of the classic 16-bit field battles. River, Chasm or Desert, drawn at random. Lose your commander and you lose the battle, and a sniper can see the whole way across the field: keep yours behind his rock. Built for Steam Remote Play Together too, so the sofa can be two sofas.</p></div>
-    </div>
-
-    <div style="margin-top:48px">
-      <p class="eyebrow">Your army on the battlefield</p>
-      <div class="tags">
-        <span class="hot">Commander</span><span>Line</span><span>Bayonets</span><span>Cavalry</span><span>Cannon</span><span>Sniper</span><span>Brawler</span><span>Grenadier</span>
-      </div>
-      <p style="margin-top:18px;font-size:14px;max-width:72ch">Steer one unit at a time, each with its own readiness bar. Hold fire and the cannon's marker walks out, then let go. Line up your sniper and a ring closes on the man he's about to hit, from anywhere on the field; both players can see it, so that man had better move. Cross the bridge in Column, charge in Line, and nobody fires from the river. And every field has powder kegs: one good shot and both armies scatter.</p>
-      <div class="video-frame">
-        <video autoplay muted loop playsinline preload="metadata" poster="video/two_player_battle_poster.jpg" aria-label="The 2 Player Battle in play">
-          <source src="video/two_player_battle.mp4" type="video/mp4">
-        </video>
-      </div>
-      <p class="video-note">The 2 Player Battle, captured in engine from the current build: the computer playing both armies at the bridge on the River.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SCREENSHOTS ============ -->
-<section id="screens">
-  <div class="wrap">
-    <p class="eyebrow">06 / In Engine</p>
-    <h2>Screenshots</h2>
-    <p class="lead" style="margin-top:16px">Captured in engine from the current build. Click any image to enlarge.</p>
-
-    <!-- To add a screenshot: put the full image and a _thumb copy in /screenshots and add a matching button below. -->
-    <div class="gallery" id="gallery">
-      <button class="shot big" data-full="screenshots/cove_landing_dusk.jpg"><img src="screenshots/cove_landing_dusk_thumb.jpg" alt="The Cove Landing at dusk: the village on its walled terrace and the fort beyond" loading="lazy"><span class="cap">The Cove Landing, at dusk</span></button>
-      <button class="shot big" data-full="screenshots/river_crossing.jpg"><img src="screenshots/river_crossing_thumb.jpg" alt="The squad wades the river beside the bridge, the water breaking white along its banks" loading="lazy"><span class="cap">The River Crossing</span></button>
-      <button class="shot big" data-full="screenshots/dawn_redcoat_line.jpg"><img src="screenshots/dawn_redcoat_line_thumb.jpg" alt="At first light a redcoat line presents its muskets across the fort yard as the Founder runs for the gate" loading="lazy"><span class="cap">First light at the Cove Landing</span></button>
-      <button class="shot" data-full="screenshots/rope_ferry.jpg"><img src="screenshots/rope_ferry_thumb.jpg" alt="The squad files down the trail to the rope ferry on the river" loading="lazy"><span class="cap">The rope ferry</span></button>
-      <button class="shot" data-full="screenshots/cannon_burst.jpg"><img src="screenshots/cannon_burst_thumb.jpg" alt="Two shells burst beside the squad on the Redoubt, fire and smoke and a burn on the grass" loading="lazy"><span class="cap">The Redoubt's guns find the range</span></button>
-      <button class="shot" data-full="screenshots/cannon_and_dragoons.jpg"><img src="screenshots/cannon_and_dragoons_thumb.jpg" alt="Dragoons ride through the lane of the Redoubt's gun as it fires" loading="lazy"><span class="cap">Dragoons under their own gun</span></button>
-      <button class="shot" data-full="screenshots/sugar_mill_column.jpg"><img src="screenshots/sugar_mill_column_thumb.jpg" alt="A column on the cane trail at the Sugar Mill in the evening light, the stakes ahead" loading="lazy"><span class="cap">Evening at the Sugar Mill</span></button>
-      <button class="shot" data-full="screenshots/powder_yard_night.jpg"><img src="screenshots/powder_yard_night_thumb.jpg" alt="By lamplight the squad circles a lit powder keg in the magazine's yard, its blast ring red on the ground" loading="lazy"><span class="cap">The Powder Magazine: a keg alight</span></button>
-      <button class="shot" data-full="screenshots/garrison_volley.jpg"><img src="screenshots/garrison_volley_thumb.jpg" alt="A redcoat line on the Garrison Town's parade ground turns on the column" loading="lazy"><span class="cap">The Garrison Town's parade ground</span></button>
-      <button class="shot" data-full="screenshots/kingston_dragoons.jpg"><img src="screenshots/kingston_dragoons_thumb.jpg" alt="Dragoons among the squad on the sand at Kingston Harbour" loading="lazy"><span class="cap">Kingston: the last mile</span></button>
-      <button class="shot big" data-full="screenshots/fort_yard_flag.jpg"><img src="screenshots/fort_yard_flag_thumb.jpg" alt="The Founder slips through the fort gate under the Union flag as the redcoat line turns" loading="lazy"><span class="cap">Through the gate</span></button>
-      <button class="shot" data-full="screenshots/boar_lane.jpg"><img src="screenshots/boar_lane_thumb.jpg" alt="A wild boar's charge lane across the Sugar Mill's trail, the squad in column short of the stakes" loading="lazy"><span class="cap">A boar marks its lane</span></button>
-      <button class="shot" data-full="screenshots/harbour_wall.jpg"><img src="screenshots/harbour_wall_thumb.jpg" alt="The squad files along the Smugglers' Harbour wall above the pool" loading="lazy"><span class="cap">The Smugglers' Harbour</span></button>
-      <button class="shot" data-full="screenshots/garrison_gate.jpg"><img src="screenshots/garrison_gate_thumb.jpg" alt="The column crosses the Garrison Town's bridge between its walls" loading="lazy"><span class="cap">Into the Garrison Town</span></button>
-      <button class="shot" data-full="screenshots/river_volley.jpg"><img src="screenshots/river_volley_thumb.jpg" alt="Redcoats form on the far bank as the squad comes off the bridge" loading="lazy"><span class="cap">Off the bridge, into a volley</span></button>
-      <button class="shot big" data-full="screenshots/kingston_quay.jpg"><img src="screenshots/kingston_quay_thumb.jpg" alt="The last quay at Kingston Harbour, the ship waiting beyond the gate tower" loading="lazy"><span class="cap">Kingston Harbour: the ship</span></button>
-      <button class="shot" data-full="screenshots/cane_road_rain.jpg"><img src="screenshots/cane_road_rain_thumb.jpg" alt="The squad on the Cane Road's causeway in driving rain, the swamp either side" loading="lazy"><span class="cap">The Cane Road in the rain</span></button>
-      <button class="shot" data-full="screenshots/mountain_pass.jpg"><img src="screenshots/mountain_pass_thumb.jpg" alt="The squad at the foot of the Mountain Pass, the first rope bridge above them and an eagle's shadow on the rock" loading="lazy"><span class="cap">The Mountain Pass</span></button>
-      <button class="shot big" data-full="screenshots/battle_river.jpg"><img src="screenshots/battle_river_thumb.jpg" alt="Battle: two armies meet at the bridge on the River, a shell bursting on the bank" loading="lazy"><span class="cap">Battle: the River</span></button>
-      <button class="shot" data-full="screenshots/battle_desert.jpg"><img src="screenshots/battle_desert_thumb.jpg" alt="Battle: the Desert field, each commander in his square of stakes, the armies closing between" loading="lazy"><span class="cap">Battle: the Desert</span></button>
-      <button class="shot" data-full="screenshots/battle_chasm.jpg"><img src="screenshots/battle_chasm_thumb.jpg" alt="Battle: the Chasm, two bridges over the drop and a cannon's ring on the far side" loading="lazy"><span class="cap">Battle: the Chasm</span></button>
-      <button class="shot big" data-full="screenshots/the_hundred_charge.jpg"><img src="screenshots/the_hundred_charge_thumb.jpg" alt="The hundred charge a redcoat line with its back to the sea as the guns' shells burst among them" loading="lazy"><span class="cap">The hundred charge the line</span></button>
-      <button class="shot big" data-full="screenshots/the_field_is_theirs.jpg"><img src="screenshots/the_field_is_theirs_thumb.jpg" alt="The Founder stands on the won field, his men at the shore and two ships beyond" loading="lazy"><span class="cap">The field is theirs</span></button>
-      <button class="shot" data-full="screenshots/alligator_ford.jpg"><img src="screenshots/alligator_ford_thumb.jpg" alt="An alligator glides at a Column wading the ford" loading="lazy"><span class="cap">Alligators lie in every ford</span></button>
-      <button class="shot big" data-full="screenshots/run_for_the_boat.jpg"><img src="screenshots/run_for_the_boat_thumb.jpg" alt="The squad aboard the boat as it pulls away from the dock at the Smugglers\' Harbour" loading="lazy"><span class="cap">Away safe</span></button>
-    </div>
-  </div>
-</section>
-
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
-  <button type="button" class="lb-btn" id="lb-close">Close</button>
-  <button type="button" class="lb-btn" id="lb-prev" aria-label="Previous">&lt;</button>
-  <button type="button" class="lb-btn" id="lb-next" aria-label="Next">&gt;</button>
-  <img id="lb-img" alt="">
-  <div class="lb-cap" id="lb-cap"></div>
-</div>
-
-<!-- ============ STORY ============ -->
-<section id="story" style="background:linear-gradient(180deg,transparent,rgba(31,200,218,.04),transparent)">
-  <div class="wrap">
-    <p class="eyebrow">07 / Setting</p>
-    <h2>From County Down, <span class="hl">1798</span></h2>
-    <p class="crawl">"They buried the Founder with his sword and his colours. The grave did not hold him."</p>
-
-    <div class="story">
-      <div class="panel cut">
-        <h3>The <span>history</span></h3>
-        <p>In the summer of 1798 the United Irishmen rose against the Crown, and in County Down the rising ended at Ballynahinch. The rebels who survived were hanged, jailed, transported or scattered, and some of them ended up across the ocean, on the Crown's sugar islands. Forged in Formation begins there.</p>
-      </div>
-      <div class="panel cut">
-        <h3>The <span>voices</span></h3>
-        <p>The Founder, his followers and the redcoats who hunt them are voiced by a young Northern Irish cast. Every order, rallying cry and line of narration was recorded here at home for the game.</p>
-      </div>
-    </div>
-    <p class="note">Forged in Formation is a work of fiction inspired by the 1798 rebellion and the Irish rebels who ended up in the Caribbean after it. It depicts colonial warfare and the plantation system, including the man traps planters set for people escaping slavery. The fighting is stylised and bloodless: men are knocked down, not torn apart.</p>
-  </div>
-</section>
-
-<!-- ============ WISHLIST ============ -->
-<section id="wishlist" class="wishlist">
-  <div class="wrap">
-    <p class="eyebrow">Coming to Steam</p>
-    <h2>Wishlist <span class="hl">Forged in Formation</span></h2>
-    <p>Wishlisting is the single biggest thing you can do for a small studio. It tells Steam to show the game to more players, and Steam will tell you the moment it's out. The store page is live now, with the trailer and screenshots.</p>
-    <a class="btn solid" data-steam href="#wishlist">Wishlist on Steam</a>
-    <div class="steam-widget" id="steam-widget" hidden></div>
-  </div>
-</section>
-
-<!-- ============ DEFEND THE DRIFT (in development) ============ -->
-<!-- The studio's second game, and the serious one: keep its words as sober as its colours. -->
-<section id="drift" class="drift">
-  <div class="wrap">
-    <p class="eyebrow">08 / Also from 3BL_Indie - coming to Steam Early Access</p>
-    <h2>Defend <span class="hl">the Drift</span></h2>
-    <p class="date">The Anglo-Zulu War, 1879</p>
-    <div class="when"><i></i>Coming to Steam Early Access in 2027 - wishlists open soon</div>
-    <!-- Shown once DRIFT_STEAM_URL is filled in (the script at the end of the page). -->
-    <div class="drift-steam" id="drift-steam" hidden>
-      <a class="btn solid" id="drift-steam-btn" href="#drift" target="_blank" rel="noopener">Wishlist on Steam</a>
-      <div class="steam-widget" id="drift-steam-widget" hidden></div>
-    </div>
-    <!-- The trailer, with the game's own sounds and the guns manned (James, 15 November). -->
-    <div class="video-frame drift-video drift-trailer">
-      <video controls preload="none" poster="video/defend_the_drift_trailer_poster.jpg" playsinline>
-        <source src="video/defend_the_drift_trailer.mp4" type="video/mp4">
-        Your browser can't play this video. <a href="video/defend_the_drift_trailer.mp4">Download the trailer</a>.
-      </video>
-    </div>
-    <p class="video-note drift-trailer-note">Trailer, with sound: the six battles from Isandlwana to Ulundi, the Gatling, the 9-pounder and the rocket battery fired from behind the gun, and the flag over Rorke's Drift at dawn. Captured in engine from the current build, November 2026.</p>
-    <!-- Two clips side by side: the first teaser, and the rest of the war (James, 12 October). -->
-    <div class="drift-videos">
-      <div>
-        <div class="video-frame drift-video">
-          <video controls preload="none" poster="video/defend_the_drift_teaser_poster.jpg" playsinline>
-            <source src="video/defend_the_drift_teaser.mp4" type="video/mp4">
-            Your browser can't play this video. <a href="video/defend_the_drift_teaser.mp4">Download the teaser</a>.
-          </video>
+      <div class="game-card" style="--c:#7BC043">
+        <a class="gc-shot" href="#jt" tabindex="-1" aria-hidden="true"><img src="screenshots/jt_sunset_huey_thumb.jpg" alt="Jungle and Tunnels: a Huey silhouetted against a jungle sunset above a glowing tunnel" loading="lazy"></a>
+        <div class="gc-body">
+          <h3><a href="#jt">Jungle &amp; Tunnels</a></h3>
+          <p>Hunt the VC through jungle and villages, call in the Hueys, then go down the hole with a torch.</p>
+          <span class="gc-plat">Out now · Microsoft Store · itch.io · Steam soon</span>
+          <div class="gc-links"><a href="#jt">About</a><a href="https://apps.microsoft.com/detail/9NRKLB9KJX9L" target="_blank" rel="noopener">Microsoft Store</a><a href="https://gamesdevnisite.itch.io/jungle-and-tunnels" target="_blank" rel="noopener">itch.io</a></div>
         </div>
-        <p class="video-note">Teaser: Isandlwana, Rorke's Drift and Gingindlovu, with the Zulu army's call and then Men of Harlech. Captured in engine from the current build, October 2026.</p>
       </div>
-      <div>
-        <div class="video-frame drift-video">
-          <video controls preload="none" poster="video/defend_the_drift_war_poster.jpg" playsinline>
-            <source src="video/defend_the_drift_war.mp4" type="video/mp4">
-            Your browser can't play this video. <a href="video/defend_the_drift_war.mp4">Download the clip</a>.
-          </video>
+    </div>
+
+    <h3 class="games-group">Free</h3>
+    <div class="game-grid">
+      <div class="game-card" data-until="2027-01-07" style="--c:#D9443A">
+        <a class="gc-art" href="#christmas">A Timeless Christmas Tree</a>
+        <div class="gc-body">
+          <h3><a href="#christmas">A Timeless Christmas Tree</a></h3>
+          <p>Grow a pine beneath the Mournes, then dress it in an Edwardian parlour on Christmas Eve, 1901.</p>
+          <span class="gc-plat">Free · Plays in your browser</span>
+          <div class="gc-links"><a href="#christmas">Play</a></div>
         </div>
-        <p class="video-note">The rest of the war: Hlobane, Kambula and Ulundi, with the Zulu army's call and then The British Grenadiers, the Royal Scots Fusiliers' march, at Ulundi. Captured in engine from the current build, October 2026.</p>
       </div>
-    </div>
-    <div class="pitch drift-pitch">
-      <div>
-        <p class="lead">Our second game is the serious one. <strong>Defend the Drift</strong> is a battle game of the Anglo-Zulu War for one or two players: one side commands the British garrison, the other the Zulu army.</p>
-        <p class="lead">Six battles, the whole campaign from the first British defeat to the last Zulu one, fought on their real ground and following their day as it went: the eclipse over Isandlwana, the hospital burning through the night at Rorke's Drift, Wood's horsemen riding for their lives down the Devil's Pass at Hlobane, Buller's horsemen drawing the uNgobamakhosi on at Kambula the next day, the mist lifting off the laager at Gingindlovu, and the great square on the plain before oNdini at Ulundi, the last battle of the war.</p>
-        <p class="lead">Between and after the fighting, the people who were there speak: every battle opens with a line from the record of 1879, its worst moment is told in the words of the time, and it ends in silence with a passage from each side, a British writer and a Zulu voice. Every line was checked against the original.</p>
-      </div>
-      <div>
-        <p class="eyebrow">Where it stands, October 2026</p>
-        <ul class="ticks">
-          <li>Two players on one screen, splitting when the commanders part, or a screen each over a LAN or online through Steam.</li>
-          <li>One player against the computer on either side, or two together against it.</li>
-          <li>Lead from overhead or through your commander's eyes: fire the officer's revolver, fight with the induna's iklwa, or man a Gatling yourself.</li>
-          <li>The Zulu army's horns of the buffalo, the British volley by ranks, and Gatlings, 9-pounders and rockets in the laager.</li>
-          <li>Hold the buildings: walk a commander into the hospital or the storehouse and his men take its windows and loopholes, until the thatch above them catches.</li>
-          <li>Every squad has its nerve. Losses and being outnumbered close up wear it down, and a broken squad falls back until its commander reaches it and rallies it, on either side.</li>
-          <li>Warriors climb the mealie-bag walls to get at the garrison.</li>
-          <li>At Kambula an ibutho kept waiting under the guns, or ridden at by Buller's horsemen, may charge alone before the horns are ready, as the uNgobamakhosi did in 1879.</li>
-          <li>At Ulundi the 17th Lancers wait inside the square with their lances, and ride out when the attack breaks.</li>
-          <li>Hlobane is won by getting away: get the horsemen off the mountain by its one steep pass and across the plain before the Zulu army closes in. Men whose horses fall are taken up behind their comrades, riding double.</li>
-          <li>Men carry the sick out of the burning hospital and the mealie bags into the redoubt, runners bring ammunition up to the line, and the guns have their crews in the Royal Artillery's blue.</li>
-          <li>When a battle ends the side that held the field rests where it stands and the other walks away. Nobody cheers.</li>
-          <li>Mounted men in the dress their corps wore in 1879: Buller's Frontier Light Horse in yellow-brown cord and the red-banded slouch hat, colonial horse, burghers, Mounted Infantry, the Natal Native Horse and the 17th Lancers, each on a horse that walks, canters and gallops.</li>
-          <li>Both armies are animated with the same care: the redcoats march and charge with their rifles, the warriors carry shield and iklwa and throw their spears, and every officer and induna signals his orders.</li>
-          <li>A campaign through all six battles in the order they were fought, with records and difficulty settings. It ends the way the war did: a last set of cards in silence, from Cetshwayo's offer of peace after Isandlwana to his capture, and the line that tells you whose voice you have been hearing after every battle.</li>
-          <li>The first battle teaches as you play: a hint at a time under the clock, in your own keys, gone once you have done it.</li>
-          <li>Each battle opens with a flight over the field and ends with a slow pan over the fallen of both sides.</li>
-          <li>Music from the period, every note made in code from the old printed and manuscript settings: The Warwickshire Lads for the 24th, The Campbells Are Coming on the pipes at Gingindlovu, and The Girl I Left Behind Me for the campaign. The Zulu side has no borrowed songs: its own sound is thousands of feet in time, spears on shields and a wordless hum.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="gallery">
-      <button class="shot big" data-full="screenshots/drift_rorkes_drift.jpg"><img src="screenshots/drift_rorkes_drift_thumb.jpg" alt="The iNdluyengwe advance on the mission station at Rorke's Drift, where B Company holds the yard" loading="lazy"><span class="cap">Rorke's Drift: the iNdluyengwe close on B Company</span></button>
-      <button class="shot big" data-full="screenshots/drift_horns.jpg"><img src="screenshots/drift_horns_thumb.jpg" alt="The iNdluyengwe spread into the horns of the buffalo as they close on the mission station at Rorke's Drift" loading="lazy"><span class="cap">The horns of the buffalo</span></button>
-      <button class="shot" data-full="screenshots/drift_isandlwana.jpg"><img src="screenshots/drift_isandlwana_thumb.jpg" alt="Isandlwana: the camp's tents behind the companies in their firing line, the Zulu army's chest coming on" loading="lazy"><span class="cap">Isandlwana: the camp and the firing line</span></button>
-      <button class="shot" data-full="screenshots/drift_gingindlovu.jpg"><img src="screenshots/drift_gingindlovu_thumb.jpg" alt="Gingindlovu: the square laager of wagons with a face manned on every side" loading="lazy"><span class="cap">Gingindlovu: the laager</span></button>
-      <button class="shot" data-full="screenshots/drift_title.jpg"><img src="screenshots/drift_title_thumb.jpg" alt="The title screen of Defend the Drift over the mission station" loading="lazy"><span class="cap">The title screen</span></button>
-      <button class="shot" data-full="screenshots/drift_hospital_fire.jpg"><img src="screenshots/drift_hospital_fire_thumb.jpg" alt="The hospital at Rorke's Drift burning at night, its thatch alight and the garrison along the wall beyond" loading="lazy"><span class="cap">The hospital burns through the night</span></button>
-      <button class="shot" data-full="screenshots/drift_windows.jpg"><img src="screenshots/drift_windows_thumb.jpg" alt="Soldiers at the hospital's windows and loopholes, rifles levelled, its outer doors barricaded with mealie bags" loading="lazy"><span class="cap">The garrison at the hospital's windows</span></button>
-      <button class="shot" data-full="screenshots/drift_kambula.jpg"><img src="screenshots/drift_kambula_thumb.jpg" alt="Kambula: Wood's camp on its ridge, the hexagonal wagon laager, the stone redoubt and the cattle kraal joined to it by a palisade, the infantry in front of the laager's faces" loading="lazy"><span class="cap">Kambula: Wood's camp, the laager, the redoubt and the kraal</span></button>
-      <button class="shot" data-full="screenshots/drift_kambula_horse.jpg"><img src="screenshots/drift_kambula_horse_thumb.jpg" alt="Buller's mounted men at Kambula, the Frontier Light Horse and Baker's Horse in yellow-brown cord and red-banded slouch hats on bays, browns, chestnuts and duns, beside the 7-pounders" loading="lazy"><span class="cap">Buller's horsemen at Kambula, in the cord and red-banded hats they wore</span></button>
-      <button class="shot" data-full="screenshots/drift_hlobane_pass.jpg"><img src="screenshots/drift_hlobane_pass_thumb.jpg" alt="Hlobane: Wood's mounted men in column coming down the Devil's Pass from the mountain's summit onto the narrow ridge, the cliffs grey on either side, the Zulu army coming on across the plain below" loading="lazy"><span class="cap">Hlobane: down the Devil's Pass</span></button>
-      <button class="shot" data-full="screenshots/drift_ulundi_square.jpg"><img src="screenshots/drift_ulundi_square_thumb.jpg" alt="Ulundi: Chelmsford's square on the Mahlabathini plain, the infantry on its faces, the guns at its corners, wagons of ammunition and the 17th Lancers inside, the huts of oNdini beyond and the amabutho coming on" loading="lazy"><span class="cap">Ulundi: the square, with oNdini beyond</span></button>
-      <button class="shot" data-full="screenshots/drift_ulundi_lancers.jpg"><img src="screenshots/drift_ulundi_lancers_thumb.jpg" alt="The 17th Lancers inside the square at Ulundi, in white helmets and dark blue on dark horses, their lances carried with the red and white pennons furled" loading="lazy"><span class="cap">The 17th Lancers wait inside the square</span></button>
-      <button class="shot" data-full="screenshots/drift_record.jpg"><img src="screenshots/drift_record_thumb.jpg" alt="A card from the record of 1879 before the battle of Kambula: a line from Cetshwayo's account, on black, with its source under it" loading="lazy"><span class="cap">Words from 1879: Cetshwayo's account before Kambula</span></button>
-      <button class="shot" data-full="screenshots/drift_firing_line.jpg"><img src="screenshots/drift_firing_line_thumb.jpg" alt="A company's firing line at Isandlwana volleying at the Zulu army's chest on the slope beyond" loading="lazy"><span class="cap">Isandlwana: a company's volley</span></button>
-    </div>
-
-    <!-- Where the game began: James's yes to the wording, 12 October. Keep the inscription as struck: J B and BORE WAR. -->
-    <div class="began">
-      <h3>Where it began</h3>
-      <p>Defend the Drift began with a family heirloom: a sword bayonet that came down through James's mother's family, the Bouchers. On one side of the blade someone cut the initials J&nbsp;B; on the other, letter by letter, BORE&nbsp;WAR. It got the family reading about the wars in southern Africa, and it is why this game tries to tell that history carefully, from both sides.</p>
-    </div>
-    <p class="memory">In memory of Private Richard Mussen of Belfast, whom his city remembers as one of the garrison.</p>
-    <p class="note">Defend the Drift is about real battles in which many people died on both sides, and it gives both sides the same care: no kill counts, nothing gloats, and the fallen stay where they fall. It is made for adults: there is blood, and the wounded bleed. Work in progress, captured in engine.</p>
-  </div>
-</section>
-
-<!-- ============ THE HOUSE IS HAUNTED (out now on itch.io, early access, 21 October 2026) ============ -->
-<!-- A Belfast ghost game: funny and frightening at once. Nobody is ever hurt in it; keep the words that way. -->
-<section id="haunted" class="haunted">
-  <div class="wrap">
-    <p class="eyebrow">09 / Also from 3BL_Indie - out now in early access</p>
-    <h2>The House <span class="hl">Is Haunted</span></h2>
-    <p class="date">Belfast, 1980, 1983, 1987 and 1991</p>
-    <a class="when" href="https://gamesdevnisite.itch.io/the-house-is-haunted" target="_blank" rel="noopener"><i></i>Out now on itch.io - early access - Windows, Linux and Android</a>
-    <div class="haunted-grid">
-      <div>
-        <div class="video-frame reel">
-          <video controls preload="none" poster="video/the_house_is_haunted_reel_poster.jpg" playsinline>
-            <source src="video/the_house_is_haunted_reel.mp4" type="video/mp4">
-            Your browser can't play this video. <a href="video/the_house_is_haunted_reel.mp4">Download the reel</a>.
-          </video>
+      <div class="game-card" data-until="2026-12-26" style="--c:#3FA34D">
+        <a class="gc-art" href="carpet-grand-prix/">Carpet Grand Prix</a>
+        <div class="gc-body">
+          <h3><a href="carpet-grand-prix/">Carpet Grand Prix</a></h3>
+          <p>A Christmas present from the studio, free until the end of Christmas Day.</p>
+          <span class="gc-plat">Free · Christmas present</span>
+          <div class="gc-links"><a href="carpet-grand-prix/">Unwrap it</a></div>
         </div>
-        <p class="video-note">The reel, captured live in engine, October 2026.</p>
       </div>
-      <div>
-        <p class="lead"><strong>You are the ghost.</strong> A wee terraced house in Belfast, four households over eleven years, and one job: get them out. You never lay a hand on anyone. You knock in the walls, flicker the lights, leave the cooker on and switch the fridge off, and let the house do the rest.</p>
-        <p class="lead">January 1980, a man on his own with a kettle and a television. Halloween 1983, a mother and her wee girl, with guisers at the door all evening. Christmas 1987, seven of them, a tree in the corner and Granny Mac on the sherry, so whatever you do, they'll blame Granny. July 1991, the Eleventh Night: Peggy, eighty-four, has her bunting up for the Twelfth, and she isn't one bit afraid. She thinks you're her Billy, come home.</p>
-        <p class="lead">Then Free Play: any household, any season, residents you make yourself. Put yourself in the house and see if you can scare yourself out. About two hours for all four chapters.</p>
-        <ul class="ticks">
-          <li>Every trick is done to the house, never the people: rattle the windows, slam doors, slide the chairs, fling the front door open and let a bird in (a bat at Halloween, a squirrel at Christmas).</li>
-          <li>Tap on the glass and someone comes to look out. Two wee red eyes look back.</li>
-          <li>Halloween: be the caller at the door, and the wee girl opens it to an old woman made of mist, finger to her lips.</li>
-          <li>Make a room stink, or leave ectoplasm inside the door: they'll slip, get up, and blame each other.</li>
-          <li>Fear and belief over every head. Sceptics explain things away, children tell everyone, and the household leaves when it has had enough.</li>
-          <li>Push too hard and they send for help: Mrs Lavery the psychic, Father Connolly the priest, or Sammy and Big Davy, ghost hunters. Lead them a merry dance, or they'll have you out instead.</li>
-          <li>Everyone talks like home: "Catch yerself on", "Houl yer whisht", "That's boggin'".</li>
-          <li>Before each chapter, a real Belfast ghost story: James Haddock's ghost at Drum Bridge in 1662, Friar's Bush, Biddy Farrelly of Smithfield, the Grey Man of the Grand Opera House, and more. All ten are on the main menu.</li>
-          <li>Pixel art, music, voices and sound all made in code, in Godot 4.</li>
-        </ul>
+      <div class="game-card" style="--c:#E8B04A">
+        <a class="gc-art" href="christmas-day-party/">Christmas Day Party</a>
+        <div class="gc-body">
+          <h3><a href="christmas-day-party/">Christmas Day Party</a></h3>
+          <p>A Christmas present from the studio, for the whole family round one screen.</p>
+          <span class="gc-plat">Free · Christmas present</span>
+          <div class="gc-links"><a href="christmas-day-party/">Unwrap it</a></div>
+        </div>
+      </div>
+      <div class="game-card" style="--c:#FF6A2B">
+        <a class="gc-art" href="lava-raid/">Lava Raid</a>
+        <div class="gc-body">
+          <h3><a href="lava-raid/">Lava Raid</a></h3>
+          <p>A Christmas present from the studio.</p>
+          <span class="gc-plat">Free · Christmas present</span>
+          <div class="gc-links"><a href="lava-raid/">Unwrap it</a></div>
+        </div>
+      </div>
+      <div class="game-card" style="--c:#2EE6FF">
+        <a class="gc-art" href="#silly">Silly Stuff</a>
+        <div class="gc-body">
+          <h3><a href="#silly">Silly Stuff</a></h3>
+          <p>Daft wee things made for fun for the kids.</p>
+          <span class="gc-plat">Free · Plays in your browser</span>
+          <div class="gc-links"><a href="#silly">Have a look</a></div>
+        </div>
       </div>
     </div>
-    <div class="haunted-buy">
-      <iframe src="https://itch.io/embed/5197583?linkback=true&amp;bg_color=0a0f0e&amp;fg_color=e8fff8&amp;link_color=8FE6CF&amp;border_color=1f3a34" width="552" height="167" title="Get The House Is Haunted on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/the-house-is-haunted">The House Is Haunted by 3BL_Indie</a></iframe>
-      <a class="haunted-buy-link" href="https://gamesdevnisite.itch.io/the-house-is-haunted" target="_blank" rel="noopener">Get The House Is Haunted on itch.io</a>
-    </div>
 
-    <div class="gallery">
-      <button class="shot big" data-full="screenshots/hih_house.jpg"><img src="screenshots/hih_house_thumb.jpg" alt="The whole terraced house at night, cut away to show every room, the lamps lit and the shipyard cranes beyond" loading="lazy"><span class="cap">The house, January 1980</span></button>
-      <button class="shot big" data-full="screenshots/hih_old_woman.jpg"><img src="screenshots/hih_old_woman_thumb.jpg" alt="Halloween: a floating old woman made of pale green mist on the front step, finger to her lips, as the wee girl comes to the door" loading="lazy"><span class="cap">Halloween: not every caller is a guiser</span></button>
-      <button class="shot" data-full="screenshots/hih_red_eyes.jpg"><img src="screenshots/hih_red_eyes_thumb.jpg" alt="The man at the living-room window after a tap on the glass: 'Jesus, Mary and Joseph, what was that?'" loading="lazy"><span class="cap">A tap on the glass</span></button>
-      <button class="shot" data-full="screenshots/hih_guisers.jpg"><img src="screenshots/hih_guisers_thumb.jpg" alt="Two guisers at the front door, a bedsheet ghost and a wee witch with a turnip lantern: 'Help the Halloween party, missus!'" loading="lazy"><span class="cap">"Help the Halloween party, missus!"</span></button>
-      <button class="shot" data-full="screenshots/hih_christmas.jpg"><img src="screenshots/hih_christmas_thumb.jpg" alt="Christmas 1987: the family in the settee and armchairs round the television, the tree lit in the corner" loading="lazy"><span class="cap">Christmas 1987: seven of them</span></button>
-      <button class="shot" data-full="screenshots/hih_stink.jpg"><img src="screenshots/hih_stink_thumb.jpg" alt="A green stink cloud over the living room as the family turns on Granny: 'Granny! Was that you?!'" loading="lazy"><span class="cap">Make it stink. They'll blame Granny.</span></button>
-      <button class="shot" data-full="screenshots/hih_blame.jpg"><img src="screenshots/hih_blame_thumb.jpg" alt="A puddle of glowing ectoplasm inside the door; Frank, back on his feet: 'I'm grand. Siobhan, what's this?' 'I never!'" loading="lazy"><span class="cap">Ectoplasm: "I'm grand. Siobhan, what's this?"</span></button>
-      <button class="shot" data-full="screenshots/hih_story.jpg"><img src="screenshots/hih_story_thumb.jpg" alt="A Belfast ghost story between chapters: the Gothic gate of Friar's Bush graveyard at night, a figure behind the bars" loading="lazy"><span class="cap">A Belfast ghost story: Friar's Bush</span></button>
-    </div>
-    <p class="note">The ghost never harms anyone: no injuries, nobody hurt, just a family deciding the house isn't for them. Early access: captured in engine, and still being added to.</p>
-  </div>
-</section>
-
-<!-- ============ SILLY STUFF: daft things made for fun for the kids (each lives in silly/) ============ -->
-<section id="silly" class="silly">
-  <div class="wrap">
-    <p class="eyebrow">Just for fun</p>
-    <h2>Silly <span class="hl">stuff</span></h2>
-    <p class="lead">Daft wee things we made for fun for the kids. Nothing to buy, nothing to wishlist, just nonsense. They all play right here in your browser.</p>
-    <div class="silly-grid">
-      <a class="silly-card" href="silly/costa-chaos/">
-        <span class="silly-pics"><img src="silly/costa-chaos/lookee.jpg" alt="Lookee Lookee Tycoon cover: a beach seller in a red cap waving" width="630" height="500" loading="lazy"><img src="silly/costa-chaos/hotel.jpg" alt="Zero Star Hotel cover: the hotel manager waving at sunset" width="630" height="500" loading="lazy"></span>
-        <span class="silly-txt">
-          <h3>Costa Chaos!</h3>
-          <p>Two games in one from the Spanish Costa. Flog plastic tat to sunburnt tourists in <strong>Lookee Lookee Tycoon</strong>, or drag the worst hotel on the strip up to three stars in <strong>Zero Star Hotel</strong>. Hello chicken nugget!</p>
-          <span class="btn silly-btn">Play</span>
-        </span>
-      </a>
-      <a class="silly-card" href="silly/silly-session/">
-        <span class="silly-pics one"><img src="silly/silly-session/thumb.jpg" alt="The Silly Session: five wee men playing bodhr&aacute;n, tin whistle, fiddle, banjo and accordion" width="640" height="349" loading="lazy"></span>
-        <span class="silly-txt">
-          <h3>The Silly Session</h3>
-          <p>An Irish music session, but a silly one. Bob Piper swaps from bodhr&aacute;n to whistle, fiddle, banjo and accordion until the whole band plays one tune: The Mountains of Mourne to start, then She'll Be Coming Round the Mountain, and finally his own tough jig. Tap or use A S D.</p>
-          <span class="btn silly-btn">Play</span>
-        </span>
-      </a>
-      <a class="silly-card" href="silly/escape-from-east-belfast/">
-        <span class="silly-pics one"><img src="silly/escape-from-east-belfast/thumb.jpg" alt="Escape from East Belfast: four mates brawling on the Comber Greenway in ZX Spectrum style, Harland and Wolff cranes behind them" width="640" height="349" loading="lazy"></span>
-        <span class="silly-txt">
-          <h3>Escape from East Belfast</h3>
-          <p>You and your mates fell asleep on the Glider. Now battle back from Dundonald, past the Moat and down the Comber Greenway to the city centre, punching hoods, scumbags and bag ladies on the way. Four players on gamepads or CPU mates, five levels, Spectrum graphics and a tune for every one.</p>
-          <span class="btn silly-btn">Play</span>
-        </span>
-      </a>
-      <a class="silly-card" href="daddys-tales/">
-        <span class="silly-pics one"><img src="daddys-tales/thumb.jpg" alt="Daddy's Tales: a pop-up book open at The Wee Man in the Well, a wee man peeking out of a stone well at night" width="640" height="349" loading="lazy"></span>
-        <span class="silly-txt">
-          <h3>Daddy&rsquo;s Tales</h3>
-          <p>Twenty-four spooky and silly bedtime stories written for Aaron and Connor as they grew up, now a pop-up book you can read right here. Turn the pages, pull the tabs, and turn the sound up for knocks, burps and coo coos. Best read with the big light on.</p>
-          <span class="btn silly-btn">Read</span>
-        </span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ MORE FROM 3BL: the itch.io games, in full on games.html ============ -->
-<section id="itch" class="itch">
-  <div class="wrap">
-    <p class="eyebrow">10 / Also from 3BL_Indie - out now on itch.io</p>
-    <h2>Twenty-three more games, <span class="hl">out now</span></h2>
-    <p class="lead" style="margin-top:16px">The smaller, faster games we make between the big ones: kaiju in a neon bay, pirates on an oil rig, a city on a rock in the sea, a parasite in orbit, neon arcade games, couch battles, a submarine, a hippo and the Martians. Every one has a bit of home in it.</p>
+    <h3 class="games-group">Out now</h3>
     <div class="game-grid">
       <div class="game-card" style="--c:#E8B04A">
         <a class="gc-shot" href="https://apps.microsoft.com/detail/9MZSC0GF71BP" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="screenshots/pp_broadside_thumb.jpg" alt="Planks &amp; Powder: a blocky wooden ship fires a broadside at a raider on Strangford Lough" loading="lazy"></a>
@@ -760,15 +285,6 @@
           <p>Build a block ship, sail the real Strangford Lough and sink raiders with cannon fire.</p>
           <span class="gc-plat">Windows · Microsoft Store</span>
           <div class="gc-links"><a href="https://apps.microsoft.com/detail/9MZSC0GF71BP" target="_blank" rel="noopener">Microsoft Store</a></div>
-        </div>
-      </div>
-      <div class="game-card" style="--c:#7BC043">
-        <a class="gc-shot" href="https://gamesdevnisite.itch.io/jungle-and-tunnels" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="screenshots/jt_sunset_huey_thumb.jpg" alt="Jungle and Tunnels: a Huey silhouetted against a jungle sunset above a glowing tunnel" loading="lazy"></a>
-        <div class="gc-body">
-          <h3><a href="https://gamesdevnisite.itch.io/jungle-and-tunnels" target="_blank" rel="noopener">Jungle &amp; Tunnels</a></h3>
-          <p>Hunt the VC through jungle and villages, call in the Hueys, then go down the hole with a torch.</p>
-          <span class="gc-plat">Windows · Microsoft Store · itch.io · Steam soon</span>
-          <div class="gc-links"><a href="#jt">Review</a><a href="https://apps.microsoft.com/detail/9NRKLB9KJX9L" target="_blank" rel="noopener">Microsoft Store</a><a href="https://gamesdevnisite.itch.io/jungle-and-tunnels" target="_blank" rel="noopener">itch.io</a></div>
         </div>
       </div>
       <div class="game-card" style="--c:#FFB13B">
@@ -965,9 +481,547 @@
   </div>
 </section>
 
+<!-- ============ THE GAME ============ -->
+<section id="game">
+  <div class="wrap">
+    <p class="eyebrow">The Game</p>
+    <div class="pitch">
+      <div>
+        <h2>Lead the many. <span class="hl">Lose none.</span></h2>
+        <p class="quote" style="margin-top:28px">Think <em>Pikmin</em> meets <em>Holdfast</em>: a straggling crowd becomes a drilled little army, and every call you make decides who makes it.</p>
+      </div>
+      <div>
+        <p class="lead">You are <strong>the Founder</strong>, and you don't stay down. Every rebel you find falls in behind you, and <strong>every one is a spare life</strong>: get knocked down and you're back up in the nearest of them. The ones you lose are gone for good. Scout ahead on your own if you dare, but out there alone, one more knock ends it.</p>
+        <p class="lead">You can throw a punch, and you will, but <strong>the shape of your squad is your real weapon:</strong> thread a breach in Column, sweep the open ground in Line, and plant a Square when the cavalry comes thundering in. Change too late and the stragglers pay for it.</p>
+        <p class="lead">Get your people out, bank them toward a nation of a hundred, and go back for more. The island will be waiting.</p>
+      </div>
+    </div>
+
+    <div class="features four">
+      <div class="panel cut feature"><div class="num">01</div><h3>Recruit</h3><p>Rebels hide in villages, wander the cane and wait in the Crown's cells. Walk close and they fall in: a growing column of men and women at your back.</p></div>
+      <div class="panel cut feature"><div class="num">02</div><h3>Reform</h3><p>Column, Line, Square, on one button. Every enemy's cone tells you what it's doing: green while it looks, amber when it's seen you, red before it fires. Read it, reform, and the danger walks past you.</p></div>
+      <div class="panel cut feature"><div class="num">03</div><h3>Rise</h3><p>Every man and woman you bring home counts toward a free nation. The bigger it grows, the more the Crown sends to stop you.</p></div>
+      <div class="panel cut feature"><div class="num">04<span class="new">NEW</span></div><h3>Many hands</h3><p>The bigger your crowd, the more you can do. Six men on a platform lift a gate. A crew at the capstan winds up a drawbridge. Hands on the pump drain a ford and strand its alligators. A team drags a field gun up to the Redoubt. And there's a hole in the wall only Bonnie fits, with a bell beyond it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORMATIONS ============ -->
+<section id="formations" class="formations">
+  <div class="wrap">
+    <p class="eyebrow">Core Mechanic</p>
+    <h2>Three shapes. <span class="hl">One right answer.</span></h2>
+    <p class="lead" style="margin-top:16px">Every formation saves your people from something and leaves them open to something else. Your men need time to move into the new shape, so a change made a heartbeat too late still costs you.</p>
+
+    <div class="form-grid">
+      <div class="panel cut form-card">
+        <svg viewBox="0 0 200 120" fill="#FF8C2B" aria-hidden="true">
+          <rect x="92" y="6" width="16" height="16"/><rect x="92" y="30" width="16" height="16"/><rect x="92" y="54" width="16" height="16"/><rect x="92" y="78" width="16" height="16"/><rect x="92" y="102" width="16" height="12"/>
+        </svg>
+        <h3>Column</h3>
+        <p class="use">Breaches, bridges, mountain ledges</p>
+        <p>Single file through the gap in the fort wall and along the cliff path. Long and thin: a volley down its length is a disaster.</p>
+      </div>
+      <div class="panel cut form-card">
+        <svg viewBox="0 0 200 120" fill="#1FC8DA" aria-hidden="true">
+          <rect x="14" y="52" width="16" height="16"/><rect x="48" y="52" width="16" height="16"/><rect x="82" y="52" width="16" height="16"/><rect x="116" y="52" width="16" height="16"/><rect x="150" y="52" width="16" height="16"/>
+        </svg>
+        <h3 style="color:var(--accent-2)">Line</h3>
+        <p class="use">Open ground</p>
+        <p>A wide front, fast across the open field. A volley from the side only catches its end. Caught head on, it loses everyone.</p>
+      </div>
+      <div class="panel cut form-card">
+        <svg viewBox="0 0 200 120" fill="#F2EFE6" aria-hidden="true">
+          <rect x="62" y="18" width="16" height="16"/><rect x="92" y="18" width="16" height="16"/><rect x="122" y="18" width="16" height="16"/>
+          <rect x="62" y="52" width="16" height="16"/><rect x="122" y="52" width="16" height="16"/>
+          <rect x="62" y="86" width="16" height="16"/><rect x="92" y="86" width="16" height="16"/><rect x="122" y="86" width="16" height="16"/>
+          <rect x="94" y="54" width="12" height="12" fill="#FF8C2B"/>
+        </svg>
+        <h3 style="color:var(--text)">Square</h3>
+        <p class="use">Cavalry, bayonets, the boar</p>
+        <p>A closed ring with you at its heart. It turns a bayonet charge and stops dragoons and a wild boar dead. Slow, and too wide for narrow ground. Against the cannon, no shape helps: get out of its cone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE ISLAND ============ -->
+<section id="island">
+  <div class="wrap">
+    <p class="eyebrow">The Island</p>
+    <h2>An island that <span class="hl">fights back</span></h2>
+    <p class="lead" style="margin-top:16px">The redcoats hold the forts. The island holds everything else.</p>
+
+    <div class="threats">
+      <div class="panel cut threat"><h3><i>!</i>Redcoat lines</h3><p>"Make ready! Present!" Muskets level, their lane on the ground turns from amber to red, and you have a heartbeat to get out of it.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>Dragoons</h3><p>They sweep the open ground in threes. Nothing in your squad can touch them, except Bonnie.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>Cannon batteries</h3><p>A fire cone swings across the ground to find you, the gunners present, and the gun roars. No formation stops a cannonball: get out of the cone, or get to the gun.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>Riflemen and grenadiers</h3><p>Green-jacketed marksmen who punish standing still. Grenades that sit in a red ring, fizzing, before they burst.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>The eagle</h3><p>It circles the mountain pass and stoops on the straggler. Men thrown from the ledge vanish into the fog below.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>Alligators</h3><p>One lies in every ford, patient and impossible to kill. Wading slows everyone, in any formation. You'll hear the hiss before the jaws.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>The fer-de-lance</h3><p>It waits in the cane. Walk your people round it, or count the cost.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>Man traps</h3><p>Steel jaws hidden on the plantation paths. Look before you lead anyone through.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>The gaoler</h3><p>A bearded brute in a foul temper, with a cudgel that sends your whole squad flying and the key to the cells on his belt. Knock him down for it. It takes a while.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>The barracks</h3><p>Fight within earshot of it and the bugle sounds: squads of line infantry turn out to hunt you down. Go low, and go round.</p></div>
+      <div class="panel cut threat"><h3><i>!</i>The wild boar</h3><p>It charges your squad on sight and scatters everyone it hits, unless it meets a Square.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE DOG ============ -->
+<section id="dog" style="padding-top:0">
+  <div class="wrap">
+    <div class="split">
+      <img src="screenshots/river_crossing.jpg" alt="The squad wades the river beside the bridge, the water breaking white along its banks" loading="lazy">
+      <div>
+        <p class="eyebrow">Bonnie, a loyal dog at your heel</p>
+        <h2>The only thing on the island <span class="hl">a dragoon fears</span></h2>
+        <ul class="ticks">
+          <li>Bonnie follows you everywhere and goes for any redcoat who comes near your people.</li>
+          <li>She runs down fleeing snipers and grenadiers, and she is the only thing that can bring down a dragoon.</li>
+          <li>She's terrified of alligators, snakes and traps. Listen for her warning growl.</li>
+          <li><strong>Second player: Bonnie.</strong> Hand her to a friend on a controller. She stays tethered to the Founder, the camera pulls out to keep her in frame, every redcoat hunts her too, and if she falls one of your people gives his life for hers. Only she fits through the gaps in the walls, and she is the only one who can ring the bell beyond them.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WAYS TO PLAY ============ -->
+<section id="play" style="background:linear-gradient(180deg,transparent,rgba(255,140,43,.04),transparent)">
+  <div class="wrap">
+    <p class="eyebrow">Ways to Play</p>
+    <h2>Four ways to <span class="hl">take the field</span></h2>
+    <p class="lead" style="margin-top:16px">Follow the Founder from the cove to Kingston, push your luck on an endless island, or settle it on the battlefield, against the computer or a friend on the same sofa.</p>
+
+    <div class="features four">
+      <div class="panel cut feature"><div class="num">MODE 01<span class="new">REBUILT</span></div><h3>Campaign</h3><p>Ten levels across the island, from the Cove Landing to Kingston Harbour, and none of them a corridor: a village on its terrace above the beach, three cane fields climbing to a mill, a causeway through the swamp, a river in flood, a hill in three belts, a town on a slope. Dusk at the mill, rain on the Cane Road, lamplight at the magazine, fog on the Mountain Pass, and an ending worth the march. Bring a friend: Bonnie takes a second controller.</p></div>
+      <div class="panel cut feature"><div class="num">MODE 02<span class="new">NEW WEAPONS</span></div><h3>Skirmish</h3><p>A freshly made island every trip. Go back inland for more men, again and again, harder every time, until one trip is too many. Your score is how far you got. Save nearly everyone on the right campaign levels and the Founder takes a weapon with him: a claymore from the Smugglers' Harbour, a flintlock from the Sugar Mill, timed grenades from the Powder Magazine and a long rifle from the Redoubt.</p></div>
+      <div class="panel cut feature"><div class="num">MODE 03<span class="new">NEW</span></div><h3>1 Player Battle</h3><p>Take on the computer at Easy, Normal or Hard. It plays by your rules: it forms Square against your horse, waits for your line to fire, and comes for your commander the moment you look away.</p></div>
+      <div class="panel cut feature"><div class="num">MODE 04<span class="new">UPDATED</span></div><h3>2 Player Battle</h3><p>Couch versus on one screen, keyboard against gamepad, in the spirit of the classic 16-bit field battles. River, Chasm or Desert, drawn at random. Lose your commander and you lose the battle, and a sniper can see the whole way across the field: keep yours behind his rock. Built for Steam Remote Play Together too, so the sofa can be two sofas.</p></div>
+    </div>
+
+    <div style="margin-top:48px">
+      <p class="eyebrow">Your army on the battlefield</p>
+      <div class="tags">
+        <span class="hot">Commander</span><span>Line</span><span>Bayonets</span><span>Cavalry</span><span>Cannon</span><span>Sniper</span><span>Brawler</span><span>Grenadier</span>
+      </div>
+      <p style="margin-top:18px;font-size:14px;max-width:72ch">Steer one unit at a time, each with its own readiness bar. Hold fire and the cannon's marker walks out, then let go. Line up your sniper and a ring closes on the man he's about to hit, from anywhere on the field; both players can see it, so that man had better move. Cross the bridge in Column, charge in Line, and nobody fires from the river. And every field has powder kegs: one good shot and both armies scatter.</p>
+      <div class="video-frame">
+        <video autoplay muted loop playsinline preload="metadata" poster="video/two_player_battle_poster.jpg" aria-label="The 2 Player Battle in play">
+          <source src="video/two_player_battle.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="video-note">The 2 Player Battle, captured in engine from the current build: the computer playing both armies at the bridge on the River.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCREENSHOTS ============ -->
+<section id="screens">
+  <div class="wrap">
+    <p class="eyebrow">In Engine</p>
+    <h2>Screenshots</h2>
+    <p class="lead" style="margin-top:16px">Captured in engine from the current build. Click any image to enlarge.</p>
+
+    <!-- To add a screenshot: put the full image and a _thumb copy in /screenshots and add a matching button below. -->
+    <div class="gallery" id="gallery">
+      <button class="shot big" data-full="screenshots/cove_landing_dusk.jpg"><img src="screenshots/cove_landing_dusk_thumb.jpg" alt="The Cove Landing at dusk: the village on its walled terrace and the fort beyond" loading="lazy"><span class="cap">The Cove Landing, at dusk</span></button>
+      <button class="shot big" data-full="screenshots/river_crossing.jpg"><img src="screenshots/river_crossing_thumb.jpg" alt="The squad wades the river beside the bridge, the water breaking white along its banks" loading="lazy"><span class="cap">The River Crossing</span></button>
+      <button class="shot big" data-full="screenshots/dawn_redcoat_line.jpg"><img src="screenshots/dawn_redcoat_line_thumb.jpg" alt="At first light a redcoat line presents its muskets across the fort yard as the Founder runs for the gate" loading="lazy"><span class="cap">First light at the Cove Landing</span></button>
+      <button class="shot" data-full="screenshots/rope_ferry.jpg"><img src="screenshots/rope_ferry_thumb.jpg" alt="The squad files down the trail to the rope ferry on the river" loading="lazy"><span class="cap">The rope ferry</span></button>
+      <button class="shot" data-full="screenshots/cannon_burst.jpg"><img src="screenshots/cannon_burst_thumb.jpg" alt="Two shells burst beside the squad on the Redoubt, fire and smoke and a burn on the grass" loading="lazy"><span class="cap">The Redoubt's guns find the range</span></button>
+      <button class="shot" data-full="screenshots/cannon_and_dragoons.jpg"><img src="screenshots/cannon_and_dragoons_thumb.jpg" alt="Dragoons ride through the lane of the Redoubt's gun as it fires" loading="lazy"><span class="cap">Dragoons under their own gun</span></button>
+      <button class="shot" data-full="screenshots/sugar_mill_column.jpg"><img src="screenshots/sugar_mill_column_thumb.jpg" alt="A column on the cane trail at the Sugar Mill in the evening light, the stakes ahead" loading="lazy"><span class="cap">Evening at the Sugar Mill</span></button>
+      <button class="shot" data-full="screenshots/powder_yard_night.jpg"><img src="screenshots/powder_yard_night_thumb.jpg" alt="By lamplight the squad circles a lit powder keg in the magazine's yard, its blast ring red on the ground" loading="lazy"><span class="cap">The Powder Magazine: a keg alight</span></button>
+      <button class="shot" data-full="screenshots/garrison_volley.jpg"><img src="screenshots/garrison_volley_thumb.jpg" alt="A redcoat line on the Garrison Town's parade ground turns on the column" loading="lazy"><span class="cap">The Garrison Town's parade ground</span></button>
+      <button class="shot" data-full="screenshots/kingston_dragoons.jpg"><img src="screenshots/kingston_dragoons_thumb.jpg" alt="Dragoons among the squad on the sand at Kingston Harbour" loading="lazy"><span class="cap">Kingston: the last mile</span></button>
+      <button class="shot big" data-full="screenshots/fort_yard_flag.jpg"><img src="screenshots/fort_yard_flag_thumb.jpg" alt="The Founder slips through the fort gate under the Union flag as the redcoat line turns" loading="lazy"><span class="cap">Through the gate</span></button>
+      <button class="shot" data-full="screenshots/boar_lane.jpg"><img src="screenshots/boar_lane_thumb.jpg" alt="A wild boar's charge lane across the Sugar Mill's trail, the squad in column short of the stakes" loading="lazy"><span class="cap">A boar marks its lane</span></button>
+      <button class="shot" data-full="screenshots/harbour_wall.jpg"><img src="screenshots/harbour_wall_thumb.jpg" alt="The squad files along the Smugglers' Harbour wall above the pool" loading="lazy"><span class="cap">The Smugglers' Harbour</span></button>
+      <button class="shot" data-full="screenshots/garrison_gate.jpg"><img src="screenshots/garrison_gate_thumb.jpg" alt="The column crosses the Garrison Town's bridge between its walls" loading="lazy"><span class="cap">Into the Garrison Town</span></button>
+      <button class="shot" data-full="screenshots/river_volley.jpg"><img src="screenshots/river_volley_thumb.jpg" alt="Redcoats form on the far bank as the squad comes off the bridge" loading="lazy"><span class="cap">Off the bridge, into a volley</span></button>
+      <button class="shot big" data-full="screenshots/kingston_quay.jpg"><img src="screenshots/kingston_quay_thumb.jpg" alt="The last quay at Kingston Harbour, the ship waiting beyond the gate tower" loading="lazy"><span class="cap">Kingston Harbour: the ship</span></button>
+      <button class="shot" data-full="screenshots/cane_road_rain.jpg"><img src="screenshots/cane_road_rain_thumb.jpg" alt="The squad on the Cane Road's causeway in driving rain, the swamp either side" loading="lazy"><span class="cap">The Cane Road in the rain</span></button>
+      <button class="shot" data-full="screenshots/mountain_pass.jpg"><img src="screenshots/mountain_pass_thumb.jpg" alt="The squad at the foot of the Mountain Pass, the first rope bridge above them and an eagle's shadow on the rock" loading="lazy"><span class="cap">The Mountain Pass</span></button>
+      <button class="shot big" data-full="screenshots/battle_river.jpg"><img src="screenshots/battle_river_thumb.jpg" alt="Battle: two armies meet at the bridge on the River, a shell bursting on the bank" loading="lazy"><span class="cap">Battle: the River</span></button>
+      <button class="shot" data-full="screenshots/battle_desert.jpg"><img src="screenshots/battle_desert_thumb.jpg" alt="Battle: the Desert field, each commander in his square of stakes, the armies closing between" loading="lazy"><span class="cap">Battle: the Desert</span></button>
+      <button class="shot" data-full="screenshots/battle_chasm.jpg"><img src="screenshots/battle_chasm_thumb.jpg" alt="Battle: the Chasm, two bridges over the drop and a cannon's ring on the far side" loading="lazy"><span class="cap">Battle: the Chasm</span></button>
+      <button class="shot big" data-full="screenshots/the_hundred_charge.jpg"><img src="screenshots/the_hundred_charge_thumb.jpg" alt="The hundred charge a redcoat line with its back to the sea as the guns' shells burst among them" loading="lazy"><span class="cap">The hundred charge the line</span></button>
+      <button class="shot big" data-full="screenshots/the_field_is_theirs.jpg"><img src="screenshots/the_field_is_theirs_thumb.jpg" alt="The Founder stands on the won field, his men at the shore and two ships beyond" loading="lazy"><span class="cap">The field is theirs</span></button>
+      <button class="shot" data-full="screenshots/alligator_ford.jpg"><img src="screenshots/alligator_ford_thumb.jpg" alt="An alligator glides at a Column wading the ford" loading="lazy"><span class="cap">Alligators lie in every ford</span></button>
+      <button class="shot big" data-full="screenshots/run_for_the_boat.jpg"><img src="screenshots/run_for_the_boat_thumb.jpg" alt="The squad aboard the boat as it pulls away from the dock at the Smugglers\' Harbour" loading="lazy"><span class="cap">Away safe</span></button>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button type="button" class="lb-btn" id="lb-close">Close</button>
+  <button type="button" class="lb-btn" id="lb-prev" aria-label="Previous">&lt;</button>
+  <button type="button" class="lb-btn" id="lb-next" aria-label="Next">&gt;</button>
+  <img id="lb-img" alt="">
+  <div class="lb-cap" id="lb-cap"></div>
+</div>
+
+<!-- ============ STORY ============ -->
+<section id="story" style="background:linear-gradient(180deg,transparent,rgba(31,200,218,.04),transparent)">
+  <div class="wrap">
+    <p class="eyebrow">Setting</p>
+    <h2>From County Down, <span class="hl">1798</span></h2>
+    <p class="crawl">"They buried the Founder with his sword and his colours. The grave did not hold him."</p>
+
+    <div class="story">
+      <div class="panel cut">
+        <h3>The <span>history</span></h3>
+        <p>In the summer of 1798 the United Irishmen rose against the Crown, and in County Down the rising ended at Ballynahinch. The rebels who survived were hanged, jailed, transported or scattered, and some of them ended up across the ocean, on the Crown's sugar islands. Forged in Formation begins there.</p>
+      </div>
+      <div class="panel cut">
+        <h3>The <span>voices</span></h3>
+        <p>The Founder, his followers and the redcoats who hunt them are voiced by a young Northern Irish cast. Every order, rallying cry and line of narration was recorded here at home for the game.</p>
+      </div>
+    </div>
+    <p class="note">Forged in Formation is a work of fiction inspired by the 1798 rebellion and the Irish rebels who ended up in the Caribbean after it. It depicts colonial warfare and the plantation system, including the man traps planters set for people escaping slavery. The fighting is stylised and bloodless: men are knocked down, not torn apart.</p>
+  </div>
+</section>
+
+<!-- ============ WISHLIST ============ -->
+<section id="wishlist" class="wishlist">
+  <div class="wrap">
+    <p class="eyebrow">Coming to Steam</p>
+    <h2>Wishlist <span class="hl">Forged in Formation</span></h2>
+    <p>Wishlisting is the single biggest thing you can do for a small studio. It tells Steam to show the game to more players, and Steam will tell you the moment it's out. The store page is live now, with the trailer and screenshots.</p>
+    <a class="btn solid" data-steam href="#wishlist">Wishlist on Steam</a>
+    <div class="steam-widget" id="steam-widget" hidden></div>
+  </div>
+</section>
+
+<!-- ============ LATEST NEWS ============ -->
+<section id="news" class="news">
+  <div class="wrap">
+    <p class="eyebrow">Latest news from 3BL_Indie</p>
+    <h2>Fresh from <span class="hl">the studio</span></h2>
+    <div class="news-grid">
+      <article class="panel cut news-item">
+        <p class="news-date">22 November 2026 · New</p>
+        <h3>Forged in Formation's Steam page is live: wishlist it now</h3>
+        <p>Our store page is up on Steam, with the trailer and screenshots. The game isn't on sale yet, but you can wishlist it today. It's the single biggest thing you can do for a small studio: it tells Steam to show the game to more players, and Steam will tell you the day it's out.</p>
+        <div class="news-links"><a class="btn solid" data-steam href="#wishlist">Wishlist on Steam</a><a class="btn" href="#trailer">Watch the trailer</a></div>
+      </article>
+      <article class="panel cut news-item news-song">
+        <p class="news-date">Christmas 2026</p>
+        <h3>A Christmas song for our followers</h3>
+        <p>Thank you for following 3BL this year. Here's a little song from us to say Happy Christmas: <strong>The Roads That We Shared</strong>.</p>
+        <video id="xmas-song" controls preload="none" playsinline poster="video/the_roads_that_we_shared_poster.jpg">
+          <source src="video/the_roads_that_we_shared.mp4" type="video/mp4">
+          Your browser can't play this video. <a href="video/the_roads_that_we_shared.mp4">Download the song</a>.
+        </video>
+        <p class="video-note">3 minutes. Happy Christmas from all of us at 3BL_Indie.</p>
+      </article>
+      <article class="panel cut news-item news-planks" id="planks">
+        <p class="news-date">17 November 2026 · New</p>
+        <h3>Planks &amp; Powder is out now on the Microsoft Store</h3>
+        <p>Build your own wooden ship block by block, then sail the real Strangford Lough, from Portaferry through the Narrows and past Sketrick Island, all the way home to Newtownards under Scrabo Tower. Fire broadsides at raiders and watch every plank break: hole her below the waterline and she floods, lists and goes down. Race the regatta round the marks, run past the Revenue cutters at night, storm the old fort on Rough Island, or survive wave after wave in Open Sea. Up to four can crew one ship on the sofa, or battle over your home network. Easy one-button controls for younger sailors.</p>
+        <div class="pp-trailer" style="position:relative;width:100%;height:0;padding-top:56.25%;overflow:hidden;background:#000;margin:6px 0 4px">
+          <video controls preload="none" playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;background:#000" poster="video/planks_and_powder_poster.jpg">
+            <source src="video/planks_and_powder_trailer.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="video/planks_and_powder_trailer.mp4">Download the trailer</a>.
+          </video>
+        </div>
+        <p class="video-note">37-second trailer. Made in Newtownards.</p>
+        <div class="news-links"><a class="btn solid" href="https://apps.microsoft.com/detail/9MZSC0GF71BP" target="_blank" rel="noopener">Get it on the Microsoft Store</a></div>
+      </article>
+      <article class="panel cut news-item">
+        <p class="news-date">18 November 2026</p>
+        <h3>Forged in Formation is coming to Steam as the full game</h3>
+        <p>A change of plan, and a good one: Forged in Formation won't be in Early Access. It's coming to Steam finished, version 1.0, with the whole ten-level campaign, Skirmish, the 1 Player Battle and the 2 Player Battle. Our store page is with Steam for checking now. The Wishlist buttons here go live the day it's up, and we'll give you the release date as soon as it's certain.</p>
+        <div class="news-links"><a class="btn" href="#trailer">Watch the trailer</a><a class="btn solid" data-steam href="#wishlist">Wishlist on Steam</a></div>
+      </article>
+      <article class="panel cut news-item">
+        <p class="news-date">14 November 2026</p>
+        <h3>Both our games are coming to Steam in 2027</h3>
+        <p>Forged in Formation and Defend the Drift now each have their own place on Steam. Both are coming to Steam Early Access in 2027: Forged in Formation in March, and Defend the Drift, our battle game of the Anglo-Zulu War. Their store pages are being built now, and they'll be taking wishlists soon. The Wishlist buttons on this page go live the day they do.</p>
+        <div class="news-links"><a class="btn" href="#trailer">Forged in Formation</a><a class="btn" href="#drift">Defend the Drift</a></div>
+      </article>
+      <article class="panel cut news-item">
+        <p class="news-date">8 November 2026</p>
+        <h3>Bolts &amp; Boulders is now on the Microsoft Store</h3>
+        <p>Our castle-smashing siege game is now on Windows through the Microsoft Store, as well as on itch.io. Every wall is built from hundreds of voxel bricks that crack, topple and burn. Play Sir Roland of the Blue Keep, aim the catapult with boulders, fire pots and powder kegs, then fight hand to hand once the gate gives way. Raise ladders, ram gates and dig mines in Siege mode, or build your own castle in the Castle Designer and defend it against the computer or a friend, pass-and-play or over your home network.</p>
+        <div class="pp-trailer" style="position:relative;width:100%;height:0;padding-top:56.25%;overflow:hidden;background:#000;margin:6px 0 4px">
+          <video controls preload="none" playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;background:#000" poster="video/bolts_and_boulders_poster.jpg">
+            <source src="video/bolts_and_boulders_trailer.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="video/bolts_and_boulders_trailer.mp4">Download the trailer</a>.
+          </video>
+        </div>
+        <p class="video-note">27-second trailer.</p>
+        <div class="news-links"><a class="btn solid" href="https://apps.microsoft.com/detail/9p27lsgjpq8p?ocid=webpdpshare" target="_blank" rel="noopener">Get it on the Microsoft Store</a><a class="btn" href="https://gamesdevnisite.itch.io/bolts-and-boulders" target="_blank" rel="noopener">Also on itch.io</a></div>
+      </article>
+    </div>
+    <details class="news-more"><summary>More news</summary>
+    <div class="news-grid">
+      <article class="panel cut news-item">
+        <p class="news-date">November 2026</p>
+        <h3>Wee Man is out on itch.io</h3>
+        <p>Wee Man, our life sim about a wee man living inside your computer, is out now in early access on itch.io.</p>
+        <div class="news-links"><a class="btn solid" href="https://gamesdevnisite.itch.io/weeman" target="_blank" rel="noopener">Get Wee Man on itch.io</a></div>
+      </article>
+      <article class="panel cut news-item">
+        <p class="news-date">November 2026</p>
+        <h3>Kaiju Coast now plays in your browser</h3>
+        <p>No download needed: hold the bay against the kaiju straight from the itch.io page, or still grab it for Windows and Linux.</p>
+        <div class="news-links"><a class="btn" href="https://gamesdevnisite.itch.io/kaiju-coast" target="_blank" rel="noopener">Play Kaiju Coast</a></div>
+      </article>
+      <article class="panel cut news-item">
+        <p class="news-date">November 2026</p>
+        <h3>Feck Off! is on itch.io</h3>
+        <p>The apocalypse has come to the west of Ireland, and one prepper has rigged his farmhouse to keep his stuff. Feck Off! is a darkly funny, Spy vs Spy-style trap game: boxing gloves, buckets over the door, garden turrets and land mines, while you look after the sheep, the cow and the hens. Graphic violence, played for laughs.</p>
+        <div class="news-links"><a class="btn solid" href="https://gamesdevnisite.itch.io/feck-off" target="_blank" rel="noopener">Get Feck Off! on itch.io</a></div>
+      </article>
+      <article class="panel cut news-item">
+        <p class="news-date">November 2026</p>
+        <h3>Drawn Deep is on itch.io</h3>
+        <p>Drawn Deep is our four-player dungeon crawler in glowing neon vectors. The dungeon is drawn from a bag as you play, so no two runs are the same. Fight turn by turn with over-the-top spells, play pass-and-play with friends or online, and let the AI fill any empty seats.</p>
+        <div class="news-links"><a class="btn solid" href="https://gamesdevnisite.itch.io/drawn-deep" target="_blank" rel="noopener">Get Drawn Deep on itch.io</a></div>
+      </article>
+      <article class="panel cut news-item">
+        <p class="news-date">November 2026</p>
+        <h3>Geode 2 is on itch.io</h3>
+        <p>Geode 2, the follow-up to our orbital horror game Geode, is now on itch.io.</p>
+        <div class="news-links"><a class="btn solid" href="https://gamesdevnisite.itch.io/geode-2" target="_blank" rel="noopener">Get Geode 2 on itch.io</a></div>
+      </article>
+      <article class="panel cut news-item">
+        <p class="news-date">November 2026</p>
+        <h3>Trenches &amp; Tunnels is on itch.io</h3>
+        <p>Our new game Trenches &amp; Tunnels is now on itch.io.</p>
+        <div class="news-links"><a class="btn solid" href="https://gamesdevnisite.itch.io/trenches-and-tunnels" target="_blank" rel="noopener">Get Trenches &amp; Tunnels on itch.io</a></div>
+      </article>
+    </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ JUNGLE & TUNNELS ============ -->
+<section id="jt" class="jt">
+  <div class="wrap">
+    <p class="eyebrow">Out now on itch.io and the Microsoft Store / Coming soon to Steam</p>
+    <h2>Jungle <span class="hl">&amp; Tunnels</span></h2>
+    <p class="date">Command the squad, then go down the hole</p>
+    <div class="jt-get">
+      <a class="jt-btn" href="https://apps.microsoft.com/detail/9NRKLB9KJX9L" target="_blank" rel="noopener">Microsoft Store</a>
+      <a class="jt-btn" href="https://gamesdevnisite.itch.io/jungle-and-tunnels" target="_blank" rel="noopener">itch.io</a>
+      <span class="jt-steam"><i></i>Coming soon to Steam</span>
+    </div>
+    <p class="jt-steam-note">Jungle &amp; Tunnels is on its way to Steam, and it'll be out there as soon as we can release it. Play it now on Windows from itch.io or the Microsoft Store.</p>
+    <div class="jt-media">
+      <span class="jt-badge"><i></i>In the media</span>
+      <h3>As seen on YouTube: Richard Yorke goes down the tunnels</h3>
+    </div>
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/7Q1hZVEoVbE" title="Command the Squad, Enter the Tunnels | Jungle and Tunnels, by Richard Yorke" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <p class="video-note">Played and reviewed by <a href="https://youtu.be/7Q1hZVEoVbE" target="_blank" rel="noopener">Richard Yorke on YouTube</a>.</p>
+  </div>
+</section>
+
+<!-- ============ DEFEND THE DRIFT (in development) ============ -->
+<!-- The studio's second game, and the serious one: keep its words as sober as its colours. -->
+<section id="drift" class="drift">
+  <div class="wrap">
+    <p class="eyebrow">Also from 3BL_Indie - coming to Steam Early Access</p>
+    <h2>Defend <span class="hl">the Drift</span></h2>
+    <p class="date">The Anglo-Zulu War, 1879</p>
+    <div class="when"><i></i>Coming to Steam Early Access in 2027 - wishlists open soon</div>
+    <!-- Shown once DRIFT_STEAM_URL is filled in (the script at the end of the page). -->
+    <div class="drift-steam" id="drift-steam" hidden>
+      <a class="btn solid" id="drift-steam-btn" href="#drift" target="_blank" rel="noopener">Wishlist on Steam</a>
+      <div class="steam-widget" id="drift-steam-widget" hidden></div>
+    </div>
+    <!-- The trailer, with the game's own sounds and the guns manned (James, 15 November). -->
+    <div class="video-frame drift-video drift-trailer">
+      <video controls preload="none" poster="video/defend_the_drift_trailer_poster.jpg" playsinline>
+        <source src="video/defend_the_drift_trailer.mp4" type="video/mp4">
+        Your browser can't play this video. <a href="video/defend_the_drift_trailer.mp4">Download the trailer</a>.
+      </video>
+    </div>
+    <p class="video-note drift-trailer-note">Trailer, with sound: the six battles from Isandlwana to Ulundi, the Gatling, the 9-pounder and the rocket battery fired from behind the gun, and the flag over Rorke's Drift at dawn. Captured in engine from the current build, November 2026.</p>
+    <!-- Two clips side by side: the first teaser, and the rest of the war (James, 12 October). -->
+    <div class="drift-videos">
+      <div>
+        <div class="video-frame drift-video">
+          <video controls preload="none" poster="video/defend_the_drift_teaser_poster.jpg" playsinline>
+            <source src="video/defend_the_drift_teaser.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="video/defend_the_drift_teaser.mp4">Download the teaser</a>.
+          </video>
+        </div>
+        <p class="video-note">Teaser: Isandlwana, Rorke's Drift and Gingindlovu, with the Zulu army's call and then Men of Harlech. Captured in engine from the current build, October 2026.</p>
+      </div>
+      <div>
+        <div class="video-frame drift-video">
+          <video controls preload="none" poster="video/defend_the_drift_war_poster.jpg" playsinline>
+            <source src="video/defend_the_drift_war.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="video/defend_the_drift_war.mp4">Download the clip</a>.
+          </video>
+        </div>
+        <p class="video-note">The rest of the war: Hlobane, Kambula and Ulundi, with the Zulu army's call and then The British Grenadiers, the Royal Scots Fusiliers' march, at Ulundi. Captured in engine from the current build, October 2026.</p>
+      </div>
+    </div>
+    <div class="pitch drift-pitch">
+      <div>
+        <p class="lead">Our second game is the serious one. <strong>Defend the Drift</strong> is a battle game of the Anglo-Zulu War for one or two players: one side commands the British garrison, the other the Zulu army.</p>
+        <p class="lead">Six battles, the whole campaign from the first British defeat to the last Zulu one, fought on their real ground and following their day as it went: the eclipse over Isandlwana, the hospital burning through the night at Rorke's Drift, Wood's horsemen riding for their lives down the Devil's Pass at Hlobane, Buller's horsemen drawing the uNgobamakhosi on at Kambula the next day, the mist lifting off the laager at Gingindlovu, and the great square on the plain before oNdini at Ulundi, the last battle of the war.</p>
+        <p class="lead">Between and after the fighting, the people who were there speak: every battle opens with a line from the record of 1879, its worst moment is told in the words of the time, and it ends in silence with a passage from each side, a British writer and a Zulu voice. Every line was checked against the original.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Where it stands, October 2026</p>
+        <ul class="ticks">
+          <li>Two players on one screen, splitting when the commanders part, or a screen each over a LAN or online through Steam.</li>
+          <li>One player against the computer on either side, or two together against it.</li>
+          <li>Lead from overhead or through your commander's eyes: fire the officer's revolver, fight with the induna's iklwa, or man a Gatling yourself.</li>
+          <li>The Zulu army's horns of the buffalo, the British volley by ranks, and Gatlings, 9-pounders and rockets in the laager.</li>
+          <li>Hold the buildings: walk a commander into the hospital or the storehouse and his men take its windows and loopholes, until the thatch above them catches.</li>
+          <li>Every squad has its nerve. Losses and being outnumbered close up wear it down, and a broken squad falls back until its commander reaches it and rallies it, on either side.</li>
+          <li>Warriors climb the mealie-bag walls to get at the garrison.</li>
+          <li>At Kambula an ibutho kept waiting under the guns, or ridden at by Buller's horsemen, may charge alone before the horns are ready, as the uNgobamakhosi did in 1879.</li>
+          <li>At Ulundi the 17th Lancers wait inside the square with their lances, and ride out when the attack breaks.</li>
+          <li>Hlobane is won by getting away: get the horsemen off the mountain by its one steep pass and across the plain before the Zulu army closes in. Men whose horses fall are taken up behind their comrades, riding double.</li>
+          <li>Men carry the sick out of the burning hospital and the mealie bags into the redoubt, runners bring ammunition up to the line, and the guns have their crews in the Royal Artillery's blue.</li>
+          <li>When a battle ends the side that held the field rests where it stands and the other walks away. Nobody cheers.</li>
+          <li>Mounted men in the dress their corps wore in 1879: Buller's Frontier Light Horse in yellow-brown cord and the red-banded slouch hat, colonial horse, burghers, Mounted Infantry, the Natal Native Horse and the 17th Lancers, each on a horse that walks, canters and gallops.</li>
+          <li>Both armies are animated with the same care: the redcoats march and charge with their rifles, the warriors carry shield and iklwa and throw their spears, and every officer and induna signals his orders.</li>
+          <li>A campaign through all six battles in the order they were fought, with records and difficulty settings. It ends the way the war did: a last set of cards in silence, from Cetshwayo's offer of peace after Isandlwana to his capture, and the line that tells you whose voice you have been hearing after every battle.</li>
+          <li>The first battle teaches as you play: a hint at a time under the clock, in your own keys, gone once you have done it.</li>
+          <li>Each battle opens with a flight over the field and ends with a slow pan over the fallen of both sides.</li>
+          <li>Music from the period, every note made in code from the old printed and manuscript settings: The Warwickshire Lads for the 24th, The Campbells Are Coming on the pipes at Gingindlovu, and The Girl I Left Behind Me for the campaign. The Zulu side has no borrowed songs: its own sound is thousands of feet in time, spears on shields and a wordless hum.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <button class="shot big" data-full="screenshots/drift_rorkes_drift.jpg"><img src="screenshots/drift_rorkes_drift_thumb.jpg" alt="The iNdluyengwe advance on the mission station at Rorke's Drift, where B Company holds the yard" loading="lazy"><span class="cap">Rorke's Drift: the iNdluyengwe close on B Company</span></button>
+      <button class="shot big" data-full="screenshots/drift_horns.jpg"><img src="screenshots/drift_horns_thumb.jpg" alt="The iNdluyengwe spread into the horns of the buffalo as they close on the mission station at Rorke's Drift" loading="lazy"><span class="cap">The horns of the buffalo</span></button>
+      <button class="shot" data-full="screenshots/drift_isandlwana.jpg"><img src="screenshots/drift_isandlwana_thumb.jpg" alt="Isandlwana: the camp's tents behind the companies in their firing line, the Zulu army's chest coming on" loading="lazy"><span class="cap">Isandlwana: the camp and the firing line</span></button>
+      <button class="shot" data-full="screenshots/drift_gingindlovu.jpg"><img src="screenshots/drift_gingindlovu_thumb.jpg" alt="Gingindlovu: the square laager of wagons with a face manned on every side" loading="lazy"><span class="cap">Gingindlovu: the laager</span></button>
+      <button class="shot" data-full="screenshots/drift_title.jpg"><img src="screenshots/drift_title_thumb.jpg" alt="The title screen of Defend the Drift over the mission station" loading="lazy"><span class="cap">The title screen</span></button>
+      <button class="shot" data-full="screenshots/drift_hospital_fire.jpg"><img src="screenshots/drift_hospital_fire_thumb.jpg" alt="The hospital at Rorke's Drift burning at night, its thatch alight and the garrison along the wall beyond" loading="lazy"><span class="cap">The hospital burns through the night</span></button>
+      <button class="shot" data-full="screenshots/drift_windows.jpg"><img src="screenshots/drift_windows_thumb.jpg" alt="Soldiers at the hospital's windows and loopholes, rifles levelled, its outer doors barricaded with mealie bags" loading="lazy"><span class="cap">The garrison at the hospital's windows</span></button>
+      <button class="shot" data-full="screenshots/drift_kambula.jpg"><img src="screenshots/drift_kambula_thumb.jpg" alt="Kambula: Wood's camp on its ridge, the hexagonal wagon laager, the stone redoubt and the cattle kraal joined to it by a palisade, the infantry in front of the laager's faces" loading="lazy"><span class="cap">Kambula: Wood's camp, the laager, the redoubt and the kraal</span></button>
+      <button class="shot" data-full="screenshots/drift_kambula_horse.jpg"><img src="screenshots/drift_kambula_horse_thumb.jpg" alt="Buller's mounted men at Kambula, the Frontier Light Horse and Baker's Horse in yellow-brown cord and red-banded slouch hats on bays, browns, chestnuts and duns, beside the 7-pounders" loading="lazy"><span class="cap">Buller's horsemen at Kambula, in the cord and red-banded hats they wore</span></button>
+      <button class="shot" data-full="screenshots/drift_hlobane_pass.jpg"><img src="screenshots/drift_hlobane_pass_thumb.jpg" alt="Hlobane: Wood's mounted men in column coming down the Devil's Pass from the mountain's summit onto the narrow ridge, the cliffs grey on either side, the Zulu army coming on across the plain below" loading="lazy"><span class="cap">Hlobane: down the Devil's Pass</span></button>
+      <button class="shot" data-full="screenshots/drift_ulundi_square.jpg"><img src="screenshots/drift_ulundi_square_thumb.jpg" alt="Ulundi: Chelmsford's square on the Mahlabathini plain, the infantry on its faces, the guns at its corners, wagons of ammunition and the 17th Lancers inside, the huts of oNdini beyond and the amabutho coming on" loading="lazy"><span class="cap">Ulundi: the square, with oNdini beyond</span></button>
+      <button class="shot" data-full="screenshots/drift_ulundi_lancers.jpg"><img src="screenshots/drift_ulundi_lancers_thumb.jpg" alt="The 17th Lancers inside the square at Ulundi, in white helmets and dark blue on dark horses, their lances carried with the red and white pennons furled" loading="lazy"><span class="cap">The 17th Lancers wait inside the square</span></button>
+      <button class="shot" data-full="screenshots/drift_record.jpg"><img src="screenshots/drift_record_thumb.jpg" alt="A card from the record of 1879 before the battle of Kambula: a line from Cetshwayo's account, on black, with its source under it" loading="lazy"><span class="cap">Words from 1879: Cetshwayo's account before Kambula</span></button>
+      <button class="shot" data-full="screenshots/drift_firing_line.jpg"><img src="screenshots/drift_firing_line_thumb.jpg" alt="A company's firing line at Isandlwana volleying at the Zulu army's chest on the slope beyond" loading="lazy"><span class="cap">Isandlwana: a company's volley</span></button>
+    </div>
+
+    <!-- Where the game began: James's yes to the wording, 12 October. Keep the inscription as struck: J B and BORE WAR. -->
+    <div class="began">
+      <h3>Where it began</h3>
+      <p>Defend the Drift began with a family heirloom: a sword bayonet that came down through James's mother's family, the Bouchers. On one side of the blade someone cut the initials J&nbsp;B; on the other, letter by letter, BORE&nbsp;WAR. It got the family reading about the wars in southern Africa, and it is why this game tries to tell that history carefully, from both sides.</p>
+    </div>
+    <p class="memory">In memory of Private Richard Mussen of Belfast, whom his city remembers as one of the garrison.</p>
+    <p class="note">Defend the Drift is about real battles in which many people died on both sides, and it gives both sides the same care: no kill counts, nothing gloats, and the fallen stay where they fall. It is made for adults: there is blood, and the wounded bleed. Work in progress, captured in engine.</p>
+  </div>
+</section>
+
+<!-- ============ THE HOUSE IS HAUNTED (out now on itch.io, early access, 21 October 2026) ============ -->
+<!-- A Belfast ghost game: funny and frightening at once. Nobody is ever hurt in it; keep the words that way. -->
+<section id="haunted" class="haunted">
+  <div class="wrap">
+    <p class="eyebrow">Also from 3BL_Indie - out now in early access</p>
+    <h2>The House <span class="hl">Is Haunted</span></h2>
+    <p class="date">Belfast, 1980, 1983, 1987 and 1991</p>
+    <a class="when" href="https://gamesdevnisite.itch.io/the-house-is-haunted" target="_blank" rel="noopener"><i></i>Out now on itch.io - early access - Windows, Linux and Android</a>
+    <div class="haunted-grid">
+      <div>
+        <div class="video-frame reel">
+          <video controls preload="none" poster="video/the_house_is_haunted_reel_poster.jpg" playsinline>
+            <source src="video/the_house_is_haunted_reel.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="video/the_house_is_haunted_reel.mp4">Download the reel</a>.
+          </video>
+        </div>
+        <p class="video-note">The reel, captured live in engine, October 2026.</p>
+      </div>
+      <div>
+        <p class="lead"><strong>You are the ghost.</strong> A wee terraced house in Belfast, four households over eleven years, and one job: get them out. You never lay a hand on anyone. You knock in the walls, flicker the lights, leave the cooker on and switch the fridge off, and let the house do the rest.</p>
+        <p class="lead">January 1980, a man on his own with a kettle and a television. Halloween 1983, a mother and her wee girl, with guisers at the door all evening. Christmas 1987, seven of them, a tree in the corner and Granny Mac on the sherry, so whatever you do, they'll blame Granny. July 1991, the Eleventh Night: Peggy, eighty-four, has her bunting up for the Twelfth, and she isn't one bit afraid. She thinks you're her Billy, come home.</p>
+        <p class="lead">Then Free Play: any household, any season, residents you make yourself. Put yourself in the house and see if you can scare yourself out. About two hours for all four chapters.</p>
+        <ul class="ticks">
+          <li>Every trick is done to the house, never the people: rattle the windows, slam doors, slide the chairs, fling the front door open and let a bird in (a bat at Halloween, a squirrel at Christmas).</li>
+          <li>Tap on the glass and someone comes to look out. Two wee red eyes look back.</li>
+          <li>Halloween: be the caller at the door, and the wee girl opens it to an old woman made of mist, finger to her lips.</li>
+          <li>Make a room stink, or leave ectoplasm inside the door: they'll slip, get up, and blame each other.</li>
+          <li>Fear and belief over every head. Sceptics explain things away, children tell everyone, and the household leaves when it has had enough.</li>
+          <li>Push too hard and they send for help: Mrs Lavery the psychic, Father Connolly the priest, or Sammy and Big Davy, ghost hunters. Lead them a merry dance, or they'll have you out instead.</li>
+          <li>Everyone talks like home: "Catch yerself on", "Houl yer whisht", "That's boggin'".</li>
+          <li>Before each chapter, a real Belfast ghost story: James Haddock's ghost at Drum Bridge in 1662, Friar's Bush, Biddy Farrelly of Smithfield, the Grey Man of the Grand Opera House, and more. All ten are on the main menu.</li>
+          <li>Pixel art, music, voices and sound all made in code, in Godot 4.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="haunted-buy">
+      <iframe src="https://itch.io/embed/5197583?linkback=true&amp;bg_color=0a0f0e&amp;fg_color=e8fff8&amp;link_color=8FE6CF&amp;border_color=1f3a34" width="552" height="167" title="Get The House Is Haunted on itch.io" loading="lazy"><a href="https://gamesdevnisite.itch.io/the-house-is-haunted">The House Is Haunted by 3BL_Indie</a></iframe>
+      <a class="haunted-buy-link" href="https://gamesdevnisite.itch.io/the-house-is-haunted" target="_blank" rel="noopener">Get The House Is Haunted on itch.io</a>
+    </div>
+
+    <div class="gallery">
+      <button class="shot big" data-full="screenshots/hih_house.jpg"><img src="screenshots/hih_house_thumb.jpg" alt="The whole terraced house at night, cut away to show every room, the lamps lit and the shipyard cranes beyond" loading="lazy"><span class="cap">The house, January 1980</span></button>
+      <button class="shot big" data-full="screenshots/hih_old_woman.jpg"><img src="screenshots/hih_old_woman_thumb.jpg" alt="Halloween: a floating old woman made of pale green mist on the front step, finger to her lips, as the wee girl comes to the door" loading="lazy"><span class="cap">Halloween: not every caller is a guiser</span></button>
+      <button class="shot" data-full="screenshots/hih_red_eyes.jpg"><img src="screenshots/hih_red_eyes_thumb.jpg" alt="The man at the living-room window after a tap on the glass: 'Jesus, Mary and Joseph, what was that?'" loading="lazy"><span class="cap">A tap on the glass</span></button>
+      <button class="shot" data-full="screenshots/hih_guisers.jpg"><img src="screenshots/hih_guisers_thumb.jpg" alt="Two guisers at the front door, a bedsheet ghost and a wee witch with a turnip lantern: 'Help the Halloween party, missus!'" loading="lazy"><span class="cap">"Help the Halloween party, missus!"</span></button>
+      <button class="shot" data-full="screenshots/hih_christmas.jpg"><img src="screenshots/hih_christmas_thumb.jpg" alt="Christmas 1987: the family in the settee and armchairs round the television, the tree lit in the corner" loading="lazy"><span class="cap">Christmas 1987: seven of them</span></button>
+      <button class="shot" data-full="screenshots/hih_stink.jpg"><img src="screenshots/hih_stink_thumb.jpg" alt="A green stink cloud over the living room as the family turns on Granny: 'Granny! Was that you?!'" loading="lazy"><span class="cap">Make it stink. They'll blame Granny.</span></button>
+      <button class="shot" data-full="screenshots/hih_blame.jpg"><img src="screenshots/hih_blame_thumb.jpg" alt="A puddle of glowing ectoplasm inside the door; Frank, back on his feet: 'I'm grand. Siobhan, what's this?' 'I never!'" loading="lazy"><span class="cap">Ectoplasm: "I'm grand. Siobhan, what's this?"</span></button>
+      <button class="shot" data-full="screenshots/hih_story.jpg"><img src="screenshots/hih_story_thumb.jpg" alt="A Belfast ghost story between chapters: the Gothic gate of Friar's Bush graveyard at night, a figure behind the bars" loading="lazy"><span class="cap">A Belfast ghost story: Friar's Bush</span></button>
+    </div>
+    <p class="note">The ghost never harms anyone: no injuries, nobody hurt, just a family deciding the house isn't for them. Early access: captured in engine, and still being added to.</p>
+  </div>
+</section>
+
+<!-- ============ SILLY STUFF: daft things made for fun for the kids (each lives in silly/) ============ -->
+<section id="silly" class="silly">
+  <div class="wrap">
+    <p class="eyebrow">Just for fun</p>
+    <h2>Silly <span class="hl">stuff</span></h2>
+    <p class="lead">Daft wee things we made for fun for the kids. Nothing to buy, nothing to wishlist, just nonsense. They all play right here in your browser.</p>
+    <div class="silly-grid">
+      <a class="silly-card" href="silly/costa-chaos/">
+        <span class="silly-pics"><img src="silly/costa-chaos/lookee.jpg" alt="Lookee Lookee Tycoon cover: a beach seller in a red cap waving" width="630" height="500" loading="lazy"><img src="silly/costa-chaos/hotel.jpg" alt="Zero Star Hotel cover: the hotel manager waving at sunset" width="630" height="500" loading="lazy"></span>
+        <span class="silly-txt">
+          <h3>Costa Chaos!</h3>
+          <p>Two games in one from the Spanish Costa. Flog plastic tat to sunburnt tourists in <strong>Lookee Lookee Tycoon</strong>, or drag the worst hotel on the strip up to three stars in <strong>Zero Star Hotel</strong>. Hello chicken nugget!</p>
+          <span class="btn silly-btn">Play</span>
+        </span>
+      </a>
+      <a class="silly-card" href="silly/silly-session/">
+        <span class="silly-pics one"><img src="silly/silly-session/thumb.jpg" alt="The Silly Session: five wee men playing bodhr&aacute;n, tin whistle, fiddle, banjo and accordion" width="640" height="349" loading="lazy"></span>
+        <span class="silly-txt">
+          <h3>The Silly Session</h3>
+          <p>An Irish music session, but a silly one. Bob Piper swaps from bodhr&aacute;n to whistle, fiddle, banjo and accordion until the whole band plays one tune: The Mountains of Mourne to start, then She'll Be Coming Round the Mountain, and finally his own tough jig. Tap or use A S D.</p>
+          <span class="btn silly-btn">Play</span>
+        </span>
+      </a>
+      <a class="silly-card" href="silly/escape-from-east-belfast/">
+        <span class="silly-pics one"><img src="silly/escape-from-east-belfast/thumb.jpg" alt="Escape from East Belfast: four mates brawling on the Comber Greenway in ZX Spectrum style, Harland and Wolff cranes behind them" width="640" height="349" loading="lazy"></span>
+        <span class="silly-txt">
+          <h3>Escape from East Belfast</h3>
+          <p>You and your mates fell asleep on the Glider. Now battle back from Dundonald, past the Moat and down the Comber Greenway to the city centre, punching hoods, scumbags and bag ladies on the way. Four players on gamepads or CPU mates, five levels, Spectrum graphics and a tune for every one.</p>
+          <span class="btn silly-btn">Play</span>
+        </span>
+      </a>
+      <a class="silly-card" href="daddys-tales/">
+        <span class="silly-pics one"><img src="daddys-tales/thumb.jpg" alt="Daddy's Tales: a pop-up book open at The Wee Man in the Well, a wee man peeking out of a stone well at night" width="640" height="349" loading="lazy"></span>
+        <span class="silly-txt">
+          <h3>Daddy&rsquo;s Tales</h3>
+          <p>Twenty-four spooky and silly bedtime stories written for Aaron and Connor as they grew up, now a pop-up book you can read right here. Turn the pages, pull the tabs, and turn the sound up for knocks, burps and coo coos. Best read with the big light on.</p>
+          <span class="btn silly-btn">Read</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section id="about" class="course">
   <div class="wrap">
-    <p class="eyebrow">11 / About 3BL_Indie</p>
+    <p class="eyebrow">About 3BL_Indie</p>
     <div class="course-grid">
       <div>
         <h2>Made in <span class="hl">the Ards</span></h2>
@@ -996,7 +1050,7 @@
       <small>&copy; 2026 3BL_Indie. County Down, Northern Ireland.</small>
     </div>
     <div class="links">
-      <a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a href="#haunted">The House Is Haunted</a><a href="games.html">itch.io Games</a><a href="https://gamesdevnisite.itch.io" target="_blank" rel="noopener">3BL_Indie on itch.io</a><a data-steam href="#wishlist">Wishlist</a>
+      <a href="#games">Games</a><a href="#trailer">Trailer</a><a href="#screens">Screenshots</a><a href="#drift">Defend the Drift</a><a href="#haunted">The House Is Haunted</a><a href="games.html">itch.io Games</a><a href="https://gamesdevnisite.itch.io" target="_blank" rel="noopener">3BL_Indie on itch.io</a><a data-steam href="#wishlist">Wishlist</a>
     </div>
   </div>
 </footer>
