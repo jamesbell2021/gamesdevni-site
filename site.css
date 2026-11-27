@@ -689,3 +689,11 @@ footer small{display:block;color:var(--muted);margin-top:12px;font-size:12px}
 .games-group{margin-top:44px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#FF8C2B;border-bottom:1px solid var(--line);padding-bottom:10px}
 .games-group + .game-grid{margin-top:18px}
 .game-card a.gc-art{text-decoration:none}
+
+/* ---- About page (about.html, added 27 November 2026) ---- */
+.about-page{padding-top:130px}
+.about-h1{font-size:clamp(30px,5vw,52px);margin-bottom:28px;max-width:20ch}
+.about-h1 span{color:var(--accent)}
+.about-grid{gap:56px}
+.about-sign{margin-top:26px;color:var(--accent-2);letter-spacing:.06em}
+.about-page .btn{margin-top:4px}

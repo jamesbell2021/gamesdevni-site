@@ -1,5 +1,13 @@
 3BL_Indie - Forged in Formation website (rebuilt 1 October 2026; the studio is 3BL_Indie from 18 October 2026)
 
+ABOUT PAGE (added 27 November 2026): about.html says who makes the games:
+James, a 53-year-old dad from Newtownards, and his twin sons, aged 13 (the
+boys are not named or pictured, on purpose). It has a short "How we make
+them" panel that is open about using modern tools, AI among them. Linked
+from the About item in the menu on index.html and games.html, from both
+footers, and by a "Who makes our games" button in the front page's About
+section. Its styles are the ABOUT PAGE block at the end of site.css.
+
 Upload the whole folder as it is: index.html, games.html, site.css,
 screenshots/, video/.
 
